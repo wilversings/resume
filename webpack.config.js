@@ -66,7 +66,19 @@ module.exports = (env, argv) => {
       ],
     },
     devServer: {
-      static: path.resolve(__dirname, '.'),
+      static: {
+        directory: path.resolve(__dirname, '.'),
+        watch: {
+          ignored: [
+            path.resolve(__dirname, 'design/**'),
+            path.resolve(__dirname, 'node_modules/**'),
+            path.resolve(__dirname, 'dist/**'),
+            path.resolve(__dirname, '.git/**'),
+            path.resolve(__dirname, 'AGENTS.md'),
+            path.resolve(__dirname, 'README.md'),
+          ],
+        },
+      },
       port: 8080,
       open: true,
     },
