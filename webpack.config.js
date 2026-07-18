@@ -26,6 +26,10 @@ module.exports = (env, argv) => {
           type: 'asset/resource',
           generator: { filename: 'fonts/[name][ext]' },
         },
+        {
+          test: /\.svg$/i,
+          type: 'asset/inline',
+        },
       ],
     },
     plugins: [
