@@ -1,3 +1,5 @@
+import '../css/style.css';
+
 // Splash screen — hide once fonts + assets are ready (with a short
 // minimum so it doesn't flash), so the Monsante font swap isn't visible.
 const splash = document.getElementById('splash');
