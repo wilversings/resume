@@ -1,0 +1,1254 @@
+/* ==========================================================================
+   EMPIRE — Art Deco resume theme
+   Design tokens. Change these to re-skin the whole page.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Monsante';
+  src: url('../assets/fonts/Monsante-Regular.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* palette */
+  --navy-dark: #0d1122;
+  --navy-light: #141a30;
+  --bronze: #8d7f6b;
+  --gold: #cba328;
+  --gold-bright: #efc603;
+  --cream: #ece4d3;
+
+  /* gradients */
+  --gradient-gold-rust: linear-gradient(90deg, var(--bronze) 0%, var(--gold) 100%);
+  --gradient-metal-shine: linear-gradient(90deg, var(--bronze) 0%, var(--gold) 55%, var(--gold-bright) 100%);
+  --gradient-metal-vert: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 45%, #8a6d1a 100%);
+
+  /* type */
+  --font-display: 'Monsante', 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  --font-nav: 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  --font-body: Georgia, 'Iowan Old Style', serif;
+
+  /* layout */
+  --content-width: 1160px;
+  --header-height: 72px;
+  --cornice-height: 34px;
+}
+
+@media (max-width: 780px) {
+  :root {
+    --header-height: 64px;
+    --cornice-height: 28px;
+  }
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--navy-dark);
+  color: var(--cream);
+  font-family: var(--font-nav);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* film-grain overlay across the whole page */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* the inline sprite sheet of decorative marks lives in index.html and is
+   visually hidden; every <use> below pulls its shapes from there */
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Splash screen — masks the font swap on first load
+   ========================================================================== */
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy-dark);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* main.js adds this once fonts + assets have loaded */
+.splash.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.splash__diamond {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--gold);
+  transform: rotate(45deg);
+  position: relative;
+  animation: splash-pulse 1.4s ease-in-out infinite;
+}
+
+.splash__diamond::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  background: var(--gold-bright);
+  border-radius: 50%;
+}
+
+/* nav font only (no display font) so the splash itself never flickers */
+.splash__word {
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  text-indent: 6px;
+}
+
+.splash__rule {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+@keyframes splash-pulse {
+  0%, 100% { transform: rotate(45deg) scale(1); opacity: 0.7; }
+  50% { transform: rotate(45deg) scale(1.18); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash__diamond { animation: none; }
+}
+
+/* ==========================================================================
+   Shared decorative bits
+   ========================================================================== */
+
+.icon-diamond {
+  width: 12px;
+  height: 12px;
+  fill: var(--gold-bright);
+  flex-shrink: 0;
+}
+
+.icon-flourish {
+  width: 42px;
+  height: 22px;
+  overflow: visible;
+  opacity: 0.85;
+}
+
+.icon-flourish--right {
+  transform: scaleX(-1);
+}
+
+.corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  stroke: var(--gold);
+  stroke-opacity: 0.6;
+  stroke-width: 2;
+  fill: none;
+}
+
+.corner--tl {
+  top: -1px;
+  left: -1px;
+}
+
+.corner--br {
+  bottom: -1px;
+  right: -1px;
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   Section heading (flanking flourishes + gold rule)
+   ========================================================================== */
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 0 0 14px;
+}
+
+.section-heading__text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(26px, 3.4vw, 38px);
+  letter-spacing: clamp(3px, 0.4vw, 4px);
+  color: var(--gold);
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+}
+
+.section-rule {
+  display: block;
+  width: 100px;
+  height: 6px;
+  margin: 0 auto 40px;
+  position: relative;
+}
+
+.section-rule::before,
+.section-rule::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+}
+
+.section-rule::before {
+  top: 0;
+  width: 100px;
+  height: 1px;
+}
+
+.section-rule::after {
+  top: 6px;
+  width: 60px;
+  height: 1px;
+  opacity: 0.5;
+}
+
+.section-lede {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.4vw, 16px);
+  color: var(--cream);
+  opacity: 0.85;
+  max-width: 560px;
+  margin: -20px auto 40px;
+}
+
+/* ==========================================================================
+   Section wrappers — alternating navy tones, ziggurat cornice between them
+   ========================================================================== */
+
+.section {
+  position: relative;
+  padding: 80px 24px;
+  scroll-margin-top: var(--header-height);
+}
+
+.section--light {
+  background: var(--navy-light);
+}
+
+.section--dark {
+  background: var(--navy-dark);
+}
+
+.section__inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.cornice {
+  position: relative;
+  height: var(--cornice-height);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  border-top: 1px solid rgba(203, 163, 40, 0.6);
+}
+
+.cornice svg {
+  width: 260px;
+  height: var(--cornice-height);
+  display: block;
+}
+
+@media (max-width: 780px) {
+  .section {
+    padding: 56px 20px;
+  }
+
+  .cornice svg {
+    width: 150px;
+  }
+}
+
+/* ==========================================================================
+   Header / nav
+   ========================================================================== */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--header-height);
+  z-index: 100;
+  background: rgba(20, 26, 48, 0.92);
+  border-bottom: 1px solid rgba(203, 163, 40, 0.5);
+  backdrop-filter: blur(6px);
+}
+
+.nav {
+  max-width: var(--content-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--gold);
+}
+
+.nav__brand-mark {
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--gold);
+  transform: rotate(45deg);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.nav__brand-mark::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: var(--gold-bright);
+  border-radius: 50%;
+}
+
+.nav__links {
+  display: flex;
+  gap: 34px;
+}
+
+.nav__links a {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.nav__links a:hover,
+.nav__links a.is-active {
+  color: var(--gold-bright);
+}
+
+.nav__toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border: 1.3px solid var(--gold);
+  background: transparent;
+  cursor: pointer;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav__toggle svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--gold);
+  stroke-width: 1.4;
+}
+
+@media (max-width: 900px) {
+  .nav__links {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--navy-light);
+    border-bottom: 1px solid rgba(203, 163, 40, 0.5);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav__links.is-open {
+    max-height: 400px;
+  }
+
+  .nav__links a {
+    padding: 16px 24px;
+    border-top: 1px solid rgba(203, 163, 40, 0.15);
+  }
+
+  .nav__toggle {
+    display: flex;
+  }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  /* extra buffer beyond the fixed nav — align-items:center only
+     centers within the padded box, so this reliably pushes the whole
+     centered block down instead of it hugging the header */
+  padding-top: calc(var(--header-height) + clamp(32px, 6vh, 90px));
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy-dark);
+  overflow: hidden;
+  text-align: center;
+}
+
+/* large decorative fans anchored to the left & right edges,
+   emanating toward the centre — echoes the design's side flourishes */
+.hero__fans {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.hero__fan {
+  position: absolute;
+  top: 50%;
+  width: 150px;
+  height: 82px;
+  overflow: visible;
+  transform-origin: center center;
+}
+
+.hero__fan--l1 { left: 12px; transform: translateY(-92%) rotate(-18deg); }
+.hero__fan--l2 { left: 12px; transform: translateY(-8%)  rotate(18deg); }
+.hero__fan--r1 { right: 12px; transform: translateY(-92%) scaleX(-1) rotate(-18deg); }
+.hero__fan--r2 { right: 12px; transform: translateY(-8%)  scaleX(-1) rotate(18deg); }
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 0 24px;
+  width: 100%;
+}
+
+/* wraps the crown+plinth centrepiece together with its light source, so
+   the glow/sunburst are anchored to the monument itself (not the whole
+   hero section) and stay put no matter how tall the surrounding text is */
+.hero__monument-wrap {
+  position: relative;
+  width: min(420px, 58vw);
+  margin: 0 auto;
+}
+
+.hero__monument {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* anchored low inside the monument — roughly where the plinth bar sits
+   (~80% down the crown's own height) — so the light reads as coming
+   from the plinth, not the centre of the whole hero section */
+.hero__glow {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  width: 640px;
+  height: 640px;
+  max-width: 150vw;
+  transform: translate(-50%, -50%);
+  /* closest-side keeps the fade a true inscribed circle — farthest-corner
+     would leave the box's flat edges visible as a hard square boundary */
+  background: radial-gradient(circle closest-side,
+    rgba(239, 198, 3, 0.32) 0%,
+    rgba(203, 163, 40, 0.09) 55%,
+    rgba(203, 163, 40, 0) 100%);
+  pointer-events: none;
+}
+
+.hero__sunburst {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  width: 620px;
+  height: 620px;
+  max-width: 150vw;
+  opacity: 0.12;
+  pointer-events: none;
+  animation: sunburst-spin 90s linear infinite;
+}
+
+@keyframes sunburst-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__sunburst {
+    animation: none;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.hero__est {
+  margin: 26px 0 0;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: var(--gold);
+}
+
+.hero__est::before,
+.hero__est::after {
+  content: '';
+  display: inline-block;
+  width: 50px;
+  height: 1px;
+  background: var(--gold);
+  vertical-align: middle;
+  margin: 0 12px 3px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 6vw, 84px);
+  letter-spacing: clamp(1px, 0.3vw, 2px);
+  text-transform: uppercase;
+  margin: 30px 0 22px;
+  line-height: 1.05;
+  background: var(--gradient-gold-rust);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__subtitle {
+  font-family: var(--font-nav);
+  font-size: clamp(14px, 1.6vw, 20px);
+  color: var(--cream);
+  opacity: 0.85;
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 46px;
+  flex-wrap: wrap;
+}
+
+/* chamfered "plaque" button. The frame is SVG, not CSS clip-path/border —
+   a clipped rectangle border only strokes the box's 4 straight edges and
+   drops the diagonal corners entirely. The plate ring and molding line
+   are each a single evenodd-filled path: an outer chamfer octagon plus
+   a *geometrically eroded* inner octagon (not just the same corner-cut
+   re-applied to an inset box, which comes out ~41% thicker on the
+   diagonals — true uniform erosion needs the corner points nudged in
+   by B·(√2−1) along each axis, where B is the ring's width). This
+   gives a hairline of perfectly uniform width all the way round,
+   corners included — a stroked polygon can't do that, since the
+   default miter join lets sharp angle changes overshoot the line
+   width right at the corner. */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 184px;
+  height: 46px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.btn--wide {
+  width: 320px;
+}
+
+.btn__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.btn__label {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.btn--solid .btn__plate { fill: url(#metalShine); }
+.btn--solid .btn__molding { fill: #0d1122; fill-opacity: 0.55; }
+.btn--solid .btn__diamond { fill: #0d1122; }
+.btn--solid .btn__label { color: var(--navy-dark); }
+
+.btn--outline .btn__plate { fill: rgba(13, 17, 34, 0.35); }
+.btn--outline .btn__plate-ring { fill: var(--gold); }
+.btn--outline .btn__molding { fill: var(--gold); fill-opacity: 0.5; }
+.btn--outline .btn__diamond { fill: var(--gold); }
+.btn--outline .btn__label { color: var(--gold); }
+
+.hero__scroll {
+  margin-top: 60px;
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: transparent;
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+.hero__scroll svg {
+  width: 14px;
+  height: 8px;
+  stroke: var(--gold);
+  stroke-width: 2;
+  fill: none;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@media (max-width: 780px) {
+  .hero {
+    min-height: auto;
+    padding-bottom: 60px;
+  }
+
+  /* the large edge fans are a desktop-only flourish (they'd crowd the
+     title on narrow screens, matching the mobile mockup) */
+  .hero__fans {
+    display: none;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ==========================================================================
+   About
+   ========================================================================== */
+
+.about {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about__badge {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.about__badge svg {
+  width: 100%;
+  height: 100%;
+}
+
+.about__text {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.75;
+  color: var(--cream);
+  opacity: 0.9;
+  margin: 0 0 34px;
+}
+
+.about__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 60px;
+}
+
+.about__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.about__meta-item strong {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.about__meta-item span {
+  color: var(--cream);
+  opacity: 0.85;
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .about {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .about__text {
+    text-align: left;
+  }
+
+  .about__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .about__meta-item {
+    justify-content: flex-start;
+  }
+}
+
+/* ==========================================================================
+   Timeline (experience + education)
+   ========================================================================== */
+
+.timeline {
+  position: relative;
+}
+
+.timeline__spine {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-1px);
+  background: var(--gradient-metal-vert);
+}
+
+.timeline__item {
+  position: relative;
+  width: 50%;
+  padding: 0 60px 60px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.timeline__item:nth-child(odd) {
+  margin-right: auto;
+  justify-content: flex-end;
+  text-align: right;
+  flex-direction: row-reverse;
+}
+
+.timeline__item:nth-child(even) {
+  margin-left: auto;
+  justify-content: flex-start;
+}
+
+.timeline__item:last-child {
+  padding-bottom: 6px;
+}
+
+.timeline__marker {
+  position: absolute;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+}
+
+.timeline__item:nth-child(odd) .timeline__marker {
+  right: -6px;
+}
+
+.timeline__item:nth-child(even) .timeline__marker {
+  left: -6px;
+}
+
+.timeline__connector {
+  position: absolute;
+  top: 9px;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* connector runs from the marker (at the spine) inward toward the card —
+   "right"/"left" here measure from the item's spine-side edge, so the
+   offset must be positive to travel into the item, not past the spine */
+.timeline__item:nth-child(odd) .timeline__connector {
+  right: 6px;
+}
+
+.timeline__item:nth-child(even) .timeline__connector {
+  left: 6px;
+}
+
+.timeline__card {
+  position: relative;
+  background: var(--navy-light);
+  border: 1px solid rgba(203, 163, 40, 0.4);
+  padding: 22px 26px;
+  width: 100%;
+}
+
+.section--dark .timeline__card {
+  background: var(--navy-dark);
+}
+
+.timeline__date {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--gold-bright);
+  margin-bottom: 10px;
+}
+
+.timeline__title {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cream);
+}
+
+.timeline__org {
+  display: block;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 13.5px;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.timeline__desc {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--cream);
+  opacity: 0.8;
+}
+
+.timeline--compact .timeline__card {
+  padding: 16px 22px;
+}
+
+.timeline--compact .timeline__date {
+  margin-bottom: 6px;
+}
+
+.timeline--compact .timeline__title {
+  font-size: 16px;
+  margin: 0;
+}
+
+.timeline--compact .timeline__title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+  font-size: 13.5px;
+}
+
+@media (max-width: 780px) {
+  .timeline__spine {
+    left: 24px;
+  }
+
+  .timeline__item,
+  .timeline__item:nth-child(odd),
+  .timeline__item:nth-child(even) {
+    width: 100%;
+    margin: 0;
+    padding: 0 0 40px 60px;
+    justify-content: flex-start;
+    text-align: left;
+    flex-direction: row;
+  }
+
+  .timeline__item:nth-child(odd) .timeline__marker,
+  .timeline__item:nth-child(even) .timeline__marker {
+    left: 18px;
+    right: auto;
+  }
+
+  .timeline__item:nth-child(odd) .timeline__connector,
+  .timeline__item:nth-child(even) .timeline__connector {
+    left: 36px;
+    right: auto;
+  }
+}
+
+/* ==========================================================================
+   Portfolio
+   ========================================================================== */
+
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.portfolio__card {
+  position: relative;
+}
+
+.portfolio__thumb {
+  position: relative;
+  height: 160px;
+  background: linear-gradient(180deg, #1c2340 0%, #0d1122 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio__num {
+  font-size: 30px;
+  color: var(--gold);
+  opacity: 0.5;
+  font-weight: 700;
+}
+
+.portfolio__title {
+  margin: 16px 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cream);
+}
+
+.portfolio__cat {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.portfolio__more {
+  /* .btn is inline-flex (inline-level); switch to a block-level flex
+     box here so a fixed-width button can still be centered via auto
+     margins, without touching the shared .btn rules */
+  display: flex;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .portfolio__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Skills
+   ========================================================================== */
+
+.skills__columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.skills__col {
+  padding: 0 40px;
+  border-left: 1px solid rgba(203, 163, 40, 0.3);
+}
+
+.skills__col:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.skills__col:last-child {
+  padding-right: 0;
+}
+
+.skills__col-title {
+  text-align: center;
+  margin: 0 0 30px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold-bright);
+}
+
+.skill {
+  margin-bottom: 26px;
+}
+
+.skill:last-child {
+  margin-bottom: 0;
+}
+
+.skill__label {
+  display: block;
+  font-size: 13px;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+
+.skill__track {
+  height: 9px;
+  border: 1px solid var(--bronze);
+}
+
+.skill__fill {
+  height: 100%;
+  width: 0;
+  background: var(--gradient-metal-shine);
+  transition: width 1.1s ease;
+}
+
+.skill.is-visible .skill__fill {
+  width: var(--fill);
+}
+
+@media (max-width: 780px) {
+  .skills__columns {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .skills__col {
+    border-left: none;
+    padding: 0;
+    padding-top: 30px;
+    border-top: 1px solid rgba(203, 163, 40, 0.3);
+  }
+
+  .skills__col:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+/* ==========================================================================
+   Connect
+   ========================================================================== */
+
+.connect__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+/* chamfered gold border, same problem/fix as the buttons: a CSS `border`
+   only strokes the box's 4 straight edges, and clip-path trims the tiny
+   rectangular border corner away when it cuts the chamfer, leaving no
+   border at all on the diagonal. Fixed with two stacked layers sharing
+   the same chamfer shape: this element (gold) is the full plate, and
+   ::before (inset 1.5px, navy) sits on top of it, leaving a uniform
+   1.5px gold rim showing all the way round — including the corners.
+   The chamfer here uses a fixed pixel cut (not %) so it's a true 45°
+   angle regardless of the card's fluid width; ::before's inner chamfer
+   is nudged from 10px to 9.12px (10 − 1.5·(2−√2)) so the exposed rim
+   is a *geometrically* uniform 1.5px, not ~41% fatter on the diagonal
+   the way naively reusing the same 10px cut on the inset box would be. */
+.connect__card {
+  position: relative;
+  display: block;
+  background: var(--gold);
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+  padding: 24px 26px;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.connect__card::before {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  background: var(--navy-light);
+  clip-path: polygon(9.12px 0, calc(100% - 9.12px) 0, 100% 9.12px, 100% calc(100% - 9.12px), calc(100% - 9.12px) 100%, 9.12px 100%, 0 calc(100% - 9.12px), 0 9.12px);
+}
+
+.connect__label,
+.connect__value {
+  position: relative;
+  z-index: 1;
+}
+
+.connect__card:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.15);
+}
+
+.connect__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.connect__value {
+  font-size: 16px;
+  color: var(--cream);
+  word-break: break-word;
+}
+
+@media (max-width: 900px) {
+  .connect__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  position: relative;
+  padding: 60px 24px 40px;
+  background: var(--navy-light);
+  text-align: center;
+  overflow: hidden;
+}
+
+.site-footer__sunburst {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  width: 260px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.site-footer__mark {
+  width: 16px;
+  height: 16px;
+  margin: 0 auto 30px;
+  position: relative;
+}
+
+.site-footer__social {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border: 1.4px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.social-icon:hover {
+  background: var(--gold);
+  color: var(--navy-dark);
+}
+
+.site-footer__divider {
+  width: 500px;
+  max-width: 80%;
+  height: 1px;
+  margin: 0 auto 30px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+
+.site-footer__copy {
+  font-size: 12.5px;
+  letter-spacing: 2px;
+  color: var(--bronze);
+}

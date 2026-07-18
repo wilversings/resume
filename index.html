@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to My Empire — Résumé</title>
+  <meta name="description" content="An Art Deco styled résumé.">
+  <link rel="preload" href="assets/fonts/Monsante-Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       Splash screen — covers the page until fonts & assets load,
+       so there's no font flicker. Removed by js/main.js on load.
+       ============================================================ -->
+  <div class="splash" id="splash">
+    <div class="splash__inner">
+      <span class="splash__diamond"></span>
+      <span class="splash__word">EMPIRE</span>
+      <span class="splash__rule"></span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Decorative sprite sheet — every gold ornament on the page
+       (sunbursts, flourishes, ziggurat cornices, corner brackets,
+       diamonds) is defined once here and reused with <use href="#...">.
+       Edit a shape here and it updates everywhere on the page.
+       ============================================================ -->
+  <svg class="sprite" aria-hidden="true">
+    <defs>
+      <linearGradient id="goldRust" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#8d7f6b"/>
+        <stop offset="100%" stop-color="#cba328"/>
+      </linearGradient>
+      <linearGradient id="metalShine" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#8d7f6b"/>
+        <stop offset="55%" stop-color="#cba328"/>
+        <stop offset="100%" stop-color="#efc603"/>
+      </linearGradient>
+      <linearGradient id="metalVert" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#efc603"/>
+        <stop offset="45%" stop-color="#cba328"/>
+        <stop offset="100%" stop-color="#8a6d1a"/>
+      </linearGradient>
+      <linearGradient id="pl-stops-a">
+        <stop offset="0.2" stop-color="#8d7f6b"/>
+        <stop offset="0.8" stop-color="#cba328"/>
+      </linearGradient>
+      <linearGradient id="pl-stops-b">
+        <stop offset="0" stop-color="#8d7f6b"/>
+        <stop offset="1" stop-color="#cba328"/>
+      </linearGradient>
+      <linearGradient href="#pl-stops-a" id="pl-towers" gradientUnits="userSpaceOnUse" x1="118.06" y1="67.72" x2="285.83" y2="67.72"/>
+      <linearGradient href="#pl-stops-b" id="pl-lines" gradientUnits="userSpaceOnUse" x1="172.53" y1="74.02" x2="231.44" y2="74.02"/>
+      <!-- bronze→gold shading across the plinth bar (design userSpace coords) -->
+      <linearGradient href="#pl-stops-a" id="pl-bar" gradientUnits="userSpaceOnUse" x1="384" y1="0" x2="1052" y2="0"/>
+      <!-- vertical fade for the tower stubs hanging below the plinth -->
+      <linearGradient id="pl-fade" gradientUnits="userSpaceOnUse" x1="0" y1="629" x2="0" y2="666">
+        <stop offset="0" stop-color="#cba328" stop-opacity="0.55"/>
+        <stop offset="1" stop-color="#cba328" stop-opacity="0"/>
+      </linearGradient>
+
+      <!-- 24-ray sunburst, unit circle -->
+      <symbol id="icon-sunburst" viewBox="-1 -1 2 2">
+        <g stroke="url(#metalShine)" stroke-width="0.006">
+          <line x1="0" y1="0" x2="1" y2="0"/>
+          <line x1="0" y1="0" x2="0.531" y2="0.142"/>
+          <line x1="0" y1="0" x2="0.866" y2="0.5"/>
+          <line x1="0" y1="0" x2="0.389" y2="0.389"/>
+          <line x1="0" y1="0" x2="0.5" y2="0.866"/>
+          <line x1="0" y1="0" x2="0.142" y2="0.531"/>
+          <line x1="0" y1="0" x2="0" y2="1"/>
+          <line x1="0" y1="0" x2="-0.142" y2="0.531"/>
+          <line x1="0" y1="0" x2="-0.5" y2="0.866"/>
+          <line x1="0" y1="0" x2="-0.389" y2="0.389"/>
+          <line x1="0" y1="0" x2="-0.866" y2="0.5"/>
+          <line x1="0" y1="0" x2="-0.531" y2="0.142"/>
+          <line x1="0" y1="0" x2="-1" y2="0"/>
+          <line x1="0" y1="0" x2="-0.531" y2="-0.142"/>
+          <line x1="0" y1="0" x2="-0.866" y2="-0.5"/>
+          <line x1="0" y1="0" x2="-0.389" y2="-0.389"/>
+          <line x1="0" y1="0" x2="-0.5" y2="-0.866"/>
+          <line x1="0" y1="0" x2="-0.142" y2="-0.531"/>
+          <line x1="0" y1="0" x2="0" y2="-1"/>
+          <line x1="0" y1="0" x2="0.142" y2="-0.531"/>
+          <line x1="0" y1="0" x2="0.5" y2="-0.866"/>
+          <line x1="0" y1="0" x2="0.389" y2="-0.389"/>
+          <line x1="0" y1="0" x2="0.866" y2="-0.5"/>
+          <line x1="0" y1="0" x2="0.531" y2="-0.142"/>
+        </g>
+      </symbol>
+
+      <!-- heading flourish: fan of 7 rays with a tip diamond, points +x -->
+      <symbol id="icon-flourish" viewBox="-4 -20 44 40">
+        <g stroke="url(#metalShine)" stroke-width="1.5" vector-effect="non-scaling-stroke">
+          <line x1="0" y1="0" x2="8" y2="-13.9"/>
+          <line x1="0" y1="0" x2="18.4" y2="-15.4"/>
+          <line x1="0" y1="0" x2="16.9" y2="-6.2"/>
+          <line x1="0" y1="0" x2="32" y2="0"/>
+          <line x1="0" y1="0" x2="16.9" y2="6.2"/>
+          <line x1="0" y1="0" x2="18.4" y2="15.4"/>
+          <line x1="0" y1="0" x2="8" y2="13.9"/>
+        </g>
+        <rect x="29" y="-3" width="6" height="6" fill="#efc603" transform="rotate(45 32 0)"/>
+      </symbol>
+
+      <!-- ziggurat cornice: symmetric 3-step pyramid -->
+      <symbol id="icon-ziggurat" viewBox="0 0 200 34">
+        <polygon fill="url(#metalShine)" points="0,34 0,26 40,26 40,18 80,18 80,10 120,10 120,18 160,18 160,26 200,26 200,34"/>
+      </symbol>
+
+      <!-- stepped corner bracket, top-left orientation -->
+      <symbol id="icon-corner" viewBox="0 0 24 24">
+        <path d="M0,24 L0,8 L8,0 L24,0" fill="none"/>
+      </symbol>
+
+      <symbol id="icon-diamond" viewBox="-6 -6 12 12">
+        <rect x="-5" y="-5" width="10" height="10" transform="rotate(45)"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============================================================
+       Header / Nav
+       ============================================================ -->
+  <header class="site-header">
+    <nav class="nav">
+      <a href="#top" class="nav__brand">
+        <span class="nav__brand-mark" aria-hidden="true"></span>
+        EMPIRE
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#connect">Connect</a></li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none">
+          <line x1="2" y1="6" x2="22" y2="6"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <line x1="2" y1="18" x2="22" y2="18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       Hero
+       ============================================================ -->
+  <section class="hero" id="top">
+    <!-- large decorative fans anchored to the left & right edges -->
+    <div class="hero__fans" aria-hidden="true">
+      <svg class="hero__fan hero__fan--l1" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+      <svg class="hero__fan hero__fan--l2" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+      <svg class="hero__fan hero__fan--r1" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+      <svg class="hero__fan hero__fan--r2" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+    </div>
+
+    <div class="hero__content">
+      <!-- The "monument": crown emblem seated on a wide beveled plinth,
+           with tower stubs fading below. Built in the design's own
+           coordinate space so gradients & proportions match exactly.
+           The glow/sunburst live inside this wrapper too, anchored to
+           the monument's own box (not the whole hero section) so the
+           light reads as coming from the plinth, low inside the crown. -->
+      <div class="hero__monument-wrap">
+        <div class="hero__glow" aria-hidden="true"></div>
+        <svg class="hero__sunburst" viewBox="-1 -1 2 2" aria-hidden="true"><use href="#icon-sunburst" x="-1" y="-1" width="2" height="2"/></svg>
+
+        <svg class="hero__monument" viewBox="345 300 750 372" aria-hidden="true">
+          <!-- crown / tower silhouette -->
+          <g transform="translate(720,610) scale(4) translate(-201.94,-106)">
+            <path d="m 158.76964,29.42 4.75586,26.701172 h -25.64648 l 8.62109,25.609375 h -28.43945 l 14.74023,24.296873 h 3.50977 L 123.39073,84.730547 h 24.11914 l 7.16797,21.296873 h 2.10743 l -7.16797,-21.296873 -1.00977,-3 -7.94726,-23.609375 h 23.2207 l 4.20508,23.609375 0.5332,3 3.79297,21.296873 h 3.05078 l -3.79102,-21.296873 -0.53515,-3 -4.20117,-23.609375 -0.35743,-2 L 162.35948,32.42 h 79.16993 l -4.21875,23.701172 -0.35743,2 -4.20117,23.609375 -0.53515,3 -3.79102,21.296873 h 3.05078 l 3.79297,-21.296873 0.5332,-3 4.20508,-23.609375 h 23.23242 l -7.94922,23.609375 -1.00976,3 -7.16992,21.296873 h 2.0957 l 7.16602,-21.296873 h 24.12695 l -12.90234,21.296873 h 3.51171 l 14.72071,-24.296873 h -28.44727 l 8.61719,-25.609375 H 240.36339 L 245.11925,29.42 Z" fill="url(#pl-towers)"/>
+            <g fill="#0d1122" fill-opacity="0.75">
+              <path d="m 249.20714,106.02742 h 18.39063 l 12.90234,-21.296873 h -24.12695 z"/>
+              <path d="m 231.47667,106.02742 h 15.63477 l 7.16992,-21.296873 1.00976,-3 7.94922,-23.609375 h -23.23242 l -4.20508,23.609375 -0.5332,3 z"/>
+              <path d="m 175.463,106.02742 h 52.96289 l 3.79102,-21.296873 0.53515,-3 4.20117,-23.609375 0.35743,-2 L 241.52941,32.42 h -79.16993 l 4.21875,23.701172 0.35743,2 4.20117,23.609375 0.53515,3 z"/>
+              <path d="m 156.78527,106.02742 h 15.62695 l -3.79297,-21.296873 -0.5332,-3 -4.20508,-23.609375 h -23.2207 l 7.94726,23.609375 1.00977,3 z"/>
+              <path d="m 136.31066,106.02742 h 18.36718 l -7.16797,-21.296873 h -24.11914 z"/>
+            </g>
+            <g fill="url(#pl-lines)">
+              <path d="m 214.9397,52.479983 -4.18554,53.546877 h 0.95507 z"/>
+              <path d="m 172.52955,42.019045 8.95898,64.007815 h 1.08594 z"/>
+              <path d="m 231.4397,42.019045 -10.04492,64.007815 h 1.08594 z"/>
+              <path d="m 188.9397,52.479983 3.23047,53.546877 h 0.95508 z"/>
+            </g>
+          </g>
+          <!-- tower stubs fading below the plinth -->
+          <g stroke="url(#pl-fade)" stroke-width="1.3">
+            <line x1="640" y1="629" x2="640" y2="664"/>
+            <line x1="683" y1="629" x2="683" y2="664"/>
+            <line x1="757" y1="629" x2="757" y2="664"/>
+            <line x1="800" y1="629" x2="800" y2="664"/>
+          </g>
+          <!-- beveled plinth bar receiving the towers -->
+          <polygon points="350,618 368,606 1072,606 1090,618 1072,630 368,630" fill="#141a30" stroke="url(#pl-bar)" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <p class="hero__est">EST. 2026</p>
+
+      <h1 class="hero__title">Welcome to My Empire</h1>
+      <p class="hero__subtitle">Take a break from LinkedIn doomscrolling and experience a different kind of resume.</p>
+
+      <div class="hero__actions">
+        <a class="btn btn--solid" href="#experience">
+          <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true">
+            <polygon class="btn__plate" points="8,0 176,0 184,8 184,38 176,46 8,46 0,38 0,8"/>
+            <path class="btn__molding" fill-rule="evenodd" d="M13,5 L171,5 L179,13 L179,33 L171,41 L13,41 L5,33 L5,13 Z M13.41,6 L170.59,6 L178,13.41 L178,32.59 L170.59,40 L13.41,40 L6,32.59 L6,13.41 Z"/>
+            <polygon class="btn__diamond" points="24,19 28,23 24,27 20,23"/>
+            <polygon class="btn__diamond" points="160,19 164,23 160,27 156,23"/>
+          </svg>
+          <span class="btn__label">Résumé</span>
+        </a>
+        <a class="btn btn--outline" href="#connect">
+          <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true">
+            <polygon class="btn__plate" points="8,0 176,0 184,8 184,38 176,46 8,46 0,38 0,8"/>
+            <path class="btn__plate-ring" fill-rule="evenodd" d="M8,0 L176,0 L184,8 L184,38 L176,46 L8,46 L0,38 L0,8 Z M8.62,1.5 L175.38,1.5 L182.5,8.62 L182.5,37.38 L175.38,44.5 L8.62,44.5 L1.5,37.38 L1.5,8.62 Z"/>
+            <path class="btn__molding" fill-rule="evenodd" d="M13,5 L171,5 L179,13 L179,33 L171,41 L13,41 L5,33 L5,13 Z M13.33,5.8 L170.67,5.8 L178.2,13.33 L178.2,32.67 L170.67,40.2 L13.33,40.2 L5.8,32.67 L5.8,13.33 Z"/>
+            <polygon class="btn__diamond" points="24,19 28,23 24,27 20,23"/>
+            <polygon class="btn__diamond" points="160,19 164,23 160,27 156,23"/>
+          </svg>
+          <span class="btn__label">Contact</span>
+        </a>
+      </div>
+
+      <a class="hero__scroll" href="#about" aria-label="Scroll to About section">
+        <svg viewBox="0 0 14 8"><path d="M1,1 L7,7 L13,1"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <div class="cornice">
+    <svg viewBox="0 0 200 34"><use href="#icon-ziggurat"/></svg>
+  </div>
+
+  <!-- ============================================================
+       About
+       ============================================================ -->
+  <section class="section section--light" id="about">
+    <div class="section__inner">
+      <div class="section-heading">
+        <svg class="icon-flourish" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+        <h2 class="section-heading__text">About Me</h2>
+        <svg class="icon-flourish icon-flourish--right" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+      </div>
+      <span class="section-rule"></span>
+
+      <div class="about">
+        <div class="about__badge">
+          <svg viewBox="-70 -70 140 140" aria-hidden="true">
+            <path d="M0,-60 L52,-30 L52,30 L0,60 L-52,30 L-52,-30 Z" fill="none" stroke="#cba328" stroke-width="1.6"/>
+            <path d="M0,-70 L61,-35 L61,35 L0,70 L-61,35 L-61,-35 Z" fill="none" stroke="#cba328" stroke-width="1" stroke-opacity="0.5"/>
+            <path d="M-18,38 q18,-62 36,0 q4,18 -5,26 h-26 q-9,-8 -5,-26 Z" fill="#8d7f6b" fill-opacity="0.6"/>
+          </svg>
+        </div>
+
+        <div class="about__body">
+          <p class="about__text">
+            A full-stack engineer who treats interfaces like architecture — clean lines,
+            load-bearing structure, ornament only where it earns its keep. Ten years
+            building products that scale from prototype to production without losing
+            their character.
+          </p>
+
+          <div class="about__meta">
+            <div class="about__meta-item">
+              <svg class="icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+              <strong>Location — <span>City, Country</span></strong>
+            </div>
+            <div class="about__meta-item">
+              <svg class="icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+              <strong>Employer — <span>Company Name</span></strong>
+            </div>
+            <div class="about__meta-item">
+              <svg class="icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+              <strong>Education — <span>Degree · University</span></strong>
+            </div>
+            <div class="about__meta-item">
+              <svg class="icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+              <strong>Focus — <span>Full-Stack Engineering</span></strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cornice">
+    <svg viewBox="0 0 200 34"><use href="#icon-ziggurat"/></svg>
+  </div>
+
+  <!-- ============================================================
+       Experience
+       ============================================================ -->
+  <section class="section section--dark" id="experience">
+    <div class="section__inner">
+      <div class="section-heading">
+        <svg class="icon-flourish" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+        <h2 class="section-heading__text">Experience</h2>
+        <svg class="icon-flourish icon-flourish--right" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+      </div>
+      <span class="section-rule"></span>
+
+      <div class="timeline">
+        <div class="timeline__spine" aria-hidden="true"></div>
+
+        <article class="timeline__item">
+          <svg class="timeline__marker icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+          <span class="timeline__connector" aria-hidden="true"></span>
+          <div class="timeline__card">
+            <svg class="corner corner--tl" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <svg class="corner corner--br" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <span class="timeline__date">2023 — PRESENT</span>
+            <h3 class="timeline__title">Senior Software Engineer</h3>
+            <span class="timeline__org">Company Name</span>
+            <p class="timeline__desc">Leading front-end architecture for a suite of internal tools; mentoring engineers, shipping a shared design system.</p>
+          </div>
+        </article>
+
+        <article class="timeline__item">
+          <svg class="timeline__marker icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+          <span class="timeline__connector" aria-hidden="true"></span>
+          <div class="timeline__card">
+            <svg class="corner corner--tl" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <svg class="corner corner--br" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <span class="timeline__date">2020 — 2023</span>
+            <h3 class="timeline__title">Software Engineer</h3>
+            <span class="timeline__org">Company Name</span>
+            <p class="timeline__desc">Built and maintained customer-facing web applications end to end, from API to pixel.</p>
+          </div>
+        </article>
+
+        <article class="timeline__item">
+          <svg class="timeline__marker icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+          <span class="timeline__connector" aria-hidden="true"></span>
+          <div class="timeline__card">
+            <svg class="corner corner--tl" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <svg class="corner corner--br" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <span class="timeline__date">2018 — 2020</span>
+            <h3 class="timeline__title">Junior Developer</h3>
+            <span class="timeline__org">Company Name</span>
+            <p class="timeline__desc">Cut teeth on production code, learned the value of a good code review.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="cornice">
+    <svg viewBox="0 0 200 34"><use href="#icon-ziggurat"/></svg>
+  </div>
+
+  <!-- ============================================================
+       Education
+       ============================================================ -->
+  <section class="section section--light" id="education">
+    <div class="section__inner">
+      <div class="section-heading">
+        <svg class="icon-flourish" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+        <h2 class="section-heading__text">Education</h2>
+        <svg class="icon-flourish icon-flourish--right" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+      </div>
+      <span class="section-rule"></span>
+
+      <div class="timeline timeline--compact">
+        <div class="timeline__spine" aria-hidden="true"></div>
+
+        <article class="timeline__item">
+          <svg class="timeline__marker icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+          <span class="timeline__connector" aria-hidden="true"></span>
+          <div class="timeline__card">
+            <span class="timeline__date">2014 — 2018</span>
+            <h3 class="timeline__title">B.Sc. Computer Science <em>· University Name</em></h3>
+          </div>
+        </article>
+
+        <article class="timeline__item">
+          <svg class="timeline__marker icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+          <span class="timeline__connector" aria-hidden="true"></span>
+          <div class="timeline__card">
+            <span class="timeline__date">2018</span>
+            <h3 class="timeline__title">Certification <em>· Relevant Certification Name</em></h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="cornice">
+    <svg viewBox="0 0 200 34"><use href="#icon-ziggurat"/></svg>
+  </div>
+
+  <!-- ============================================================
+       Portfolio
+       ============================================================ -->
+  <section class="section section--dark" id="portfolio">
+    <div class="section__inner">
+      <div class="section-heading">
+        <svg class="icon-flourish" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+        <h2 class="section-heading__text">Portfolio</h2>
+        <svg class="icon-flourish icon-flourish--right" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+      </div>
+      <span class="section-rule"></span>
+
+      <div class="portfolio__grid">
+        <article class="portfolio__card">
+          <div class="portfolio__thumb">
+            <svg class="corner corner--tl" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <svg class="corner corner--br" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <span class="portfolio__num">01</span>
+          </div>
+          <h3 class="portfolio__title">Project One</h3>
+          <span class="portfolio__cat">Web Application</span>
+        </article>
+
+        <article class="portfolio__card">
+          <div class="portfolio__thumb">
+            <svg class="corner corner--tl" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <svg class="corner corner--br" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <span class="portfolio__num">02</span>
+          </div>
+          <h3 class="portfolio__title">Project Two</h3>
+          <span class="portfolio__cat">Mobile App</span>
+        </article>
+
+        <article class="portfolio__card">
+          <div class="portfolio__thumb">
+            <svg class="corner corner--tl" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <svg class="corner corner--br" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <span class="portfolio__num">03</span>
+          </div>
+          <h3 class="portfolio__title">Project Three</h3>
+          <span class="portfolio__cat">Open Source</span>
+        </article>
+
+        <article class="portfolio__card">
+          <div class="portfolio__thumb">
+            <svg class="corner corner--tl" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <svg class="corner corner--br" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <span class="portfolio__num">04</span>
+          </div>
+          <h3 class="portfolio__title">Project Four</h3>
+          <span class="portfolio__cat">Design System</span>
+        </article>
+
+        <article class="portfolio__card">
+          <div class="portfolio__thumb">
+            <svg class="corner corner--tl" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <svg class="corner corner--br" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <span class="portfolio__num">05</span>
+          </div>
+          <h3 class="portfolio__title">Project Five</h3>
+          <span class="portfolio__cat">API Platform</span>
+        </article>
+
+        <article class="portfolio__card">
+          <div class="portfolio__thumb">
+            <svg class="corner corner--tl" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <svg class="corner corner--br" viewBox="0 0 24 24"><use href="#icon-corner"/></svg>
+            <span class="portfolio__num">06</span>
+          </div>
+          <h3 class="portfolio__title">Project Six</h3>
+          <span class="portfolio__cat">Prototype</span>
+        </article>
+      </div>
+
+      <a href="#" class="btn btn--outline btn--wide portfolio__more">
+        <svg class="btn__frame" viewBox="0 0 320 46" preserveAspectRatio="none" aria-hidden="true">
+          <polygon class="btn__plate" points="8,0 312,0 320,8 320,38 312,46 8,46 0,38 0,8"/>
+          <path class="btn__plate-ring" fill-rule="evenodd" d="M8,0 L312,0 L320,8 L320,38 L312,46 L8,46 L0,38 L0,8 Z M8.62,1.5 L311.38,1.5 L318.5,8.62 L318.5,37.38 L311.38,44.5 L8.62,44.5 L1.5,37.38 L1.5,8.62 Z"/>
+          <path class="btn__molding" fill-rule="evenodd" d="M13,5 L307,5 L315,13 L315,33 L307,41 L13,41 L5,33 L5,13 Z M13.33,5.8 L306.67,5.8 L314.2,13.33 L314.2,32.67 L306.67,40.2 L13.33,40.2 L5.8,32.67 L5.8,13.33 Z"/>
+          <polygon class="btn__diamond" points="24,19 28,23 24,27 20,23"/>
+          <polygon class="btn__diamond" points="296,19 300,23 296,27 292,23"/>
+        </svg>
+        <span class="btn__label">View Full Portfolio →</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="cornice">
+    <svg viewBox="0 0 200 34"><use href="#icon-ziggurat"/></svg>
+  </div>
+
+  <!-- ============================================================
+       Skills
+       ============================================================ -->
+  <section class="section section--light" id="skills">
+    <div class="section__inner">
+      <div class="section-heading">
+        <svg class="icon-flourish" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+        <h2 class="section-heading__text">Skills</h2>
+        <svg class="icon-flourish icon-flourish--right" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+      </div>
+      <span class="section-rule"></span>
+
+      <div class="skills__columns">
+        <div class="skills__col">
+          <h3 class="skills__col-title">Frontend</h3>
+          <div class="skill" style="--fill:90%">
+            <span class="skill__label">React</span>
+            <div class="skill__track"><div class="skill__fill"></div></div>
+          </div>
+          <div class="skill" style="--fill:80%">
+            <span class="skill__label">TypeScript</span>
+            <div class="skill__track"><div class="skill__fill"></div></div>
+          </div>
+          <div class="skill" style="--fill:90%">
+            <span class="skill__label">Tailwind CSS</span>
+            <div class="skill__track"><div class="skill__fill"></div></div>
+          </div>
+        </div>
+
+        <div class="skills__col">
+          <h3 class="skills__col-title">Backend</h3>
+          <div class="skill" style="--fill:80%">
+            <span class="skill__label">Node.js</span>
+            <div class="skill__track"><div class="skill__fill"></div></div>
+          </div>
+          <div class="skill" style="--fill:70%">
+            <span class="skill__label">PostgreSQL</span>
+            <div class="skill__track"><div class="skill__fill"></div></div>
+          </div>
+          <div class="skill" style="--fill:60%">
+            <span class="skill__label">GraphQL</span>
+            <div class="skill__track"><div class="skill__fill"></div></div>
+          </div>
+        </div>
+
+        <div class="skills__col">
+          <h3 class="skills__col-title">Tools</h3>
+          <div class="skill" style="--fill:90%">
+            <span class="skill__label">Git</span>
+            <div class="skill__track"><div class="skill__fill"></div></div>
+          </div>
+          <div class="skill" style="--fill:70%">
+            <span class="skill__label">Docker</span>
+            <div class="skill__track"><div class="skill__fill"></div></div>
+          </div>
+          <div class="skill" style="--fill:70%">
+            <span class="skill__label">CI / CD</span>
+            <div class="skill__track"><div class="skill__fill"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cornice">
+    <svg viewBox="0 0 200 34"><use href="#icon-ziggurat"/></svg>
+  </div>
+
+  <!-- ============================================================
+       Connect
+       ============================================================ -->
+  <section class="section section--dark" id="connect">
+    <div class="section__inner">
+      <div class="section-heading">
+        <svg class="icon-flourish" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+        <h2 class="section-heading__text">Connect</h2>
+        <svg class="icon-flourish icon-flourish--right" viewBox="-4 -20 44 40"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
+      </div>
+      <p class="section-lede">Always happy to talk shop, collaborate, or just say hello.</p>
+
+      <div class="connect__grid">
+        <a class="connect__card" href="mailto:hello@yourdomain.com">
+          <span class="connect__label">
+            <svg class="icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+            Email
+          </span>
+          <span class="connect__value">hello@yourdomain.com</span>
+        </a>
+
+        <a class="connect__card" href="https://linkedin.com/in/yourname" target="_blank" rel="noopener">
+          <span class="connect__label">
+            <svg class="icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+            LinkedIn
+          </span>
+          <span class="connect__value">linkedin.com/in/yourname</span>
+        </a>
+
+        <a class="connect__card" href="https://github.com/yourname" target="_blank" rel="noopener">
+          <span class="connect__label">
+            <svg class="icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+            GitHub
+          </span>
+          <span class="connect__value">github.com/yourname</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="cornice">
+    <svg viewBox="0 0 200 34"><use href="#icon-ziggurat"/></svg>
+  </div>
+
+  <!-- ============================================================
+       Footer
+       ============================================================ -->
+  <footer class="site-footer">
+    <svg class="site-footer__sunburst" viewBox="-1 -1 2 2" aria-hidden="true"><use href="#icon-sunburst" x="-1" y="-1" width="2" height="2"/></svg>
+
+    <svg class="site-footer__mark icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+
+    <div class="site-footer__social">
+      <a class="social-icon" href="https://github.com/yourname" target="_blank" rel="noopener" aria-label="GitHub">Gh</a>
+      <a class="social-icon" href="https://linkedin.com/in/yourname" target="_blank" rel="noopener" aria-label="LinkedIn">Li</a>
+      <a class="social-icon" href="https://twitter.com/yourname" target="_blank" rel="noopener" aria-label="Twitter">Tw</a>
+      <a class="social-icon" href="https://instagram.com/yourname" target="_blank" rel="noopener" aria-label="Instagram">Ig</a>
+      <a class="social-icon" href="https://stackoverflow.com/users/yourname" target="_blank" rel="noopener" aria-label="Stack Overflow">SO</a>
+    </div>
+
+    <div class="site-footer__divider"></div>
+    <p class="site-footer__copy">© 2026 · BUILT IN THE ART DECO STYLE</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

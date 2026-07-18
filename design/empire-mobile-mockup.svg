@@ -1,0 +1,528 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 5280" font-family="'Futura','Century Gothic','Trebuchet MS',sans-serif">
+  <title>Welcome to My Empire — mobile Art Deco resume design</title>
+
+  <style>
+    @font-face {
+      font-family: 'Monsante';
+      src: url(data:font/otf;base64,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AC3/5wAu/8kAL//nADD/yQAx/78AMv/iADX/zgA2/+IAN//YABgABP/YAAb/+wAI/9gACv/2AA3/7AAV/9gAFv/sABf/xAAb/+IAHP/OAB3/7AAe//YAIP/2ACH/9gAi//YAI//iACT/9gAn/1YALP/2AC7/9gAw//EAMf/dADX/4gA3/+wABgAb/84AI//OACr/9gAt//YALv/xADX/zgAjAAT/zgAG//YACP/TAAr/8QAN/+IAD//2ABX/2AAW/+cAF/+mABj/9gAb/+IAHP+6AB3/7AAe/84AIP/OACH/zgAi/84AI//dACT/zgAl//YAJv/2ACf/RwAp//YAKv/2ACv/9gAs/84ALf/2AC7/zgAv//sAMP/iADH/2AAy//YANf/dADb/9gA3/+wAGAAE/9gABv/7AAj/2AAK//YADf/sABX/2AAW//EAF//OABv/4gAc/9gAHf/nAB7/9gAg//YAIf/2ACL/9gAj/9gAJP/2ACf/VgAs//YALv/2ADD/8QAx/90ANf/iADf/7AAYAAT/0wAG//sACP/YAAr/9gAN/9gAFf/YABb/5wAX/8QAG//iABz/ugAd/+cAHv/2ACD/9gAh//YAIv/2ACP/3QAk//YAJ/9MACz/9gAu//YAMP/2ADH/3QA1/+IAN//nADMABP/EAAX/9gAG/+cACP+6AAn/xAAK/9gAC//EAAz/7AAN/4gADv/2AA//7AAQ/+wAEf/sABL/4gAT//YAFP/iABX/zgAW/+IAF//OABj/7AAZ//YAGv/2ABv/2AAc/84AHf/YAB7/sAAf/+wAIP+wACH/sAAi/7AAI/+mACT/sAAl//EAJv/nACf/OAAo/+wAKf/sACr/5wAr/+cALP+wAC3/5wAu/7AAL//nADD/0wAx/6sAMv/nADP/4gA0/+IANf/OADb/5wA3/9gAGAAE/9gABv/7AAj/2AAK//YADf/sABX/2AAW//EAF//EABv/4gAc/8QAHf/nAB7/9gAg//YAIf/2ACL/9gAj/+IAJP/2ACf/YAAs//YALv/2ADD/8QAx/90ANf/iADf/7AAYAAT/2AAG//sACP/TAAr/9gAN/+wAFf/YABb/2AAX/8QAG//iABz/xAAd/+cAHv/2ACD/9gAh//YAIv/2ACP/2AAk//YAJ/9MACz/9gAu//YAMP/xADH/2AA1/+IAN//nABgABP/YAAb/+wAI/9gACv/2AA3/7AAV/9gAFv/xABf/xAAb/+IAHP/OAB3/5wAe//YAIP/2ACH/9gAi//YAI//iACT/9gAn/1YALP/2AC7/9gAw//YAMf/dADX/4gA3/+wAFgAE/9gACP/YAAr/9gAN/+IAFf/YABb/8QAX/8QAG//iABz/zgAd/+cAHv/2ACD/9gAh//YAIv/2ACP/4gAk//YAJ/9gACz/9gAw//EAMf/dADX/4gA3/+wAJQAE/9gABf/7AAb/8QAI/8kACf/YAAr/8QAL/9gADf/sAA7/+wAP//sAEv/nABP/+wAU/+cAFf/OABb/4gAX/7oAGf/7ABr/+wAb/+IAHP+6AB3/7AAe//EAIP/xACH/8QAi//EAI//TACT/8QAn/0wALP/xAC7/8QAw/9sAMf/JADP/9gA0//YANf/dADb/+wA3/+IAGAAE/9gABv/7AAj/2AAK//YADf/sABX/2AAW//EAF//OABv/4gAc/9gAHf/sAB7/9gAg//YAIf/2ACL/9gAj/9gAJP/2ACf/VgAs//YALv/2ADD/8QAx/90ANf/iADf/7AAfAAT/2AAG//sACP/YAAn/2AAK//YAC//YAA3/7AAS//YAFP/2ABX/2AAW//EAF//EABv/4gAc/84AHf/sAB7/9gAg//YAIf/2ACL/9gAj/+IAJP/2ACf/VgArAAoALP/2AC7/9gAw//EAMf/dADP/+wA0//sANf/iADf/7AAYAAT/2AAG//sACP/YAAr/9gAN/+wAFf/YABb/7AAX/8QAG//iABz/zgAd/+wAHv/2ACD/9gAh//YAIv/2ACP/2AAk//YAJ/9WACz/9gAu//YAMP/xADH/2AA1/+IAN//nACQABP/OAAb/7AAH//YACP/YAAr/7AAN/7AAD//2ABX/zgAW/8QAF/+mABj/9gAb/9gAHP+wAB3/2AAe//EAIP/xACH/8QAi//EAI//OACT/8QAl//YAJv/2ACf/TAAp//YAKv/2ACv/9gAs//EALf/2AC7/8QAv//YAMP/nADH/vwAy//YANf/OADb/9gA3/8QAHQAE/9gABv/7AAj/2AAJ/9gACv/2AAv/2AAN/+IAEv/2ABT/9gAV/9gAFv/sABf/zgAb/+IAHP/OAB3/7AAe//YAIP/2ACH/9gAi//YAI//iACT/9gAn/1YALP/2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//H/+//7/9gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+c/8T/2P+//+z/5//nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/7P/s//b/yf/2//H/8f/J/+z/8f/J//H/2P/x/7r/zv/x//H/8f/x//b/9v/2//H/8f/2//b/2P/2//H/g//O/6b/9v9C/87/7AAA/9j/7P/x/8n/9v/x//EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/x//v/+//YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/uv/T/8T/q//Y/9j/0wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/8n/5//d/8T/5//n/+cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/2AAD/+//OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/7P/2//H/zv/2//b/9gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//YAAP/7/9gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/2AAD/+//OAAAAAP/7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/9gAA//v/2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//YAAP/7/9gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/2AAD/+//YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/8f/x//H/zv/2//b/9gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/9P/4v/s/7r/8f/s/+wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/2AAD/+//YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/9gAA//v/2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/93/5//i/7//5//n/+cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/n/+L/7P/E/+L/4v/sAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/9gAA//v/2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//H/+//7/9gAAAAAAAD/2P/xAAD/2AAA//EAAP/Y/+f/9v/2//b/9gAAAAAAAP/2/+wAAAAA/+wAAP/2/+f/2P/TAAD/TP/Y//EAAP/x//b/+//TAAD/+//7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/zv/i/+L/v//s/+f/5wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/7D/2P+6/7D/2P/i/+IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/s//YAAP/TAAD/+//7/87/7P/7/9P/+//s//v/0//i//H/8f/x//EAAAAAAAD/8f/sAAAAAP/dAAD/8f+6/9z/0wAA/0z/zv/sAAD/9gAA//v/2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//YAAP/7/9gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/i/+L/4v+6/+L/2P/iAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/9gAA//b/0//7//v/+//T//b/+//T//v/5//7/8T/4v/x//H/8f/x//v/+//7//H/7P/7//v/4v/7//H/xP/T/7r/+/9M/93/9gAA//H/9gAA/9MAAP/7//sAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/s//H/8f/O//b/9v/2/87/7P/s/9j/9v/E//b/sP/Y//H/8f/x//H/9v/2//b/8f/i//b/9v/E//b/8f+w/87/pv/2/0z/xP/sAAIACwAEAAQAAAAGAAgAAQAKAA0ABAAPABIACAAUABoADAAcACIAEwAkACcAGgApACkAHgArAC0AHwAvADQAIgA2ADcAKAABAAQANAABAAAAAgADAAQAAAAjAAUAGgAbAAAABgAaABoABwAAAAcAHAAIAB0ACQAeAB4AAAAKAAsADAAkAA0ADgAPAAAAGQAQAB8AIAAAABEAAAASABMAJAAAABgAFAAhABUAIgAiAAAAFgAXAAEABAA0AAgABwAJAAoACwAEACUABAAGAB8ABwAMAAYABgABAAcAAQAgAA0AIQAOAAIAAgAAAA8AEAARAAUAEgATABQAAAAeABUAIgAjAAUAFgAAABcAGAAAAAAAHQAZACQAGgADAAMAAAAbABwAAQAAAAoAMABKAAJERkxUAA5sYXRuABoABAAAAAD//wABAAAABAAAAAD//wABAAEAAnNhbHQADnNhbHQAFAAAAAEAAAAAAAEAAAABAAQAAwAAAAEACAABAAwAAQAIAAEABAABAAEABAAAAAEAAAAA) format('opentype');
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="goldRust" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8d7f6b"/>
+      <stop offset="100%" stop-color="#cba328"/>
+    </linearGradient>
+    <linearGradient id="metalShine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8d7f6b"/>
+      <stop offset="55%" stop-color="#cba328"/>
+      <stop offset="100%" stop-color="#efc603"/>
+    </linearGradient>
+    <linearGradient id="metalVert" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#efc603"/>
+      <stop offset="45%" stop-color="#cba328"/>
+      <stop offset="100%" stop-color="#8a6d1a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#efc603" stop-opacity="0.30"/>
+      <stop offset="60%" stop-color="#cba328" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#cba328" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="photoDuotone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c2340"/>
+      <stop offset="100%" stop-color="#0d1122"/>
+    </linearGradient>
+
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0"/>
+    </filter>
+
+    <g id="sunburst24" stroke="url(#metalShine)" stroke-width="1.5">
+      <line x1="0" y1="0" x2="1"     y2="0"     vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="0.531" y2="0.142" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="0.866" y2="0.5"   vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="0.389" y2="0.389" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="0.5"   y2="0.866" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="0.142" y2="0.531" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="0"     y2="1"     vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="-0.142" y2="0.531" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="-0.5"  y2="0.866" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="-0.389" y2="0.389" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="-0.866" y2="0.5"  vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="-0.531" y2="0.142" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="-1"    y2="0"     vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="-0.531" y2="-0.142" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="-0.866" y2="-0.5"  vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="-0.389" y2="-0.389" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="-0.5"  y2="-0.866" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="-0.142" y2="-0.531" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="0"     y2="-1"     vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="0.142" y2="-0.531" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="0.5"   y2="-0.866" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="0.389" y2="-0.389" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="0.866" y2="-0.5"  vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="0" x2="0.531" y2="-0.142" vector-effect="non-scaling-stroke"/>
+    </g>
+
+    <g id="flourish">
+      <g stroke="url(#metalShine)" stroke-width="1.5" vector-effect="non-scaling-stroke">
+        <line x1="0" y1="0" x2="8"    y2="-13.9"/>
+        <line x1="0" y1="0" x2="18.4" y2="-15.4"/>
+        <line x1="0" y1="0" x2="16.9" y2="-6.2"/>
+        <line x1="0" y1="0" x2="32"   y2="0"/>
+        <line x1="0" y1="0" x2="16.9" y2="6.2"/>
+        <line x1="0" y1="0" x2="18.4" y2="15.4"/>
+        <line x1="0" y1="0" x2="8"    y2="13.9"/>
+      </g>
+      <rect x="29" y="-3" width="6" height="6" fill="#efc603" transform="rotate(45 32 0)"/>
+    </g>
+
+    <symbol id="ziggurat" viewBox="0 0 200 34">
+      <polygon fill="url(#metalShine)" points="0,34 0,26 40,26 40,18 80,18 80,10 120,10 120,18 160,18 160,26 200,26 200,34"/>
+    </symbol>
+
+    <symbol id="corner" viewBox="0 0 24 24">
+      <path d="M0,24 L0,8 L8,0 L24,0" fill="none" stroke="#cba328" stroke-width="2.5"/>
+    </symbol>
+
+    <symbol id="diamond" viewBox="-6 -6 12 12">
+      <rect x="-5" y="-5" width="10" height="10" fill="#efc603" transform="rotate(45)"/>
+    </symbol>
+
+    <linearGradient id="pl-stops-a"><stop offset="0.2" stop-color="#8d7f6b"/><stop offset="0.8" stop-color="#cba328"/></linearGradient>
+    <linearGradient id="pl-stops-b"><stop offset="0" stop-color="#8d7f6b"/><stop offset="1" stop-color="#cba328"/></linearGradient>
+    <linearGradient href="#pl-stops-a" id="pl-towers" gradientUnits="userSpaceOnUse" x1="118.06" y1="67.72" x2="285.83"/>
+    <linearGradient href="#pl-stops-b" id="pl-lines" gradientUnits="userSpaceOnUse" x1="172.53" y1="74.02" x2="231.44"/>
+    <linearGradient id="pl-fade" gradientUnits="userSpaceOnUse" x1="0" y1="332" x2="0" y2="356">
+      <stop offset="0" stop-color="#cba328" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#cba328" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient href="#pl-stops-a" id="pl-bar" gradientUnits="userSpaceOnUse" x1="75" y1="0" x2="315" y2="0"/>
+  </defs>
+
+  <!-- MONSANTE font family shorthand for reuse -->
+  <!-- ============ BASE GROUND ============ -->
+  <rect x="0" y="0" width="390" height="5280" fill="#0d1122"/>
+
+  <!-- ============ HEADER (0-64) ============ -->
+  <rect x="0" y="0" width="390" height="64" fill="#141a30" fill-opacity="0.92"/>
+  <line x1="0" y1="64" x2="390" y2="64" stroke="#cba328" stroke-opacity="0.5"/>
+  <g transform="translate(24,32)">
+    <rect x="-7" y="-7" width="14" height="14" fill="none" stroke="#cba328" stroke-width="1.3" transform="rotate(45)"/>
+    <circle r="2.3" fill="#efc603"/>
+  </g>
+  <text x="44" y="37" font-size="12.5" font-weight="700" letter-spacing="2" fill="#cba328">EMPIRE</text>
+  <g transform="translate(326,14)">
+    <polygon points="6,0 30,0 36,6 36,30 30,36 6,36 0,30 0,6" fill="none" stroke="#cba328" stroke-width="1.3"/>
+    <line x1="10" y1="13" x2="26" y2="13" stroke="#cba328" stroke-width="1.3"/>
+    <line x1="10" y1="18" x2="26" y2="18" stroke="#cba328" stroke-width="1.3"/>
+    <line x1="10" y1="23" x2="26" y2="23" stroke="#cba328" stroke-width="1.3"/>
+  </g>
+
+  <!-- ============ HERO (64-800) ============ -->
+  <g>
+    <rect x="0" y="64" width="390" height="736" fill="#0d1122"/>
+    <circle cx="195" cy="286" r="180" fill="url(#glow)"/>
+    <g transform="translate(195,286) scale(160)" opacity="0.16">
+      <use href="#sunburst24"/>
+    </g>
+
+    <!-- central emblem: the plaque crown, top of header.svg -->
+    <g transform="translate(195,316) scale(1.6) translate(-201.94,-106)">
+      <path d="m 158.76964,29.42 4.75586,26.701172 h -25.64648 l 8.62109,25.609375 h -28.43945 l 14.74023,24.296873 h 3.50977 L 123.39073,84.730547 h 24.11914 l 7.16797,21.296873 h 2.10743 l -7.16797,-21.296873 -1.00977,-3 -7.94726,-23.609375 h 23.2207 l 4.20508,23.609375 0.5332,3 3.79297,21.296873 h 3.05078 l -3.79102,-21.296873 -0.53515,-3 -4.20117,-23.609375 -0.35743,-2 L 162.35948,32.42 h 79.16993 l -4.21875,23.701172 -0.35743,2 -4.20117,23.609375 -0.53515,3 -3.79102,21.296873 h 3.05078 l 3.79297,-21.296873 0.5332,-3 4.20508,-23.609375 h 23.23242 l -7.94922,23.609375 -1.00976,3 -7.16992,21.296873 h 2.0957 l 7.16602,-21.296873 h 24.12695 l -12.90234,21.296873 h 3.51171 l 14.72071,-24.296873 h -28.44727 l 8.61719,-25.609375 H 240.36339 L 245.11925,29.42 Z" fill="url(#pl-towers)"/>
+      <g fill="#0d1122" fill-opacity="0.75">
+        <path d="m 249.20714,106.02742 h 18.39063 l 12.90234,-21.296873 h -24.12695 z"/>
+        <path d="m 231.47667,106.02742 h 15.63477 l 7.16992,-21.296873 1.00976,-3 7.94922,-23.609375 h -23.23242 l -4.20508,23.609375 -0.5332,3 z"/>
+        <path d="m 175.463,106.02742 h 52.96289 l 3.79102,-21.296873 0.53515,-3 4.20117,-23.609375 0.35743,-2 L 241.52941,32.42 h -79.16993 l 4.21875,23.701172 0.35743,2 4.20117,23.609375 0.53515,3 z"/>
+        <path d="m 156.78527,106.02742 h 15.62695 l -3.79297,-21.296873 -0.5332,-3 -4.20508,-23.609375 h -23.2207 l 7.94726,23.609375 1.00977,3 z"/>
+        <path d="m 136.31066,106.02742 h 18.36718 l -7.16797,-21.296873 h -24.11914 z"/>
+      </g>
+      <g fill="url(#pl-lines)">
+        <path d="m 214.9397,52.479983 -4.18554,53.546877 h 0.95507 z"/>
+        <path d="m 172.52955,42.019045 8.95898,64.007815 h 1.08594 z"/>
+        <path d="m 231.4397,42.019045 -10.04492,64.007815 h 1.08594 z"/>
+        <path d="m 188.9397,52.479983 3.23047,53.546877 h 0.95508 z"/>
+      </g>
+    </g>
+
+    <g stroke="url(#pl-fade)" stroke-width="1.1">
+      <line x1="150" y1="332" x2="150" y2="352"/>
+      <line x1="175" y1="332" x2="175" y2="352"/>
+      <line x1="220" y1="332" x2="220" y2="352"/>
+      <line x1="245" y1="332" x2="245" y2="352"/>
+    </g>
+
+    <polygon points="75,324 87,316 303,316 315,324 303,332 87,332" fill="#141a30" stroke="url(#pl-bar)" stroke-width="1.6"/>
+
+    <line x1="165" y1="376" x2="225" y2="376" stroke="#cba328"/>
+    <line x1="175" y1="382" x2="215" y2="382" stroke="#cba328" stroke-opacity="0.5"/>
+    <text x="195" y="400" font-size="10" letter-spacing="3" text-anchor="middle" fill="#cba328">· EST. 2026 ·</text>
+
+    <text x="195" y="456" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="32" font-weight="700" letter-spacing="1" fill="url(#goldRust)">WELCOME TO</text>
+    <text x="195" y="496" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="32" font-weight="700" letter-spacing="1" fill="url(#goldRust)">MY EMPIRE</text>
+
+    <g font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="14" fill="#ece4d3" fill-opacity="0.85" text-anchor="middle">
+      <text x="195" y="530">Take a brake from LinkedIn</text>
+      <text x="195" y="552">doomscrolling and experience a</text>
+      <text x="195" y="574">different kind of resume.</text>
+    </g>
+
+    <g transform="translate(85,606)">
+      <polygon points="8,0 212,0 220,8 220,36 212,44 8,44 0,36 0,8" fill="url(#metalShine)"/>
+      <polygon points="13,5 207,5 215,13 215,31 207,39 13,39 5,31 5,13" fill="none" stroke="#0d1122" stroke-width="1" stroke-opacity="0.55"/>
+      <polygon points="24,18 28,22 24,26 20,22" fill="#0d1122"/>
+      <polygon points="196,18 200,22 196,26 192,22" fill="#0d1122"/>
+      <text x="110" y="28" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="3" fill="#0d1122">RESUME</text>
+    </g>
+    <g transform="translate(85,666)">
+      <polygon points="8,0 212,0 220,8 220,36 212,44 8,44 0,36 0,8" fill="#0d1122" fill-opacity="0.35" stroke="#cba328" stroke-width="1.5"/>
+      <polygon points="13,5 207,5 215,13 215,31 207,39 13,39 5,31 5,13" fill="none" stroke="#cba328" stroke-width="0.8" stroke-opacity="0.5"/>
+      <polygon points="24,18 28,22 24,26 20,22" fill="#cba328"/>
+      <polygon points="196,18 200,22 196,26 192,22" fill="#cba328"/>
+      <text x="110" y="28" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="3" fill="#cba328">CONTACT</text>
+    </g>
+
+    <g transform="translate(195,762)">
+      <circle r="15" fill="none" stroke="#cba328" stroke-width="1.5"/>
+      <path d="M-6,-3 L0,3 L6,-3" fill="none" stroke="#cba328" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- ============ CORNICE A (800-830) ============ -->
+  <rect x="0" y="800" width="390" height="30" fill="#141a30"/>
+  <line x1="0" y1="800" x2="390" y2="800" stroke="#cba328" stroke-opacity="0.6"/>
+  <use href="#ziggurat" x="120" y="795" width="150" height="24"/>
+
+  <!-- ============ ABOUT (830-1400) ============ -->
+  <g>
+    <rect x="0" y="830" width="390" height="570" fill="#141a30"/>
+    <use href="#flourish" transform="translate(60,886) scale(0.9)"/>
+    <use href="#flourish" transform="translate(330,886) rotate(180) scale(0.9)"/>
+    <text x="195" y="894" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="26" font-weight="700" letter-spacing="3" fill="#cba328">ABOUT ME</text>
+    <line x1="165" y1="908" x2="225" y2="908" stroke="#cba328"/>
+    <line x1="175" y1="913" x2="215" y2="913" stroke="#cba328" stroke-opacity="0.5"/>
+
+    <g transform="translate(195,985)">
+      <path d="M0,-60 L52,-30 L52,30 L0,60 L-52,30 L-52,-30 Z" fill="none" stroke="#cba328" stroke-width="1.6"/>
+      <path d="M0,-70 L61,-35 L61,35 L0,70 L-61,35 L-61,-35 Z" fill="none" stroke="#cba328" stroke-width="1" stroke-opacity="0.5"/>
+      <path d="M-18,38 q18,-62 36,0 q4,18 -5,26 h-26 q-9,-8 -5,-26 Z" fill="#8d7f6b" fill-opacity="0.6"/>
+    </g>
+
+    <g font-family="Georgia,'Iowan Old Style',serif" font-size="14" fill="#ece4d3" fill-opacity="0.9">
+      <text x="24" y="1090">A full-stack engineer who treats interfaces</text>
+      <text x="24" y="1110">like architecture — clean lines, load-bearing</text>
+      <text x="24" y="1130">structure, ornament only where it earns its</text>
+      <text x="24" y="1150">keep. Ten years building products that scale</text>
+      <text x="24" y="1170">from prototype to production without losing</text>
+      <text x="24" y="1190">their character.</text>
+    </g>
+
+    <g font-size="13.5">
+      <g transform="translate(24,1240)">
+        <use href="#diamond" transform="scale(0.85)"/>
+        <text x="15" y="5" font-weight="700" fill="#cba328">Location — <tspan font-weight="400" fill="#ece4d3" fill-opacity="0.85">City, Country</tspan></text>
+      </g>
+      <g transform="translate(24,1280)">
+        <use href="#diamond" transform="scale(0.85)"/>
+        <text x="15" y="5" font-weight="700" fill="#cba328">Employer — <tspan font-weight="400" fill="#ece4d3" fill-opacity="0.85">Company Name</tspan></text>
+      </g>
+      <g transform="translate(24,1320)">
+        <use href="#diamond" transform="scale(0.85)"/>
+        <text x="15" y="5" font-weight="700" fill="#cba328">Education — <tspan font-weight="400" fill="#ece4d3" fill-opacity="0.85">Degree · University</tspan></text>
+      </g>
+      <g transform="translate(24,1360)">
+        <use href="#diamond" transform="scale(0.85)"/>
+        <text x="15" y="5" font-weight="700" fill="#cba328">Focus — <tspan font-weight="400" fill="#ece4d3" fill-opacity="0.85">Full-Stack Engineering</tspan></text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ============ CORNICE B (1400-1430) ============ -->
+  <rect x="0" y="1400" width="390" height="30" fill="#0d1122"/>
+  <line x1="0" y1="1400" x2="390" y2="1400" stroke="#cba328" stroke-opacity="0.6"/>
+  <use href="#ziggurat" x="120" y="1395" width="150" height="24"/>
+
+  <!-- ============ EXPERIENCE (1430-2070) ============ -->
+  <g>
+    <rect x="0" y="1430" width="390" height="640" fill="#0d1122"/>
+    <use href="#flourish" transform="translate(60,1486) scale(0.9)"/>
+    <use href="#flourish" transform="translate(330,1486) rotate(180) scale(0.9)"/>
+    <text x="195" y="1494" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="26" font-weight="700" letter-spacing="3" fill="#cba328">EXPERIENCE</text>
+
+    <line x1="48" y1="1520" x2="48" y2="2030" stroke="url(#metalVert)" stroke-width="2"/>
+
+    <use href="#diamond" transform="translate(48,1570) scale(0.85)"/>
+    <line x1="48" y1="1570" x2="72" y2="1570" stroke="#cba328"/>
+    <g transform="translate(72,1520)">
+      <use href="#corner" x="-2" y="-2" width="16" height="16"/>
+      <use href="#corner" x="280" y="134" width="16" height="16" transform="rotate(180 288 142)"/>
+      <rect width="294" height="150" fill="#141a30" stroke="#cba328" stroke-opacity="0.4"/>
+      <text x="16" y="24" font-size="12" font-weight="700" letter-spacing="1.5" fill="#efc603">2023 — PRESENT</text>
+      <text x="16" y="46" font-size="17" font-weight="700" fill="#ece4d3">Senior Software Engineer</text>
+      <text x="16" y="64" font-size="13" font-family="Georgia,serif" font-style="italic" fill="#cba328">Company Name</text>
+      <text x="16" y="86" font-size="12.5" font-family="Georgia,serif" fill="#ece4d3" fill-opacity="0.8">Leading front-end architecture</text>
+      <text x="16" y="104" font-size="12.5" font-family="Georgia,serif" fill="#ece4d3" fill-opacity="0.8">for internal tools; mentoring</text>
+      <text x="16" y="122" font-size="12.5" font-family="Georgia,serif" fill="#ece4d3" fill-opacity="0.8">engineers and design systems.</text>
+    </g>
+
+    <use href="#diamond" transform="translate(48,1750) scale(0.85)"/>
+    <line x1="48" y1="1750" x2="72" y2="1750" stroke="#cba328"/>
+    <g transform="translate(72,1700)">
+      <use href="#corner" x="-2" y="-2" width="16" height="16"/>
+      <use href="#corner" x="280" y="134" width="16" height="16" transform="rotate(180 288 142)"/>
+      <rect width="294" height="150" fill="#141a30" stroke="#cba328" stroke-opacity="0.4"/>
+      <text x="16" y="24" font-size="12" font-weight="700" letter-spacing="1.5" fill="#efc603">2020 — 2023</text>
+      <text x="16" y="46" font-size="17" font-weight="700" fill="#ece4d3">Software Engineer</text>
+      <text x="16" y="64" font-size="13" font-family="Georgia,serif" font-style="italic" fill="#cba328">Company Name</text>
+      <text x="16" y="86" font-size="12.5" font-family="Georgia,serif" fill="#ece4d3" fill-opacity="0.8">Built and maintained customer-</text>
+      <text x="16" y="104" font-size="12.5" font-family="Georgia,serif" fill="#ece4d3" fill-opacity="0.8">facing web apps end to end,</text>
+      <text x="16" y="122" font-size="12.5" font-family="Georgia,serif" fill="#ece4d3" fill-opacity="0.8">from API to pixel.</text>
+    </g>
+
+    <use href="#diamond" transform="translate(48,1930) scale(0.85)"/>
+    <line x1="48" y1="1930" x2="72" y2="1930" stroke="#cba328"/>
+    <g transform="translate(72,1880)">
+      <use href="#corner" x="-2" y="-2" width="16" height="16"/>
+      <use href="#corner" x="280" y="134" width="16" height="16" transform="rotate(180 288 142)"/>
+      <rect width="294" height="150" fill="#141a30" stroke="#cba328" stroke-opacity="0.4"/>
+      <text x="16" y="24" font-size="12" font-weight="700" letter-spacing="1.5" fill="#efc603">2018 — 2020</text>
+      <text x="16" y="46" font-size="17" font-weight="700" fill="#ece4d3">Junior Developer</text>
+      <text x="16" y="64" font-size="13" font-family="Georgia,serif" font-style="italic" fill="#cba328">Company Name</text>
+      <text x="16" y="86" font-size="12.5" font-family="Georgia,serif" fill="#ece4d3" fill-opacity="0.8">Cut teeth on production code,</text>
+      <text x="16" y="104" font-size="12.5" font-family="Georgia,serif" fill="#ece4d3" fill-opacity="0.8">learned the value of a good</text>
+      <text x="16" y="122" font-size="12.5" font-family="Georgia,serif" fill="#ece4d3" fill-opacity="0.8">code review.</text>
+    </g>
+  </g>
+
+  <!-- ============ CORNICE C (2070-2100) ============ -->
+  <rect x="0" y="2070" width="390" height="30" fill="#141a30"/>
+  <line x1="0" y1="2070" x2="390" y2="2070" stroke="#cba328" stroke-opacity="0.6"/>
+  <use href="#ziggurat" x="120" y="2065" width="150" height="24"/>
+
+  <!-- ============ EDUCATION (2100-2410) ============ -->
+  <g>
+    <rect x="0" y="2100" width="390" height="310" fill="#141a30"/>
+    <use href="#flourish" transform="translate(60,2156) scale(0.9)"/>
+    <use href="#flourish" transform="translate(330,2156) rotate(180) scale(0.9)"/>
+    <text x="195" y="2164" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="26" font-weight="700" letter-spacing="3" fill="#cba328">EDUCATION</text>
+
+    <line x1="48" y1="2190" x2="48" y2="2400" stroke="url(#metalVert)" stroke-width="2"/>
+
+    <use href="#diamond" transform="translate(48,2235) scale(0.75)"/>
+    <line x1="48" y1="2235" x2="72" y2="2235" stroke="#cba328"/>
+    <g transform="translate(72,2200)">
+      <rect width="294" height="70" fill="#0d1122" stroke="#cba328" stroke-opacity="0.4"/>
+      <text x="16" y="22" font-size="12" font-weight="700" letter-spacing="1.5" fill="#efc603">2014 — 2018</text>
+      <text x="16" y="42" font-size="15" font-weight="700" fill="#ece4d3">B.Sc. Computer Science</text>
+      <text x="16" y="59" font-size="12" font-family="Georgia,serif" font-style="italic" fill="#cba328">University Name</text>
+    </g>
+
+    <use href="#diamond" transform="translate(48,2335) scale(0.75)"/>
+    <line x1="48" y1="2335" x2="72" y2="2335" stroke="#cba328"/>
+    <g transform="translate(72,2300)">
+      <rect width="294" height="70" fill="#0d1122" stroke="#cba328" stroke-opacity="0.4"/>
+      <text x="16" y="22" font-size="12" font-weight="700" letter-spacing="1.5" fill="#efc603">2018</text>
+      <text x="16" y="42" font-size="15" font-weight="700" fill="#ece4d3">Certification</text>
+      <text x="16" y="59" font-size="12" font-family="Georgia,serif" font-style="italic" fill="#cba328">Relevant Certification Name</text>
+    </g>
+  </g>
+
+  <!-- ============ CORNICE D (2410-2440) ============ -->
+  <rect x="0" y="2410" width="390" height="30" fill="#0d1122"/>
+  <line x1="0" y1="2410" x2="390" y2="2410" stroke="#cba328" stroke-opacity="0.6"/>
+  <use href="#ziggurat" x="120" y="2405" width="150" height="24"/>
+
+  <!-- ============ PORTFOLIO (2440-3876) ============ -->
+  <g>
+    <rect x="0" y="2440" width="390" height="1436" fill="#0d1122"/>
+    <use href="#flourish" transform="translate(60,2496) scale(0.9)"/>
+    <use href="#flourish" transform="translate(330,2496) rotate(180) scale(0.9)"/>
+    <text x="195" y="2504" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="26" font-weight="700" letter-spacing="3" fill="#cba328">PORTFOLIO</text>
+
+    <g font-family="'Futura','Century Gothic',sans-serif">
+      <g transform="translate(24,2556)">
+        <rect width="342" height="120" fill="url(#photoDuotone)"/>
+        <use href="#corner" x="-2" y="-2" width="16" height="16"/>
+        <use href="#corner" x="326" y="104" width="16" height="16" transform="rotate(180 334 112)"/>
+        <text x="171" y="68" text-anchor="middle" font-size="26" fill="#cba328" fill-opacity="0.5">01</text>
+        <text x="0" y="144" font-size="15" font-weight="700" fill="#ece4d3">Project One</text>
+        <text x="0" y="162" font-size="11.5" letter-spacing="1" fill="#cba328">WEB APPLICATION</text>
+      </g>
+      <g transform="translate(24,2760)">
+        <rect width="342" height="120" fill="url(#photoDuotone)"/>
+        <use href="#corner" x="-2" y="-2" width="16" height="16"/>
+        <use href="#corner" x="326" y="104" width="16" height="16" transform="rotate(180 334 112)"/>
+        <text x="171" y="68" text-anchor="middle" font-size="26" fill="#cba328" fill-opacity="0.5">02</text>
+        <text x="0" y="144" font-size="15" font-weight="700" fill="#ece4d3">Project Two</text>
+        <text x="0" y="162" font-size="11.5" letter-spacing="1" fill="#cba328">MOBILE APP</text>
+      </g>
+      <g transform="translate(24,2964)">
+        <rect width="342" height="120" fill="url(#photoDuotone)"/>
+        <use href="#corner" x="-2" y="-2" width="16" height="16"/>
+        <use href="#corner" x="326" y="104" width="16" height="16" transform="rotate(180 334 112)"/>
+        <text x="171" y="68" text-anchor="middle" font-size="26" fill="#cba328" fill-opacity="0.5">03</text>
+        <text x="0" y="144" font-size="15" font-weight="700" fill="#ece4d3">Project Three</text>
+        <text x="0" y="162" font-size="11.5" letter-spacing="1" fill="#cba328">OPEN SOURCE</text>
+      </g>
+      <g transform="translate(24,3168)">
+        <rect width="342" height="120" fill="url(#photoDuotone)"/>
+        <use href="#corner" x="-2" y="-2" width="16" height="16"/>
+        <use href="#corner" x="326" y="104" width="16" height="16" transform="rotate(180 334 112)"/>
+        <text x="171" y="68" text-anchor="middle" font-size="26" fill="#cba328" fill-opacity="0.5">04</text>
+        <text x="0" y="144" font-size="15" font-weight="700" fill="#ece4d3">Project Four</text>
+        <text x="0" y="162" font-size="11.5" letter-spacing="1" fill="#cba328">DESIGN SYSTEM</text>
+      </g>
+      <g transform="translate(24,3372)">
+        <rect width="342" height="120" fill="url(#photoDuotone)"/>
+        <use href="#corner" x="-2" y="-2" width="16" height="16"/>
+        <use href="#corner" x="326" y="104" width="16" height="16" transform="rotate(180 334 112)"/>
+        <text x="171" y="68" text-anchor="middle" font-size="26" fill="#cba328" fill-opacity="0.5">05</text>
+        <text x="0" y="144" font-size="15" font-weight="700" fill="#ece4d3">Project Five</text>
+        <text x="0" y="162" font-size="11.5" letter-spacing="1" fill="#cba328">API PLATFORM</text>
+      </g>
+      <g transform="translate(24,3576)">
+        <rect width="342" height="120" fill="url(#photoDuotone)"/>
+        <use href="#corner" x="-2" y="-2" width="16" height="16"/>
+        <use href="#corner" x="326" y="104" width="16" height="16" transform="rotate(180 334 112)"/>
+        <text x="171" y="68" text-anchor="middle" font-size="26" fill="#cba328" fill-opacity="0.5">06</text>
+        <text x="0" y="144" font-size="15" font-weight="700" fill="#ece4d3">Project Six</text>
+        <text x="0" y="162" font-size="11.5" letter-spacing="1" fill="#cba328">PROTOTYPE</text>
+      </g>
+    </g>
+
+    <g transform="translate(195,3796)">
+      <polygon points="-95,0 95,0 103,8 103,32 95,40 -95,40 -103,32 -103,8" fill="#141a30" fill-opacity="0.35" stroke="#cba328" stroke-width="1.5"/>
+      <polygon points="-90,4 90,4 98,12 98,28 90,36 -90,36 -98,28 -98,12" fill="none" stroke="#cba328" stroke-width="0.8" stroke-opacity="0.5"/>
+      <text x="0" y="24" text-anchor="middle" font-size="11.5" font-weight="700" letter-spacing="1.5" fill="#cba328">VIEW FULL PORTFOLIO →</text>
+    </g>
+  </g>
+
+  <!-- ============ CORNICE E (3876-3906) ============ -->
+  <rect x="0" y="3876" width="390" height="30" fill="#141a30"/>
+  <line x1="0" y1="3876" x2="390" y2="3876" stroke="#cba328" stroke-opacity="0.6"/>
+  <use href="#ziggurat" x="120" y="3871" width="150" height="24"/>
+
+  <!-- ============ SKILLS (3906-4568) ============ -->
+  <g>
+    <rect x="0" y="3906" width="390" height="662" fill="#141a30"/>
+    <use href="#flourish" transform="translate(60,3962) scale(0.9)"/>
+    <use href="#flourish" transform="translate(330,3962) rotate(180) scale(0.9)"/>
+    <text x="195" y="3970" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="26" font-weight="700" letter-spacing="3" fill="#cba328">SKILLS</text>
+
+    <text x="195" y="4014" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#efc603">FRONTEND</text>
+    <g transform="translate(45,4034)" font-size="12.5" fill="#ece4d3">
+      <text x="0" y="0">React</text>
+      <rect x="0" y="8" width="300" height="9" fill="none" stroke="#8d7f6b"/>
+      <rect x="0" y="8" width="270" height="9" fill="url(#metalShine)"/>
+      <text x="0" y="42">TypeScript</text>
+      <rect x="0" y="50" width="300" height="9" fill="none" stroke="#8d7f6b"/>
+      <rect x="0" y="50" width="240" height="9" fill="url(#metalShine)"/>
+      <text x="0" y="84">Tailwind CSS</text>
+      <rect x="0" y="92" width="300" height="9" fill="none" stroke="#8d7f6b"/>
+      <rect x="0" y="92" width="270" height="9" fill="url(#metalShine)"/>
+    </g>
+
+    <line x1="45" y1="4176" x2="345" y2="4176" stroke="#cba328" stroke-opacity="0.3"/>
+
+    <text x="195" y="4210" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#efc603">BACKEND</text>
+    <g transform="translate(45,4230)" font-size="12.5" fill="#ece4d3">
+      <text x="0" y="0">Node.js</text>
+      <rect x="0" y="8" width="300" height="9" fill="none" stroke="#8d7f6b"/>
+      <rect x="0" y="8" width="240" height="9" fill="url(#metalShine)"/>
+      <text x="0" y="42">PostgreSQL</text>
+      <rect x="0" y="50" width="300" height="9" fill="none" stroke="#8d7f6b"/>
+      <rect x="0" y="50" width="210" height="9" fill="url(#metalShine)"/>
+      <text x="0" y="84">GraphQL</text>
+      <rect x="0" y="92" width="300" height="9" fill="none" stroke="#8d7f6b"/>
+      <rect x="0" y="92" width="180" height="9" fill="url(#metalShine)"/>
+    </g>
+
+    <line x1="45" y1="4372" x2="345" y2="4372" stroke="#cba328" stroke-opacity="0.3"/>
+
+    <text x="195" y="4406" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#efc603">TOOLS</text>
+    <g transform="translate(45,4426)" font-size="12.5" fill="#ece4d3">
+      <text x="0" y="0">Git</text>
+      <rect x="0" y="8" width="300" height="9" fill="none" stroke="#8d7f6b"/>
+      <rect x="0" y="8" width="270" height="9" fill="url(#metalShine)"/>
+      <text x="0" y="42">Docker</text>
+      <rect x="0" y="50" width="300" height="9" fill="none" stroke="#8d7f6b"/>
+      <rect x="0" y="50" width="210" height="9" fill="url(#metalShine)"/>
+      <text x="0" y="84">CI / CD</text>
+      <rect x="0" y="92" width="300" height="9" fill="none" stroke="#8d7f6b"/>
+      <rect x="0" y="92" width="210" height="9" fill="url(#metalShine)"/>
+    </g>
+  </g>
+
+  <!-- ============ CORNICE F (4568-4598) ============ -->
+  <rect x="0" y="4568" width="390" height="30" fill="#0d1122"/>
+  <line x1="0" y1="4568" x2="390" y2="4568" stroke="#cba328" stroke-opacity="0.6"/>
+  <use href="#ziggurat" x="120" y="4563" width="150" height="24"/>
+
+  <!-- ============ CONNECT (4598-5060) ============ -->
+  <g>
+    <rect x="0" y="4598" width="390" height="462" fill="#0d1122"/>
+    <use href="#flourish" transform="translate(60,4654) scale(0.9)"/>
+    <use href="#flourish" transform="translate(330,4654) rotate(180) scale(0.9)"/>
+    <text x="195" y="4662" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="26" font-weight="700" letter-spacing="3" fill="#cba328">CONNECT</text>
+    <text x="195" y="4688" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#ece4d3" fill-opacity="0.85">Always happy to talk shop,</text>
+    <text x="195" y="4706" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#ece4d3" fill-opacity="0.85">collaborate, or just say hello.</text>
+
+    <g font-family="'Futura','Century Gothic',sans-serif">
+      <g transform="translate(24,4738)">
+        <polygon points="10,0 332,0 342,10 342,80 332,90 10,90 0,80 0,10" fill="#141a30" stroke="#cba328" stroke-width="1.5"/>
+        <polygon points="15,5 327,5 337,15 337,75 327,85 15,85 5,75 5,15" fill="none" stroke="#cba328" stroke-width="0.8" stroke-opacity="0.4"/>
+        <use href="#diamond" transform="translate(26,26) scale(0.75)"/>
+        <text x="42" y="30" font-size="11.5" font-weight="700" letter-spacing="2" fill="#cba328">EMAIL</text>
+        <text x="26" y="60" font-size="15" fill="#ece4d3">hello@yourdomain.com</text>
+      </g>
+      <g transform="translate(24,4848)">
+        <polygon points="10,0 332,0 342,10 342,80 332,90 10,90 0,80 0,10" fill="#141a30" stroke="#cba328" stroke-width="1.5"/>
+        <polygon points="15,5 327,5 337,15 337,75 327,85 15,85 5,75 5,15" fill="none" stroke="#cba328" stroke-width="0.8" stroke-opacity="0.4"/>
+        <use href="#diamond" transform="translate(26,26) scale(0.75)"/>
+        <text x="42" y="30" font-size="11.5" font-weight="700" letter-spacing="2" fill="#cba328">LINKEDIN</text>
+        <text x="26" y="60" font-size="15" fill="#ece4d3">linkedin.com/in/yourname</text>
+      </g>
+      <g transform="translate(24,4958)">
+        <polygon points="10,0 332,0 342,10 342,80 332,90 10,90 0,80 0,10" fill="#141a30" stroke="#cba328" stroke-width="1.5"/>
+        <polygon points="15,5 327,5 337,15 337,75 327,85 15,85 5,75 5,15" fill="none" stroke="#cba328" stroke-width="0.8" stroke-opacity="0.4"/>
+        <use href="#diamond" transform="translate(26,26) scale(0.75)"/>
+        <text x="42" y="30" font-size="11.5" font-weight="700" letter-spacing="2" fill="#cba328">GITHUB</text>
+        <text x="26" y="60" font-size="15" fill="#ece4d3">github.com/yourname</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ============ CORNICE G (5060-5090) ============ -->
+  <rect x="0" y="5060" width="390" height="30" fill="#141a30"/>
+  <line x1="0" y1="5060" x2="390" y2="5060" stroke="#cba328" stroke-opacity="0.6"/>
+  <use href="#ziggurat" x="120" y="5055" width="150" height="24"/>
+
+  <!-- ============ FOOTER (5090-5280) ============ -->
+  <g>
+    <rect x="0" y="5090" width="390" height="190" fill="#141a30"/>
+    <g transform="translate(195,5130) scale(18)" opacity="0.55">
+      <use href="#sunburst24"/>
+    </g>
+    <use href="#diamond" transform="translate(195,5130) scale(0.7)"/>
+    <g fill="none" stroke="#cba328" stroke-width="1.4">
+      <circle cx="42" cy="5180" r="18"/>
+      <circle cx="118" cy="5180" r="18"/>
+      <circle cx="194" cy="5180" r="18"/>
+      <circle cx="270" cy="5180" r="18"/>
+      <circle cx="346" cy="5180" r="18"/>
+    </g>
+    <g fill="#cba328" font-size="12.5" font-weight="700" text-anchor="middle">
+      <text x="42" y="5185">Gh</text>
+      <text x="118" y="5185">Li</text>
+      <text x="194" y="5185">Tw</text>
+      <text x="270" y="5185">Ig</text>
+      <text x="346" y="5185">SO</text>
+    </g>
+    <line x1="60" y1="5220" x2="330" y2="5220" stroke="#cba328" stroke-opacity="0.4"/>
+    <text x="195" y="5256" text-anchor="middle" font-size="11" letter-spacing="1.5" fill="#8d7f6b">© 2026 · BUILT IN THE ART DECO STYLE</text>
+  </g>
+
+  <!-- unifying film-grain across the whole elevation -->
+  <rect x="0" y="0" width="390" height="5280" filter="url(#grain)" opacity="0.5" style="mix-blend-mode:overlay" pointer-events="none"/>
+</svg>
