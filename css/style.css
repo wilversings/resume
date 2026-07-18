@@ -461,6 +461,12 @@ body::after {
 
 .hero {
   position: relative;
+  /* z-index:0 (not just position:relative) is required so this section
+     establishes its OWN stacking context — otherwise a negative-z-index
+     child (the wallpaper ::before below) escapes to the document root's
+     stacking order and paints before this element's own background even
+     gets drawn, hiding it completely rather than sitting behind content */
+  z-index: 0;
   /* extra buffer beyond the fixed nav — align-items:center only
      centers within the padded box, so this reliably pushes the whole
      centered block down instead of it hugging the header */
@@ -478,6 +484,33 @@ body::after {
   background: var(--navy-dark);
   overflow: hidden;
   text-align: center;
+}
+
+/* subtle Art Deco fan/scallop wallpaper motif — a hairline-thin, faint
+   echo of a classic Deco fan-scale wallpaper repeat. Sits on the
+   section's own background (z-index:-1 paints after that background but
+   before every real child, regardless of the children's own z-index) so
+   it never competes with content. Same data-URI-SVG convention as the
+   film-grain overlay above, and same %23-for-# escaping. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.2;
+  background-repeat: repeat;
+  background-size: 96px 200px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='200'><defs><g id='f' fill='none' stroke='%23cba328' stroke-width='0.75'><path d='M4,36 Q48,-32 92,36'/><path d='M48,82 L4,36 M48,82 L15,23 M48,82 L26,12 M48,82 L37,4.6 M48,82 L48,2 M48,82 L59,4.6 M48,82 L70,12 M48,82 L81,23 M48,82 L92,36'/><path d='M21,12 L26,3 L31,12 M43,2 L48,-6 L53,2 M65,12 L70,3 L75,12'/></g></defs><use href='%23f' x='0' y='6'/><use href='%23f' x='48' y='106'/><use href='%23f' x='-48' y='106'/></svg>");
+  /* fades the wallpaper out right around the monument's glow/sunburst
+     (measured centre: ~42% down the hero on desktop, see the 780px
+     override below for the mobile figure) so the texture doesn't
+     compete with the light source; reappears past ~320px out, matching
+     the glow's own 320px radius */
+  -webkit-mask-image: radial-gradient(circle 320px at 50% 42%, transparent 0%, transparent 55%, black 100%);
+  mask-image: radial-gradient(circle 320px at 50% 42%, transparent 0%, transparent 55%, black 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 /* large decorative fans anchored to the left & right edges,
@@ -550,7 +583,7 @@ body::after {
 
 .hero__sunburst {
   position: absolute;
-  top: 75%;
+  top: 65%;
   left: 50%;
   width: 620px;
   height: 620px;
@@ -738,6 +771,14 @@ body::after {
        .hero rule) — this used to be a flat 60px that fell just short
        of it on tall phones, letting the buttons row overlap it */
     padding-bottom: calc(34px + clamp(20px, 4vh, 48px) + 16px);
+  }
+
+  /* the monument (and its glow/sunburst) sits higher up proportionally
+     once min-height:auto shortens the section — measured centre ~31%
+     down here vs ~42% on desktop */
+  .hero::before {
+    -webkit-mask-image: radial-gradient(circle 320px at 50% 31%, transparent 0%, transparent 55%, black 100%);
+    mask-image: radial-gradient(circle 320px at 50% 31%, transparent 0%, transparent 55%, black 100%);
   }
 
   /* the large edge fans are a desktop-only flourish (they'd crowd the
@@ -1221,10 +1262,33 @@ body::after {
 
 .site-footer {
   position: relative;
+  /* see the comment on `.hero` above — same fix, same reason */
+  z-index: 0;
   padding: 60px 24px 40px;
   background: var(--navy-light);
   text-align: center;
   overflow: hidden;
+}
+
+/* same wallpaper motif as the hero (see `.hero::before`), reused verbatim
+   so the two bookends of the page share the same faint texture */
+.site-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.2;
+  background-repeat: repeat;
+  background-size: 96px 200px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='200'><defs><g id='f' fill='none' stroke='%23cba328' stroke-width='0.75'><path d='M4,36 Q48,-32 92,36'/><path d='M48,82 L4,36 M48,82 L15,23 M48,82 L26,12 M48,82 L37,4.6 M48,82 L48,2 M48,82 L59,4.6 M48,82 L70,12 M48,82 L81,23 M48,82 L92,36'/><path d='M21,12 L26,3 L31,12 M43,2 L48,-6 L53,2 M65,12 L70,3 L75,12'/></g></defs><use href='%23f' x='0' y='6'/><use href='%23f' x='48' y='106'/><use href='%23f' x='-48' y='106'/></svg>");
+  /* fades out around the small diamond+sunburst mark (measured centre:
+     ~24% down the footer, same on desktop and mobile since this section
+     doesn't reflow between breakpoints) */
+  -webkit-mask-image: radial-gradient(circle 90px at 50% 24%, transparent 0%, transparent 40%, black 100%);
+  mask-image: radial-gradient(circle 90px at 50% 24%, transparent 0%, transparent 40%, black 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 /* wraps the diamond and its sunburst so they share one centre, matching
