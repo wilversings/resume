@@ -1,0 +1,50 @@
+/* ==========================================================================
+   Sunburst rays — CSS/HTML replacement for the old SVG <symbol id="icon-
+   sunburst"> (24 lines radiating from a point, alternating long/short).
+
+   Two pseudo-elements each draw 12 rays as repeating-conic-gradient
+   wedges, 30deg apart, offset from each other by 15deg so together they
+   land on the same 24 angles the SVG version used. Each layer is masked
+   with a second, radial-gradient mask-image so the wedge is only visible
+   out to its own ray length, fading to transparent over its last ~20%
+   instead of cutting off hard.
+
+   The gold color comes from a plain radial-gradient background, which
+   varies purely by true distance from centre — unlike the SVG version's
+   per-line objectBoundingBox gradient, this is direction-independent by
+   construction, so there's no equivalent of the "some rays don't fade"
+   bug to worry about here.
+   ========================================================================== */
+
+.sunburst-rays::before,
+.sunburst-rays::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, var(--bronze) 0%, var(--gold) 55%, var(--gold-bright) 100%);
+}
+
+/* 12 long rays, full radius*/
+.sunburst-rays::before {
+  -webkit-mask-image:
+    repeating-conic-gradient(from 0deg, transparent 0deg, #000 0.5deg, #000 0.7deg, transparent 1.2deg, transparent 30deg),
+    radial-gradient(circle, #000 0%, #000 80%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    repeating-conic-gradient(from 0deg, transparent 0deg, #000 0.5deg, #000 0.7deg, transparent 1.2deg, transparent 30deg),
+    radial-gradient(circle, #000 0%, #000 80%, transparent 100%);
+  mask-composite: intersect;
+}
+
+/* 12 short rays, offset 15deg, cut off around 55% of the radius (matches
+   the SVG symbol's alternating ray lengths) */
+.sunburst-rays::after {
+  -webkit-mask-image:
+    repeating-conic-gradient(from 15deg, transparent 0deg, #000 0.5deg, #000 0.7deg, transparent 1.2deg, transparent 30deg),
+    radial-gradient(circle, #000 0%, #000 44%, transparent 55%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    repeating-conic-gradient(from 15deg, transparent 0deg, #000 0.5deg, #000 0.7deg, transparent 1.2deg, transparent 30deg),
+    radial-gradient(circle, #000 0%, #000 44%, transparent 55%);
+  mask-composite: intersect;
+}

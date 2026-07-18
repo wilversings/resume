@@ -46,9 +46,9 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.2;
+  opacity: 0.09;
   background-repeat: repeat;
-  background-size: 96px 200px;
+  background-size: 200px;
   background-image: url("../../images/wallpaper-fan-scallop.svg");
   /* fades the wallpaper out right around the monument's glow/sunburst
      (measured centre: ~42% down the hero on desktop, see the 780px
@@ -60,30 +60,6 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
-
-/* large decorative fans anchored to the left & right edges,
-   emanating toward the centre — echoes the design's side flourishes */
-.hero__fans {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.4;
-  z-index: 0;
-}
-
-.hero__fan {
-  position: absolute;
-  top: 50%;
-  width: 150px;
-  height: 82px;
-  overflow: visible;
-  transform-origin: center center;
-}
-
-.hero__fan--l1 { left: 12px; transform: translateY(-92%) rotate(-18deg); }
-.hero__fan--l2 { left: 12px; transform: translateY(-8%)  rotate(18deg); }
-.hero__fan--r1 { right: 12px; transform: translateY(-92%) scaleX(-1) rotate(-18deg); }
-.hero__fan--r2 { right: 12px; transform: translateY(-8%)  scaleX(-1) rotate(18deg); }
 
 .hero__content {
   position: relative;
@@ -102,6 +78,7 @@
 }
 
 .hero__monument {
+  animation: bob 2.4s ease-in-out infinite;
   position: relative;
   z-index: 1;
   display: block;
@@ -131,14 +108,13 @@
 
 .hero__sunburst {
   position: absolute;
-  top: 65%;
+  top: 50%;
   left: 50%;
-  width: 620px;
-  height: 620px;
-  max-width: 150vw;
+  width: 140vmax;
+  height: 140vmax;
   opacity: 0.12;
   pointer-events: none;
-  animation: sunburst-spin 90s linear infinite;
+  animation: sunburst-spin 120s linear infinite;
 }
 
 @keyframes sunburst-spin {
@@ -174,7 +150,7 @@
 .hero__title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(32px, 6vw, 84px);
+  font-size: clamp(50px, 6vw, 84px);
   letter-spacing: clamp(1px, 0.3vw, 2px);
   text-transform: uppercase;
   margin: 30px 0 22px;
@@ -186,8 +162,8 @@
 }
 
 .hero__subtitle {
-  font-family: var(--font-nav);
-  font-size: clamp(14px, 1.6vw, 20px);
+  font-family: var(--font-display);
+  font-size: 20px; /*clamp(14px, 1.6vw, 20px);*/
   color: var(--cream);
   opacity: 0.85;
   max-width: 640px;
@@ -203,11 +179,6 @@
   flex-wrap: wrap;
 }
 
-/* pinned to the hero section's own bottom edge (`.hero` is the nearest
-   positioned ancestor — it's lifted out of `.hero__content` in the
-   markup specifically so it isn't) — a fixed offset from the section
-   boundary, not "60px below the buttons", so it doesn't drift when the
-   title/subtitle copy above it changes length */
 .hero__scroll {
   position: absolute;
   left: 50%;
@@ -221,7 +192,6 @@
   justify-content: center;
   cursor: pointer;
   background: transparent;
-  animation: bob 2.4s ease-in-out infinite;
 }
 
 .hero__scroll svg {
@@ -236,8 +206,8 @@
    `transform`, since a running animation overrides the whole property —
    a static transform here would never actually paint */
 @keyframes bob {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(6px); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -255,22 +225,12 @@
     padding-bottom: calc(34px + clamp(20px, 4vh, 48px) + 16px);
   }
 
-  /* the large edge fans are a desktop-only flourish (they'd crowd the
-     title on narrow screens, matching the mobile mockup) */
-  .hero__fans {
-    display: none;
-  }
-
   .hero__actions {
     flex-direction: column;
     align-items: center;
   }
 }
 
-/* fluid type/sizing above caps out around 1440px (what the design was
-   tuned against) — give it room to keep growing on wider 2K+ monitors
-   instead of freezing at that size, leaving a small fixed-size island
-   in the middle of the screen */
 @media (min-width: 1600px) {
   .hero__monument-wrap {
     width: clamp(420px, calc(253.3px + 10.42vw), 520px);
@@ -279,11 +239,6 @@
   .hero__glow {
     width: clamp(640px, calc(386.7px + 15.83vw), 792px);
     height: clamp(640px, calc(386.7px + 15.83vw), 792px);
-  }
-
-  .hero__sunburst {
-    width: clamp(620px, calc(373.3px + 15.42vw), 768px);
-    height: clamp(620px, calc(373.3px + 15.42vw), 768px);
   }
 
   .hero__est {
@@ -298,16 +253,13 @@
     font-size: clamp(20px, calc(11.7px + 0.52vw), 25px);
   }
 
-  /* wallpaper tile grows in discrete steps (not fluid) — a repeating
-     pattern reads as a size, not a continuum, so jumping it a couple of
-     times as the screen widens suits it better than a smooth clamp */
   .hero::before {
-    background-size: 120px 250px;
+    background-size: 250px;
   }
 }
 
 @media (min-width: 2200px) {
   .hero::before {
-    background-size: 144px 300px;
+    background-size: 300px;
   }
 }
