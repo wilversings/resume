@@ -1,0 +1,272 @@
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  /* z-index:0 (not just position:relative) is required so this section
+     establishes its OWN stacking context — otherwise a negative-z-index
+     child (the wallpaper ::before below) escapes to the document root's
+     stacking order and paints before this element's own background even
+     gets drawn, hiding it completely rather than sitting behind content */
+  z-index: 0;
+  /* extra buffer beyond the fixed nav — align-items:center only
+     centers within the padded box, so this reliably pushes the whole
+     centered block down instead of it hugging the header */
+  padding-top: calc(var(--header-height) + clamp(32px, 6vh, 90px));
+  /* reserves exactly the scroll button's own footprint (its `bottom`
+     offset + height, plus a little breathing room) so the centered
+     content block can never grow tall enough to collide with it — on
+     short viewports it otherwise does, since the button is absolutely
+     positioned and doesn't naturally push other content out of the way */
+  padding-bottom: calc(34px + clamp(20px, 4vh, 48px) + 16px);
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy-dark);
+  overflow: hidden;
+  text-align: center;
+}
+
+/* subtle Art Deco fan/scallop wallpaper motif — a hairline-thin, faint
+   echo of a classic Deco fan-scale wallpaper repeat. Sits on the
+   section's own background (z-index:-1 paints after that background but
+   before every real child, regardless of the children's own z-index) so
+   it never competes with content. Same data-URI-SVG convention as the
+   film-grain overlay above, and same %23-for-# escaping. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.2;
+  background-repeat: repeat;
+  background-size: 96px 200px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='200'><defs><g id='f' fill='none' stroke='%23cba328' stroke-width='0.75'><path d='M4,36 Q48,-32 92,36'/><path d='M48,82 L4,36 M48,82 L15,23 M48,82 L26,12 M48,82 L37,4.6 M48,82 L48,2 M48,82 L59,4.6 M48,82 L70,12 M48,82 L81,23 M48,82 L92,36'/><path d='M21,12 L26,3 L31,12 M43,2 L48,-6 L53,2 M65,12 L70,3 L75,12'/></g></defs><use href='%23f' x='0' y='6'/><use href='%23f' x='48' y='106'/><use href='%23f' x='-48' y='106'/></svg>");
+  /* fades the wallpaper out right around the monument's glow/sunburst
+     (measured centre: ~42% down the hero on desktop, see the 780px
+     override below for the mobile figure) so the texture doesn't
+     compete with the light source; reappears past ~320px out, matching
+     the glow's own 320px radius */
+  -webkit-mask-image: radial-gradient(circle 320px at 50% 42%, transparent 0%, transparent 55%, black 100%);
+  mask-image: radial-gradient(circle 320px at 50% 42%, transparent 0%, transparent 55%, black 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* large decorative fans anchored to the left & right edges,
+   emanating toward the centre — echoes the design's side flourishes */
+.hero__fans {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.hero__fan {
+  position: absolute;
+  top: 50%;
+  width: 150px;
+  height: 82px;
+  overflow: visible;
+  transform-origin: center center;
+}
+
+.hero__fan--l1 { left: 12px; transform: translateY(-92%) rotate(-18deg); }
+.hero__fan--l2 { left: 12px; transform: translateY(-8%)  rotate(18deg); }
+.hero__fan--r1 { right: 12px; transform: translateY(-92%) scaleX(-1) rotate(-18deg); }
+.hero__fan--r2 { right: 12px; transform: translateY(-8%)  scaleX(-1) rotate(18deg); }
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 0 24px;
+  width: 100%;
+}
+
+/* wraps the crown+plinth centrepiece together with its light source, so
+   the glow/sunburst are anchored to the monument itself (not the whole
+   hero section) and stay put no matter how tall the surrounding text is */
+.hero__monument-wrap {
+  position: relative;
+  width: min(420px, 58vw);
+  margin: 0 auto;
+}
+
+.hero__monument {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* anchored low inside the monument — roughly where the plinth bar sits
+   (~80% down the crown's own height) — so the light reads as coming
+   from the plinth, not the centre of the whole hero section */
+.hero__glow {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  width: 640px;
+  height: 640px;
+  max-width: 150vw;
+  transform: translate(-50%, -50%);
+  /* closest-side keeps the fade a true inscribed circle — farthest-corner
+     would leave the box's flat edges visible as a hard square boundary */
+  background: radial-gradient(circle closest-side,
+    rgba(239, 198, 3, 0.32) 0%,
+    rgba(203, 163, 40, 0.09) 55%,
+    rgba(203, 163, 40, 0) 100%);
+  pointer-events: none;
+}
+
+.hero__sunburst {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  width: 620px;
+  height: 620px;
+  max-width: 150vw;
+  opacity: 0.12;
+  pointer-events: none;
+  animation: sunburst-spin 90s linear infinite;
+}
+
+@keyframes sunburst-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__sunburst {
+    animation: none;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.hero__est {
+  margin: 26px 0 0;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: var(--gold);
+}
+
+.hero__est::before,
+.hero__est::after {
+  content: '';
+  display: inline-block;
+  width: 50px;
+  height: 1px;
+  background: var(--gold);
+  vertical-align: middle;
+  margin: 0 12px 3px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 6vw, 84px);
+  letter-spacing: clamp(1px, 0.3vw, 2px);
+  text-transform: uppercase;
+  margin: 30px 0 22px;
+  line-height: 1.05;
+  background: var(--gradient-gold-rust);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__subtitle {
+  font-family: var(--font-nav);
+  font-size: clamp(14px, 1.6vw, 20px);
+  color: var(--cream);
+  opacity: 0.85;
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 46px;
+  flex-wrap: wrap;
+}
+
+/* pinned to the hero section's own bottom edge (`.hero` is the nearest
+   positioned ancestor — it's lifted out of `.hero__content` in the
+   markup specifically so it isn't) — a fixed offset from the section
+   boundary, not "60px below the buttons", so it doesn't drift when the
+   title/subtitle copy above it changes length */
+.hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(20px, 4vh, 48px);
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: transparent;
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+.hero__scroll svg {
+  width: 14px;
+  height: 8px;
+  stroke: var(--gold);
+  stroke-width: 2;
+  fill: none;
+}
+
+/* translateX(-50%) has to live in the keyframes, not a separate static
+   `transform`, since a running animation overrides the whole property —
+   a static transform here would never actually paint */
+@keyframes bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll {
+    animation: none;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 780px) {
+  .hero {
+    min-height: auto;
+    /* must stay >= the scroll button's own footprint (see the base
+       .hero rule) — this used to be a flat 60px that fell just short
+       of it on tall phones, letting the buttons row overlap it */
+    padding-bottom: calc(34px + clamp(20px, 4vh, 48px) + 16px);
+  }
+
+  /* the monument (and its glow/sunburst) sits higher up proportionally
+     once min-height:auto shortens the section — measured centre ~31%
+     down here vs ~42% on desktop */
+  .hero::before {
+    -webkit-mask-image: radial-gradient(circle 320px at 50% 31%, transparent 0%, transparent 55%, black 100%);
+    mask-image: radial-gradient(circle 320px at 50% 31%, transparent 0%, transparent 55%, black 100%);
+  }
+
+  /* the large edge fans are a desktop-only flourish (they'd crowd the
+     title on narrow screens, matching the mobile mockup) */
+  .hero__fans {
+    display: none;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}

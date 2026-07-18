@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Section wrappers — alternating navy tones, ziggurat cornice between them
+   ========================================================================== */
+
+.section {
+  position: relative;
+  padding: 80px 24px;
+  scroll-margin-top: var(--header-height);
+}
+
+.section--light {
+  background: var(--navy-light);
+}
+
+.section--dark {
+  background: var(--navy-dark);
+}
+
+.section__inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.cornice {
+  position: relative;
+  height: var(--cornice-height);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  border-top: 1px solid rgba(203, 163, 40, 0.6);
+}
+
+.cornice svg {
+  width: 260px;
+  height: var(--cornice-height);
+  display: block;
+}
+
+@media (max-width: 780px) {
+  .section {
+    padding: 56px 20px;
+  }
+
+  .cornice svg {
+    width: 150px;
+  }
+}

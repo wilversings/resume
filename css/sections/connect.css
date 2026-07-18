@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Connect
+   ========================================================================== */
+
+.connect__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+/* chamfered gold border, same problem/fix as the buttons: a CSS `border`
+   only strokes the box's 4 straight edges, and clip-path trims the tiny
+   rectangular border corner away when it cuts the chamfer, leaving no
+   border at all on the diagonal. Fixed with two stacked layers sharing
+   the same chamfer shape: this element (gold) is the full plate, and
+   ::before (inset 1.5px, navy) sits on top of it, leaving a uniform
+   1.5px gold rim showing all the way round — including the corners.
+   The chamfer here uses a fixed pixel cut (not %) so it's a true 45°
+   angle regardless of the card's fluid width; ::before's inner chamfer
+   is nudged from 10px to 9.12px (10 − 1.5·(2−√2)) so the exposed rim
+   is a *geometrically* uniform 1.5px, not ~41% fatter on the diagonal
+   the way naively reusing the same 10px cut on the inset box would be. */
+.connect__card {
+  position: relative;
+  display: block;
+  background: var(--gold);
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+  padding: 24px 26px;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.connect__card::before {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  background: var(--navy-light);
+  clip-path: polygon(9.12px 0, calc(100% - 9.12px) 0, 100% 9.12px, 100% calc(100% - 9.12px), calc(100% - 9.12px) 100%, 9.12px 100%, 0 calc(100% - 9.12px), 0 9.12px);
+}
+
+.connect__label,
+.connect__value {
+  position: relative;
+  z-index: 1;
+}
+
+.connect__card:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.15);
+}
+
+.connect__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.connect__value {
+  font-size: 16px;
+  color: var(--cream);
+  word-break: break-word;
+}
+
+@media (max-width: 900px) {
+  .connect__grid {
+    grid-template-columns: 1fr;
+  }
+}

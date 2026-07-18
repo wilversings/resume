@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Portfolio
+   ========================================================================== */
+
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.portfolio__card {
+  position: relative;
+}
+
+.portfolio__thumb {
+  position: relative;
+  height: 160px;
+  background: linear-gradient(180deg, #1c2340 0%, #0d1122 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio__num {
+  font-size: 30px;
+  color: var(--gold);
+  opacity: 0.5;
+  font-weight: 700;
+}
+
+.portfolio__title {
+  margin: 16px 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cream);
+}
+
+.portfolio__cat {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.portfolio__more {
+  /* .btn is inline-flex (inline-level); switch to a block-level flex
+     box here so a fixed-width button can still be centered via auto
+     margins, without touching the shared .btn rules */
+  display: flex;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .portfolio__grid {
+    grid-template-columns: 1fr;
+  }
+}

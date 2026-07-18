@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Buttons — chamfered "plaque" style, used across hero, portfolio, connect
+   ========================================================================== */
+
+/* chamfered "plaque" button. The frame is SVG, not CSS clip-path/border —
+   a clipped rectangle border only strokes the box's 4 straight edges and
+   drops the diagonal corners entirely. The plate ring and molding line
+   are each a single evenodd-filled path: an outer chamfer octagon plus
+   a *geometrically eroded* inner octagon (not just the same corner-cut
+   re-applied to an inset box, which comes out ~41% thicker on the
+   diagonals — true uniform erosion needs the corner points nudged in
+   by B·(√2−1) along each axis, where B is the ring's width). This
+   gives a hairline of perfectly uniform width all the way round,
+   corners included — a stroked polygon can't do that, since the
+   default miter join lets sharp angle changes overshoot the line
+   width right at the corner. */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 184px;
+  height: 46px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.btn--wide {
+  width: 320px;
+}
+
+.btn__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.btn__label {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.btn--solid .btn__plate { fill: url(#metalShine); }
+.btn--solid .btn__molding { fill: #0d1122; fill-opacity: 0.55; }
+.btn--solid .btn__diamond { fill: #0d1122; }
+.btn--solid .btn__label { color: var(--navy-dark); }
+
+.btn--outline .btn__plate { fill: rgba(13, 17, 34, 0.35); }
+.btn--outline .btn__plate-ring { fill: var(--gold); }
+.btn--outline .btn__molding { fill: var(--gold); fill-opacity: 0.5; }
+.btn--outline .btn__diamond { fill: var(--gold); }
+.btn--outline .btn__label { color: var(--gold); }

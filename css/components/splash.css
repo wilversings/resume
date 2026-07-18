@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Splash screen — masks the font swap on first load
+   ========================================================================== */
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy-dark);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* main.js adds this once fonts + assets have loaded */
+.splash.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.splash__diamond {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--gold);
+  transform: rotate(45deg);
+  position: relative;
+  animation: splash-pulse 1.4s ease-in-out infinite;
+}
+
+.splash__diamond::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  background: var(--gold-bright);
+  border-radius: 50%;
+}
+
+/* nav font only (no display font) so the splash itself never flickers.
+   Fluid size/tracking so a full name still fits on narrow viewports
+   without wrapping — "EMPIRE" had room to spare, a real name doesn't. */
+.splash__word {
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: clamp(11px, 3.2vw, 15px);
+  letter-spacing: clamp(1px, 0.8vw, 6px);
+  color: var(--gold);
+  text-indent: clamp(1px, 0.3vw, 6px);
+  white-space: nowrap;
+}
+
+.splash__rule {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+@keyframes splash-pulse {
+  0%, 100% { transform: rotate(45deg) scale(1); opacity: 0.7; }
+  50% { transform: rotate(45deg) scale(1.18); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash__diamond { animation: none; }
+}

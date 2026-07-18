@@ -1,0 +1,103 @@
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  position: relative;
+  /* see the comment on `.hero` above — same fix, same reason */
+  z-index: 0;
+  padding: 60px 24px 40px;
+  background: var(--navy-light);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* same wallpaper motif as the hero (see `.hero::before`), reused verbatim
+   so the two bookends of the page share the same faint texture */
+.site-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.2;
+  background-repeat: repeat;
+  background-size: 96px 200px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='200'><defs><g id='f' fill='none' stroke='%23cba328' stroke-width='0.75'><path d='M4,36 Q48,-32 92,36'/><path d='M48,82 L4,36 M48,82 L15,23 M48,82 L26,12 M48,82 L37,4.6 M48,82 L48,2 M48,82 L59,4.6 M48,82 L70,12 M48,82 L81,23 M48,82 L92,36'/><path d='M21,12 L26,3 L31,12 M43,2 L48,-6 L53,2 M65,12 L70,3 L75,12'/></g></defs><use href='%23f' x='0' y='6'/><use href='%23f' x='48' y='106'/><use href='%23f' x='-48' y='106'/></svg>");
+  /* fades out around the small diamond+sunburst mark (measured centre:
+     ~24% down the footer, same on desktop and mobile since this section
+     doesn't reflow between breakpoints) */
+  -webkit-mask-image: radial-gradient(circle 90px at 50% 24%, transparent 0%, transparent 40%, black 100%);
+  mask-image: radial-gradient(circle 90px at 50% 24%, transparent 0%, transparent 40%, black 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* wraps the diamond and its sunburst so they share one centre, matching
+   the mockup's single `translate(720,4855)` origin for both shapes —
+   previously they were positioned independently and drifted apart */
+.site-footer__mark-wrap {
+  position: relative;
+  width: 16px;
+  margin: 0 auto 30px;
+}
+
+/* mockup uses scale(26) on the shared 24-ray symbol, i.e. a 52px-diameter
+   rosette tucked behind the diamond — not a large background wash */
+.site-footer__sunburst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 52px;
+  height: 52px;
+  transform: translate(-50%, -50%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.site-footer__mark {
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+
+.site-footer__social {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border: 1.4px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.social-icon:hover {
+  background: var(--gold);
+  color: var(--navy-dark);
+}
+
+.site-footer__divider {
+  width: 500px;
+  max-width: 80%;
+  height: 1px;
+  margin: 0 auto 30px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+
+.site-footer__copy {
+  font-size: 12.5px;
+  letter-spacing: 2px;
+  color: var(--bronze);
+}

@@ -19,8 +19,18 @@ already solves.
 index.html          all markup: nav, hero, about, experience, education,
                      portfolio, skills, connect, footer, plus a shared SVG
                      sprite (<svg class="sprite">) of decorative shapes
-css/style.css        all styling — design tokens live as CSS custom
-                     properties at the top of the file
+css/style.css        entry point only — @imports every partial below, in
+                     cascade order. Don't add rules directly to this file.
+css/base/             tokens.css (CSS custom properties + @font-face),
+                     reset.css (browser-default normalization)
+css/components/       reusable pieces referenced from more than one section:
+                     splash.css, shared.css (icons/corners), section-
+                     heading.css, buttons.css (.btn — used in hero,
+                     portfolio, connect)
+css/layout/            section-wrappers.css (.section, cornice), header.css
+css/sections/          one file per <section> in index.html: hero, about,
+                     timeline (shared by experience + education), portfolio,
+                     skills, connect, footer
 js/main.js           splash-screen removal, mobile nav toggle, scroll-spy
                      nav highlighting, skill-bar reveal animation
 fonts/                Monsante-Regular.otf (decorative display font, decoded
@@ -126,10 +136,15 @@ newer/nicer API, take the broadly-supported one.
 
 ## Design tokens & conventions already in place
 
-- Colors, gradients, and font stacks are CSS custom properties at the top
-  of `css/style.css` (`--navy-dark`, `--gold`, `--gold-bright`, `--cream`,
+- Colors, gradients, and font stacks are CSS custom properties in
+  `css/base/tokens.css` (`--navy-dark`, `--gold`, `--gold-bright`, `--cream`,
   `--gradient-metal-shine`, `--font-display`, `--font-body`, etc.) — reuse
   them, don't hardcode new color values.
+- CSS is split into partials under `css/`, all pulled in by `css/style.css`
+  — see the file tree above for what lives where. Add new rules to the
+  partial that already owns that selector/section rather than growing
+  `style.css` itself or creating a stray new file; if a rule is shared by
+  more than one section (like `.btn`), it belongs in `css/components/`.
 - Class naming is loosely BEM (`.timeline__item`, `.btn--outline`).
 - Chamfered "plaque" borders (buttons, connect cards) are deliberately
   *not* CSS `border` + `clip-path` — a clipped rectangular border strokes
@@ -137,9 +152,10 @@ newer/nicer API, take the broadly-supported one.
   They're built as either an SVG evenodd ring (fixed-size elements, e.g.
   buttons) or two stacked `clip-path` layers with a geometrically corrected
   inner chamfer (fluid-width elements, e.g. connect cards) — see the
-  comments above `.btn` and `.connect__card` in `css/style.css` before
-  changing either pattern, the naive version reintroduces a bug that's
-  been fixed twice already.
+  comments above `.btn` in `css/components/buttons.css` and
+  `.connect__card` in `css/sections/connect.css` before changing either
+  pattern, the naive version reintroduces a bug that's been fixed twice
+  already.
 
 ## Before calling a change done
 

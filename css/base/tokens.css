@@ -1,0 +1,44 @@
+/* ==========================================================================
+   EMPIRE — Art Deco resume theme
+   Design tokens. Change these to re-skin the whole page.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Monsante';
+  src: url('../../fonts/Monsante-Regular.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* palette */
+  --navy-dark: #0d1122;
+  --navy-light: #141a30;
+  --bronze: #8d7f6b;
+  --gold: #cba328;
+  --gold-bright: #efc603;
+  --cream: #ece4d3;
+
+  /* gradients */
+  --gradient-gold-rust: linear-gradient(90deg, var(--bronze) 0%, var(--gold) 100%);
+  --gradient-metal-shine: linear-gradient(90deg, var(--bronze) 0%, var(--gold) 55%, var(--gold-bright) 100%);
+  --gradient-metal-vert: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 45%, #8a6d1a 100%);
+
+  /* type */
+  --font-display: 'Monsante', 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  --font-nav: 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  --font-body: Georgia, 'Iowan Old Style', serif;
+
+  /* layout */
+  --content-width: 1160px;
+  --header-height: 72px;
+  --cornice-height: 34px;
+}
+
+@media (max-width: 780px) {
+  :root {
+    --header-height: 64px;
+    --cornice-height: 28px;
+  }
+}

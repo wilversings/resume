@@ -1,0 +1,170 @@
+/* ==========================================================================
+   Timeline (experience + education)
+   ========================================================================== */
+
+.timeline {
+  position: relative;
+}
+
+.timeline__spine {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-1px);
+  background: var(--gradient-metal-vert);
+}
+
+.timeline__item {
+  position: relative;
+  width: 50%;
+  padding: 0 60px 60px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.timeline__item:nth-child(odd) {
+  margin-right: auto;
+  justify-content: flex-end;
+  text-align: right;
+  flex-direction: row-reverse;
+}
+
+.timeline__item:nth-child(even) {
+  margin-left: auto;
+  justify-content: flex-start;
+}
+
+.timeline__item:last-child {
+  padding-bottom: 6px;
+}
+
+.timeline__marker {
+  position: absolute;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+}
+
+.timeline__item:nth-child(odd) .timeline__marker {
+  right: -6px;
+}
+
+.timeline__item:nth-child(even) .timeline__marker {
+  left: -6px;
+}
+
+.timeline__connector {
+  position: absolute;
+  top: 9px;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* connector runs from the marker (at the spine) inward toward the card —
+   "right"/"left" here measure from the item's spine-side edge, so the
+   offset must be positive to travel into the item, not past the spine */
+.timeline__item:nth-child(odd) .timeline__connector {
+  right: 6px;
+}
+
+.timeline__item:nth-child(even) .timeline__connector {
+  left: 6px;
+}
+
+.timeline__card {
+  position: relative;
+  background: var(--navy-light);
+  border: 1px solid rgba(203, 163, 40, 0.4);
+  padding: 22px 26px;
+  width: 100%;
+}
+
+.section--dark .timeline__card {
+  background: var(--navy-dark);
+}
+
+.timeline__date {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--gold-bright);
+  margin-bottom: 10px;
+}
+
+.timeline__title {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cream);
+}
+
+.timeline__org {
+  display: block;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 13.5px;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.timeline__desc {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--cream);
+  opacity: 0.8;
+}
+
+.timeline--compact .timeline__card {
+  padding: 16px 22px;
+}
+
+.timeline--compact .timeline__date {
+  margin-bottom: 6px;
+}
+
+.timeline--compact .timeline__title {
+  font-size: 16px;
+  margin: 0;
+}
+
+.timeline--compact .timeline__title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+  font-size: 13.5px;
+}
+
+@media (max-width: 780px) {
+  .timeline__spine {
+    left: 24px;
+  }
+
+  .timeline__item,
+  .timeline__item:nth-child(odd),
+  .timeline__item:nth-child(even) {
+    width: 100%;
+    margin: 0;
+    padding: 0 0 40px 60px;
+    justify-content: flex-start;
+    text-align: left;
+    flex-direction: row;
+  }
+
+  .timeline__item:nth-child(odd) .timeline__marker,
+  .timeline__item:nth-child(even) .timeline__marker {
+    left: 18px;
+    right: auto;
+  }
+
+  .timeline__item:nth-child(odd) .timeline__connector,
+  .timeline__item:nth-child(even) .timeline__connector {
+    left: 36px;
+    right: auto;
+  }
+}
