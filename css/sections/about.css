@@ -73,3 +73,12 @@
     justify-content: flex-start;
   }
 }
+
+/* fluid type above caps out around 1440px (what the design was tuned
+   against) — give it room to keep growing on wider 2K+ monitors instead
+   of freezing at that size */
+@media (min-width: 1600px) {
+  .about__text {
+    font-size: clamp(17px, calc(12px + 0.31vw), 20px);
+  }
+}

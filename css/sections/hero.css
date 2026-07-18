@@ -20,7 +20,12 @@
      short viewports it otherwise does, since the button is absolutely
      positioned and doesn't naturally push other content out of the way */
   padding-bottom: calc(34px + clamp(20px, 4vh, 48px) + 16px);
-  min-height: 90vh;
+  /* always fill the screen, not just 90% of it — min- (not a flat height)
+     so content that needs more room than the viewport can still grow the
+     box instead of getting clipped; the dvh line wins in browsers that
+     support it, correctly accounting for mobile browser chrome */
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,19 +249,10 @@
 
 @media (max-width: 780px) {
   .hero {
-    min-height: auto;
     /* must stay >= the scroll button's own footprint (see the base
        .hero rule) — this used to be a flat 60px that fell just short
        of it on tall phones, letting the buttons row overlap it */
     padding-bottom: calc(34px + clamp(20px, 4vh, 48px) + 16px);
-  }
-
-  /* the monument (and its glow/sunburst) sits higher up proportionally
-     once min-height:auto shortens the section — measured centre ~31%
-     down here vs ~42% on desktop */
-  .hero::before {
-    -webkit-mask-image: radial-gradient(circle 320px at 50% 31%, transparent 0%, transparent 55%, black 100%);
-    mask-image: radial-gradient(circle 320px at 50% 31%, transparent 0%, transparent 55%, black 100%);
   }
 
   /* the large edge fans are a desktop-only flourish (they'd crowd the
@@ -268,5 +264,50 @@
   .hero__actions {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+/* fluid type/sizing above caps out around 1440px (what the design was
+   tuned against) — give it room to keep growing on wider 2K+ monitors
+   instead of freezing at that size, leaving a small fixed-size island
+   in the middle of the screen */
+@media (min-width: 1600px) {
+  .hero__monument-wrap {
+    width: clamp(420px, calc(253.3px + 10.42vw), 520px);
+  }
+
+  .hero__glow {
+    width: clamp(640px, calc(386.7px + 15.83vw), 792px);
+    height: clamp(640px, calc(386.7px + 15.83vw), 792px);
+  }
+
+  .hero__sunburst {
+    width: clamp(620px, calc(373.3px + 15.42vw), 768px);
+    height: clamp(620px, calc(373.3px + 15.42vw), 768px);
+  }
+
+  .hero__est {
+    font-size: clamp(12px, calc(8.67px + 0.21vw), 14px);
+  }
+
+  .hero__title {
+    font-size: clamp(84px, calc(50.7px + 2.08vw), 104px);
+  }
+
+  .hero__subtitle {
+    font-size: clamp(20px, calc(11.7px + 0.52vw), 25px);
+  }
+
+  /* wallpaper tile grows in discrete steps (not fluid) — a repeating
+     pattern reads as a size, not a continuum, so jumping it a couple of
+     times as the screen widens suits it better than a smooth clamp */
+  .hero::before {
+    background-size: 120px 250px;
+  }
+}
+
+@media (min-width: 2200px) {
+  .hero::before {
+    background-size: 144px 300px;
   }
 }

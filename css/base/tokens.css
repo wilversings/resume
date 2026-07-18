@@ -42,3 +42,12 @@
     --cornice-height: 28px;
   }
 }
+
+/* the boxed layout otherwise stays a fixed 1160px island adrift in a sea
+   of background on very wide (2K+) monitors — let it (and the fluid type
+   below) keep growing past the ~1440px ceiling everything was tuned for */
+@media (min-width: 1600px) {
+  :root {
+    --content-width: 1400px;
+  }
+}

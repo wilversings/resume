@@ -102,3 +102,18 @@
   letter-spacing: 2px;
   color: var(--bronze);
 }
+
+/* wallpaper tile grows in discrete steps (not fluid), matching the
+   hero's identical overlay so the two bookends of the page stay in sync
+   — see the same breakpoints in `.hero::before` */
+@media (min-width: 1600px) {
+  .site-footer::before {
+    background-size: 120px 250px;
+  }
+}
+
+@media (min-width: 2200px) {
+  .site-footer::before {
+    background-size: 144px 300px;
+  }
+}
