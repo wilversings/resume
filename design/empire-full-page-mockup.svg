@@ -179,9 +179,8 @@
     <line x1="685" y1="696" x2="755" y2="696" stroke="#cba328" stroke-opacity="0.5"/>
     <text x="720" y="720" font-size="12" letter-spacing="4" text-anchor="middle" fill="#cba328">· EST. 2026 ·</text>
 
-    <text x="720" y="840" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="86" font-weight="700" letter-spacing="2" fill="url(#goldRust)">WELCOME TO MY EMPIRE</text>
-    <text x="720" y="882" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="20" fill="#ece4d3" fill-opacity="0.85">Take a brake from LinkedIn doomscrolling and experience a</text>
-    <text x="720" y="910" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="20" fill="#ece4d3" fill-opacity="0.85">different kind of resume.</text>
+    <text x="720" y="840" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="86" font-weight="700" letter-spacing="2" fill="url(#goldRust)">AN EMPIRE OF ONE</text>
+    <text x="720" y="896" text-anchor="middle" font-family="'Monsante','Futura','Century Gothic','Trebuchet MS',sans-serif" font-size="20" fill="#ece4d3" fill-opacity="0.85">One software developer, one page — the empire is purely decorative.</text>
 
     <!-- deco buttons: chamfered frame, inner molding line, diamond flanks -->
     <g transform="translate(504,950)">

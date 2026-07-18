@@ -148,14 +148,17 @@ body::after {
   border-radius: 50%;
 }
 
-/* nav font only (no display font) so the splash itself never flickers */
+/* nav font only (no display font) so the splash itself never flickers.
+   Fluid size/tracking so a full name still fits on narrow viewports
+   without wrapping — "EMPIRE" had room to spare, a real name doesn't. */
 .splash__word {
   font-family: var(--font-nav);
   font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 6px;
+  font-size: clamp(11px, 3.2vw, 15px);
+  letter-spacing: clamp(1px, 0.8vw, 6px);
   color: var(--gold);
-  text-indent: 6px;
+  text-indent: clamp(1px, 0.3vw, 6px);
+  white-space: nowrap;
 }
 
 .splash__rule {
@@ -356,11 +359,15 @@ body::after {
   display: flex;
   align-items: center;
   gap: 14px;
+  min-width: 0;
   font-family: var(--font-nav);
   font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 3px;
+  /* fluid so a full name fits next to the nav links / hamburger button —
+     "EMPIRE" was short enough to not need this, a real name isn't */
+  font-size: clamp(10px, 1.6vw, 15px);
+  letter-spacing: clamp(0.5px, 0.25vw, 3px);
   color: var(--gold);
+  white-space: nowrap;
 }
 
 .nav__brand-mark {
@@ -458,6 +465,12 @@ body::after {
      centers within the padded box, so this reliably pushes the whole
      centered block down instead of it hugging the header */
   padding-top: calc(var(--header-height) + clamp(32px, 6vh, 90px));
+  /* reserves exactly the scroll button's own footprint (its `bottom`
+     offset + height, plus a little breathing room) so the centered
+     content block can never grow tall enough to collide with it — on
+     short viewports it otherwise does, since the button is absolutely
+     positioned and doesn't naturally push other content out of the way */
+  padding-bottom: calc(34px + clamp(20px, 4vh, 48px) + 16px);
   min-height: 90vh;
   display: flex;
   align-items: center;
@@ -674,8 +687,15 @@ body::after {
 .btn--outline .btn__diamond { fill: var(--gold); }
 .btn--outline .btn__label { color: var(--gold); }
 
+/* pinned to the hero section's own bottom edge (`.hero` is the nearest
+   positioned ancestor — it's lifted out of `.hero__content` in the
+   markup specifically so it isn't) — a fixed offset from the section
+   boundary, not "60px below the buttons", so it doesn't drift when the
+   title/subtitle copy above it changes length */
 .hero__scroll {
-  margin-top: 60px;
+  position: absolute;
+  left: 50%;
+  bottom: clamp(20px, 4vh, 48px);
   width: 34px;
   height: 34px;
   border: 1.5px solid var(--gold);
@@ -696,15 +716,28 @@ body::after {
   fill: none;
 }
 
+/* translateX(-50%) has to live in the keyframes, not a separate static
+   `transform`, since a running animation overrides the whole property —
+   a static transform here would never actually paint */
 @keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll {
+    animation: none;
+    transform: translateX(-50%);
+  }
 }
 
 @media (max-width: 780px) {
   .hero {
     min-height: auto;
-    padding-bottom: 60px;
+    /* must stay >= the scroll button's own footprint (see the base
+       .hero rule) — this used to be a flat 60px that fell just short
+       of it on tall phones, letting the buttons row overlap it */
+    padding-bottom: calc(34px + clamp(20px, 4vh, 48px) + 16px);
   }
 
   /* the large edge fans are a desktop-only flourish (they'd crowd the
@@ -1194,12 +1227,23 @@ body::after {
   overflow: hidden;
 }
 
+/* wraps the diamond and its sunburst so they share one centre, matching
+   the mockup's single `translate(720,4855)` origin for both shapes —
+   previously they were positioned independently and drifted apart */
+.site-footer__mark-wrap {
+  position: relative;
+  width: 16px;
+  margin: 0 auto 30px;
+}
+
+/* mockup uses scale(26) on the shared 24-ray symbol, i.e. a 52px-diameter
+   rosette tucked behind the diamond — not a large background wash */
 .site-footer__sunburst {
   position: absolute;
-  top: 30px;
+  top: 50%;
   left: 50%;
-  width: 260px;
-  height: 260px;
+  width: 52px;
+  height: 52px;
   transform: translate(-50%, -50%);
   opacity: 0.55;
   pointer-events: none;
@@ -1208,7 +1252,6 @@ body::after {
 .site-footer__mark {
   width: 16px;
   height: 16px;
-  margin: 0 auto 30px;
   position: relative;
 }
 

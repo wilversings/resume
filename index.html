@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome to My Empire — Résumé</title>
-  <meta name="description" content="An Art Deco styled résumé.">
+  <title>Marius Aiordăchioaei — Résumé</title>
+  <meta name="description" content="A software developer's résumé, in the Art Deco style.">
   <link rel="preload" href="fonts/Monsante-Regular.otf" as="font" type="font/otf" crossorigin>
 </head>
 <body>
@@ -16,7 +16,7 @@
   <div class="splash" id="splash">
     <div class="splash__inner">
       <span class="splash__diamond"></span>
-      <span class="splash__word">EMPIRE</span>
+      <span class="splash__word">MARIUS AIORDĂCHIOAEI</span>
       <span class="splash__rule"></span>
     </div>
   </div>
@@ -128,7 +128,7 @@
     <nav class="nav">
       <a href="#top" class="nav__brand">
         <span class="nav__brand-mark" aria-hidden="true"></span>
-        EMPIRE
+        MARIUS AIORDĂCHIOAEI
       </a>
       <ul class="nav__links" id="navLinks">
         <li><a href="#about">About</a></li>
@@ -203,8 +203,8 @@
 
       <p class="hero__est">EST. 2026</p>
 
-      <h1 class="hero__title">Welcome to My Empire</h1>
-      <p class="hero__subtitle">Take a break from LinkedIn doomscrolling and experience a different kind of resume.</p>
+      <h1 class="hero__title">An Empire of One</h1>
+      <p class="hero__subtitle">One software developer, one page — the empire is purely decorative.</p>
 
       <div class="hero__actions">
         <a class="btn btn--solid" href="#experience">
@@ -227,11 +227,14 @@
           <span class="btn__label">Contact</span>
         </a>
       </div>
-
-      <a class="hero__scroll" href="#about" aria-label="Scroll to About section">
-        <svg viewBox="0 0 14 8"><path d="M1,1 L7,7 L13,1"/></svg>
-      </a>
     </div>
+
+    <!-- pinned to the bottom of the hero section itself, not flowing
+         after the text — so it stays put regardless of how tall the
+         title/subtitle above it end up being -->
+    <a class="hero__scroll" href="#about" aria-label="Scroll to About section">
+      <svg viewBox="0 0 14 8"><path d="M1,1 L7,7 L13,1"/></svg>
+    </a>
   </section>
 
   <div class="cornice">
@@ -602,9 +605,10 @@
        Footer
        ============================================================ -->
   <footer class="site-footer">
-    <svg class="site-footer__sunburst" viewBox="-1 -1 2 2" aria-hidden="true"><use href="#icon-sunburst" x="-1" y="-1" width="2" height="2"/></svg>
-
-    <svg class="site-footer__mark icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+    <div class="site-footer__mark-wrap">
+      <svg class="site-footer__sunburst" viewBox="-1 -1 2 2" aria-hidden="true"><use href="#icon-sunburst" x="-1" y="-1" width="2" height="2"/></svg>
+      <svg class="site-footer__mark icon-diamond" viewBox="-6 -6 12 12"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
+    </div>
 
     <div class="site-footer__social">
       <a class="social-icon" href="https://github.com/yourname" target="_blank" rel="noopener" aria-label="GitHub">Gh</a>
