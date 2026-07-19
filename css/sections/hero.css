@@ -117,7 +117,7 @@
 
 .hero__est {
   margin: 26px 0 0;
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
   letter-spacing: 4px;
   color: var(--gold);
 }
@@ -136,7 +136,7 @@
 .hero__title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(50px, 6vw, 84px);
+  font-size: var(--fs-h1);
   letter-spacing: clamp(1px, 0.3vw, 2px);
   text-transform: uppercase;
   margin: 30px 0 22px;
@@ -149,7 +149,7 @@
 
 .hero__subtitle {
   font-family: var(--font-display);
-  font-size: 20px; /*clamp(14px, 1.6vw, 20px);*/
+  font-size: var(--fs-lead);
   color: var(--cream);
   opacity: 0.85;
   max-width: 640px;
@@ -213,18 +213,6 @@
   .hero__glow {
     width: clamp(640px, calc(386.7px + 15.83vw), 792px);
     height: clamp(640px, calc(386.7px + 15.83vw), 792px);
-  }
-
-  .hero__est {
-    font-size: clamp(12px, calc(8.67px + 0.21vw), 14px);
-  }
-
-  .hero__title {
-    font-size: clamp(84px, calc(50.7px + 2.08vw), 104px);
-  }
-
-  .hero__subtitle {
-    font-size: clamp(20px, calc(11.7px + 0.52vw), 25px);
   }
 
   .hero::before {

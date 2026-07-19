@@ -29,6 +29,8 @@
   min-width: 0;
   font-family: var(--font-nav);
   font-weight: 700;
+  /* fluid one-off, not a scale step: the long wordmark is `nowrap` in a
+     fixed-height bar, so it must shrink with the viewport to avoid overflow */
   font-size: clamp(10px, 1.6vw, 15px);
   letter-spacing: clamp(0.5px, 0.25vw, 3px);
   color: var(--gold);
@@ -59,7 +61,7 @@
 
 .nav__links a {
   display: block;
-  font-size: 12.5px;
+  font-size: var(--fs-sm);
   font-weight: 700;
   letter-spacing: 2px;
   color: var(--gold);
@@ -123,9 +125,5 @@
 @media (min-width: 1600px) {
   .nav__brand {
     font-size: clamp(15px, calc(10px + 0.31vw), 18px);
-  }
-
-  .nav__links a {
-    font-size: clamp(12.5px, calc(8.33px + 0.26vw), 15px);
   }
 }

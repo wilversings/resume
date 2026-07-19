@@ -23,7 +23,9 @@
 }
 
 .portfolio__num {
-  font-size: 30px;
+  /* decorative watermark numeral — reuses the display step rather than a
+     one-off size */
+  font-size: var(--fs-h2);
   color: var(--gold);
   opacity: 0.5;
   font-weight: 700;
@@ -31,13 +33,13 @@
 
 .portfolio__title {
   margin: 16px 0 4px;
-  font-size: 16px;
+  font-size: var(--fs-body);
   font-weight: 700;
   color: var(--cream);
 }
 
 .portfolio__cat {
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
   letter-spacing: 1px;
   color: var(--gold);
   text-transform: uppercase;

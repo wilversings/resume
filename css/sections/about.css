@@ -23,7 +23,7 @@
 
 .about__text {
   font-family: var(--font-body);
-  font-size: clamp(14px, 1.2vw, 17px);
+  font-size: var(--fs-body);
   line-height: 1.75;
   color: var(--cream);
   opacity: 0.9;
@@ -40,7 +40,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 14px;
+  font-size: var(--fs-sm);
 }
 
 .about__meta-item strong {
@@ -71,11 +71,5 @@
 
   .about__meta-item {
     justify-content: flex-start;
-  }
-}
-
-@media (min-width: 1600px) {
-  .about__text {
-    font-size: clamp(17px, calc(12px + 0.31vw), 20px);
   }
 }

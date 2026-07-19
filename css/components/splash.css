@@ -46,7 +46,7 @@
 .splash__word {
   font-family: var(--font-nav);
   font-weight: 700;
-  font-size: clamp(11px, 3.2vw, 15px);
+  font-size: var(--fs-sm);
   letter-spacing: clamp(1px, 0.8vw, 6px);
   color: var(--gold);
   text-indent: clamp(1px, 0.3vw, 6px);
