@@ -44,9 +44,6 @@
 }
 
 .portfolio__more {
-  /* .btn is inline-flex (inline-level); switch to a block-level flex
-     box here so a fixed-width button can still be centered via auto
-     margins, without touching the shared .btn rules */
   display: flex;
   margin: 0 auto;
 }

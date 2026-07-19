@@ -63,9 +63,6 @@
   background: var(--gold);
 }
 
-/* connector runs from the marker (at the spine) inward toward the card —
-   "right"/"left" here measure from the item's spine-side edge, so the
-   offset must be positive to travel into the item, not past the spine */
 .timeline__item:nth-child(odd) .timeline__connector {
   right: 6px;
 }

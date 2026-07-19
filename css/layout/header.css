@@ -29,8 +29,6 @@
   min-width: 0;
   font-family: var(--font-nav);
   font-weight: 700;
-  /* fluid so a full name fits next to the nav links / hamburger button —
-     "EMPIRE" was short enough to not need this, a real name isn't */
   font-size: clamp(10px, 1.6vw, 15px);
   letter-spacing: clamp(0.5px, 0.25vw, 3px);
   color: var(--gold);
@@ -122,9 +120,6 @@
   }
 }
 
-/* fluid type above caps out around 1440px (what the design was tuned
-   against) — give it room to keep growing on wider 2K+ monitors instead
-   of freezing at that size */
 @media (min-width: 1600px) {
   .nav__brand {
     font-size: clamp(15px, calc(10px + 0.31vw), 18px);

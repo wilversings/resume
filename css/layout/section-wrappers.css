@@ -30,11 +30,6 @@
   border-top: 1px solid rgba(203, 163, 40, 0.6);
 }
 
-/* background matches the section the cornice leads INTO, so the visual
-   order scrolling down is always: colour change (section end → cornice),
-   then the border-top rule, then the ziggurat itself — never the other
-   way round, which is what happened when the cornice had no background
-   of its own and just showed through to body's navy-dark */
 .cornice--light {
   background: var(--navy-light);
 }

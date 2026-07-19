@@ -43,9 +43,6 @@
   border-radius: 50%;
 }
 
-/* nav font only (no display font) so the splash itself never flickers.
-   Fluid size/tracking so a full name still fits on narrow viewports
-   without wrapping — "EMPIRE" had room to spare, a real name doesn't. */
 .splash__word {
   font-family: var(--font-nav);
   font-weight: 700;

@@ -37,7 +37,6 @@ ul {
   list-style: none;
 }
 
-/* film-grain overlay across the whole page */
 body::after {
   content: '';
   position: fixed;
@@ -49,8 +48,6 @@ body::after {
   background-image: url("../../images/film-grain-noise.svg");
 }
 
-/* the inline sprite sheet of decorative marks lives in index.html and is
-   visually hidden; every <use> below pulls its shapes from there */
 .sprite {
   position: absolute;
   width: 0;

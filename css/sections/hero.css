@@ -34,12 +34,6 @@
   text-align: center;
 }
 
-/* subtle Art Deco fan/scallop wallpaper motif — a hairline-thin, faint
-   echo of a classic Deco fan-scale wallpaper repeat. Sits on the
-   section's own background (z-index:-1 paints after that background but
-   before every real child, regardless of the children's own z-index) so
-   it never competes with content. Shared with the footer's identical
-   overlay via images/wallpaper-fan-scallop.svg, inlined by webpack. */
 .hero::before {
   content: '';
   position: absolute;
@@ -50,11 +44,6 @@
   background-repeat: repeat;
   background-size: 200px;
   background-image: url("../../images/wallpaper-fan-scallop.svg");
-  /* fades the wallpaper out right around the monument's glow/sunburst
-     (measured centre: ~42% down the hero on desktop, see the 780px
-     override below for the mobile figure) so the texture doesn't
-     compete with the light source; reappears past ~320px out, matching
-     the glow's own 320px radius */
   -webkit-mask-image: radial-gradient(circle 320px at 50% 42%, transparent 0%, transparent 55%, black 100%);
   mask-image: radial-gradient(circle 320px at 50% 42%, transparent 0%, transparent 55%, black 100%);
   -webkit-mask-repeat: no-repeat;
@@ -68,19 +57,12 @@
   width: 100%;
 }
 
-/* wraps the crown+plinth centrepiece together with its light source, so
-   the glow/sunburst are anchored to the monument itself (not the whole
-   hero section) and stay put no matter how tall the surrounding text is */
 .hero__monument-wrap {
   position: relative;
   width: min(420px, 58vw);
   margin: 0 auto;
 }
 
-/* crown+plinth centrepiece art, externalized to images/hero-monument.svg
-   (inlined by webpack via this url(), same convention as the wallpaper
-   and film-grain overlays above); aspect-ratio mirrors the file's own
-   viewBox (750x372) since a background-image has no intrinsic size */
 .hero__monument {
   animation: bob 2.4s ease-in-out infinite;
   position: relative;
@@ -93,9 +75,6 @@
   background-size: contain;
 }
 
-/* anchored low inside the monument — roughly where the plinth bar sits
-   (~80% down the crown's own height) — so the light reads as coming
-   from the plinth, not the centre of the whole hero section */
 .hero__glow {
   position: absolute;
   top: 80%;
@@ -210,9 +189,6 @@
   fill: none;
 }
 
-/* translateX(-50%) has to live in the keyframes, not a separate static
-   `transform`, since a running animation overrides the whole property —
-   a static transform here would never actually paint */
 @keyframes bob {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(6px); }
@@ -220,9 +196,6 @@
 
 @media (max-width: 780px) {
   .hero {
-    /* must stay >= the scroll button's own footprint (see the base
-       .hero rule) — this used to be a flat 60px that fell just short
-       of it on tall phones, letting the buttons row overlap it */
     padding-bottom: calc(34px + clamp(20px, 4vh, 48px) + 16px);
   }
 

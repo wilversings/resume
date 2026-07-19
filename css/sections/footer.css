@@ -30,10 +30,6 @@
 .site-footer__brand:hover {
   color: var(--gold-bright);
 }
-
-/* same wallpaper motif as the hero (see `.hero::before`), reused verbatim
-   so the two bookends of the page share the same faint texture — both
-   pull from images/wallpaper-fan-scallop.svg, inlined by webpack */
 .site-footer::before {
   content: '';
   position: absolute;
@@ -44,24 +40,16 @@
   background-repeat: repeat;
   background-size: 96px 96px;
   background-image: url("../../images/wallpaper-fan-scallop-square.svg");
-  /* fades out around the small diamond+sunburst mark (measured centre:
-     ~24% down the footer, same on desktop and mobile since this section
-     doesn't reflow between breakpoints) */
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
 
-/* wraps the diamond and its sunburst so they share one centre, matching
-   the mockup's single `translate(720,4855)` origin for both shapes —
-   previously they were positioned independently and drifted apart */
 .site-footer__mark-wrap {
   position: relative;
   width: 16px;
   margin: 0 auto 30px;
 }
 
-/* mockup uses scale(26) on the shared 24-ray symbol, i.e. a 52px-diameter
-   rosette tucked behind the diamond — not a large background wash */
 .site-footer__sunburst {
   position: absolute;
   top: 50%;
@@ -160,9 +148,6 @@
   color: var(--bronze);
 }
 
-/* wallpaper tile grows in discrete steps (not fluid), matching the
-   hero's identical overlay so the two bookends of the page stay in sync
-   — see the same breakpoints in `.hero::before` */
 @media (min-width: 1600px) {
   .site-footer::before {
     background-size: 120px 120px;

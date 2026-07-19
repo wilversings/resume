@@ -9,18 +9,6 @@
   margin-top: 50px;
 }
 
-/* chamfered gold border, same problem/fix as the buttons: a CSS `border`
-   only strokes the box's 4 straight edges, and clip-path trims the tiny
-   rectangular border corner away when it cuts the chamfer, leaving no
-   border at all on the diagonal. Fixed with two stacked layers sharing
-   the same chamfer shape: this element (gold) is the full plate, and
-   ::before (inset 1.5px, navy) sits on top of it, leaving a uniform
-   1.5px gold rim showing all the way round — including the corners.
-   The chamfer here uses a fixed pixel cut (not %) so it's a true 45°
-   angle regardless of the card's fluid width; ::before's inner chamfer
-   is nudged from 10px to 9.12px (10 − 1.5·(2−√2)) so the exposed rim
-   is a *geometrically* uniform 1.5px, not ~41% fatter on the diagonal
-   the way naively reusing the same 10px cut on the inset box would be. */
 .connect__card {
   position: relative;
   display: block;
