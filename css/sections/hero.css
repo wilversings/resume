@@ -199,6 +199,7 @@
   justify-content: center;
   cursor: pointer;
   background: transparent;
+  transform: translateX(-50%);
 }
 
 .hero__scroll svg {
@@ -215,13 +216,6 @@
 @keyframes bob {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(6px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__scroll {
-    animation: none;
-    transform: translateX(-50%);
-  }
 }
 
 @media (max-width: 780px) {
