@@ -44,6 +44,10 @@
   display: block;
 }
 
+.section-divider {
+  border-top: 1px solid rgba(203, 163, 40, 0.6);
+}
+
 @media (max-width: 780px) {
   .section {
     padding: 56px 20px;
