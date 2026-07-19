@@ -61,6 +61,33 @@
   pointer-events: none;
 }
 
+.site-footer__sunburst.sunburst-rays::before,
+.site-footer__sunburst.sunburst-rays::after {
+  opacity: 0.9;
+}
+
+.site-footer__sunburst.sunburst-rays::before {
+  -webkit-mask-image:
+    repeating-conic-gradient(from 0deg, transparent 0deg, #000 1deg, #000 2.6deg, transparent 3.8deg, transparent 30deg),
+    radial-gradient(circle, #000 0%, #000 80%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    repeating-conic-gradient(from 0deg, transparent 0deg, #000 1deg, #000 2.6deg, transparent 3.8deg, transparent 30deg),
+    radial-gradient(circle, #000 0%, #000 80%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.site-footer__sunburst.sunburst-rays::after {
+  -webkit-mask-image:
+    repeating-conic-gradient(from 15deg, transparent 0deg, #000 1deg, #000 2.6deg, transparent 3.8deg, transparent 30deg),
+    radial-gradient(circle, #000 0%, #000 44%, transparent 55%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    repeating-conic-gradient(from 15deg, transparent 0deg, #000 1deg, #000 2.6deg, transparent 3.8deg, transparent 30deg),
+    radial-gradient(circle, #000 0%, #000 44%, transparent 55%);
+  mask-composite: intersect;
+}
+
 .site-footer__mark {
   width: 16px;
   height: 16px;
