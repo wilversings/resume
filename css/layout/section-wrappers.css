@@ -4,6 +4,11 @@
 
 .section {
   position: relative;
+  /* see the comment on `.hero` in hero.css — same fix, same reason:
+     z-index:0 gives this element its own stacking context so the
+     negative-z-index wallpaper below stays pinned behind its content
+     instead of escaping to the document root's stacking order */
+  z-index: 0;
   padding: 80px 24px;
   scroll-margin-top: var(--header-height);
 }
@@ -14,6 +19,30 @@
 
 .section--dark {
   background: var(--navy-dark);
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.08;
+  background-repeat: repeat;
+  background-size: 200px;
+  background-image: url("../../images/wallpaper-fan-scallop.svg");
+}
+
+@media (min-width: 1600px) {
+  .section::before {
+    background-size: 250px;
+  }
+}
+
+@media (min-width: 2200px) {
+  .section::before {
+    background-size: 300px;
+  }
 }
 
 .section__inner {
