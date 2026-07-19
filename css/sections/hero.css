@@ -77,13 +77,20 @@
   margin: 0 auto;
 }
 
+/* crown+plinth centrepiece art, externalized to images/hero-monument.svg
+   (inlined by webpack via this url(), same convention as the wallpaper
+   and film-grain overlays above); aspect-ratio mirrors the file's own
+   viewBox (750x372) since a background-image has no intrinsic size */
 .hero__monument {
   animation: bob 2.4s ease-in-out infinite;
   position: relative;
   z-index: 1;
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 750 / 372;
+  background-image: url("../../images/hero-monument.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 /* anchored low inside the monument — roughly where the plinth bar sits

@@ -94,11 +94,11 @@
     <linearGradient id="pl-stops-b"><stop offset="0" stop-color="#8d7f6b"/><stop offset="1" stop-color="#cba328"/></linearGradient>
     <linearGradient href="#pl-stops-a" id="pl-towers" gradientUnits="userSpaceOnUse" x1="118.06" y1="67.72" x2="285.83"/>
     <linearGradient href="#pl-stops-b" id="pl-lines" gradientUnits="userSpaceOnUse" x1="172.53" y1="74.02" x2="231.44"/>
-    <linearGradient id="pl-fade" gradientUnits="userSpaceOnUse" x1="0" y1="332" x2="0" y2="356">
+    <linearGradient id="pl-fade" gradientUnits="userSpaceOnUse" x1="0" y1="323.6" x2="0" y2="338.4">
       <stop offset="0" stop-color="#cba328" stop-opacity="0.55"/>
       <stop offset="1" stop-color="#cba328" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient href="#pl-stops-a" id="pl-bar" gradientUnits="userSpaceOnUse" x1="75" y1="0" x2="315" y2="0"/>
+    <linearGradient href="#pl-stops-a" id="pl-bar" gradientUnits="userSpaceOnUse" x1="47" y1="0" x2="343" y2="0"/>
 
     <!-- Art Deco fan/scallop wallpaper motif — matches css/sections/hero.css's
          `.hero::before` (also reused by `.site-footer::before`): a hairline
@@ -182,14 +182,16 @@
       </g>
     </g>
 
-    <g stroke="url(#pl-fade)" stroke-width="1.1">
-      <line x1="150" y1="332" x2="150" y2="352"/>
-      <line x1="175" y1="332" x2="175" y2="352"/>
-      <line x1="220" y1="332" x2="220" y2="352"/>
-      <line x1="245" y1="332" x2="245" y2="352"/>
+    <g stroke="url(#pl-fade)" stroke-width="0.52">
+      <line x1="163" y1="323.6" x2="163" y2="337.6"/>
+      <line x1="180.2" y1="323.6" x2="180.2" y2="337.6"/>
+      <line x1="209.8" y1="323.6" x2="209.8" y2="337.6"/>
+      <line x1="227" y1="323.6" x2="227" y2="337.6"/>
     </g>
 
-    <polygon points="75,324 87,316 303,316 315,324 303,332 87,332" fill="#141a30" stroke="url(#pl-bar)" stroke-width="1.6"/>
+    <!-- beveled plinth bar receiving the towers: single gradient shape,
+         spiked ends, matching the gold edge thickness of the tower silhouette above -->
+    <polygon points="47,319.2 54.2,316.8 335.8,316.8 343,319.2 335.8,321.6 54.2,321.6" fill="url(#pl-bar)"/>
 
     <line x1="165" y1="376" x2="225" y2="376" stroke="#cba328"/>
     <line x1="175" y1="382" x2="215" y2="382" stroke="#cba328" stroke-opacity="0.5"/>

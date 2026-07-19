@@ -45,24 +45,6 @@
         <stop offset="45%" stop-color="#cba328"/>
         <stop offset="100%" stop-color="#8a6d1a"/>
       </linearGradient>
-      <linearGradient id="pl-stops-a">
-        <stop offset="0.2" stop-color="#8d7f6b"/>
-        <stop offset="0.8" stop-color="#cba328"/>
-      </linearGradient>
-      <linearGradient id="pl-stops-b">
-        <stop offset="0" stop-color="#8d7f6b"/>
-        <stop offset="1" stop-color="#cba328"/>
-      </linearGradient>
-      <linearGradient href="#pl-stops-a" id="pl-towers" gradientUnits="userSpaceOnUse" x1="118.06" y1="67.72" x2="285.83" y2="67.72"/>
-      <linearGradient href="#pl-stops-b" id="pl-lines" gradientUnits="userSpaceOnUse" x1="172.53" y1="74.02" x2="231.44" y2="74.02"/>
-      <!-- bronze→gold shading across the plinth bar (design userSpace coords) -->
-      <linearGradient href="#pl-stops-a" id="pl-bar" gradientUnits="userSpaceOnUse" x1="384" y1="0" x2="1052" y2="0"/>
-      <!-- vertical fade for the tower stubs hanging below the plinth -->
-      <linearGradient id="pl-fade" gradientUnits="userSpaceOnUse" x1="0" y1="629" x2="0" y2="666">
-        <stop offset="0" stop-color="#cba328" stop-opacity="0.55"/>
-        <stop offset="1" stop-color="#cba328" stop-opacity="0"/>
-      </linearGradient>
-
       <!-- heading flourish: fan of 7 rays with a tip diamond, points +x -->
       <symbol id="icon-flourish" viewBox="-4 -20 44 40">
         <g stroke="url(#metalShine)" stroke-width="1.5" vector-effect="non-scaling-stroke">
@@ -136,34 +118,7 @@
         <div class="hero__glow" aria-hidden="true"></div>
         <div class="hero__sunburst sunburst-rays" aria-hidden="true"></div>
 
-        <svg class="hero__monument" viewBox="345 300 750 372" aria-hidden="true">
-          <!-- crown / tower silhouette -->
-          <g transform="translate(720,610) scale(4) translate(-201.94,-106)">
-            <path d="m 158.76964,29.42 4.75586,26.701172 h -25.64648 l 8.62109,25.609375 h -28.43945 l 14.74023,24.296873 h 3.50977 L 123.39073,84.730547 h 24.11914 l 7.16797,21.296873 h 2.10743 l -7.16797,-21.296873 -1.00977,-3 -7.94726,-23.609375 h 23.2207 l 4.20508,23.609375 0.5332,3 3.79297,21.296873 h 3.05078 l -3.79102,-21.296873 -0.53515,-3 -4.20117,-23.609375 -0.35743,-2 L 162.35948,32.42 h 79.16993 l -4.21875,23.701172 -0.35743,2 -4.20117,23.609375 -0.53515,3 -3.79102,21.296873 h 3.05078 l 3.79297,-21.296873 0.5332,-3 4.20508,-23.609375 h 23.23242 l -7.94922,23.609375 -1.00976,3 -7.16992,21.296873 h 2.0957 l 7.16602,-21.296873 h 24.12695 l -12.90234,21.296873 h 3.51171 l 14.72071,-24.296873 h -28.44727 l 8.61719,-25.609375 H 240.36339 L 245.11925,29.42 Z" fill="url(#pl-towers)"/>
-            <g fill="#0d1122" fill-opacity="0.75">
-              <path d="m 249.20714,106.02742 h 18.39063 l 12.90234,-21.296873 h -24.12695 z"/>
-              <path d="m 231.47667,106.02742 h 15.63477 l 7.16992,-21.296873 1.00976,-3 7.94922,-23.609375 h -23.23242 l -4.20508,23.609375 -0.5332,3 z"/>
-              <path d="m 175.463,106.02742 h 52.96289 l 3.79102,-21.296873 0.53515,-3 4.20117,-23.609375 0.35743,-2 L 241.52941,32.42 h -79.16993 l 4.21875,23.701172 0.35743,2 4.20117,23.609375 0.53515,3 z"/>
-              <path d="m 156.78527,106.02742 h 15.62695 l -3.79297,-21.296873 -0.5332,-3 -4.20508,-23.609375 h -23.2207 l 7.94726,23.609375 1.00977,3 z"/>
-              <path d="m 136.31066,106.02742 h 18.36718 l -7.16797,-21.296873 h -24.11914 z"/>
-            </g>
-            <g fill="url(#pl-lines)">
-              <path d="m 214.9397,52.479983 -4.18554,53.546877 h 0.95507 z"/>
-              <path d="m 172.52955,42.019045 8.95898,64.007815 h 1.08594 z"/>
-              <path d="m 231.4397,42.019045 -10.04492,64.007815 h 1.08594 z"/>
-              <path d="m 188.9397,52.479983 3.23047,53.546877 h 0.95508 z"/>
-            </g>
-          </g>
-          <!-- tower stubs fading below the plinth -->
-          <g stroke="url(#pl-fade)" stroke-width="1.3">
-            <line x1="640" y1="629" x2="640" y2="664"/>
-            <line x1="683" y1="629" x2="683" y2="664"/>
-            <line x1="757" y1="629" x2="757" y2="664"/>
-            <line x1="800" y1="629" x2="800" y2="664"/>
-          </g>
-          <!-- beveled plinth bar receiving the towers -->
-          <polygon points="350,618 368,606 1072,606 1090,618 1072,630 368,630" fill="#141a30" stroke="url(#pl-bar)" stroke-width="2"/>
-        </svg>
+        <div class="hero__monument" aria-hidden="true"></div>
       </div>
 
       <p class="hero__est">EST. 2026</p>

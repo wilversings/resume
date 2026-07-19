@@ -207,8 +207,9 @@
       <line x1="800" y1="629" x2="800" y2="664"/>
     </g>
 
-    <!-- beveled plinth bar receiving the towers -->
-    <polygon points="350,618 368,606 1072,606 1090,618 1072,630 368,630" fill="#141a30" stroke="url(#pl-bar)" stroke-width="2"/>
+    <!-- beveled plinth bar receiving the towers: single gradient shape,
+         spiked ends, matching the gold edge thickness of the tower silhouette above -->
+    <polygon points="350,618 368,612 1072,612 1090,618 1072,624 368,624" fill="url(#pl-bar)"/>
 
     <line x1="670" y1="690" x2="770" y2="690" stroke="#cba328"/>
     <line x1="685" y1="696" x2="755" y2="696" stroke="#cba328" stroke-opacity="0.5"/>
