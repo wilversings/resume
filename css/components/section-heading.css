@@ -14,8 +14,8 @@
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--fs-h2);
-  letter-spacing: clamp(3px, 0.4vw, 4px);
   color: var(--gold);
+  letter-spacing: clamp(3px, 0.4vw, 4px);
   text-transform: uppercase;
   margin: 0;
   text-align: center;

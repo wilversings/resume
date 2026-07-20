@@ -56,13 +56,20 @@
   filter: brightness(1.08);
 }
 
-.btn--solid .btn__plate { fill: url(#metalShine); }
+.btn--solid .btn__plate { fill: url(#metalShine); filter: url(#rust); }
+.btn--solid .btn__plate--clean {
+  fill: url(#metalShine);
+  filter: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn--solid:hover .btn__plate--clean { opacity: 1; }
 .btn--solid .btn__molding { fill: #0d1122; fill-opacity: 0.55; }
 .btn--solid .btn__diamond { fill: #0d1122; }
 .btn--solid .btn__label { color: var(--navy-dark); }
 
 .btn--outline .btn__plate { fill: rgba(13, 17, 34, 0.35); }
-.btn--outline .btn__plate-ring { fill: var(--gold); }
+.btn--outline .btn__plate-ring { fill: var(--gold); filter: url(#rust); }
 .btn--outline .btn__molding { fill: var(--gold); fill-opacity: 0.5; }
 .btn--outline .btn__diamond { fill: var(--gold); }
 .btn--outline .btn__label { color: var(--gold); }

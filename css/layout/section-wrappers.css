@@ -47,6 +47,7 @@
   width: 260px;
   height: var(--cornice-height);
   display: block;
+  filter: url(#rust);
 }
 
 .section-divider {

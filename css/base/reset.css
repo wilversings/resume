@@ -37,17 +37,6 @@ ul {
   list-style: none;
 }
 
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 999;
-  opacity: 0.5;
-  mix-blend-mode: overlay;
-  background-image: url("../../images/film-grain-noise.svg");
-}
-
 .sprite {
   position: absolute;
   width: 0;

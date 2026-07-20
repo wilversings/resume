@@ -92,6 +92,19 @@
   pointer-events: none;
 }
 
+.hero__glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("../../images/film-grain-noise.svg");
+  /* mirrors the glow's own fade so the grain dissolves at the same
+     edge instead of cutting off in a hard square */
+  -webkit-mask-image: radial-gradient(circle closest-side, black 0%, transparent 35%, transparent 100%);
+  mask-image: radial-gradient(circle closest-side, black 0%, transparent 35%, transparent 100%);
+}
+
 .hero__sunburst {
   position: absolute;
   top: 50%;
@@ -141,10 +154,6 @@
   text-transform: uppercase;
   margin: 30px 0 22px;
   line-height: 1.05;
-  background: var(--gradient-gold-rust);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 .hero__subtitle {

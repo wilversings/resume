@@ -1,0 +1,20 @@
+/* ==========================================================================
+   Rust texture — an oxidized-metal look for gold/bronze text and shapes.
+   images/rust-texture.svg bakes the gold-rust gradient and a feTurbulence
+   blotch pass into one image (feBlend multiply inside the SVG itself) —
+   deliberately NOT split into a separate CSS gradient + background-blend-
+   mode layer, because stacking a second background layer behind an SVG
+   filter image silently no-ops under background-clip: text in Chromium.
+
+   - .text-rust: for headings/text — clips this single baked image to type.
+   - filter #rust (defined in index.html's <svg class="sprite">): the same
+     turbulence pass for SVG shape fills, e.g. the button plates in
+     buttons.css, applied directly via the filter attribute instead.
+   ========================================================================== */
+
+.text-rust {
+  background-image: url("../../images/rust-texture.svg");
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
