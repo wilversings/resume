@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'Monsante';
-  src: url('../../fonts/Monsante-Regular.otf') format('opentype');
+  src: url('../../fonts/Monsante-Regular.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -46,6 +46,10 @@
   --content-width: 1160px;
   --header-height: 72px;
   --cornice-height: 34px;
+
+  /* imagery — referenced via var() so the inlined asset is embedded once,
+     not once per usage site */
+  --logo-mark: url("../../images/logo-mark.svg");
 }
 
 @media (max-width: 780px) {

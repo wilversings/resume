@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const WebpackObfuscator = require('webpack-obfuscator');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -29,42 +28,27 @@ module.exports = (env, argv) => {
         {
           test: /\.svg$/i,
           type: 'asset/inline',
+          use: [{ loader: 'svgo-loader' }],
         },
       ],
     },
     plugins: [
       new MiniCssExtractPlugin({ filename: 'css/[name].[contenthash:8].css' }),
       new HtmlWebpackPlugin({ template: './index.html', favicon: './images/logo-mark.svg' }),
-      // Obfuscation runs after Terser has already minified the bundle, adding
-      // control-flow flattening / string-array encoding on top of that output.
-      ...(isProduction
-        ? [
-            new WebpackObfuscator(
-              {
-                compact: true,
-                controlFlowFlattening: true,
-                controlFlowFlatteningThreshold: 0.75,
-                deadCodeInjection: true,
-                deadCodeInjectionThreshold: 0.4,
-                stringArray: true,
-                stringArrayEncoding: ['base64'],
-                stringArrayThreshold: 0.75,
-                rotateStringArray: true,
-                selfDefending: true,
-                identifierNamesGenerator: 'hexadecimal',
-                renameGlobals: false,
-              },
-              []
-            ),
-          ]
-        : []),
     ],
     optimization: {
       minimize: isProduction,
       minimizer: [
         new TerserPlugin({
           extractComments: false,
-          terserOptions: { format: { comments: false } },
+          terserOptions: {
+            compress: {
+              passes: 2,
+              drop_console: true,
+              drop_debugger: true,
+            },
+            format: { comments: false },
+          },
         }),
         new CssMinimizerPlugin(),
       ],

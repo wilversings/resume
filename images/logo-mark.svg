@@ -10,7 +10,6 @@
       <stop offset="100%" stop-color="#efc603"/>
     </linearGradient>
   </defs>
-  <rect width="200" height="200" fill="#0d1122"/>
   <polygon points="100,10 174,55 174,145 100,190 26,145 26,55" fill="none" stroke="url(#logoMarkMetalShine)" stroke-width="11" stroke-linejoin="miter"/>
   <rect x="91.5" y="1.5" width="17" height="17" fill="#efc603" transform="rotate(45 100 10)"/>
   <rect x="91.5" y="181.5" width="17" height="17" fill="#efc603" transform="rotate(45 100 190)"/>

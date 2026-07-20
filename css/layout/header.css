@@ -41,6 +41,7 @@
   width: 38px;
   height: 38px;
   flex-shrink: 0;
+  background: var(--logo-mark) center / contain no-repeat;
 }
 
 .nav__links {

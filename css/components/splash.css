@@ -29,6 +29,7 @@
 .splash__mark {
   width: 56px;
   height: 56px;
+  background: var(--logo-mark) center / contain no-repeat;
   animation: splash-pulse 1.4s ease-in-out infinite;
 }
 
