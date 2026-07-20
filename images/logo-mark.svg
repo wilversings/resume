@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="logoMarkGoldRust" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8d7f6b"/>
+      <stop offset="100%" stop-color="#cba328"/>
+    </linearGradient>
+    <linearGradient id="logoMarkMetalShine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8d7f6b"/>
+      <stop offset="55%" stop-color="#cba328"/>
+      <stop offset="100%" stop-color="#efc603"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" fill="#141a30"/>
+  <polygon points="100,10 174,55 174,145 100,190 26,145 26,55" fill="none" stroke="url(#logoMarkMetalShine)" stroke-width="11" stroke-linejoin="miter"/>
+  <rect x="91.5" y="1.5" width="17" height="17" fill="#efc603" transform="rotate(45 100 10)"/>
+  <rect x="91.5" y="181.5" width="17" height="17" fill="#efc603" transform="rotate(45 100 190)"/>
+  <g transform="translate(100,101) scale(0.135) translate(-367,-375) matrix(1,0,0,-1,0,750)">
+    <path fill="url(#logoMarkGoldRust)" d="M345 750C298 750 255 728 227 694C199 728 156 750 109 750H40V0H110V680C155 679 192 642 192 597V0H262V597C262 642 299 679 344 680V0H414V750Z"/>
+    <g transform="translate(390,0)">
+      <path fill="url(#logoMarkMetalShine)" fill-rule="evenodd" d="M233 750C152 750 86 684 86 603V462H40L60 397H86V0H156V397H274V0H344V750ZM274 462H156V603C156 645 191 680 233 680H274Z"/>
+    </g>
+  </g>
+</svg>
