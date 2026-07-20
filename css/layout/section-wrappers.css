@@ -8,11 +8,15 @@
   scroll-margin-top: var(--header-height);
 }
 
-.section--light {
+/* Alternates by position among .section siblings only, ignoring the
+   hero/cornice/footer elements in between — so adding or removing a
+   section just re-flows the alternation instead of needing a manual
+   light/dark modifier on every section. */
+.section:nth-child(odd of .section) {
   background: var(--navy-light);
 }
 
-.section--dark {
+.section:nth-child(even of .section) {
   background: var(--navy-dark);
 }
 
@@ -30,11 +34,12 @@
   border-top: 1px solid rgba(203, 163, 40, 0.6);
 }
 
-.cornice--light {
+/* A cornice takes the color of the section that follows it. */
+.cornice:has(+ .section:nth-child(odd of .section)) {
   background: var(--navy-light);
 }
 
-.cornice--dark {
+.cornice:has(+ .section:nth-child(even of .section)) {
   background: var(--navy-dark);
 }
 

@@ -32,7 +32,7 @@
   /* fluid one-off, not a scale step: the long wordmark is `nowrap` in a
      fixed-height bar, so it must shrink with the viewport to avoid overflow */
   font-size: clamp(10px, 1.6vw, 15px);
-  letter-spacing: clamp(0.5px, 0.25vw, 3px);
+  letter-spacing: 3px;
   color: var(--gold);
   white-space: nowrap;
 }

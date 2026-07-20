@@ -27,7 +27,6 @@
 .timeline__item:nth-child(odd) {
   margin-right: auto;
   justify-content: flex-end;
-  text-align: right;
   flex-direction: row-reverse;
 }
 
@@ -79,7 +78,7 @@
   width: 100%;
 }
 
-.section--dark .timeline__card {
+.section:nth-child(even of .section) .timeline__card {
   background: var(--navy-dark);
 }
 
@@ -93,11 +92,11 @@
 }
 
 .timeline__title {
-  /* font-family: var(--font-display); */
   margin: 0 0 6px;
   font-size: var(--fs-title);
   font-weight: 700;
   color: var(--cream);
+  text-transform: uppercase;
 }
 
 .timeline__org {
@@ -107,6 +106,7 @@
   font-size: var(--fs-body);
   color: var(--gold);
   margin-bottom: 24px;
+  text-transform: uppercase;
 }
 
 .timeline__desc {
