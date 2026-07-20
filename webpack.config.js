@@ -34,7 +34,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new MiniCssExtractPlugin({ filename: 'css/[name].[contenthash:8].css' }),
-      new HtmlWebpackPlugin({ template: './index.html' }),
+      new HtmlWebpackPlugin({ template: './index.html', favicon: './images/logo-mark.svg' }),
       // Obfuscation runs after Terser has already minified the bundle, adding
       // control-flow flattening / string-array encoding on top of that output.
       ...(isProduction
