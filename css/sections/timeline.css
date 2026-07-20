@@ -106,7 +106,6 @@
   font-size: var(--fs-body);
   color: var(--gold);
   margin-bottom: 24px;
-  text-transform: uppercase;
 }
 
 .timeline__desc {
