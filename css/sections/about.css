@@ -38,9 +38,14 @@
 
 .about__meta-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   font-size: var(--fs-sm);
+  text-align: left;
+}
+
+.about__meta-item .icon-diamond {
+  margin-top: 0.2em;
 }
 
 .about__meta-item strong {
