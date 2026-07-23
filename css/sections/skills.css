@@ -1,75 +1,93 @@
 /* ==========================================================================
-   Skills
+   Skills — grouped chamfered "plaque" chips (no percentage bars)
    ========================================================================== */
 
 .skills__columns {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+  gap: clamp(32px, 4vw, 56px);
 }
 
 .skills__col {
-  padding: 0 40px;
+  padding: 0;
 }
 
-.skills__col:first-child {
-  border-left: none;
-  padding-left: 0;
-}
-
-.skills__col:last-child {
-  padding-right: 0;
-}
-
+/* "found style" for the category label: diamond kicker + a gold hairline
+   that trails off across the column, echoing the section-rule fade */
 .skills__col-title {
-  margin: 0 0 30px;
-  font-size: var(--fs-sm);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 22px;
+  font-family: var(--font-nav);
+  font-size: var(--fs-eyebrow);
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   color: var(--gold-bright);
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.skill {
-  margin-bottom: 26px;
-}
-
-.skill:last-child {
-  margin-bottom: 0;
-}
-
-.skill__label {
-  display: block;
-  font-size: var(--fs-sm);
-  color: var(--cream);
-  margin-bottom: 8px;
-}
-
-.skill__track {
+.skills__col-title .icon-diamond {
+  width: 9px;
   height: 9px;
-  border: 1px solid var(--bronze);
 }
 
-.skill__fill {
-  height: 100%;
-  width: 0;
-  background: var(--gradient-metal-shine);
-  transition: width 1.1s ease;
+.skills__col-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(203, 163, 40, 0.55), rgba(203, 163, 40, 0));
 }
 
-.skill.is-visible .skill__fill {
-  width: var(--fill);
+.skills__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* chamfered chip — same two-layer clip-path trick as .connect__card: an
+   outer gold octagon and an inner navy octagon eroded by B·(√2−1) (B = the
+   1px inset) so the gold edge stays a uniform hairline around every corner,
+   diagonals included. A stroked/clipped rectangle would drop the chamfers. */
+.skill-chip {
+  position: relative;
+  display: inline-flex;
+  background: rgba(203, 163, 40, 0.55);
+  clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
+}
+
+.skill-chip::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: var(--navy-light);
+  clip-path: polygon(5.41px 0, calc(100% - 5.41px) 0, 100% 5.41px, 100% calc(100% - 5.41px), calc(100% - 5.41px) 100%, 5.41px 100%, 0 calc(100% - 5.41px), 0 5.41px);
+}
+
+.skill-chip__label {
+  position: relative;
+  z-index: 1;
+  padding: 9px 16px;
+  font-family: var(--font-nav);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--cream);
+  white-space: nowrap;
 }
 
 @media (max-width: 780px) {
   .skills__columns {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
   }
 
   .skills__col {
-    border-left: none;
-    padding: 0;
     padding-top: 30px;
     border-top: 1px solid rgba(203, 163, 40, 0.3);
   }

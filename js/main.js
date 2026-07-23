@@ -54,18 +54,3 @@ const sectionObserver = new IntersectionObserver(
 );
 
 sections.forEach((section) => sectionObserver.observe(section));
-
-// Animate skill bars in once they scroll into view
-const skillObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        skillObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.4 }
-);
-
-document.querySelectorAll('.skill').forEach((skill) => skillObserver.observe(skill));
