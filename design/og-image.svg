@@ -1,0 +1,141 @@
+<!-- Editable source for images/og-image.png (the OG/Twitter share card).
+     After tweaking, re-rasterize at 1200x630, e.g.:
+       magick design/og-image.svg -background "#0d1122" -flatten images/og-image.png
+     Requires "Monsante" registered as a system font to render the title
+     correctly (e.g. copy fonts/Monsante-Regular.woff2 into
+     ~/.local/share/fonts and run fc-cache -f) — otherwise it silently
+     falls back to a generic sans for the whole title, since the renderer
+     has no matching font. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="metalShine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8d7f6b"/>
+      <stop offset="55%" stop-color="#cba328"/>
+      <stop offset="100%" stop-color="#efc603"/>
+    </linearGradient>
+    <linearGradient id="goldRust" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8d7f6b"/>
+      <stop offset="100%" stop-color="#cba328"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#efc603" stop-opacity="0.38"/>
+      <stop offset="55%" stop-color="#cba328" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#cba328" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bgVignette" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#141a30"/>
+      <stop offset="100%" stop-color="#0d1122"/>
+    </radialGradient>
+    <!-- same turbulence-multiply recipe as css/components/rust.css's
+         .text-rust, but masked to the text's own alpha (feComposite
+         operator=in) so it can be applied directly as an SVG filter
+         instead of a CSS background-clip:text layer -->
+    <filter id="textRust" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" seed="7" result="noise"/>
+      <feColorMatrix in="noise" type="matrix"
+        values="0 0 0 0 0.45  0 0 0 0 0.18  0 0 0 0 0.06  0 0 0 1 0"
+        result="rustColor"/>
+      <feComponentTransfer in="rustColor" result="rustContrast">
+        <feFuncA type="gamma" amplitude="1" exponent="2.5" offset="0"/>
+      </feComponentTransfer>
+      <feComposite in="rustContrast" in2="SourceGraphic" operator="in" result="rustMasked"/>
+      <feBlend in="SourceGraphic" in2="rustMasked" mode="multiply"/>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="url(#bgVignette)"/>
+  <circle cx="600" cy="300" r="340" fill="url(#glow)"/>
+
+  <!-- outer frame: thin gold rule inset with stepped corner brackets -->
+  <g fill="none" stroke="url(#metalShine)" stroke-width="1.5">
+    <rect x="40" y="40" width="1120" height="550"/>
+  </g>
+  <g fill="none" stroke="url(#metalShine)" stroke-width="3">
+    <path d="M40,75 L40,40 L75,40"/>
+    <path d="M1160,75 L1160,40 L1125,40"/>
+    <path d="M40,555 L40,590 L75,590"/>
+    <path d="M1160,555 L1160,590 L1125,590"/>
+  </g>
+
+  <!-- monument: images/hero-monument.svg embedded verbatim (crown, plinth
+       bar and fading tower stubs), unmodified, at its native viewBox — the
+       oxidized-metal rust look is already baked in per-shape inside that
+       file, so no extra filter is applied here on top of it -->
+  <svg x="390" y="130" width="420" height="208.32" viewBox="345 300 750 372">
+    <defs>
+      <linearGradient id="pl-stops-a">
+        <stop offset="0.2" stop-color="#8d7f6b"/>
+        <stop offset="0.8" stop-color="#cba328"/>
+      </linearGradient>
+      <linearGradient id="pl-stops-b">
+        <stop offset="0" stop-color="#8d7f6b"/>
+        <stop offset="1" stop-color="#cba328"/>
+      </linearGradient>
+      <linearGradient href="#pl-stops-a" id="pl-towers" gradientUnits="userSpaceOnUse" x1="118.06" y1="67.72" x2="285.83" y2="67.72"/>
+      <linearGradient href="#pl-stops-b" id="pl-lines" gradientUnits="userSpaceOnUse" x1="172.53" y1="74.02" x2="231.44" y2="74.02"/>
+      <linearGradient href="#pl-stops-a" id="pl-bar" gradientUnits="userSpaceOnUse" x1="384" y1="0" x2="1052" y2="0"/>
+      <linearGradient id="pl-fade" gradientUnits="userSpaceOnUse" x1="0" y1="629" x2="0" y2="666">
+        <stop offset="0" stop-color="#cba328" stop-opacity="0.55"/>
+        <stop offset="1" stop-color="#cba328" stop-opacity="0"/>
+      </linearGradient>
+      <filter id="rust" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" seed="7" result="noise"/>
+        <feColorMatrix in="noise" type="matrix"
+          values="0 0 0 0 0.45  0 0 0 0 0.18  0 0 0 0 0.06  0 0 0 1 0"
+          result="rustColor"/>
+        <feComponentTransfer in="rustColor" result="rustContrast">
+          <feFuncA type="gamma" amplitude="1" exponent="2.5" offset="0"/>
+        </feComponentTransfer>
+        <feComposite in="rustContrast" in2="SourceGraphic" operator="in" result="rustMasked"/>
+        <feBlend in="SourceGraphic" in2="rustMasked" mode="multiply"/>
+      </filter>
+    </defs>
+    <g transform="translate(720,610) scale(4) translate(-201.94,-106)">
+      <path filter="url(#rust)" d="m 158.76964,29.42 4.75586,26.701172 h -25.64648 l 8.62109,25.609375 h -28.43945 l 14.74023,24.296873 h 3.50977 L 123.39073,84.730547 h 24.11914 l 7.16797,21.296873 h 2.10743 l -7.16797,-21.296873 -1.00977,-3 -7.94726,-23.609375 h 23.2207 l 4.20508,23.609375 0.5332,3 3.79297,21.296873 h 3.05078 l -3.79102,-21.296873 -0.53515,-3 -4.20117,-23.609375 -0.35743,-2 L 162.35948,32.42 h 79.16993 l -4.21875,23.701172 -0.35743,2 -4.20117,23.609375 -0.53515,3 -3.79102,21.296873 h 3.05078 l 3.79297,-21.296873 0.5332,-3 4.20508,-23.609375 h 23.23242 l -7.94922,23.609375 -1.00976,3 -7.16992,21.296873 h 2.0957 l 7.16602,-21.296873 h 24.12695 l -12.90234,21.296873 h 3.51171 l 14.72071,-24.296873 h -28.44727 l 8.61719,-25.609375 H 240.36339 L 245.11925,29.42 Z" fill="url(#pl-towers)"/>
+      <g fill="#0d1122" fill-opacity="0.75">
+        <path d="m 249.20714,106.02742 h 18.39063 l 12.90234,-21.296873 h -24.12695 z"/>
+        <path d="m 231.47667,106.02742 h 15.63477 l 7.16992,-21.296873 1.00976,-3 7.94922,-23.609375 h -23.23242 l -4.20508,23.609375 -0.5332,3 z"/>
+        <path d="m 175.463,106.02742 h 52.96289 l 3.79102,-21.296873 0.53515,-3 4.20117,-23.609375 0.35743,-2 L 241.52941,32.42 h -79.16993 l 4.21875,23.701172 0.35743,2 4.20117,23.609375 0.53515,3 z"/>
+        <path d="m 156.78527,106.02742 h 15.62695 l -3.79297,-21.296873 -0.5332,-3 -4.20508,-23.609375 h -23.2207 l 7.94726,23.609375 1.00977,3 z"/>
+        <path d="m 136.31066,106.02742 h 18.36718 l -7.16797,-21.296873 h -24.11914 z"/>
+      </g>
+      <g filter="url(#rust)" fill="url(#pl-lines)">
+        <path d="m 214.9397,52.479983 -4.18554,53.546877 h 0.95507 z"/>
+        <path d="m 172.52955,42.019045 8.95898,64.007815 h 1.08594 z"/>
+        <path d="m 231.4397,42.019045 -10.04492,64.007815 h 1.08594 z"/>
+        <path d="m 188.9397,52.479983 3.23047,53.546877 h 0.95508 z"/>
+      </g>
+    </g>
+    <g filter="url(#rust)" stroke="url(#pl-fade)" stroke-width="1.3">
+      <line x1="640" y1="629" x2="640" y2="664"/>
+      <line x1="683" y1="629" x2="683" y2="664"/>
+      <line x1="757" y1="629" x2="757" y2="664"/>
+      <line x1="800" y1="629" x2="800" y2="664"/>
+    </g>
+    <polygon filter="url(#rust)" points="350,618 368,612 1072,612 1090,618 1072,624 368,624" fill="url(#pl-bar)"/>
+  </svg>
+
+  <!-- title: same bronze-to-gold gradient + rust-turbulence multiply as
+       .text-rust (css/components/rust.css) — matches the live hero__title
+       instead of a plain fill.
+       Monsante has no Latin Extended-A glyphs (no Ă), and librsvg/Pango
+       fall back to a generic sans for the WHOLE string if any character
+       is missing from the requested family — so the accented letter is
+       split into its own tspan in a font that does cover it, keeping the
+       rest of the name in the real display font. -->
+  <text x="600" y="418" text-anchor="middle" font-size="62" fill="url(#goldRust)" filter="url(#textRust)"><tspan font-family="Monsante, 'Futura', 'Century Gothic', sans-serif">MARIUS AIORD</tspan><tspan font-family="Noto Sans, 'Futura', 'Century Gothic', sans-serif">&#258;</tspan><tspan font-family="Monsante, 'Futura', 'Century Gothic', sans-serif">CHIOAEI</tspan></text>
+
+  <!-- rule with diamond -->
+  <g transform="translate(600,458)">
+    <line x1="-160" y1="0" x2="-14" y2="0" stroke="url(#metalShine)" stroke-width="1.5"/>
+    <rect x="-6" y="-6" width="12" height="12" transform="rotate(45)" fill="#efc603"/>
+    <line x1="14" y1="0" x2="160" y2="0" stroke="url(#metalShine)" stroke-width="1.5"/>
+  </g>
+
+  <!-- subtitle -->
+  <text x="600" y="504" text-anchor="middle" font-family="URW Gothic, 'Century Gothic', sans-serif" font-size="24" letter-spacing="4" fill="#cba328">FULL-STACK SOFTWARE ENGINEER</text>
+
+  <!-- tagline -->
+  <text x="600" y="546" text-anchor="middle" font-family="Georgia, serif" font-size="19" fill="#a99f8f">Ten years of load-bearing engineering, condensed to a single page.</text>
+</svg>
