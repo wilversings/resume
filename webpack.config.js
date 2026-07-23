@@ -30,11 +30,21 @@ module.exports = (env, argv) => {
           type: 'asset/inline',
           use: [{ loader: 'svgo-loader' }],
         },
+        {
+          test: /\.(png|jpe?g)$/i,
+          type: 'asset/resource',
+          generator: { filename: 'images/[name].[contenthash:8][ext]' },
+        },
       ],
     },
     plugins: [
       new MiniCssExtractPlugin({ filename: 'css/[name].[contenthash:8].css' }),
-      new HtmlWebpackPlugin({ template: './index.html', favicon: './images/logo-mark.svg' }),
+      new HtmlWebpackPlugin({
+        template: './index.html',
+        favicon: './images/logo-mark.svg',
+        // TODO: replace with the real production domain once it's live
+        siteUrl: 'https://www.mariusaiordachioaei.com',
+      }),
     ],
     optimization: {
       minimize: isProduction,
