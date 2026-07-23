@@ -37,26 +37,35 @@
 }
 
 .about__meta-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: var(--fs-sm);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
+  row-gap: 3px;
   text-align: left;
 }
 
 .about__meta-item .icon-diamond {
-  margin-top: 0.2em;
+  grid-row: 1 / span 2;
+  margin-top: 0.55em;
 }
 
-.about__meta-item strong {
-  color: var(--gold);
-  font-weight: 700;
-}
-
-.about__meta-item span {
+.about__meta-label {
+  grid-column: 2;
   color: var(--cream);
-  opacity: 0.85;
+  opacity: 0.55;
+  font-family: var(--font-nav);
+  font-size: var(--fs-eyebrow);
   font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.about__meta-value {
+  grid-column: 2;
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 700;
 }
 
 @media (max-width: 900px) {

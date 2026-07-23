@@ -157,7 +157,7 @@
 }
 
 .hero__subtitle {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: var(--fs-lead);
   letter-spacing: 2px;
   color: var(--cream);
