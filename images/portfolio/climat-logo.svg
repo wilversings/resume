@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.0"
+   width="154.27809pt"
+   height="238.10106pt"
+   viewBox="0 0 154.27809 238.10106"
+   preserveAspectRatio="xMidYMid"
+   id="svg6"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs10">
+    <linearGradient
+       id="linearGradient4945">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4943" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5371">
+      <stop
+         style="stop-color:#2548be;stop-opacity:1;"
+         offset="0.20445545"
+         id="stop5375" />
+      <stop
+         style="stop-color:#2596be;stop-opacity:1;"
+         offset="0.8019802"
+         id="stop5367" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3053">
+      <stop
+         style="stop-color:#120075;stop-opacity:1;"
+         offset="0"
+         id="stop3051" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3033">
+      <stop
+         style="stop-color:#14007e;stop-opacity:1;"
+         offset="0"
+         id="stop3031" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient5371"
+       id="linearGradient5373"
+       x1="1964"
+       y1="2954.5"
+       x2="4035"
+       y2="2954.5"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     id="g463"
+     transform="matrix(-0.05,-0.08660254,-0.08660254,0.05,508.96729,231.17146)">
+    <path
+       d="M 2729.9991,3986.0005 2730,3674 l -246.8035,-115.4741 -241.0582,139.175 -275.1543,-152.1928 6.7144,-312.7589 241.0581,-139.175 10.8126,-282.9089 253.9547,-146.6207 254.0339,129.9996 -0.4839,309.1618 268.9239,155.7899 260.0328,-150.13 7.1909,-315.2049 -275.6309,-149.7468 22.0809,-289.4147 242.4897,-140.0015 255.3284,129.2512 245.5106,-141.7456 269.999,152.9984 -3.8727,313.2903 -243.1964,140.4095 -22.9309,269.2982 268.2417,155.5925 2.7583,314.4075 -245.8769,137.4952 -274.2659,-147.3824 -260.4732,149.3672 1.5311,312.6519 L 3004.9991,4139 Z"
+       id="path210"
+       style="opacity:1;mix-blend-mode:screen;fill:url(#linearGradient5373);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" />
+  </g>
+</svg>

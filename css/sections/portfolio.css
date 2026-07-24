@@ -11,24 +11,68 @@
 
 .portfolio__card {
   position: relative;
+  display: block;
+  text-decoration: none;
+  background: var(--navy-dark);
+  border: 1px solid rgba(203, 163, 40, 0.4);
+  padding: 14px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.portfolio__card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(239, 198, 3, 0.7);
 }
 
 .portfolio__thumb {
   position: relative;
   height: 160px;
-  background: linear-gradient(180deg, #1c2340 0%, #0d1122 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  background-color: #0d1122;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: filter 0.2s ease;
+}
+
+.portfolio__card:hover .portfolio__thumb {
+  filter: brightness(1.2);
+}
+
+/* Logo/icon-style artwork: fully contained and centered, with a fixed
+   inset so it never touches the frame — background-origin makes the
+   `contain` calculation respect that inset instead of the full box. */
+.portfolio__thumb--climat,
+.portfolio__thumb--maxwell,
+.portfolio__thumb--contriburg,
+.portfolio__thumb--automatednn {
+  background-size: contain;
+  background-origin: content-box;
+  padding: 22px;
+}
+
+.portfolio__thumb--climat { background-image: url("../../images/portfolio/climat-logo.svg"); }
+.portfolio__thumb--maxwell { background-image: url("../../images/portfolio/maxwell.png"); }
+.portfolio__thumb--contriburg { background-image: url("../../images/portfolio/contriburg-icon.png"); }
+.portfolio__thumb--automatednn { background-image: url("../../images/portfolio/automatednn-network.svg"); }
+
+/* A real screenshot — meant to bleed edge-to-edge like a banner. */
+.portfolio__thumb--resume {
+  background-image: url("../../images/portfolio/resume-site.png");
+  background-size: cover;
 }
 
 .portfolio__num {
-  /* decorative watermark numeral — reuses the display step rather than a
-     one-off size */
-  font-size: var(--fs-h2);
-  color: var(--gold);
-  opacity: 0.5;
+  /* small corner index badge, sits above the thumbnail artwork */
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: var(--fs-eyebrow);
+  color: var(--navy-dark);
+  background: var(--gold);
+  padding: 2px 7px;
   font-weight: 700;
+  letter-spacing: 1px;
+  z-index: 1;
 }
 
 .portfolio__title {
@@ -43,6 +87,15 @@
   letter-spacing: 1px;
   color: var(--gold);
   text-transform: uppercase;
+}
+
+.portfolio__desc {
+  margin: 10px 0 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--cream);
+  opacity: 0.75;
 }
 
 .portfolio__more {

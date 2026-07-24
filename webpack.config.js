@@ -43,7 +43,7 @@ module.exports = (env, argv) => {
         template: './index.html',
         favicon: './images/logo-mark.svg',
         // TODO: replace with the real production domain once it's live
-        siteUrl: 'https://www.mariusaiordachioaei.com',
+        siteUrl: 'https://wilversings.github.io',
       }),
     ],
     optimization: {
