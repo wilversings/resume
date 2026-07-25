@@ -63,28 +63,30 @@ to produce the minified/obfuscated `dist/`, then serve that folder (e.g.
 
 ## Non-negotiable rules
 
-### 1. Design fidelity — `design/` is the source of truth
+### 1. Design fidelity — `design/` is historical reference, not a spec to match
 
 - `design/empire-full-page-mockup.svg` — desktop layout (1440 viewBox width)
 - `design/empire-mobile-mockup.svg` — mobile layout (390 viewBox width)
 - `design/plaque.svg` — reference for the crown/plaque emblem geometry
 
-Any visual change (new section, restyled component, new breakpoint
-behavior) must be checked against these SVGs, not designed from scratch.
-Colors, gradients, type scale, spacing rhythm, and the Art Deco motifs
-(sunburst, ziggurat cornice, chamfered plaques, corner brackets, diamond
-bullets, flanking flourishes) are all defined there — reuse the shared
-sprite symbols in `index.html` (`#icon-sunburst`, `#icon-flourish`,
-`#icon-ziggurat`, `#icon-corner`, `#icon-diamond`) rather than inventing new
-decorative shapes. If a mockup and the live page disagree and it's not
-called out as an intentional deviation, the mockup wins.
+These mockups predate a lot of the live site and are now stale in several
+places (see the skills-section example below) — don't treat them as
+authoritative, and don't feel obligated to design new work from them or
+reconcile the live page back to them. They're still useful as a source for
+the established Art Deco motifs (sunburst, ziggurat cornice, chamfered
+plaques, corner brackets, diamond bullets, flanking flourishes) and the
+shared sprite symbols in `index.html` (`#icon-sunburst`, `#icon-flourish`,
+`#icon-ziggurat`, `#icon-corner`, `#icon-diamond`) — reuse those symbols
+rather than inventing new decorative shapes when a change calls for this
+motif language. Where the live page and a mockup disagree, that's not
+automatically a bug — use judgment on whether the live page's evolution was
+intentional.
 
-**Known intentional deviation — the skills section.** The mockups still show
-the original percentage bars. Those were removed on purpose (self-rated "90%"
-bars read as unfalsifiable), first for chamfered chips and now for medallion
-bubbles sized by emphasis. The live page is correct here and the mockup is
-stale; don't "restore" the bars. Any *other* disagreement with the mockups is
-still a bug.
+**Example — the skills section.** The mockups still show the original
+percentage bars. Those were removed on purpose (self-rated "90%" bars read
+as unfalsifiable), first for chamfered chips and now for medallion bubbles
+sized by emphasis. The live page is correct here and the mockup is simply
+outdated; don't "restore" the bars.
 
 When you add a `<use href="#icon-x">` referencing a symbol whose `viewBox`
 doesn't start at `0 0`, give the `<use>` explicit `x`/`y`/`width`/`height`
@@ -168,7 +170,7 @@ newer/nicer API, take the broadly-supported one.
 
 1. Serve the site locally and load it in a browser.
 2. Check both the desktop (~1440px) and mobile (~390px) viewport widths
-   against the corresponding `design/` mockup.
+   render cleanly.
 3. Check the browser console for errors/warnings.
 4. Tab through any new/changed interactive elements keyboard-only.
 5. If you changed decorative SVG or icon-only controls, re-check
