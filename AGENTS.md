@@ -32,7 +32,7 @@ css/sections/          one file per <section> in index.html: hero, about,
                      timeline (shared by experience + education), portfolio,
                      skills, connect, footer
 js/main.js           splash-screen removal, mobile nav toggle, scroll-spy
-                     nav highlighting, skill-bar reveal animation
+                     nav highlighting
 fonts/                Monsante-Regular.otf (decorative display font, decoded
                      from the mockups' embedded base64 — see design/)
 design/               source-of-truth mockups (see "Design fidelity" below)
@@ -78,6 +78,13 @@ sprite symbols in `index.html` (`#icon-sunburst`, `#icon-flourish`,
 `#icon-ziggurat`, `#icon-corner`, `#icon-diamond`) rather than inventing new
 decorative shapes. If a mockup and the live page disagree and it's not
 called out as an intentional deviation, the mockup wins.
+
+**Known intentional deviation — the skills section.** The mockups still show
+the original percentage bars. Those were removed on purpose (self-rated "90%"
+bars read as unfalsifiable), first for chamfered chips and now for medallion
+bubbles sized by emphasis. The live page is correct here and the mockup is
+stale; don't "restore" the bars. Any *other* disagreement with the mockups is
+still a bug.
 
 When you add a `<use href="#icon-x">` referencing a symbol whose `viewBox`
 doesn't start at `0 0`, give the `<use>` explicit `x`/`y`/`width`/`height`

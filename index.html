@@ -520,20 +520,30 @@
       </div>
       <span class="section-rule"></span>
 
-      <!-- Skills are grouped by domain rather than rated on a percentage
-           scale — self-assigned "90%" bars read as unfalsifiable and tend to
-           undersell. Each skill is a chamfered plaque chip, echoing the
-           button / connect-card motif and the timeline stack lists. -->
+      <!-- Skills are grouped by domain and sized by emphasis, not scored.
+           Bubble diameter says how central a skill is to the work — it is
+           deliberately not a proficiency rating, since self-assigned "90%"
+           bars read as unfalsifiable and tend to undersell. Every skill here
+           also appears in an experience stack above, so the weighting is
+           backed by the timeline rather than by self-assessment.
+
+           Each list is ordered large → medium → small so a screen reader
+           announces the same ranking the sizes convey visually. -->
       <div class="skills__columns">
         <div class="skills__col">
           <h3 class="skills__col-title">
             <svg class="icon-diamond" viewBox="-6 -6 12 12" aria-hidden="true"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
             Core Languages
           </h3>
-          <ul class="skills__list">
-            <li class="skill-chip"><span class="skill-chip__label">C#</span></li>
-            <li class="skill-chip"><span class="skill-chip__label">JavaScript / TypeScript</span></li>
-            <li class="skill-chip"><span class="skill-chip__label">Java / Kotlin</span></li>
+          <ul class="skills__cluster">
+            <li class="skill-bubble skill-bubble--lg"><span class="skill-bubble__label">C#</span></li>
+            <li class="skill-bubble skill-bubble--md"><span class="skill-bubble__label">TypeScript</span></li>
+            <li class="skill-bubble skill-bubble--md"><span class="skill-bubble__label">JavaScript</span></li>
+            <li class="skill-bubble skill-bubble--sm"><span class="skill-bubble__label">Java</span></li>
+            <li class="skill-bubble skill-bubble--sm"><span class="skill-bubble__label">Kotlin</span></li>
+            <li class="skill-bubble skill-bubble--sm"><span class="skill-bubble__label">Python</span></li>
+            <li class="skill-bubble skill-bubble--sm"><span class="skill-bubble__label">F#</span></li>
+            <li class="skill-bubble skill-bubble--sm"><span class="skill-bubble__label">Groovy</span></li>
           </ul>
         </div>
 
@@ -542,10 +552,11 @@
             <svg class="icon-diamond" viewBox="-6 -6 12 12" aria-hidden="true"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
             Frontend
           </h3>
-          <ul class="skills__list">
-            <li class="skill-chip"><span class="skill-chip__label">React</span></li>
-            <li class="skill-chip"><span class="skill-chip__label">Angular</span></li>
-            <li class="skill-chip"><span class="skill-chip__label">WPF / WinForms</span></li>
+          <ul class="skills__cluster">
+            <li class="skill-bubble skill-bubble--lg"><span class="skill-bubble__label">React</span></li>
+            <li class="skill-bubble skill-bubble--md"><span class="skill-bubble__label">Angular</span></li>
+            <li class="skill-bubble skill-bubble--sm"><span class="skill-bubble__label">WPF</span></li>
+            <li class="skill-bubble skill-bubble--sm"><span class="skill-bubble__label">WinForms</span></li>
           </ul>
         </div>
 
@@ -554,10 +565,13 @@
             <svg class="icon-diamond" viewBox="-6 -6 12 12" aria-hidden="true"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
             Platforms &amp; Tools
           </h3>
-          <ul class="skills__list">
-            <li class="skill-chip"><span class="skill-chip__label">.NET</span></li>
-            <li class="skill-chip"><span class="skill-chip__label">Git</span></li>
-            <li class="skill-chip"><span class="skill-chip__label">CI / CD</span></li>
+          <ul class="skills__cluster">
+            <li class="skill-bubble skill-bubble--lg"><span class="skill-bubble__label">.NET</span></li>
+            <li class="skill-bubble skill-bubble--md"><span class="skill-bubble__label">CI / CD</span></li>
+            <li class="skill-bubble skill-bubble--sm"><span class="skill-bubble__label">Git</span></li>
+            <li class="skill-bubble skill-bubble--sm"><span class="skill-bubble__label">MSSQL</span></li>
+            <li class="skill-bubble skill-bubble--sm skill-bubble--tight"><span class="skill-bubble__label">Entity Framework</span></li>
+            <li class="skill-bubble skill-bubble--sm"><span class="skill-bubble__label">ASP.NET MVC</span></li>
           </ul>
         </div>
       </div>

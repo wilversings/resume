@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Skills — grouped chamfered "plaque" chips (no percentage bars)
+   Skills — grouped medallion bubbles, sized by emphasis (no percentage bars)
    ========================================================================== */
 
 .skills__columns {
@@ -40,45 +40,131 @@
   background: linear-gradient(90deg, rgba(203, 163, 40, 0.55), rgba(203, 163, 40, 0));
 }
 
-.skills__list {
+/* align-items: center puts the mixed-size medallions on a shared centerline
+   instead of hanging them off a common top edge */
+.skills__cluster {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* chamfered chip — same two-layer clip-path trick as .connect__card: an
-   outer gold octagon and an inner navy octagon eroded by B·(√2−1) (B = the
-   1px inset) so the gold edge stays a uniform hairline around every corner,
-   diagonals included. A stroked/clipped rectangle would drop the chamfers. */
-.skill-chip {
+/* Medallion — the same two-layer construction as .connect__card (outer gold
+   shape, inset navy ::before), but circular, so border-radius does the job
+   and none of the chamfer erosion math applies: a rounded border keeps its
+   stroke all the way around, which is exactly what a clipped octagon can't
+   do. That's also what makes varying the size cheap here — the chip this
+   replaced had fixed 6px/5.41px corner cuts that don't scale.
+
+   ::before is --navy-light against a --navy-dark section, carried over from
+   the chip: the interior is deliberately one step lighter than the backdrop
+   so each medallion reads as raised. That contrast depends on #skills
+   landing on an even position in the .section odd/even alternation
+   (css/layout/section-wrappers.css) — move the section and the discs go
+   flat, so the fill has to be re-picked. */
+.skill-bubble {
+  /* fallback tier — every bubble in the markup carries an explicit
+     --lg/--md/--sm modifier that overrides these */
+  --bubble-size: 96px;
+  --bubble-fs: 12px;
   position: relative;
-  display: inline-flex;
-  background: rgba(203, 163, 40, 0.55);
-  clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--bubble-size);
+  height: var(--bubble-size);
+  border-radius: 50%;
+  background: var(--gradient-metal-shine);
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.skill-chip::before {
+.skill-bubble::before {
   content: '';
   position: absolute;
   inset: 1px;
+  border-radius: 50%;
   background: var(--navy-light);
-  clip-path: polygon(5.41px 0, calc(100% - 5.41px) 0, 100% 5.41px, 100% calc(100% - 5.41px), calc(100% - 5.41px) 100%, 5.41px 100%, 0 calc(100% - 5.41px), 0 5.41px);
 }
 
-.skill-chip__label {
+/* concentric inner ring — the Deco medallion tell. A fixed inset reads
+   correctly at every diameter, unlike a chamfer. */
+.skill-bubble::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(203, 163, 40, 0.3);
+}
+
+/* max-width forces wrapping before the text reaches the ring — a circle's
+   usable width shrinks the further a line sits from the centerline, so the
+   cap is tuned to the two-line case rather than to the full diameter. It's
+   also why labels are single tokens ("WPF", "WinForms") instead of the
+   slash-joined pairs the chips used: a circle has far less usable width than
+   a pill, and the longest word in the section ("FRAMEWORK") is what sets the
+   small tier's floor. Shortening a label beats shrinking the type. */
+.skill-bubble__label {
   position: relative;
   z-index: 1;
-  padding: 9px 16px;
+  max-width: 88%;
+  text-align: center;
   font-family: var(--font-nav);
-  font-size: 13px;
+  font-size: var(--bubble-fs);
   font-weight: 700;
-  letter-spacing: 1.2px;
+  line-height: 1.25;
+  letter-spacing: 0.6px;
   text-transform: uppercase;
   color: var(--cream);
-  white-space: nowrap;
+}
+
+/* Emphasis tiers. Diameters are raw px rather than tokens because the type
+   scale has no diameter step, and the label size has to stay monotonic with
+   it — --fs-body jumps 14→18px on ultra-wide while --fs-sm holds at 16px,
+   which would print the medium label larger than the large one. Both values
+   are therefore stepped together, by hand, per breakpoint. */
+.skill-bubble--lg {
+  --bubble-size: 140px;
+  --bubble-fs: 16px;
+}
+
+.skill-bubble--md {
+  --bubble-size: 116px;
+  --bubble-fs: 14px;
+}
+
+.skill-bubble--sm {
+  --bubble-size: 96px;
+  --bubble-fs: 12px;
+}
+
+/* Escape hatch for a label whose longest word won't clear the inner ring at
+   its tier's normal size — "FRAMEWORK" measures 86px at 12px, and a
+   two-line label in a 96px medallion only has ~78px of chord inside the
+   ring. Shrinking the type keeps the word intact; it does not change tier,
+   because emphasis is carried by diameter, not by font size. */
+.skill-bubble--tight {
+  --bubble-fs: 10px;
+}
+
+/* Non-interactive by design — these are <li>s, not links, so hover is pure
+   decoration and there's no focus state owed. Matches .connect__card. */
+.skill-bubble:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-bubble {
+    transition: filter 0.2s ease;
+  }
+
+  .skill-bubble:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 780px) {
@@ -95,5 +181,45 @@
   .skills__col:first-child {
     padding-top: 0;
     border-top: none;
+  }
+
+  .skill-bubble--lg {
+    --bubble-size: 124px;
+    --bubble-fs: 15px;
+  }
+
+  .skill-bubble--md {
+    --bubble-size: 104px;
+    --bubble-fs: 13px;
+  }
+
+  .skill-bubble--sm {
+    --bubble-size: 88px;
+    --bubble-fs: 11px;
+  }
+
+  .skill-bubble--tight {
+    --bubble-fs: 9px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .skill-bubble--lg {
+    --bubble-size: 164px;
+    --bubble-fs: 18px;
+  }
+
+  .skill-bubble--md {
+    --bubble-size: 136px;
+    --bubble-fs: 16px;
+  }
+
+  .skill-bubble--sm {
+    --bubble-size: 112px;
+    --bubble-fs: 13px;
+  }
+
+  .skill-bubble--tight {
+    --bubble-fs: 11px;
   }
 }
