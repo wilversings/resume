@@ -5,16 +5,69 @@
 .site-header {
   position: fixed;
   inset: 0 0 auto 0;
-  height: var(--header-height);
+  height: var(--header-total-height);
   z-index: 100;
+  display: flex;
+  flex-direction: column;
   background: rgba(20, 26, 48, 0.92);
   border-bottom: 1px solid rgba(203, 163, 40, 0.5);
   backdrop-filter: blur(6px);
 }
 
+/* Availability ribbon — its own full-width row above the nav, so the
+   "Not Available for Hire" label always has room to spell itself out in
+   full. The nav row below is already tight with the brand wordmark and
+   five links; squeezing the badge in there forced it down to an
+   icon-only shorthand nobody could read at a glance. */
+.status-strip {
+  flex-shrink: 0;
+  height: var(--status-strip-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(203, 163, 40, 0.25);
+}
+
+/* `data-status` swaps the whole thing between "on" (gold, matches the rest
+   of the nav) and "off" (dimmed to bronze) so flipping availability later
+   is a one-attribute change, not a re-skin. */
+.nav__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-nav);
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--bronze);
+  white-space: nowrap;
+}
+
+.nav__status-dot {
+  width: 9px;
+  height: 9px;
+  fill: var(--bronze);
+  flex-shrink: 0;
+}
+
+.nav__status[data-status="available"] {
+  color: var(--gold-bright);
+}
+
+.nav__status[data-status="available"] .nav__status-dot {
+  fill: var(--gold-bright);
+}
+
 .nav {
+  /* explicit width, not just max-width: as a flex item of .site-header's
+     column layout, auto cross-axis margins (below) make it shrink-to-fit
+     instead of stretching first, so without this the brand/links gap
+     collapses to zero instead of centering within the full header width */
+  width: 100%;
   max-width: var(--content-width);
-  height: 100%;
+  height: var(--header-height);
+  flex-shrink: 0;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
@@ -83,10 +136,10 @@
   stroke-width: 1.4;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .nav__links {
     position: fixed;
-    top: var(--header-height);
+    top: var(--header-total-height);
     left: 0;
     right: 0;
     flex-direction: column;

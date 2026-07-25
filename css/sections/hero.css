@@ -13,7 +13,7 @@
   /* extra buffer beyond the fixed nav — align-items:center only
      centers within the padded box, so this reliably pushes the whole
      centered block down instead of it hugging the header */
-  padding-top: calc(var(--header-height) + clamp(32px, 6vh, 90px));
+  padding-top: calc(var(--header-total-height) + clamp(32px, 6vh, 90px));
   /* reserves exactly the scroll button's own footprint (its `bottom`
      offset + height, plus a little breathing room) so the centered
      content block can never grow tall enough to collide with it — on
