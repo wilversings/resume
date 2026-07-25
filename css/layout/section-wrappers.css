@@ -5,7 +5,7 @@
 .section {
   position: relative;
   padding: 80px 24px;
-  scroll-margin-top: var(--header-total-height);
+  scroll-margin-top: var(--header-height);
 }
 
 /* Alternates by position among .section siblings only, ignoring the

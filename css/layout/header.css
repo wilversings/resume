@@ -5,69 +5,16 @@
 .site-header {
   position: fixed;
   inset: 0 0 auto 0;
-  height: var(--header-total-height);
+  height: var(--header-height);
   z-index: 100;
-  display: flex;
-  flex-direction: column;
   background: rgba(20, 26, 48, 0.92);
   border-bottom: 1px solid rgba(203, 163, 40, 0.5);
   backdrop-filter: blur(6px);
 }
 
-/* Availability ribbon — its own full-width row above the nav, so the
-   "Not Available for Hire" label always has room to spell itself out in
-   full. The nav row below is already tight with the brand wordmark and
-   five links; squeezing the badge in there forced it down to an
-   icon-only shorthand nobody could read at a glance. */
-.status-strip {
-  flex-shrink: 0;
-  height: var(--status-strip-height);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid rgba(203, 163, 40, 0.25);
-}
-
-/* `data-status` swaps the whole thing between "on" (gold, matches the rest
-   of the nav) and "off" (dimmed to bronze) so flipping availability later
-   is a one-attribute change, not a re-skin. */
-.nav__status {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font-family: var(--font-nav);
-  font-size: var(--fs-eyebrow);
-  font-weight: 700;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  color: var(--bronze);
-  white-space: nowrap;
-}
-
-.nav__status-dot {
-  width: 9px;
-  height: 9px;
-  fill: var(--bronze);
-  flex-shrink: 0;
-}
-
-.nav__status[data-status="available"] {
-  color: var(--gold-bright);
-}
-
-.nav__status[data-status="available"] .nav__status-dot {
-  fill: var(--gold-bright);
-}
-
 .nav {
-  /* explicit width, not just max-width: as a flex item of .site-header's
-     column layout, auto cross-axis margins (below) make it shrink-to-fit
-     instead of stretching first, so without this the brand/links gap
-     collapses to zero instead of centering within the full header width */
-  width: 100%;
   max-width: var(--content-width);
-  height: var(--header-height);
-  flex-shrink: 0;
+  height: 100%;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
@@ -75,10 +22,19 @@
   justify-content: space-between;
 }
 
+.nav__brand-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 14px;
+  min-width: 0;
+}
+
 .nav__brand {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  flex-direction: column;
+  align-items: flex-start;
   min-width: 0;
   font-family: var(--font-nav);
   font-weight: 700;
@@ -91,10 +47,44 @@
 }
 
 .nav__brand-mark {
-  width: 38px;
-  height: 38px;
+  width: 50px;
+  height: 50px;
   flex-shrink: 0;
   background: var(--logo-mark) center / contain no-repeat;
+}
+
+/* Availability tag — an oblique badge stapled to the bottom-left corner of
+   the crest, in the style of a project's "pre-release" ribbon. Anchored
+   under the mark (not the wordmark) and swung further left+down by the
+   rotation, so it always clears both the brand text and the nav links
+   instead of competing with either for width. `data-status` swaps it
+   between "on" (gold) and "off" (bronze) so flipping availability later is
+   a one-attribute change. */
+.availability-ribbon {
+  z-index: 1;
+  top: 100%;
+  left: 50px;
+  margin-top: 2px;
+  transform-origin: top left;
+  /* transform: rotate(-8deg); */
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--navy-dark);
+  border: 1px solid rgba(141, 127, 107, 0.7);
+  clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
+  font-family: var(--font-nav);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--bronze);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.availability-ribbon[data-status="available"] {
+  color: var(--gold-bright);
+  border-color: rgba(239, 198, 3, 0.6);
 }
 
 .nav__links {
@@ -139,7 +129,7 @@
 @media (max-width: 950px) {
   .nav__links {
     position: fixed;
-    top: var(--header-total-height);
+    top: var(--header-height);
     left: 0;
     right: 0;
     flex-direction: column;
@@ -162,6 +152,11 @@
 
   .nav__toggle {
     display: flex;
+  }
+
+  .nav__brand-mark {
+    width: 38px;
+    height: 38px;
   }
 }
 

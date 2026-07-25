@@ -44,9 +44,7 @@
 
   /* layout */
   --content-width: 1160px;
-  --header-height: 72px;             /* the nav row itself */
-  --status-strip-height: 32px;       /* availability ribbon above the nav row */
-  --header-total-height: calc(var(--header-height) + var(--status-strip-height));
+  --header-height: 72px;
   --cornice-height: 34px;
 
   /* imagery — referenced via var() so the inlined asset is embedded once,
@@ -57,7 +55,6 @@
 @media (max-width: 780px) {
   :root {
     --header-height: 64px;
-    --status-strip-height: 28px;
     --cornice-height: 28px;
   }
 }
