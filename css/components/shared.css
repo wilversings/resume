@@ -5,7 +5,7 @@
 .icon-diamond {
   width: 12px;
   height: 12px;
-  fill: var(--gold-bright);
+  fill: var(--accent-strong);
   flex-shrink: 0;
 }
 
@@ -22,11 +22,20 @@
   transform: scaleX(-1);
 }
 
+/* Light mode: the flourish's stroke/fill are hardcoded gold presentation
+   attributes on the <symbol> content referenced via <use> — unreachable
+   by CSS selectors, so recolor the whole rendered icon with the same
+   #navyTint filter used elsewhere instead (see index.html's sprite
+   defs). Gold-on-parchment was low contrast; navy reads clearly. */
+:root[data-theme="light"] .icon-flourish {
+  filter: url(#navyTint);
+}
+
 .corner {
   position: absolute;
   width: 18px;
   height: 18px;
-  stroke: var(--gold);
+  stroke: var(--accent);
   stroke-opacity: 0.6;
   stroke-width: 2;
   fill: none;

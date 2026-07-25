@@ -64,12 +64,27 @@
   transition: opacity 0.3s ease;
 }
 .btn--solid:hover .btn__plate--clean { opacity: 1; }
-.btn--solid .btn__molding { fill: #0d1122; fill-opacity: 0.55; }
-.btn--solid .btn__diamond { fill: #0d1122; }
-.btn--solid .btn__label { color: var(--navy-dark); }
+.btn--solid .btn__molding { fill: var(--on-accent); fill-opacity: 0.55; }
+.btn--solid .btn__diamond { fill: var(--on-accent); }
+.btn--solid .btn__label { color: var(--on-accent); }
 
 .btn--outline .btn__plate { fill: rgba(13, 17, 34, 0.35); }
-.btn--outline .btn__plate-ring { fill: var(--gold); filter: url(#rust); }
-.btn--outline .btn__molding { fill: var(--gold); fill-opacity: 0.5; }
-.btn--outline .btn__diamond { fill: var(--gold); }
-.btn--outline .btn__label { color: var(--gold); }
+.btn--outline .btn__plate-ring { fill: var(--accent); filter: url(#rust); }
+.btn--outline .btn__molding { fill: var(--accent); fill-opacity: 0.5; }
+.btn--outline .btn__diamond { fill: var(--accent); }
+.btn--outline .btn__label { color: var(--accent); }
+
+/* Light mode: the translucent dark plate scrim was tuned to be nearly
+   invisible against the dark-mode background — against the light
+   surface it shows up as a visible muddy smudge, making this button
+   look inconsistent next to .btn--solid's crisp gold plate. Drop it,
+   and drop the ring's rust filter too (a gold-tuned oxidation texture
+   that does nothing useful on flat navy) so the ring reads as a clean,
+   uniform line the same way .btn--solid's unfiltered molding does. */
+:root[data-theme="light"] .btn--outline .btn__plate {
+  fill: none;
+}
+
+:root[data-theme="light"] .btn--outline .btn__plate-ring {
+  filter: none;
+}

@@ -2,6 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <!-- Applies a previously-saved light-mode choice before first paint,
+       so returning visitors who opted in don't see a flash of dark mode
+       first. Inline and blocking on purpose — js/main.js (deferred/at
+       end of body) runs far too late for this. -->
+  <script>
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (e) {}
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Marius Aiordăchioaei — Résumé</title>
   <meta name="description" content="A software developer's résumé, in the Art Deco style.">
@@ -112,6 +123,18 @@
         <feComposite in="rustContrast" in2="SourceGraphic" operator="in" result="rustMasked"/>
         <feBlend in="SourceGraphic" in2="rustMasked" mode="multiply"/>
       </filter>
+      <!-- flat navy recolor for light mode: floods with --navy-dark, then
+           keeps only the source's own alpha, so any gold/rust-textured
+           shape (or image, including external background-image assets —
+           filter applies to the final rendered pixels regardless) turns
+           into a navy silhouette of itself instead of trying to find a
+           gold shade that reads on a light background. See the
+           light-theme overrides in rust.css, hero.css,
+           section-wrappers.css and footer.css. -->
+      <filter id="navyTint" x="-20%" y="-20%" width="140%" height="140%">
+        <feFlood flood-color="#0d1122" result="flood"/>
+        <feComposite in="flood" in2="SourceAlpha" operator="in"/>
+      </filter>
       <!-- heading flourish: fan of 7 rays with a tip diamond, points +x -->
       <symbol id="icon-flourish" viewBox="-4 -20 44 40">
         <g stroke="url(#metalShine)" stroke-width="1.5" vector-effect="non-scaling-stroke">
@@ -150,24 +173,39 @@
       <div class="nav__brand-wrap">
         <span class="nav__brand-mark" aria-hidden="true"></span>
         <a href="#top" class="nav__brand">
-          MARIUS AIORDĂCHIOAEI
+          <span class="nav__brand-text">MARIUS AIORDĂCHIOAEI</span>
           <span class="availability-ribbon" data-status="unavailable">Not Available For Hire</span>
         </a>
       </div>
-      <ul class="nav__links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#connect">Connect</a></li>
-      </ul>
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none">
-          <line x1="2" y1="6" x2="22" y2="6"/>
-          <line x1="2" y1="12" x2="22" y2="12"/>
-          <line x1="2" y1="18" x2="22" y2="18"/>
-        </svg>
-      </button>
+      <div class="nav__actions">
+        <ul class="nav__links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#connect">Connect</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Turn on light mode">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="4"/>
+            <line x1="12" y1="20" x2="12" y2="23"/>
+            <line x1="4.2" y1="4.2" x2="6.3" y2="6.3"/>
+            <line x1="17.7" y1="17.7" x2="19.8" y2="19.8"/>
+            <line x1="1" y1="12" x2="4" y2="12"/>
+            <line x1="20" y1="12" x2="23" y2="12"/>
+            <line x1="4.2" y1="19.8" x2="6.3" y2="17.7"/>
+            <line x1="17.7" y1="6.3" x2="19.8" y2="4.2"/>
+          </svg>
+        </button>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none">
+            <line x1="2" y1="6" x2="22" y2="6"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <line x1="2" y1="18" x2="22" y2="18"/>
+          </svg>
+        </button>
+      </div>
     </nav>
   </header>
 

@@ -14,8 +14,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--navy-dark);
-  color: var(--cream);
+  background: var(--surface);
+  color: var(--ink);
   font-family: var(--font-nav);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;

@@ -143,6 +143,47 @@ newer/nicer API, take the broadly-supported one.
   keyboard-only and confirm focus order is logical and every interactive
   element is reachable.
 
+### 4. Every change must work in both dark and light mode
+
+The site is designed dark-first — light mode is an accessibility opt-in,
+off by default regardless of OS/browser `prefers-color-scheme`, toggled by
+the sun icon button in the header (`.theme-toggle` in `index.html`/
+`header.css`). `js/main.js` sets `data-theme="light"` on `<html>` and
+remembers the choice in `localStorage`; there's an inline script in
+`<head>` that re-applies it before first paint. This does not make light
+mode optional to maintain: **any visual change must be checked in both
+modes before it's done**, not just the mode you happened to be looking at.
+
+- Reach for the semantic tokens in `css/base/tokens.css` — `--surface`,
+  `--surface-alt`, `--ink`, `--ink-muted`, `--accent`, `--accent-strong` —
+  for anything that should repaint between themes (section/card
+  backgrounds, body text, headings/links/labels). They default to the
+  dark palette and are overridden under `:root[data-theme="light"]`.
+- The raw palette (`--navy-dark`, `--gold`, `--gold-bright`, `--cream`,
+  `--bronze`, etc.) never changes with theme. It's what a few spots
+  deliberately keep using instead of the semantic tokens: gold-plated
+  badges/buttons (`.btn--solid`, `.portfolio__num`, `.connect__card`,
+  `.skill-bubble`) pair a literal gold plate with `--on-accent` (a fixed
+  dark ink) so their text stays legible regardless of theme. Don't
+  "fix" these onto the semantic tokens — that's what breaks their
+  contrast in light mode.
+- Some decorative elements are baked gold/rust SVG assets or hardcoded
+  presentation attributes inside `<use>`-referenced sprite symbols
+  (`icon-flourish`, the ziggurat cornices, the hero/footer wallpaper
+  patterns) — plain CSS variables can't reach into them. These get a
+  `:root[data-theme="light"] <selector> { filter: url(#navyTint); }`
+  override colocated with the element's own rule, using the shared
+  `#navyTint` filter defined in `index.html`'s sprite `<defs>` (floods the
+  shape with navy, masked to its own alpha). The hero monument instead
+  swaps to a dedicated `hero-monument-light.svg` via the `--monument-image`
+  token, because its "window" cutouts need to be filled with the
+  light-mode surface color, not just uniformly recolored — copy whichever
+  pattern fits a new asset.
+- When picking a light-mode color for text, check it actually clears
+  WCAG AA (4.5:1) against the light surface — the dark-mode gold does
+  not, which is why light mode's accent color is navy ink instead of a
+  gold variant.
+
 ## Design tokens & conventions already in place
 
 - Colors, gradients, and font stacks are CSS custom properties in
@@ -171,7 +212,9 @@ newer/nicer API, take the broadly-supported one.
 1. Serve the site locally and load it in a browser.
 2. Check both the desktop (~1440px) and mobile (~390px) viewport widths
    render cleanly.
-3. Check the browser console for errors/warnings.
-4. Tab through any new/changed interactive elements keyboard-only.
-5. If you changed decorative SVG or icon-only controls, re-check
+3. Click the header's light-mode toggle and check the change in both
+   modes — see rule 4.
+4. Check the browser console for errors/warnings.
+5. Tab through any new/changed interactive elements keyboard-only.
+6. If you changed decorative SVG or icon-only controls, re-check
    `aria-hidden`/`aria-label` coverage per rule 3.

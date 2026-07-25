@@ -13,7 +13,7 @@
   position: relative;
   display: block;
   text-decoration: none;
-  background: var(--navy-dark);
+  background: var(--surface);
   border: 1px solid rgba(203, 163, 40, 0.4);
   padding: 14px;
   transition: transform 0.2s ease, border-color 0.2s ease;
@@ -28,7 +28,7 @@
   position: relative;
   height: 160px;
   overflow: hidden;
-  background-color: #0d1122;
+  background-color: var(--surface);
   background-repeat: no-repeat;
   background-position: center;
   transition: filter 0.2s ease;
@@ -67,7 +67,7 @@
   top: 10px;
   left: 10px;
   font-size: var(--fs-eyebrow);
-  color: var(--navy-dark);
+  color: var(--on-accent);
   background: var(--gold);
   padding: 2px 7px;
   font-weight: 700;
@@ -79,13 +79,13 @@
   margin: 16px 0 4px;
   font-size: var(--fs-body);
   font-weight: 700;
-  color: var(--cream);
+  color: var(--ink);
 }
 
 .portfolio__cat {
   font-size: var(--fs-eyebrow);
   letter-spacing: 1px;
-  color: var(--gold);
+  color: var(--accent);
   text-transform: uppercase;
 }
 
@@ -94,7 +94,7 @@
   font-family: var(--font-body);
   font-size: var(--fs-body);
   line-height: 1.5;
-  color: var(--cream);
+  color: var(--ink);
   opacity: 0.75;
 }
 

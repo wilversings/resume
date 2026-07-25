@@ -18,3 +18,14 @@
   background-clip: text;
   color: transparent;
 }
+
+/* Light mode: the baked gold-rust image doesn't repaint with the theme
+   tokens (it's a flat asset, not CSS), and a rust texture doesn't read
+   as "navy ink" anyway — so drop the image-clip trick entirely instead
+   of trying to filter it, and fall back to plain navy text. */
+:root[data-theme="light"] .text-rust {
+  background-image: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: var(--ink);
+}

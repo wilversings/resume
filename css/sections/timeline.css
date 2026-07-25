@@ -72,14 +72,14 @@
 
 .timeline__card {
   position: relative;
-  background: var(--navy-light);
+  background: var(--surface-alt);
   border: 1px solid rgba(203, 163, 40, 0.4);
   padding: 22px 26px;
   width: 100%;
 }
 
 .section:nth-child(even of .section) .timeline__card {
-  background: var(--navy-dark);
+  background: var(--surface);
 }
 
 .timeline__date {
@@ -87,7 +87,7 @@
   font-size: var(--fs-eyebrow);
   font-weight: 700;
   letter-spacing: 1.5px;
-  color: var(--gold-bright);
+  color: var(--accent-strong);
   margin-bottom: 10px;
 }
 
@@ -95,7 +95,7 @@
   margin: 0 0 6px;
   font-size: var(--fs-title);
   font-weight: 700;
-  color: var(--cream);
+  color: var(--ink);
   text-transform: uppercase;
 }
 
@@ -104,7 +104,7 @@
   font-family: var(--font-body);
   font-style: italic;
   font-size: var(--fs-body);
-  color: var(--gold);
+  color: var(--accent);
   margin-bottom: 24px;
 }
 
@@ -113,7 +113,7 @@
   font-family: var(--font-body);
   font-size: var(--fs-body);
   line-height: 1.6;
-  color: var(--cream);
+  color: var(--ink);
   opacity: 0.85;
   text-align: left;
 }
@@ -134,7 +134,7 @@
   font-family: var(--font-body);
   font-size: var(--fs-body);
   line-height: 1.5;
-  color: var(--cream);
+  color: var(--ink);
   opacity: 0.85;
 }
 
@@ -145,7 +145,7 @@
   top: 8px;
   width: 6px;
   height: 6px;
-  background: var(--gold-bright);
+  background: var(--accent-strong);
   transform: rotate(45deg);
 }
 
@@ -157,7 +157,7 @@
   font-size: var(--fs-eyebrow);
   font-weight: 700;
   letter-spacing: 1px;
-  color: var(--gold);
+  color: var(--accent);
   opacity: 0.85;
   text-align: left;
 }
@@ -182,7 +182,7 @@
 .timeline--compact .timeline__title em {
   font-style: italic;
   font-weight: 400;
-  color: var(--gold);
+  color: var(--accent);
   font-size: var(--fs-sm);
 }
 

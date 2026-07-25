@@ -13,11 +13,11 @@
    section just re-flows the alternation instead of needing a manual
    light/dark modifier on every section. */
 .section:nth-child(odd of .section) {
-  background: var(--navy-light);
+  background: var(--surface-alt);
 }
 
 .section:nth-child(even of .section) {
-  background: var(--navy-dark);
+  background: var(--surface);
 }
 
 .section__inner {
@@ -36,11 +36,11 @@
 
 /* A cornice takes the color of the section that follows it. */
 .cornice:has(+ .section:nth-child(odd of .section)) {
-  background: var(--navy-light);
+  background: var(--surface-alt);
 }
 
 .cornice:has(+ .section:nth-child(even of .section)) {
-  background: var(--navy-dark);
+  background: var(--surface);
 }
 
 .cornice svg {
@@ -48,6 +48,12 @@
   height: var(--cornice-height);
   display: block;
   filter: url(#rust);
+}
+
+/* Light mode: swap the rust texture for a flat navy silhouette — see
+   the #navyTint comment in index.html's sprite defs. */
+:root[data-theme="light"] .cornice svg {
+  filter: url(#navyTint);
 }
 
 .section-divider {

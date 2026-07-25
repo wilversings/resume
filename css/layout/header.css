@@ -7,7 +7,7 @@
   inset: 0 0 auto 0;
   height: var(--header-height);
   z-index: 100;
-  background: rgba(20, 26, 48, 0.92);
+  background: rgba(var(--surface-alt-rgb), 0.92);
   border-bottom: 1px solid rgba(203, 163, 40, 0.5);
   backdrop-filter: blur(6px);
 }
@@ -38,12 +38,24 @@
   min-width: 0;
   font-family: var(--font-nav);
   font-weight: 700;
-  /* fluid one-off, not a scale step: the long wordmark is `nowrap` in a
-     fixed-height bar, so it must shrink with the viewport to avoid overflow */
+  /* fluid one-off, not a scale step: the wordmark shrinks with the
+     viewport so it only wraps (see .nav__brand-text) at the very
+     narrowest widths, once the font-size floor is reached */
   font-size: clamp(10px, 1.6vw, 15px);
   letter-spacing: 3px;
-  color: var(--gold);
-  white-space: nowrap;
+  color: var(--accent);
+}
+
+/* No nowrap/ellipsis here on purpose — the name shouldn't ever be cut
+   off. At the narrowest widths, once font-size bottoms out at the
+   clamp's 10px floor, this just wraps onto a second line at the space
+   instead of overlapping the nav__actions controls; the fixed-height
+   header has enough clearance for that (see the nav__actions gap
+   reduction in the max-width:950px block below). */
+.nav__brand-text {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .nav__brand-mark {
@@ -66,10 +78,9 @@
   left: 50px;
   margin-top: 2px;
   transform-origin: top left;
-  /* transform: rotate(-8deg); */
   display: inline-block;
   padding: 3px 10px;
-  background: var(--navy-dark);
+  background: var(--surface-alt);
   border: 1px solid rgba(141, 127, 107, 0.7);
   clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
   font-family: var(--font-nav);
@@ -77,14 +88,20 @@
   font-weight: 700;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--bronze);
+  color: var(--ink-muted);
   white-space: nowrap;
   pointer-events: none;
 }
 
 .availability-ribbon[data-status="available"] {
-  color: var(--gold-bright);
+  color: var(--accent-strong);
   border-color: rgba(239, 198, 3, 0.6);
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
 }
 
 .nav__links {
@@ -97,21 +114,62 @@
   font-size: var(--fs-sm);
   font-weight: 700;
   letter-spacing: 2px;
-  color: var(--gold);
+  color: var(--accent);
   text-transform: uppercase;
   transition: color 0.2s ease;
 }
 
 .nav__links a:hover,
 .nav__links a.is-active {
-  color: var(--gold-bright);
+  color: var(--accent-strong);
+}
+
+/* Light-mode opt-in — the site is dark by default (see the tokens.css
+   comment on [data-theme="light"]); this is the only way in, since it
+   isn't wired to OS/browser color-scheme preference. js/main.js toggles
+   the attribute and remembers the choice in localStorage. */
+.theme-toggle {
+  flex-shrink: 0;
+  display: flex;
+  width: 36px;
+  height: 36px;
+  border: 1.3px solid var(--accent);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease;
+}
+
+.theme-toggle svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  transition: stroke 0.2s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent-strong);
+}
+
+.theme-toggle:hover svg {
+  stroke: var(--accent-strong);
+}
+
+/* Filled sun once light mode is on, so the control shows its own state
+   at a glance instead of only via the tooltip/aria-label. */
+.theme-toggle[aria-pressed="true"] svg circle {
+  fill: var(--accent);
 }
 
 .nav__toggle {
   display: none;
   width: 36px;
   height: 36px;
-  border: 1.3px solid var(--gold);
+  border: 1.3px solid var(--accent);
   background: transparent;
   cursor: pointer;
   padding: 8px;
@@ -122,7 +180,7 @@
 .nav__toggle svg {
   width: 100%;
   height: 100%;
-  stroke: var(--gold);
+  stroke: var(--accent);
   stroke-width: 1.4;
 }
 
@@ -134,7 +192,7 @@
     right: 0;
     flex-direction: column;
     gap: 0;
-    background: var(--navy-light);
+    background: var(--surface-alt);
     border-bottom: 1px solid rgba(203, 163, 40, 0.5);
     max-height: 0;
     overflow: hidden;
@@ -157,6 +215,15 @@
   .nav__brand-mark {
     width: 38px;
     height: 38px;
+  }
+
+  /* Less room to work with once the hamburger appears — nav__links is
+     fixed/out of flow here, so this is just the gap between the theme
+     toggle and the hamburger button. The wordmark's own ellipsis
+     (.nav__brand-text) is still the real safety net at the very
+     narrowest widths. */
+  .nav__actions {
+    gap: 14px;
   }
 }
 

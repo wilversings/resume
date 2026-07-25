@@ -23,7 +23,7 @@
   font-size: var(--fs-eyebrow);
   font-weight: 700;
   letter-spacing: 2.5px;
-  color: var(--gold-bright);
+  color: var(--accent-strong);
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -60,8 +60,8 @@
    do. That's also what makes varying the size cheap here — the chip this
    replaced had fixed 6px/5.41px corner cuts that don't scale.
 
-   ::before is --navy-light against a --navy-dark section, carried over from
-   the chip: the interior is deliberately one step lighter than the backdrop
+   ::before is --surface-alt against a --surface section, carried over from
+   the chip: the interior is deliberately one step off from the backdrop
    so each medallion reads as raised. That contrast depends on #skills
    landing on an even position in the .section odd/even alternation
    (css/layout/section-wrappers.css) — move the section and the discs go
@@ -87,7 +87,7 @@
   position: absolute;
   inset: 1px;
   border-radius: 50%;
-  background: var(--navy-light);
+  background: var(--surface-alt);
 }
 
 /* concentric inner ring — the Deco medallion tell. A fixed inset reads
@@ -118,7 +118,7 @@
   line-height: 1.25;
   letter-spacing: 0.6px;
   text-transform: uppercase;
-  color: var(--cream);
+  color: var(--ink);
 }
 
 /* Emphasis tiers. Diameters are raw px rather than tokens because the type

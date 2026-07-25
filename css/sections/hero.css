@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--navy-dark);
+  background: var(--surface);
   overflow: hidden;
   text-align: center;
 }
@@ -48,6 +48,17 @@
   mask-image: radial-gradient(circle 320px at 50% 42%, transparent 0%, transparent 55%, black 100%);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+}
+
+/* Light mode: the wallpaper svg and the monument below are baked gold-
+   stroke/gold-fill assets with no CSS hook into the theme tokens. Rather
+   than maintaining separate navy-colored art, #navyTint (see the sprite
+   defs in index.html) floods each one flat navy using its own alpha —
+   filter applies to the final rendered pixels of an element regardless
+   of what produced them, so this works even though these are external
+   background-image files, not inline/CSS-driven shapes. */
+:root[data-theme="light"] .hero::before {
+  filter: url(#navyTint);
 }
 
 .hero__content {
@@ -70,7 +81,12 @@
   display: block;
   width: 100%;
   aspect-ratio: 750 / 372;
-  background-image: url("../../images/hero-monument.svg");
+  /* --monument-image swaps to hero-monument-light.svg in light mode
+     (see tokens.css) — a separate navy-ink asset rather than a CSS
+     filter, so the "window" cutouts can be filled with the actual
+     light-theme surface color instead of a translucent dark tint that
+     only reads correctly against the dark-mode background. */
+  background-image: var(--monument-image);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -132,7 +148,7 @@
   margin: 26px 0 0;
   font-size: var(--fs-eyebrow);
   letter-spacing: 8px;
-  color: var(--gold);
+  color: var(--accent);
 }
 
 .hero__est::before,
@@ -141,7 +157,7 @@
   display: inline-block;
   width: 50px;
   height: 1px;
-  background: var(--gold);
+  background: var(--accent);
   vertical-align: middle;
   margin: 0 12px 3px;
 }
@@ -160,7 +176,7 @@
   font-family: var(--font-body);
   font-size: var(--fs-lead);
   letter-spacing: 2px;
-  color: var(--cream);
+  color: var(--ink);
   opacity: 0.85;
   max-width: 640px;
   margin: 0 auto;
@@ -181,7 +197,7 @@
   bottom: clamp(20px, 4vh, 48px);
   width: 34px;
   height: 34px;
-  border: 1.5px solid var(--gold);
+  border: 1.5px solid var(--accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -194,7 +210,7 @@
 .hero__scroll svg {
   width: 14px;
   height: 8px;
-  stroke: var(--gold);
+  stroke: var(--accent);
   stroke-width: 2;
   fill: none;
 }

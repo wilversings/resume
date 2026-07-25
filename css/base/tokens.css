@@ -50,6 +50,51 @@
   /* imagery — referenced via var() so the inlined asset is embedded once,
      not once per usage site */
   --logo-mark: url("../../images/logo-mark.svg");
+  --monument-image: url("../../images/hero-monument.svg");
+
+  /* theme — semantic tokens layered over the raw palette above. Every
+     section/text rule should reach for these, not for --navy-dark/
+     --navy-light/--cream/--gold directly, so it repaints for light mode
+     below. The raw palette itself never changes: it's what keeps "dark
+     ink on a gold plate" (badges, solid buttons) legible regardless of
+     theme, so those specific spots (see --on-accent, and the buttons.css/
+     portfolio.css comments) intentionally keep using the raw tokens. */
+  --surface: var(--navy-dark);
+  --surface-alt: var(--navy-light);
+  --surface-alt-rgb: 20, 26, 48;
+  --ink: var(--cream);
+  --ink-muted: var(--bronze);
+  --accent: var(--gold);
+  --accent-strong: var(--gold-bright);
+  --on-accent: var(--navy-dark);
+}
+
+/* Light mode — the site is designed for dark mode; this exists purely as
+   an accessibility opt-in for anyone who needs it, not a second polished
+   theme. It's opt-in only (js/main.js toggles this attribute and
+   remembers the choice in localStorage) and stays off by default
+   regardless of OS/browser color-scheme preference.
+
+   Gold text doesn't clear WCAG AA against a light ground, and trying to
+   find a gold shade that does isn't worth it for a fallback mode — every
+   accent color just becomes navy ink instead. The few gold/rust-textured
+   decorative elements that are baked into SVG assets rather than driven
+   by these tokens get their own light-mode overrides colocated with
+   their rules: the hero monument swaps to a navy-ink SVG variant (see
+   --monument-image below and hero-monument-light.svg), while the hero
+   title's rust-clipped text, the icon-flourish ornament, ziggurat
+   cornices and the wallpaper patterns get a flat navy recolor via the
+   #navyTint SVG filter — see rust.css, shared.css, hero.css,
+   section-wrappers.css, footer.css. */
+:root[data-theme="light"] {
+  --surface: #f4ecd9;
+  --surface-alt: #e8dcc0;
+  --surface-alt-rgb: 232, 220, 192;
+  --ink: var(--navy-dark);
+  --ink-muted: #565f7a;
+  --accent: var(--navy-dark);
+  --monument-image: url("../../images/hero-monument-light.svg");
+  --accent-strong: #05060d;
 }
 
 @media (max-width: 780px) {
