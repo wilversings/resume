@@ -89,6 +89,7 @@
   background-image: var(--monument-image);
   background-repeat: no-repeat;
   background-size: contain;
+  filter: drop-shadow(2px 4px 6px black);
 }
 
 .hero__glow {
@@ -163,6 +164,7 @@
 }
 
 .hero__title {
+  position: relative;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--fs-h1);
@@ -170,6 +172,11 @@
   text-transform: uppercase;
   margin: 30px 0 22px;
   line-height: 1.05;
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+:root[data-theme="light"] .hero__title {
+  filter: none;
 }
 
 .hero__subtitle {

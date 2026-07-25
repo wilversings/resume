@@ -19,6 +19,11 @@
   text-transform: uppercase;
   margin: 0;
   text-align: center;
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+:root[data-theme="light"] .section-heading__text {
+  filter: none;
 }
 
 .section-rule {
