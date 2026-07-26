@@ -1,0 +1,80 @@
+/* ==========================================================================
+   Iframe dialog — native <dialog> modal, currently used by the Climat
+   "Try It Out" card action (see js/main.js for the open/close wiring).
+   showModal() gives us focus trapping and inert-behind-the-dialog
+   behavior for free, so this file only handles layout/paint.
+   ========================================================================== */
+
+.iframe-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(1160px, 92vw);
+  height: min(800px, 85vh);
+  /* Clamped against the viewport, not just a flat floor — on a phone-width
+     viewport an unqualified 820/640 floor would force the dialog wider
+     than the screen (min-width always wins over max-width), pushing it
+     off-screen and making it uncloseable. Large screens still get the
+     intended 820x640 floor since 92vw/85vh comfortably exceed it there. */
+  min-width: min(820px, 92vw);
+  min-height: min(640px, 85vh);
+  max-width: 96vw;
+  max-height: 92vh;
+  padding: 0;
+  border: 1px solid rgba(203, 163, 40, 0.5);
+  background: var(--surface);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  /* User-resizable via the native browser drag handle at the bottom-right
+     corner — `resize` needs overflow other than the default `visible`. */
+  overflow: hidden;
+  resize: both;
+}
+
+/* Column layout with the close button in its own row above the iframe,
+   rather than floated on top of it — the embedded page is third-party
+   content we don't control, and its own header can wrap/reflow at
+   narrow widths, so an overlaid close button risks colliding with it. */
+.iframe-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.iframe-dialog::backdrop {
+  background: rgba(13, 17, 34, 0.75);
+}
+
+.iframe-dialog__frame {
+  display: block;
+  width: 100%;
+  flex: 1;
+  border: 0;
+}
+
+.iframe-dialog__close {
+  flex-shrink: 0;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 8px 8px 0 0;
+  padding: 0;
+  border: 1px solid var(--accent);
+  background: var(--surface);
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.iframe-dialog__close svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.iframe-dialog__close:hover {
+  border-color: var(--accent-strong);
+  color: var(--accent-strong);
+}

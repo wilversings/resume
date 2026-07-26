@@ -469,16 +469,28 @@
       <span class="section-rule"></span>
 
       <div class="portfolio__grid">
-        <a class="portfolio__card" href="https://github.com/wilversings/climat" target="_blank" rel="noopener">
+        <div class="portfolio__card">
           <svg class="corner corner--tl" viewBox="1 1 24 24"><use href="#icon-corner"/></svg>
           <svg class="corner corner--br" viewBox="1 1 24 24"><use href="#icon-corner"/></svg>
-          <div class="portfolio__thumb portfolio__thumb--climat">
-            <span class="portfolio__num">01</span>
-          </div>
-          <h3 class="portfolio__title">Climat</h3>
-          <span class="portfolio__cat">CLI Macro Tool</span>
-          <p class="portfolio__desc">Write declarative CLI macros in a simple DSL and compile them into fast, consistent command-line tools.</p>
-        </a>
+          <a class="portfolio__link" href="https://github.com/wilversings/climat" target="_blank" rel="noopener">
+            <div class="portfolio__thumb portfolio__thumb--climat">
+              <span class="portfolio__num">01</span>
+            </div>
+            <h3 class="portfolio__title">Climat</h3>
+            <span class="portfolio__cat">CLI Macro Tool</span>
+            <p class="portfolio__desc">Write declarative CLI macros in a simple DSL and compile them into fast, consistent command-line tools.</p>
+          </a>
+          <button type="button" class="btn btn--outline portfolio__action" data-dialog-open="climatDialog">
+            <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true">
+              <polygon class="btn__plate" points="8,0 176,0 184,8 184,38 176,46 8,46 0,38 0,8"/>
+              <path class="btn__plate-ring" fill-rule="evenodd" d="M8,0 L176,0 L184,8 L184,38 L176,46 L8,46 L0,38 L0,8 Z M8.62,1.5 L175.38,1.5 L182.5,8.62 L182.5,37.38 L175.38,44.5 L8.62,44.5 L1.5,37.38 L1.5,8.62 Z"/>
+              <path class="btn__molding" fill-rule="evenodd" d="M13,5 L171,5 L179,13 L179,33 L171,41 L13,41 L5,33 L5,13 Z M13.33,5.8 L170.67,5.8 L178.2,13.33 L178.2,32.67 L170.67,40.2 L13.33,40.2 L5.8,32.67 L5.8,13.33 Z"/>
+              <polygon class="btn__diamond" points="24,19 28,23 24,27 20,23"/>
+              <polygon class="btn__diamond" points="160,19 164,23 160,27 156,23"/>
+            </svg>
+            <span class="btn__label">Try It Out</span>
+          </button>
+        </div>
 
         <a class="portfolio__card" href="https://github.com/wilversings/resume" target="_blank" rel="noopener">
           <svg class="corner corner--tl" viewBox="1 1 24 24"><use href="#icon-corner"/></svg>
@@ -491,16 +503,29 @@
           <p class="portfolio__desc">This résumé — an Art Deco single-page site hand-built with vanilla JS, CSS and Webpack.</p>
         </a>
 
-        <a class="portfolio__card" href="https://github.com/wilversings/maxwell" target="_blank" rel="noopener">
+        <div class="portfolio__card">
           <svg class="corner corner--tl" viewBox="1 1 24 24"><use href="#icon-corner"/></svg>
           <svg class="corner corner--br" viewBox="1 1 24 24"><use href="#icon-corner"/></svg>
-          <div class="portfolio__thumb portfolio__thumb--maxwell">
-            <span class="portfolio__num">03</span>
-          </div>
-          <h3 class="portfolio__title">Maxwell</h3>
-          <span class="portfolio__cat">KDE Plasma Widget</span>
-          <p class="portfolio__desc">A carryable desktop cat for KDE Plasma, with animated GIF and orbiting 3D mesh display modes.</p>
-        </a>
+          <a class="portfolio__link" href="https://github.com/wilversings/maxwell" target="_blank" rel="noopener">
+            <div class="portfolio__thumb portfolio__thumb--maxwell">
+              <span class="portfolio__num">03</span>
+            </div>
+            <h3 class="portfolio__title">Maxwell</h3>
+            <span class="portfolio__cat">KDE Plasma Widget</span>
+            <p class="portfolio__desc">A carryable desktop cat for KDE Plasma, with animated GIF and orbiting 3D mesh display modes.</p>
+          </a>
+          <p class="portfolio__stat"><strong>7,000+</strong> downloads on the KDE Store</p>
+          <a class="btn btn--outline portfolio__action" href="https://store.kde.org/p/2274580" target="_blank" rel="noopener">
+            <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true">
+              <polygon class="btn__plate" points="8,0 176,0 184,8 184,38 176,46 8,46 0,38 0,8"/>
+              <path class="btn__plate-ring" fill-rule="evenodd" d="M8,0 L176,0 L184,8 L184,38 L176,46 L8,46 L0,38 L0,8 Z M8.62,1.5 L175.38,1.5 L182.5,8.62 L182.5,37.38 L175.38,44.5 L8.62,44.5 L1.5,37.38 L1.5,8.62 Z"/>
+              <path class="btn__molding" fill-rule="evenodd" d="M13,5 L171,5 L179,13 L179,33 L171,41 L13,41 L5,33 L5,13 Z M13.33,5.8 L170.67,5.8 L178.2,13.33 L178.2,32.67 L170.67,40.2 L13.33,40.2 L5.8,32.67 L5.8,13.33 Z"/>
+              <polygon class="btn__diamond" points="24,19 28,23 24,27 20,23"/>
+              <polygon class="btn__diamond" points="160,19 164,23 160,27 156,23"/>
+            </svg>
+            <span class="btn__label">KDE Store</span>
+          </a>
+        </div>
 
         <a class="portfolio__card" href="https://github.com/wilversings/contriburg" target="_blank" rel="noopener">
           <svg class="corner corner--tl" viewBox="1 1 24 24"><use href="#icon-corner"/></svg>
@@ -702,6 +727,20 @@
       </div>
     </div>
   </footer>
+
+  <!-- ============================================================
+       Climat playground dialog — native <dialog> gives us a focus
+       trap, Escape-to-close and ::backdrop for free, so there's no
+       hand-rolled modal/focus-trap logic in js/main.js.
+       ============================================================ -->
+  <dialog class="iframe-dialog" id="climatDialog" aria-label="Climat playground">
+    <svg class="corner corner--tl" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
+    <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
+    <button type="button" class="iframe-dialog__close" data-dialog-close aria-label="Close playground">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1,1 L15,15 M15,1 L1,15" /></svg>
+    </button>
+    <iframe class="iframe-dialog__frame" data-src="https://wilversings.github.io/climat/playground/" title="Climat playground" loading="lazy"></iframe>
+  </dialog>
 
 </body>
 </html>

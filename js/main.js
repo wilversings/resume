@@ -84,3 +84,33 @@ const sectionObserver = new IntersectionObserver(
 );
 
 sections.forEach((section) => sectionObserver.observe(section));
+
+// Iframe dialogs (e.g. the Climat "Try It Out" playground) — built on the
+// native <dialog> element so focus trapping and inert-behind-the-dialog
+// behavior come from the browser instead of hand-rolled JS. Note that
+// Escape only closes it while focus is still in the top document — once
+// the embedded (cross-origin) page grabs focus, its keydowns aren't
+// observable here, so the close button/backdrop click are the reliable
+// paths. The iframe's src is only set on open (and cleared again on
+// close) so the embedded page isn't loaded, and doesn't keep running in
+// the background, while the dialog is closed.
+document.querySelectorAll('[data-dialog-open]').forEach((trigger) => {
+  trigger.addEventListener('click', () => {
+    const dialog = document.getElementById(trigger.dataset.dialogOpen);
+    if (!dialog) return;
+    const iframe = dialog.querySelector('iframe[data-src]');
+    if (iframe) iframe.src = iframe.dataset.src;
+    dialog.showModal();
+  });
+});
+
+document.querySelectorAll('.iframe-dialog').forEach((dialog) => {
+  dialog.querySelectorAll('[data-dialog-close]').forEach((closeBtn) => {
+    closeBtn.addEventListener('click', () => dialog.close());
+  });
+
+  dialog.addEventListener('close', () => {
+    const iframe = dialog.querySelector('iframe[data-src]');
+    if (iframe) iframe.removeAttribute('src');
+  });
+});
