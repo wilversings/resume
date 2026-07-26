@@ -33,7 +33,12 @@ blockquote,
 figcaption,
 dd,
 dt {
-  text-wrap: pretty;
+  @supports (text-wrap: avoid-short-last-lines) {
+    text-wrap: avoid-short-last-lines;
+  }
+  @supports not (text-wrap: avoid-short-last-lines) {
+    text-wrap: pretty;
+  }
 }
 
 img {
