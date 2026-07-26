@@ -157,6 +157,10 @@
     animation: none;
     transform: translate(-50%, -50%);
   }
+
+  .hero__monument {
+    animation: none;
+  }
 }
 
 .hero__est {

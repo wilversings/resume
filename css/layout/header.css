@@ -73,16 +73,15 @@
    between "on" (gold) and "off" (bronze) so flipping availability later is
    a one-attribute change. */
 .availability-ribbon {
+  --ribbon-cut: 6px;
+  position: relative;
   z-index: 1;
-  top: 100%;
-  left: 50px;
   margin-top: 2px;
   transform-origin: top left;
   display: inline-block;
-  padding: 3px 10px;
-  background: var(--surface-alt);
-  border: 1px solid rgba(141, 127, 107, 0.7);
-  clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
+  padding: 4px 11px;
+  background: rgba(141, 127, 107, 0.7);
+  clip-path: polygon(var(--ribbon-cut) 0, calc(100% - var(--ribbon-cut)) 0, 100% var(--ribbon-cut), 100% calc(100% - var(--ribbon-cut)), calc(100% - var(--ribbon-cut)) 100%, var(--ribbon-cut) 100%, 0 calc(100% - var(--ribbon-cut)), 0 var(--ribbon-cut));
   font-family: var(--font-nav);
   font-size: 10px;
   font-weight: 700;
@@ -93,9 +92,18 @@
   pointer-events: none;
 }
 
+.availability-ribbon::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 1px;
+  background: var(--surface-alt);
+  clip-path: polygon(calc(var(--ribbon-cut) - 0.59px) 0, calc(100% - var(--ribbon-cut) + 0.59px) 0, 100% calc(var(--ribbon-cut) - 0.59px), 100% calc(100% - var(--ribbon-cut) + 0.59px), calc(100% - var(--ribbon-cut) + 0.59px) 100%, calc(var(--ribbon-cut) - 0.59px) 100%, 0 calc(100% - var(--ribbon-cut) + 0.59px), 0 calc(var(--ribbon-cut) - 0.59px));
+}
+
 .availability-ribbon[data-status="available"] {
   color: var(--accent-strong);
-  border-color: rgba(239, 198, 3, 0.6);
+  background: rgba(239, 198, 3, 0.6);
 }
 
 .nav__actions {
@@ -231,7 +239,8 @@
   }
 
   .availability-ribbon {
-    padding: 2px 6px;
+    --ribbon-cut: 4.5px;
+    padding: 3px 7px;
     font-size: 8px;
     letter-spacing: 0.5px;
   }

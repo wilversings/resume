@@ -24,6 +24,16 @@
   border-color: rgba(239, 198, 3, 0.7);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .portfolio__card {
+    transition: border-color 0.2s ease;
+  }
+
+  .portfolio__card:hover {
+    transform: none;
+  }
+}
+
 .portfolio__thumb {
   position: relative;
   height: 160px;

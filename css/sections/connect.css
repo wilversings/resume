@@ -37,6 +37,16 @@
   filter: brightness(1.15);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .connect__card {
+    transition: filter 0.2s ease;
+  }
+
+  .connect__card:hover {
+    transform: none;
+  }
+}
+
 .connect__label {
   display: flex;
   align-items: center;
