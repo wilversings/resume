@@ -37,8 +37,8 @@
   width: 18px;
   height: 18px;
   stroke: var(--accent);
-  stroke-opacity: 0.6;
-  stroke-width: 2;
+  stroke-opacity: 0.8;
+  stroke-width: 5;
   fill: none;
 }
 

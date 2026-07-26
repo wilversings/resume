@@ -72,14 +72,14 @@
 
 .timeline__card {
   position: relative;
-  background: var(--surface-alt);
+  background: var(--surface);
   border: 1px solid rgba(203, 163, 40, 0.4);
   padding: 22px 26px;
   width: 100%;
 }
 
 .section:nth-child(even of .section) .timeline__card {
-  background: var(--surface);
+  background: var(--surface-alt);
 }
 
 .timeline__date {
