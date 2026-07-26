@@ -57,10 +57,11 @@
   mask-repeat: no-repeat;
 }
 
-/* Light mode: flat navy silhouette instead of the gold stroke pattern —
-   see the #navyTint comment in index.html's sprite defs. */
+/* Light mode: recolor the gold stroke pattern to the light theme's own
+   darker antique-brass — see the #accentTint comment in index.html's
+   sprite defs. */
 :root[data-theme="light"] .site-footer::before {
-  filter: url(#navyTint);
+  filter: url(#accentTint);
 }
 
 .site-footer__mark-wrap {

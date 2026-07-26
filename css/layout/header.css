@@ -185,6 +185,10 @@
 }
 
 @media (max-width: 950px) {
+  .nav {
+    padding: 0 16px;
+  }
+
   .nav__links {
     position: fixed;
     top: var(--header-height);
@@ -212,18 +216,49 @@
     display: flex;
   }
 
+  .nav__brand-wrap {
+    gap: 10px;
+  }
+
   .nav__brand-mark {
     width: 38px;
     height: 38px;
   }
 
-  /* Less room to work with once the hamburger appears — nav__links is
-     fixed/out of flow here, so this is just the gap between the theme
-     toggle and the hamburger button. The wordmark's own ellipsis
-     (.nav__brand-text) is still the real safety net at the very
-     narrowest widths. */
+  .nav__brand-text {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+
+  .availability-ribbon {
+    padding: 2px 6px;
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+
   .nav__actions {
-    gap: 14px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .nav {
+    padding: 0 12px;
+  }
+
+  .nav__brand-mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .theme-toggle,
+  .nav__toggle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav__actions {
+    gap: 8px;
   }
 }
 

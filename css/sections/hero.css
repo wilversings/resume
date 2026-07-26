@@ -22,10 +22,12 @@
   padding-bottom: calc(34px + clamp(20px, 4vh, 48px) + 16px);
   /* always fill the screen, not just 90% of it — min- (not a flat height)
      so content that needs more room than the viewport can still grow the
-     box instead of getting clipped; the dvh line wins in browsers that
-     support it, correctly accounting for mobile browser chrome */
+     box instead of getting clipped; svh (not dvh) wins in browsers that
+     support it — dvh recalculates live as the address bar shows/hides on
+     scroll, which resizes/re-centers this section mid-scroll and flickers;
+     svh stays pinned to the chrome-visible size so it never does */
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,15 +52,17 @@
   mask-repeat: no-repeat;
 }
 
-/* Light mode: the wallpaper svg and the monument below are baked gold-
-   stroke/gold-fill assets with no CSS hook into the theme tokens. Rather
-   than maintaining separate navy-colored art, #navyTint (see the sprite
-   defs in index.html) floods each one flat navy using its own alpha —
-   filter applies to the final rendered pixels of an element regardless
-   of what produced them, so this works even though these are external
-   background-image files, not inline/CSS-driven shapes. */
+/* Light mode: the wallpaper svg is a baked gold-stroke asset with no CSS
+   hook into the theme tokens. Rather than maintaining separate art,
+   #accentTint (see the sprite defs in index.html) floods it with the
+   light theme's own --accent-strong using its own alpha — filter
+   applies to the final rendered pixels of an element regardless of what
+   produced them, so this works even though it's an external
+   background-image file, not inline/CSS-driven shapes. (The monument
+   below is handled separately — see --monument-image in tokens.css —
+   since it swaps to a dedicated navy-ink SVG variant instead.) */
 :root[data-theme="light"] .hero::before {
-  filter: url(#navyTint);
+  filter: url(#accentTint);
 }
 
 .hero__content {
@@ -126,8 +130,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 140vmax;
-  height: 140vmax;
+  width: 180vmax;
+  height: 180vmax;
   opacity: 0.12;
   pointer-events: none;
   animation: sunburst-spin 120s linear infinite;
@@ -181,7 +185,7 @@
 
 .hero__subtitle {
   font-family: var(--font-body);
-  font-size: var(--fs-lead);
+  font-size: var(--fs-body);
   letter-spacing: 2px;
   color: var(--ink);
   opacity: 0.85;
@@ -229,12 +233,22 @@
 
 @media (max-width: 780px) {
   .hero {
+    padding-top: calc(var(--header-height) + clamp(16px, 5vh, 64px));
     padding-bottom: calc(34px + clamp(20px, 4vh, 48px) + 16px);
+  }
+
+  .hero__est {
+    margin-top: clamp(14px, 4vh, 26px);
+  }
+
+  .hero__title {
+    margin: clamp(16px, 4vh, 30px) 0 clamp(12px, 3vh, 22px);
   }
 
   .hero__actions {
     flex-direction: column;
     align-items: center;
+    margin-top: clamp(20px, 5vh, 46px);
   }
 }
 

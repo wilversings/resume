@@ -25,10 +25,11 @@
 /* Light mode: the flourish's stroke/fill are hardcoded gold presentation
    attributes on the <symbol> content referenced via <use> — unreachable
    by CSS selectors, so recolor the whole rendered icon with the same
-   #navyTint filter used elsewhere instead (see index.html's sprite
-   defs). Gold-on-parchment was low contrast; navy reads clearly. */
+   #accentTint filter used elsewhere instead (see index.html's sprite
+   defs), swapping the dark theme's own gold for the light theme's
+   darker, AA-safe antique-brass. */
 :root[data-theme="light"] .icon-flourish {
-  filter: url(#navyTint);
+  filter: url(#accentTint);
 }
 
 .corner {

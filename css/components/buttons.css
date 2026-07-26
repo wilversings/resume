@@ -72,19 +72,24 @@
 .btn--outline .btn__plate-ring { fill: var(--accent); filter: url(#rust); }
 .btn--outline .btn__molding { fill: var(--accent); fill-opacity: 0.5; }
 .btn--outline .btn__diamond { fill: var(--accent); }
-.btn--outline .btn__label { color: var(--accent); }
+.btn--outline .btn__label { color: var(--accent-strong); }
 
 /* Light mode: the translucent dark plate scrim was tuned to be nearly
    invisible against the dark-mode background — against the light
    surface it shows up as a visible muddy smudge, making this button
    look inconsistent next to .btn--solid's crisp gold plate. Drop it,
-   and drop the ring's rust filter too (a gold-tuned oxidation texture
-   that does nothing useful on flat navy) so the ring reads as a clean,
+   and drop the ring's rust filter too (the turbulence texture was tuned
+   for the dark theme's brighter gold and just reads muddy at the light
+   theme's darker, AA-safe --accent) so the ring reads as a clean,
    uniform line the same way .btn--solid's unfiltered molding does. */
 :root[data-theme="light"] .btn--outline .btn__plate {
   fill: none;
 }
 
 :root[data-theme="light"] .btn--outline .btn__plate-ring {
+  filter: none;
+}
+
+:root[data-theme="light"] .btn--solid .btn__plate {
   filter: none;
 }

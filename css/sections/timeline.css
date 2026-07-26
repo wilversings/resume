@@ -166,26 +166,6 @@
   margin-bottom: 0;
 }
 
-.timeline--compact .timeline__card {
-  padding: 16px 22px;
-}
-
-.timeline--compact .timeline__date {
-  margin-bottom: 6px;
-}
-
-.timeline--compact .timeline__title {
-  font-size: var(--fs-body);
-  margin: 0;
-}
-
-.timeline--compact .timeline__title em {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--accent);
-  font-size: var(--fs-sm);
-}
-
 @media (max-width: 780px) {
   .timeline__spine {
     left: 24px;

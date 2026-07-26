@@ -50,10 +50,10 @@
   filter: url(#rust);
 }
 
-/* Light mode: swap the rust texture for a flat navy silhouette — see
-   the #navyTint comment in index.html's sprite defs. */
+/* Light mode: swap the oxidized rust texture for a flat antique-brass
+   silhouette — see the #accentTint comment in index.html's sprite defs. */
 :root[data-theme="light"] .cornice svg {
-  filter: url(#navyTint);
+  filter: url(#accentTint);
 }
 
 .section-divider {
