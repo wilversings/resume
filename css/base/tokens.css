@@ -67,6 +67,11 @@
   --accent: var(--gold);
   --accent-strong: var(--gold-bright);
   --on-accent: var(--navy-dark);
+
+  --accent-dark: var(--gold);
+  --accent-strong-dark: var(--gold-bright);
+  --accent-light: #6b5011;
+  --accent-strong-light: #4f3b0e;
 }
 
 /* Light mode — an accessibility opt-in for anyone who prefers it, not the
@@ -105,9 +110,9 @@
   --surface-alt-rgb: 232, 220, 192;
   --ink: var(--navy-dark);
   --ink-muted: #5c5240;
-  --accent: #6b5011;
+  --accent: var(--accent-light);
   --monument-image: url("../../images/hero-monument-light.svg");
-  --accent-strong: #4f3b0e;
+  --accent-strong: var(--accent-strong-light);
 }
 
 @media (max-width: 780px) {

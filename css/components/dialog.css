@@ -64,6 +64,7 @@
   background: var(--surface);
   color: var(--accent);
   cursor: pointer;
+  position: absolute;
 }
 
 .iframe-dialog__close svg {
