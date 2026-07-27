@@ -48,7 +48,7 @@
   transform: translate(-50%, -50%);
   z-index: -1;
   pointer-events: none;
-  opacity: 0.09;
+  opacity: 0.1;
   background-repeat: repeat;
   background-size: 200px;
   background-image: url("../../images/wallpaper-fan-scallop.svg");
@@ -265,6 +265,10 @@
     flex-direction: column;
     align-items: center;
     margin-top: clamp(20px, 5vh, 46px);
+  }
+
+  .hero__monument-wrap::before {
+    background-size: 200px;
   }
 }
 
