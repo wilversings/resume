@@ -37,6 +37,9 @@
   background-repeat: no-repeat;
   background-position: center;
   transition: filter 0.2s ease;
+  /* Bleed past the card's own padding so the thumbnail runs edge-to-edge
+     instead of sitting inset like the rest of the card content. */
+  margin: -25px -25px 0;
 }
 
 .portfolio__card:hover .portfolio__thumb {
