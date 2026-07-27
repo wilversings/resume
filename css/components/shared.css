@@ -52,3 +52,17 @@
   right: -1px;
   transform: rotate(180deg);
 }
+
+/* Visually hidden but still announced by screen readers — for context
+   (like "opens in new tab") that's conveyed visually by an icon. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

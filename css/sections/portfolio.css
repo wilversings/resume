@@ -16,7 +16,7 @@
   text-decoration: none;
   background: var(--surface);
   border: 1px solid rgba(203, 163, 40, 0.4);
-  padding: 14px;
+  padding: 25px;
   transition: border-color 0.2s ease;
 }
 
@@ -116,8 +116,35 @@
   font-weight: 700;
 }
 
+/* Compact plaque: same 4:1 shape as the hero/connect .btn (184x46), just
+   scaled to 78.26% (144x36) so two fit side by side in a portfolio card.
+   Every point in the SVG frame is the original scaled by that same
+   factor, so the chamfer/ring/molding/diamonds keep identical
+   proportions — a true miniature, not a squashed copy. Label font-size
+   and letter-spacing are scaled by the same factor for the same reason:
+   whatever margin a label had against the diamonds at full size, it
+   keeps at this size too. */
 .portfolio__action {
+  width: 144px;
+  height: 36px;
   margin-top: 16px;
+}
+
+.portfolio__action .btn__label {
+  font-size: 12.5px;
+  letter-spacing: 2.3px;
+}
+
+.portfolio__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.portfolio__actions .portfolio__action {
+  margin-top: 0;
 }
 
 .portfolio__more {
