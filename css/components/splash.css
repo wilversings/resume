@@ -33,16 +33,6 @@
   animation: splash-pulse 1.4s ease-in-out infinite;
 }
 
-.splash__word {
-  font-family: var(--font-nav);
-  font-weight: 700;
-  font-size: var(--fs-sm);
-  letter-spacing: clamp(1px, 0.8vw, 6px);
-  color: var(--accent);
-  text-indent: clamp(1px, 0.3vw, 6px);
-  white-space: nowrap;
-}
-
 .splash__rule {
   width: 60px;
   height: 1px;
