@@ -98,11 +98,17 @@
   margin-bottom: 24px;
 }
 
+/* The card grows with --content-width while --measure grows only with
+   --fs-body, so the text box outruns the measure from roughly 1200px up
+   (708px of text box against a 668px measure at 1440, 868 against 751 past
+   the ultra-wide step). Below that the cap is inert and the card's own
+   padding sets the column. */
 .timeline__desc {
   margin: 0 0 7px;
   font-family: var(--font-body);
   font-size: var(--fs-body);
   line-height: 1.6;
+  max-width: var(--measure);
   color: var(--ink);
   opacity: 0.85;
   text-align: left;
@@ -115,6 +121,7 @@
   display: flex;
   flex-direction: column;
   gap: 7px;
+  max-width: var(--measure);
   text-align: left;
 }
 
@@ -157,26 +164,21 @@
 }
 
 /* Desktop: pull the date out of the card and onto a rail on the spine's
-   far side, and cap the card so the extra width doesn't run the prose
-   past a readable measure — an uncapped card here would be ~950px wide.
-   Rail + gutter + card is narrower than --content-width, so the whole
-   assembly is centred under the section heading rather than hugging the
-   left edge.
+   far side.
 
-   The rail's floor is set by its longest date ("2023 — PRESENT" at
-   --fs-eyebrow with 1.5px tracking); the gutter's by the marker and its
-   connector needing to sit side by side inside it. */
+   The section spans the full --content-width like every other section, and
+   divides on the same three-column module the portfolio, skills and connect
+   grids use (see --grid-gutter): the rail is one column, the card is the
+   other two plus the gutter between them. So the spine lands on the same
+   vertical line the portfolio cards' edges sit on, and Experience starts and
+   ends on the two lines every other section shares. An earlier version of
+   this layout sized the rail and card in fixed px and centred the result,
+   which left the section inset ~146px from the content edge on both sides —
+   the only section on the page that didn't line up with the rest. */
 @media (min-width: 781px) {
   .timeline {
-    /* Fixed, not fluid: the rail holds one line of --fs-eyebrow text, so
-       it's sized by that string (the longest, "2023 — PRESENT", measures
-       125px) rather than by the viewport. It steps with --fs-eyebrow at
-       the ultra-wide breakpoint below. */
-    --tl-rail: 136px;
-    --tl-gutter: clamp(48px, 5vw, 72px);
-    --tl-card: 660px;
-    max-width: calc(var(--tl-rail) + var(--tl-gutter) + var(--tl-card));
-    margin-inline: auto;
+    --tl-gutter: var(--grid-gutter);
+    --tl-rail: calc((100% - 2 * var(--tl-gutter)) / 3);
   }
 
   .timeline__spine {
@@ -196,24 +198,23 @@
     width: calc(var(--tl-gutter) / 2 - 6px);
   }
 
-  /* Positioned against the card (its nearest positioned ancestor), so the
-     offset is expressed from the card's own left edge outwards: 100% of
-     the card plus the gutter puts the rail's right edge flush with the
-     spine's rail-side margin. Out of flow here, so the card's first
-     in-flow child becomes the title — hence no margin to reclaim. */
+  /* The card goes static so the date's containing block is the *item*,
+     which is full-width — --tl-rail is a percentage of it, and resolving
+     that against the card instead would compute a third of two-thirds.
+     The card's `position: relative` isn't otherwise load-bearing: its only
+     absolutely-positioned descendants are this date and the bullet
+     diamonds, and those resolve against their own `li` (see
+     .timeline__points li). */
+  .timeline__card {
+    position: static;
+  }
+
   .timeline__date {
     position: absolute;
     top: 25px;
-    right: calc(100% + var(--tl-gutter));
+    left: 0;
     width: var(--tl-rail);
     margin: 0;
     text-align: right;
-  }
-}
-
-@media (min-width: 1600px) {
-  .timeline {
-    --tl-rail: 148px;
-    --tl-card: 720px;
   }
 }
