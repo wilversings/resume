@@ -3,11 +3,69 @@
    Design tokens. Change these to re-skin the whole page.
    ========================================================================== */
 
+/* All three families are self-hosted. The UI and body faces used to be
+   system stacks ('Futura, Century Gothic, Trebuchet MS' / 'Georgia'), which
+   meant the Art Deco voice only actually rendered on macOS: Futura ships on
+   Apple platforms, Century Gothic only with MS Office, and Android/Linux
+   fell all the way through to Roboto/DejaVu — a generic grotesque on the
+   one site whose whole argument is period typography. Georgia has the same
+   gap. Both are now webfonts so the page looks the same everywhere.
+
+   Jost is a Futura revival, so it keeps the geometric Deco construction the
+   system stack was reaching for. Gelasio is metric-compatible with Georgia,
+   which is why swapping it in didn't move any of the existing line breaks.
+   Both are SIL OFL — see fonts/Jost-OFL.txt and fonts/Gelasio-OFL.txt;
+   subset to latin + latin-ext (the Romanian diacritics in the name and
+   university are latin-ext) at ~96 KB for all five faces.
+
+   Weights are declared, not synthesized: every face the page asks for
+   (400 + 700 for both families, plus Gelasio italic for .timeline__org)
+   has a real file, so no browser has to fake a bold or an oblique. */
 @font-face {
   font-family: 'Monsante';
   src: url('../../fonts/Monsante-Regular.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Jost';
+  src: url('../../fonts/Jost-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Jost';
+  src: url('../../fonts/Jost-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gelasio';
+  src: url('../../fonts/Gelasio-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gelasio';
+  src: url('../../fonts/Gelasio-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gelasio';
+  src: url('../../fonts/Gelasio-400italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -25,22 +83,48 @@
   --gradient-metal-shine: linear-gradient(90deg, var(--bronze) 0%, var(--gold) 55%, var(--gold-bright) 100%);
   --gradient-metal-vert: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 45%, #8a6d1a 100%);
 
-  /* type — font families */
-  --font-display: 'Monsante', 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
-  --font-nav: 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
-  --font-body: Georgia, 'Iowan Old Style', serif;
+  /* type — font families. The system names stay on as fallbacks purely to
+     cover the gap before the webfont lands (font-display: swap); they are
+     no longer what the design depends on. */
+  --font-display: 'Monsante', 'Jost', 'Futura', 'Century Gothic', sans-serif;
+  --font-nav: 'Jost', 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  --font-body: 'Gelasio', Georgia, 'Iowan Old Style', serif;
 
   /* type — scale. One source of truth; use these everywhere instead of
-     raw px. Five text steps plus two fluid display steps. The whole scale
-     steps up once on ultra-wide screens (see the 1600px block below), so
-     individual elements never need their own font-size media queries. */
+     raw px. Six text steps plus two display steps. The whole scale steps
+     up once on ultra-wide screens (see the 1600px block below), so
+     individual elements never need their own font-size media queries.
+
+     --fs-body was 14px, i.e. *below* the 16px --fs-sm that nav, buttons
+     and footer links use — so the prose was the smallest text on a page
+     whose whole job is to be read, and the chrome outranked the content.
+     Body is 16px now. --fs-sm keeps its own value and role (UI text) but
+     is never allowed above --fs-body again; at the ultra-wide step body
+     pulls ahead to 18px while UI text holds, which is the right way round.
+
+     --fs-lead was defined but referenced nowhere, so the hero subtitle and
+     the section ledes fell back to body size and left an 84px → 16px cliff
+     under the h1 with nothing in between. It's in use now.
+
+     --fs-h2 was written as clamp(38px, 3.4vw, 38px), and clamp(48px, …,
+     46px) at the ultra-wide step — the first is a constant, and the second
+     has min > max so it pins to the min and the preferred value never
+     evaluates. Neither was ever fluid. They're plain values now, which is
+     what they always computed to; the deliberate step between them is the
+     1600px block below, matching how the rest of the scale works. --fs-h1
+     keeps a real clamp because the hero title genuinely does scale. */
   --fs-eyebrow: 12px;                 /* uppercase kickers, labels, dates, meta, copyright */
-  --fs-sm: 16px;                      /* secondary & UI text: nav, footer/skill labels, buttons */
-  --fs-body: 14px;                    /* body copy: paragraphs, list items, card values, ledes */
-  --fs-lead: 20px;                    /* lead paragraph / hero subtitle */
-  --fs-title: 24px;                   /* h3-level item titles */
-  --fs-h2: clamp(38px, 3.4vw, 38px);  /* section headings */
+  --fs-sm: 16px;                      /* UI text: nav, footer/skill labels, buttons */
+  --fs-body: 16px;                    /* body copy: paragraphs, list items, card values */
+  --fs-lead: 20px;                    /* lead paragraph / hero subtitle / section ledes */
+  --fs-title: 22px;                   /* h3-level item titles (timeline, portfolio cards) */
+  --fs-h2: 38px;                      /* section headings */
   --fs-h1: clamp(50px, 6vw, 84px);    /* hero title */
+
+  /* measure — the ceiling on a text column's width. Prose set at
+     --fs-body runs ~117 characters per line in the About grid's free
+     column without this, roughly 1.6x the comfortable maximum. */
+  --measure: 68ch;
 
   /* layout */
   --content-width: 1160px;
@@ -132,7 +216,7 @@
     --fs-body: 18px;
     --fs-lead: 22px;
     --fs-title: 26px;
-    --fs-h2: clamp(48px, calc(24.67px + 0.83vw), 46px);
+    --fs-h2: 48px;
     --fs-h1: clamp(84px, calc(50.7px + 2.08vw), 104px);
   }
 }

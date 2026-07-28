@@ -56,10 +56,15 @@
   opacity: 0.5;
 }
 
+/* A lede introduces its section, so it sits a step above the body copy
+   inside it — same reasoning as .hero__subtitle. The max-width is well
+   inside --measure already and stays as-is: a centered single line reads
+   better short than at the full comfortable measure. */
 .section-lede {
   text-align: center;
   font-family: var(--font-body);
-  font-size: var(--fs-body);
+  font-size: var(--fs-lead);
+  line-height: 1.5;
   color: var(--ink);
   opacity: 0.85;
   max-width: 560px;
