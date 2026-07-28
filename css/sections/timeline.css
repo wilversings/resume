@@ -198,22 +198,32 @@
     width: calc(var(--tl-gutter) / 2 - 6px);
   }
 
-  /* The card goes static so the date's containing block is the *item*,
-     which is full-width — --tl-rail is a percentage of it, and resolving
-     that against the card instead would compute a third of two-thirds.
-     The card's `position: relative` isn't otherwise load-bearing: its only
-     absolutely-positioned descendants are this date and the bullet
-     diamonds, and those resolve against their own `li` (see
-     .timeline__points li). */
-  .timeline__card {
-    position: static;
-  }
+  /* Anchored to the card, whose right edge `right` counts back from: 100%
+     of the card plus the gutter puts the rail's right edge flush with the
+     spine's rail-side margin.
 
+     The width can't just be --tl-rail. That's a percentage of the
+     *timeline*, but percentages here resolve against the card — a third of
+     two-thirds, i.e. a rail two-thirds too narrow. Restating it in terms of
+     the card: with rail R, gutter g, card C and timeline width T,
+     R = (T − 2g)/3 and C = T − R − g, so T = (3C + g)/2 and R = (C − g)/2.
+     Hence the halving below.
+
+     That comes out 2px under the real column, since percentages resolve
+     against the card's padding box and C is its border box. It doesn't
+     show: the rail has no box of its own and its text is right-aligned, so
+     only its right edge is visible — and that's set by `right`, which
+     lands on the same offset at every width.
+
+     (Making the card `position: static` would let --tl-rail resolve
+     directly, but the card is the containing block for the .corner
+     brackets in components/shared.css — they'd escape to the item and land
+     on the rail's edges instead of the card's.) */
   .timeline__date {
     position: absolute;
     top: 25px;
-    left: 0;
-    width: var(--tl-rail);
+    right: calc(100% + var(--tl-gutter));
+    width: calc((100% - var(--tl-gutter)) / 2);
     margin: 0;
     text-align: right;
   }
