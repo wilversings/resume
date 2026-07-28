@@ -21,10 +21,16 @@
   height: 100%;
 }
 
+/* --fs-lead: this paragraph is the page's introduction, and it's the only
+   prose in the section — it leads rather than fills. The --measure cap is
+   what keeps it readable: the grid's free column is 820px wide at 1440px
+   and the full 851px at the ≤900px single-column breakpoint, which ran
+   this text to ~117 and ~122 characters per line respectively. */
 .about__text {
   font-family: var(--font-body);
-  font-size: var(--fs-body);
-  line-height: 1.75;
+  font-size: var(--fs-lead);
+  line-height: 1.7;
+  max-width: var(--measure);
   color: var(--ink);
   opacity: 0.9;
   margin: 0 0 34px;
@@ -75,8 +81,12 @@
     text-align: center;
   }
 
+  /* Left-aligned inside a centered column, but the --measure-capped block
+     itself is centered — left-aligning both would hang it off the left
+     edge under a centered heading. */
   .about__text {
     text-align: left;
+    margin-inline: auto;
   }
 
   .about__meta {

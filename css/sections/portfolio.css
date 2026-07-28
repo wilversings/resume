@@ -83,10 +83,15 @@
   z-index: 1;
 }
 
+/* --fs-title, the shared h3 step. This was --fs-body, which put a card's
+   heading at exactly the size of the sentence underneath it and left the
+   page with two different h3 sizes (this one and .timeline__title). */
 .portfolio__title {
   margin: 22px 0 4px;
-  font-size: var(--fs-body);
+  font-family: var(--font-nav);
+  font-size: var(--fs-title);
   font-weight: 700;
+  line-height: 1.2;
   color: var(--ink);
 }
 
@@ -97,11 +102,15 @@
   text-transform: uppercase;
 }
 
+/* The cap is inert in the 3-column grid (cards are ~310px there) and only
+   binds in the single-column layout below 900px, where a card spans the
+   full content width and this would otherwise run past 80 characters. */
 .portfolio__desc {
   margin: 10px 0 0;
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  line-height: 1.5;
+  line-height: 1.55;
+  max-width: var(--measure);
   color: var(--ink);
   opacity: 0.75;
 }

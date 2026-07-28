@@ -33,8 +33,14 @@ css/sections/          one file per <section> in index.html: hero, about,
                      skills, connect, footer
 js/main.js           splash-screen removal, mobile nav toggle, scroll-spy
                      nav highlighting
-fonts/                Monsante-Regular.otf (decorative display font, decoded
-                     from the mockups' embedded base64 — see design/)
+fonts/                all three families, self-hosted as woff2 — nothing
+                     type-related depends on a system font being installed.
+                     Monsante (--font-display, decoded from the mockups'
+                     embedded base64 — see design/), Jost 400/700
+                     (--font-nav, a Futura revival), Gelasio 400/700/italic
+                     (--font-body, metric-compatible with Georgia). The two
+                     added families are SIL OFL; their licences ship
+                     alongside them and must stay there.
 design/               source-of-truth mockups (see "Design fidelity" below)
 ```
 

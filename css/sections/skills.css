@@ -123,9 +123,11 @@
 
 /* Emphasis tiers. Diameters are raw px rather than tokens because the type
    scale has no diameter step, and the label size has to stay monotonic with
-   it — --fs-body jumps 14→18px on ultra-wide while --fs-sm holds at 16px,
-   which would print the medium label larger than the large one. Both values
-   are therefore stepped together, by hand, per breakpoint. */
+   diameter — the scale's own steps don't all move together across
+   breakpoints (--fs-body reaches 18px on ultra-wide while --fs-sm holds at
+   16px), so borrowing them here would print the medium label larger than
+   the large one. Both values are therefore stepped together, by hand, per
+   breakpoint. */
 .skill-bubble--lg {
   --bubble-size: 140px;
   --bubble-fs: 16px;

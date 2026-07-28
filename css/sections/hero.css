@@ -199,15 +199,22 @@
   filter: none;
 }
 
+/* --fs-lead, not --fs-body: this is the only line of prose between an 84px
+   h1 and the buttons, and at body size it was the smallest text on the
+   page carrying the second-most-important message on it. */
 .hero__subtitle {
   font-family: var(--font-body);
-  font-size: var(--fs-body);
+  font-size: var(--fs-lead);
   letter-spacing: 2px;
   color: var(--ink);
   opacity: 0.85;
   max-width: 640px;
   margin: 0 auto;
   line-height: 1.5;
+  /* At --fs-lead this runs to two lines on desktop; balance keeps them
+     near-equal instead of leaving a two-word orphan under a full line.
+     Unsupported browsers just wrap normally — nothing breaks. */
+  text-wrap: balance;
 }
 
 .hero__actions {
