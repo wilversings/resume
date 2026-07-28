@@ -1,8 +1,6 @@
 /* ==========================================================================
    EMPIRE — Art Deco resume theme
-   Entry point: pulls in every partial in cascade order. Split by section
-   so each piece stays a manageable size — see the individual files for
-   the actual rules.
+   Entry point: pulls in every partial in cascade order.
    ========================================================================== */
 
 @import './base/tokens.css';

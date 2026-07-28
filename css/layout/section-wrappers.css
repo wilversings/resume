@@ -8,10 +8,8 @@
   scroll-margin-top: var(--header-height);
 }
 
-/* Alternates by position among .section siblings only, ignoring the
-   hero/cornice/footer elements in between — so adding or removing a
-   section just re-flows the alternation instead of needing a manual
-   light/dark modifier on every section. */
+/* Alternates among .section siblings only, ignoring the hero/cornice/footer
+   between them, so adding or removing a section just re-flows. */
 .section:nth-child(odd of .section) {
   background: var(--surface-alt);
 }
@@ -50,8 +48,7 @@
   filter: url(#rust);
 }
 
-/* Light mode: swap the oxidized rust texture for a flat antique-brass
-   silhouette — see the #accentTint comment in index.html's sprite defs. */
+/* Light mode: rust texture → flat brass, see #accentTint in index.html. */
 :root[data-theme="light"] .cornice svg {
   filter: url(#accentTint);
 }

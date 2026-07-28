@@ -3,24 +3,10 @@
    Design tokens. Change these to re-skin the whole page.
    ========================================================================== */
 
-/* All three families are self-hosted. The UI and body faces used to be
-   system stacks ('Futura, Century Gothic, Trebuchet MS' / 'Georgia'), which
-   meant the Art Deco voice only actually rendered on macOS: Futura ships on
-   Apple platforms, Century Gothic only with MS Office, and Android/Linux
-   fell all the way through to Roboto/DejaVu — a generic grotesque on the
-   one site whose whole argument is period typography. Georgia has the same
-   gap. Both are now webfonts so the page looks the same everywhere.
-
-   Jost is a Futura revival, so it keeps the geometric Deco construction the
-   system stack was reaching for. Gelasio is metric-compatible with Georgia,
-   which is why swapping it in didn't move any of the existing line breaks.
-   Both are SIL OFL — see fonts/Jost-OFL.txt and fonts/Gelasio-OFL.txt;
-   subset to latin + latin-ext (the Romanian diacritics in the name and
-   university are latin-ext) at ~96 KB for all five faces.
-
-   Weights are declared, not synthesized: every face the page asks for
-   (400 + 700 for both families, plus Gelasio italic for .timeline__org)
-   has a real file, so no browser has to fake a bold or an oblique. */
+/* Self-hosted (SIL OFL, see fonts/*-OFL.txt) so the Deco typography renders
+   off macOS too: Jost is a Futura revival, Gelasio is metric-compatible with
+   Georgia. Subset to latin + latin-ext (Romanian diacritics); every weight
+   the page asks for has a real file, so nothing is synthesized. */
 @font-face {
   font-family: 'Monsante';
   src: url('../../fonts/Monsante-Regular.woff2') format('woff2');
@@ -83,36 +69,16 @@
   --gradient-metal-shine: linear-gradient(90deg, var(--bronze) 0%, var(--gold) 55%, var(--gold-bright) 100%);
   --gradient-metal-vert: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 45%, #8a6d1a 100%);
 
-  /* type — font families. The system names stay on as fallbacks purely to
-     cover the gap before the webfont lands (font-display: swap); they are
-     no longer what the design depends on. */
+  /* type — font families. The system names are fallbacks only, covering the
+     gap before the webfont lands (font-display: swap). */
   --font-display: 'Monsante', 'Jost', 'Futura', 'Century Gothic', sans-serif;
   --font-nav: 'Jost', 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
   --font-body: 'Gelasio', Georgia, 'Iowan Old Style', serif;
 
-  /* type — scale. One source of truth; use these everywhere instead of
-     raw px. Six text steps plus two display steps. The whole scale steps
-     up once on ultra-wide screens (see the 1600px block below), so
-     individual elements never need their own font-size media queries.
-
-     --fs-body was 14px, i.e. *below* the 16px --fs-sm that nav, buttons
-     and footer links use — so the prose was the smallest text on a page
-     whose whole job is to be read, and the chrome outranked the content.
-     Body is 16px now. --fs-sm keeps its own value and role (UI text) but
-     is never allowed above --fs-body again; at the ultra-wide step body
-     pulls ahead to 18px while UI text holds, which is the right way round.
-
-     --fs-lead was defined but referenced nowhere, so the hero subtitle and
-     the section ledes fell back to body size and left an 84px → 16px cliff
-     under the h1 with nothing in between. It's in use now.
-
-     --fs-h2 was written as clamp(38px, 3.4vw, 38px), and clamp(48px, …,
-     46px) at the ultra-wide step — the first is a constant, and the second
-     has min > max so it pins to the min and the preferred value never
-     evaluates. Neither was ever fluid. They're plain values now, which is
-     what they always computed to; the deliberate step between them is the
-     1600px block below, matching how the rest of the scale works. --fs-h1
-     keeps a real clamp because the hero title genuinely does scale. */
+  /* type — scale. One source of truth; use these instead of raw px. The
+     whole scale steps up once on ultra-wide (see the 1600px block), so no
+     element needs its own font-size media query. --fs-sm (UI text) must
+     never exceed --fs-body, or the chrome outranks the content. */
   --fs-eyebrow: 12px;                 /* uppercase kickers, labels, dates, meta, copyright */
   --fs-sm: 16px;                      /* UI text: nav, footer/skill labels, buttons */
   --fs-body: 16px;                    /* body copy: paragraphs, list items, card values */
@@ -121,37 +87,28 @@
   --fs-h2: 38px;                      /* section headings */
   --fs-h1: clamp(50px, 6vw, 84px);    /* hero title */
 
-  /* measure — the ceiling on a text column's width. Prose set at
-     --fs-body runs ~117 characters per line in the About grid's free
-     column without this, roughly 1.6x the comfortable maximum. */
+  /* measure — the ceiling on a text column's width; without it the wider
+     columns run past 110 characters per line. */
   --measure: 68ch;
 
   /* layout */
   --content-width: 1160px;
 
   /* The gutter of the page's three-column desktop module, shared by the
-     portfolio, skills and connect grids and by the timeline's rail. These
-     used to run 40 / 56 / 30px, which put their columns at 360 / 349 /
-     367px — close enough to read as one grid at a glance, but no two
-     sections actually shared a column line, so there was nothing for the
-     timeline to align to. One value gives a real 360px column (440px at
-     the ultra-wide step) that every section divides on. */
+     portfolio, skills and connect grids and by the timeline's rail — one
+     value is what gives every section a real, common column line. */
   --grid-gutter: 40px;
   --header-height: 72px;
   --cornice-height: 34px;
 
-  /* imagery — referenced via var() so the inlined asset is embedded once,
-     not once per usage site */
+  /* imagery — via var() so the inlined asset is embedded once, not per use */
   --logo-mark: url("../../images/logo-mark.svg");
   --monument-image: url("../../images/hero-monument.svg");
 
-  /* theme — semantic tokens layered over the raw palette above. Every
-     section/text rule should reach for these, not for --navy-dark/
-     --navy-light/--cream/--gold directly, so it repaints for light mode
-     below. The raw palette itself never changes: it's what keeps "dark
-     ink on a gold plate" (badges, solid buttons) legible regardless of
-     theme, so those specific spots (see --on-accent, and the buttons.css/
-     portfolio.css comments) intentionally keep using the raw tokens. */
+  /* theme — semantic tokens over the raw palette. Reach for these, not for
+     --navy-dark/--cream/--gold, so rules repaint for light mode. The raw
+     palette never changes, which is what keeps "dark ink on a gold plate"
+     (badges, solid buttons — see --on-accent) legible in either theme. */
   --surface: var(--navy-dark);
   --surface-alt: var(--navy-light);
   --surface-alt-rgb: 20, 26, 48;
@@ -167,36 +124,13 @@
   --accent-strong-light: #4f3b0e;
 }
 
-/* Light mode — an accessibility opt-in for anyone who prefers it, not the
-   site's primary theme. It's opt-in only (js/main.js toggles this
-   attribute and remembers the choice in localStorage) and stays off by
-   default regardless of OS/browser color-scheme preference.
-
-   The dark theme's own gold (--gold/--gold-bright) doesn't clear WCAG AA
-   against a light ground, but a deeper, more saturated antique-brass
-   does — 4.8:1+ for --accent and 6.8:1+ for --accent-strong against
-   both --surface and --surface-alt below, comfortably past the 4.5:1
-   normal-text floor. So unlike a plain light-mode fallback, this keeps
-   gold as the accent color instead of collapsing every accent to navy
-   ink; navy remains reserved for --ink (body text) and the monument
-   silhouette, so the two still read as distinct layers rather than one
-   flat tone. ink-muted shifts from the dark theme's cool slate-blue to
-   a warm bronze-grey so it sits comfortably between --ink and --accent
-   instead of clashing with the new gold. --surface-alt is pushed to a
-   deeper champagne-gold (rather than sitting a shade off --surface) so
-   alternating sections read as a deliberate ivory/gold band, not a
-   near-invisible tint shift.
-
-   The gold/rust-textured decorative elements baked into SVG assets
-   rather than driven by these tokens get their own light-mode overrides
-   colocated with their rules: the hero monument swaps to a navy-ink SVG
-   variant (see --monument-image below and hero-monument-light.svg) —
-   deliberately ink, not gold, so it reads as an engraved silhouette
-   rather than competing with the gold ornament around it — while the
-   hero title's rust-clipped text, the icon-flourish ornament, ziggurat
-   cornices and the wallpaper patterns recolor to --accent-strong via
-   the #accentTint SVG filter — see rust.css, shared.css, hero.css,
-   section-wrappers.css, footer.css. */
+/* Light mode — an accessibility opt-in (js/main.js + localStorage), never
+   wired to OS color-scheme preference. The accent stays gold instead of
+   collapsing to navy ink, but a deeper antique-brass: the dark theme's own
+   gold doesn't clear WCAG AA against a light ground. Gold baked into SVG
+   assets can't follow these tokens, so it's recolored per-rule via
+   #accentTint — see rust.css, shared.css, hero.css, section-wrappers.css
+   and footer.css; the monument instead swaps to a navy-ink asset. */
 :root[data-theme="light"] {
   --surface: #f4ecd9;
   --surface-alt: #e8dcc0;

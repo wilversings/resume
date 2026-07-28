@@ -12,8 +12,8 @@
   padding: 0;
 }
 
-/* "found style" for the category label: diamond kicker + a gold hairline
-   that trails off across the column, echoing the section-rule fade */
+/* diamond kicker + a gold hairline trailing across the column, echoing
+   the section-rule fade */
 .skills__col-title {
   display: flex;
   align-items: center;
@@ -40,8 +40,7 @@
   background: linear-gradient(90deg, rgba(203, 163, 40, 0.55), rgba(203, 163, 40, 0));
 }
 
-/* align-items: center puts the mixed-size medallions on a shared centerline
-   instead of hanging them off a common top edge */
+/* align-items: center puts the mixed-size medallions on a shared centerline */
 .skills__cluster {
   display: flex;
   flex-wrap: wrap;
@@ -53,22 +52,15 @@
   padding: 0;
 }
 
-/* Medallion — the same two-layer construction as .connect__card (outer gold
-   shape, inset navy ::before), but circular, so border-radius does the job
-   and none of the chamfer erosion math applies: a rounded border keeps its
-   stroke all the way around, which is exactly what a clipped octagon can't
-   do. That's also what makes varying the size cheap here — the chip this
-   replaced had fixed 6px/5.41px corner cuts that don't scale.
-
-   ::before is --surface-alt against a --surface section, carried over from
-   the chip: the interior is deliberately one step off from the backdrop
-   so each medallion reads as raised. That contrast depends on #skills
-   landing on an even position in the .section odd/even alternation
-   (css/layout/section-wrappers.css) — move the section and the discs go
-   flat, so the fill has to be re-picked. */
+/* Medallion — .connect__card's two-layer construction (outer gold shape,
+   inset ::before) but circular, so border-radius handles the stroke and none
+   of the chamfer erosion math applies; that's also what makes size cheap to
+   vary. The ::before is deliberately one step off the section backdrop so
+   the disc reads as raised, which assumes #skills stays on an even position
+   in the .section alternation (layout/section-wrappers.css) — move the
+   section and the fill has to be re-picked. */
 .skill-bubble {
-  /* fallback tier — every bubble in the markup carries an explicit
-     --lg/--md/--sm modifier that overrides these */
+  /* fallback tier — every bubble carries an explicit --lg/--md/--sm */
   --bubble-size: 96px;
   --bubble-fs: 12px;
   position: relative;
@@ -100,13 +92,10 @@
   border: 1px solid rgba(203, 163, 40, 0.3);
 }
 
-/* max-width forces wrapping before the text reaches the ring — a circle's
-   usable width shrinks the further a line sits from the centerline, so the
-   cap is tuned to the two-line case rather than to the full diameter. It's
-   also why labels are single tokens ("WPF", "WinForms") instead of the
-   slash-joined pairs the chips used: a circle has far less usable width than
-   a pill, and the longest word in the section ("FRAMEWORK") is what sets the
-   small tier's floor. Shortening a label beats shrinking the type. */
+/* max-width forces wrapping before the text reaches the ring, tuned to the
+   two-line case rather than the full diameter — a circle's usable width
+   shrinks away from the centerline. Hence single-token labels ("WPF"): when
+   one doesn't fit, shortening it beats shrinking the type. */
 .skill-bubble__label {
   position: relative;
   z-index: 1;
@@ -121,13 +110,9 @@
   color: var(--ink);
 }
 
-/* Emphasis tiers. Diameters are raw px rather than tokens because the type
-   scale has no diameter step, and the label size has to stay monotonic with
-   diameter — the scale's own steps don't all move together across
-   breakpoints (--fs-body reaches 18px on ultra-wide while --fs-sm holds at
-   16px), so borrowing them here would print the medium label larger than
-   the large one. Both values are therefore stepped together, by hand, per
-   breakpoint. */
+/* Emphasis tiers, in raw px per breakpoint rather than scale tokens: label
+   size has to stay monotonic with diameter, and the scale's steps don't all
+   move together across breakpoints, which would invert two tiers. */
 .skill-bubble--lg {
   --bubble-size: 140px;
   --bubble-fs: 16px;
@@ -144,16 +129,13 @@
 }
 
 /* Escape hatch for a label whose longest word won't clear the inner ring at
-   its tier's normal size — "FRAMEWORK" measures 86px at 12px, and a
-   two-line label in a 96px medallion only has ~78px of chord inside the
-   ring. Shrinking the type keeps the word intact; it does not change tier,
-   because emphasis is carried by diameter, not by font size. */
+   its tier's size (e.g. "FRAMEWORK" in a 96px medallion). It doesn't change
+   tier — emphasis is carried by diameter, not font size. */
 .skill-bubble--tight {
   --bubble-fs: 10px;
 }
 
-/* Non-interactive by design — these are <li>s, not links, so hover is pure
-   decoration and there's no focus state owed. Matches .connect__card. */
+/* <li>s, not links — hover is pure decoration, no focus state owed. */
 .skill-bubble:hover {
   transform: translateY(-3px);
   filter: brightness(1.15);

@@ -1,7 +1,7 @@
 import '../css/style.css';
 
-// Splash screen — hide once fonts + assets are ready (with a short
-// minimum so it doesn't flash), so the Monsante font swap isn't visible.
+// Splash screen — hide once fonts + assets are ready (with a short minimum
+// so it doesn't flash), so the Monsante font swap isn't visible.
 const splash = document.getElementById('splash');
 
 function hideSplash() {
@@ -33,12 +33,9 @@ navLinks.querySelectorAll('a').forEach((link) => {
   });
 });
 
-// Light-mode toggle — dark is the default regardless of OS preference
-// (see the tokens.css comment on [data-theme="light"]); this button and
-// localStorage are the only way to opt into the light variant. The
-// initial attribute (if any) is already applied by the inline script in
-// <head>, so this just keeps the button's own state in sync with it and
-// handles clicks.
+// Light-mode toggle — dark is the default regardless of OS preference (see
+// the tokens.css comment on [data-theme="light"]). The initial attribute is
+// already applied by the inline script in <head>; this only handles clicks.
 const themeToggle = document.getElementById('themeToggle');
 const root = document.documentElement;
 
@@ -107,6 +104,9 @@ document.querySelectorAll('[data-dialog-open]').forEach((trigger) => {
   });
 });
 
+// A drag on the native resize handle ends in a click on the backdrop, and a
+// grab slightly outside the border does too — so ignore clicks that resized
+// the dialog or landed within grabMargin of its box.
 function closeOnBackdropClick(dialog) {
   const grabMargin = 16;
   let resized = false;

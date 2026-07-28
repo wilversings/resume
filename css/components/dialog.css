@@ -1,8 +1,7 @@
 /* ==========================================================================
-   Iframe dialog — native <dialog> modal, currently used by the Climat
-   "Try It Out" card action (see js/main.js for the open/close wiring).
-   showModal() gives us focus trapping and inert-behind-the-dialog
-   behavior for free, so this file only handles layout/paint.
+   Iframe dialog — native <dialog>, used by the Climat "Try It Out" card
+   (wiring in js/main.js). showModal() handles focus trapping and inertness,
+   so this file only does layout/paint.
    ========================================================================== */
 
 .iframe-dialog {
@@ -11,11 +10,9 @@
   margin: auto;
   width: min(1160px, 92vw);
   height: min(800px, 85vh);
-  /* Clamped against the viewport, not just a flat floor — on a phone-width
-     viewport an unqualified 820/640 floor would force the dialog wider
-     than the screen (min-width always wins over max-width), pushing it
-     off-screen and making it uncloseable. Large screens still get the
-     intended 820x640 floor since 92vw/85vh comfortably exceed it there. */
+  /* Clamped against the viewport, not a flat 820x640 floor: min-width beats
+     max-width, so on a phone a bare floor pushes the dialog off-screen and
+     makes it uncloseable. Large screens still get the full floor. */
   min-width: min(820px, 92vw);
   min-height: min(640px, 85vh);
   max-width: 96vw;
@@ -24,16 +21,13 @@
   border: 1px solid rgba(203, 163, 40, 0.5);
   background: var(--surface);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  /* User-resizable via the native browser drag handle at the bottom-right
-     corner — `resize` needs overflow other than the default `visible`. */
+  /* `resize` needs an overflow other than the default `visible` */
   overflow: hidden;
   resize: both;
 }
 
-/* Column layout with the close button in its own row above the iframe,
-   rather than floated on top of it — the embedded page is third-party
-   content we don't control, and its own header can wrap/reflow at
-   narrow widths, so an overlaid close button risks colliding with it. */
+/* Close button gets its own row rather than floating over the iframe: the
+   embedded page is third-party and its header can reflow into a collision. */
 .iframe-dialog[open] {
   display: flex;
   flex-direction: column;

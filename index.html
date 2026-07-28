@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <!-- Applies a previously-saved light-mode choice before first paint,
-       so returning visitors who opted in don't see a flash of dark mode
-       first. Inline and blocking on purpose — js/main.js (deferred/at
-       end of body) runs far too late for this. -->
+  <!-- Applies a saved light-mode choice before first paint. Inline and
+       blocking on purpose — js/main.js runs far too late to avoid the
+       flash of dark mode. -->
   <script>
     try {
       if (localStorage.getItem('theme') === 'light') {
@@ -73,8 +72,8 @@
 <body>
 
   <!-- ============================================================
-       Splash screen — covers the page until fonts & assets load,
-       so there's no font flicker. Removed by js/main.js on load.
+       Splash screen — covers the page until fonts & assets load, so there's
+       no font flicker. Hidden by js/main.js on load.
        ============================================================ -->
   <div class="splash" id="splash">
     <div class="splash__inner">
@@ -85,12 +84,10 @@
   </div>
 
   <!-- ============================================================
-       Decorative sprite sheet — every gold ornament on the page
-       (flourishes, ziggurat cornices, corner brackets, diamonds) is
-       defined once here and reused with <use href="#...">. Edit a
-       shape here and it updates everywhere on the page. The sunburst
-       rays are the one exception — see .sunburst-rays in
-       css/components/sunburst.css, a pure CSS/HTML implementation.
+       Decorative sprite sheet — every gold ornament (flourishes, ziggurat
+       cornices, corner brackets, diamonds) and both button plaque frames are
+       defined once here and reused via <use href="#...">. The sunburst rays
+       are the one exception; they live in css/components/sunburst.css as CSS.
        ============================================================ -->
   <svg class="sprite" aria-hidden="true">
     <defs>
@@ -99,10 +96,9 @@
         <stop offset="55%" style="stop-color: var(--gold)" stop-color="#cba328"/>
         <stop offset="100%" style="stop-color: var(--gold-bright)" stop-color="#efc603"/>
       </linearGradient>
-      <!-- oxidized-metal look for SVG shape fills: rust-brown blotches
-           (feTurbulence) multiplied onto SourceGraphic, masked to the
-           source's own alpha so the shape's outline is untouched — see
-           css/components/rust.css for the text-only equivalent -->
+      <!-- oxidized-metal look for SVG shape fills: turbulence blotches
+           multiplied onto SourceGraphic, masked to its own alpha so the
+           outline is untouched. Text equivalent in css/components/rust.css. -->
       <filter id="rust" x="-20%" y="-20%" width="140%" height="140%">
         <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" seed="7" result="noise"/>
         <feColorMatrix in="noise" type="matrix"
@@ -114,16 +110,11 @@
         <feComposite in="rustContrast" in2="SourceGraphic" operator="in" result="rustMasked"/>
         <feBlend in="SourceGraphic" in2="rustMasked" mode="multiply"/>
       </filter>
-      <!-- light-mode recolor: floods with --accent-strong (the theme's
-           deep antique-brass, read live via CSS custom property so this
-           stays in sync with tokens.css), then keeps only the source's
-           own alpha, so any gold/rust-textured shape (or image, including
-           external background-image assets — filter applies to the final
-           rendered pixels regardless) turns into a flat gold silhouette
-           of itself instead of the dark theme's own gold, which doesn't
-           clear WCAG AA against a light ground. See the light-theme
-           overrides in rust.css, shared.css, hero.css,
-           section-wrappers.css and footer.css. -->
+      <!-- light-mode recolor: floods with --accent-strong (read live, so it
+           tracks tokens.css) and keeps only the source's alpha, flattening
+           any gold shape — or external image, since filters apply to final
+           rendered pixels — into an AA-safe brass silhouette. Used by
+           rust.css, shared.css, hero.css, section-wrappers.css, footer.css. -->
       <filter id="accentTint" x="-20%" y="-20%" width="140%" height="140%">
         <feFlood style="flood-color: var(--accent-strong)" flood-color="#0d1122" result="flood"/>
         <feComposite in="flood" in2="SourceAlpha" operator="in"/>
@@ -161,6 +152,26 @@
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
         <polyline points="15 3 21 3 21 9"/>
         <line x1="10" y1="14" x2="21" y2="3"/>
+      </symbol>
+
+      <!-- Button plaque frame — plate, hover-clean plate, ring, molding. Both
+           the 184x46 button and the 144x36 portfolio miniature are 4:1, so the
+           miniature is this scaled uniformly, not a second shape. Skinned by
+           the --btn-* custom properties in css/components/buttons.css. -->
+      <symbol id="btn-frame" viewBox="0 0 184 46" preserveAspectRatio="none">
+        <polygon points="8,0 176,0 184,8 184,38 176,46 8,46 0,38 0,8" style="fill: var(--btn-plate-fill); filter: var(--btn-plate-filter)"/>
+        <polygon points="8,0 176,0 184,8 184,38 176,46 8,46 0,38 0,8" style="fill: url(#metalShine); opacity: var(--btn-clean-opacity); transition: opacity 0.3s ease"/>
+        <path fill-rule="evenodd" style="fill: var(--btn-ring-fill); filter: var(--btn-ring-filter)" d="M8,0 L176,0 L184,8 L184,38 L176,46 L8,46 L0,38 L0,8 Z M8.62,1.5 L175.38,1.5 L182.5,8.62 L182.5,37.38 L175.38,44.5 L8.62,44.5 L1.5,37.38 L1.5,8.62 Z"/>
+        <path fill-rule="evenodd" style="fill: var(--btn-molding-fill); fill-opacity: var(--btn-molding-opacity)" d="M13,5 L171,5 L179,13 L179,33 L171,41 L13,41 L5,33 L5,13 Z M13.33,5.8 L170.67,5.8 L178.2,13.33 L178.2,32.67 L170.67,40.2 L13.33,40.2 L5.8,32.67 L5.8,13.33 Z"/>
+      </symbol>
+
+      <!-- Wide variant: the chamfer stays 8px while only the straight edges
+           grow, so it can't be #btn-frame stretched to 320x46. -->
+      <symbol id="btn-frame-wide" viewBox="0 0 320 46" preserveAspectRatio="none">
+        <polygon points="8,0 312,0 320,8 320,38 312,46 8,46 0,38 0,8" style="fill: var(--btn-plate-fill); filter: var(--btn-plate-filter)"/>
+        <polygon points="8,0 312,0 320,8 320,38 312,46 8,46 0,38 0,8" style="fill: url(#metalShine); opacity: var(--btn-clean-opacity); transition: opacity 0.3s ease"/>
+        <path fill-rule="evenodd" style="fill: var(--btn-ring-fill); filter: var(--btn-ring-filter)" d="M8,0 L312,0 L320,8 L320,38 L312,46 L8,46 L0,38 L0,8 Z M8.62,1.5 L311.38,1.5 L318.5,8.62 L318.5,37.38 L311.38,44.5 L8.62,44.5 L1.5,37.38 L1.5,8.62 Z"/>
+        <path fill-rule="evenodd" style="fill: var(--btn-molding-fill); fill-opacity: var(--btn-molding-opacity)" d="M13,5 L307,5 L315,13 L315,33 L307,41 L13,41 L5,33 L5,13 Z M13.33,5.8 L306.67,5.8 L314.2,13.33 L314.2,32.67 L306.67,40.2 L13.33,40.2 L5.8,32.67 L5.8,13.33 Z"/>
       </symbol>
     </defs>
   </svg>
@@ -215,12 +226,10 @@
   <section class="hero" id="top">
 
     <div class="hero__content">
-      <!-- The "monument": crown emblem seated on a wide beveled plinth,
-           with tower stubs fading below. Built in the design's own
-           coordinate space so gradients & proportions match exactly.
-           The glow/sunburst live inside this wrapper too, anchored to
-           the monument's own box (not the whole hero section) so the
-           light reads as coming from the plinth, low inside the crown. -->
+      <!-- The "monument": a crown emblem on a beveled plinth. The glow and
+           sunburst sit inside this wrapper, anchored to the monument's own
+           box rather than the hero, so the light reads as coming from the
+           plinth. -->
       <div class="hero__monument-wrap">
         <div class="hero__glow" aria-hidden="true"></div>
         <div class="hero__sunburst sunburst-rays" aria-hidden="true"></div>
@@ -240,27 +249,18 @@
 
       <div class="hero__actions">
         <a class="btn btn--solid" href="#experience">
-          <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true">
-            <polygon class="btn__plate" points="8,0 176,0 184,8 184,38 176,46 8,46 0,38 0,8"/>
-            <polygon class="btn__plate btn__plate--clean" points="8,0 176,0 184,8 184,38 176,46 8,46 0,38 0,8"/>
-            <path class="btn__molding" fill-rule="evenodd" d="M13,5 L171,5 L179,13 L179,33 L171,41 L13,41 L5,33 L5,13 Z M13.41,6 L170.59,6 L178,13.41 L178,32.59 L170.59,40 L13.41,40 L6,32.59 L6,13.41 Z"/>
-          </svg>
+          <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
           <span class="btn__label">Résumé</span>
         </a>
         <a class="btn btn--outline" href="#connect">
-          <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true">
-            <polygon class="btn__plate" points="8,0 176,0 184,8 184,38 176,46 8,46 0,38 0,8"/>
-            <path class="btn__plate-ring" fill-rule="evenodd" d="M8,0 L176,0 L184,8 L184,38 L176,46 L8,46 L0,38 L0,8 Z M8.62,1.5 L175.38,1.5 L182.5,8.62 L182.5,37.38 L175.38,44.5 L8.62,44.5 L1.5,37.38 L1.5,8.62 Z"/>
-            <path class="btn__molding" fill-rule="evenodd" d="M13,5 L171,5 L179,13 L179,33 L171,41 L13,41 L5,33 L5,13 Z M13.33,5.8 L170.67,5.8 L178.2,13.33 L178.2,32.67 L170.67,40.2 L13.33,40.2 L5.8,32.67 L5.8,13.33 Z"/>
-          </svg>
+          <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
           <span class="btn__label">Contact</span>
         </a>
       </div>
     </div>
 
-    <!-- pinned to the bottom of the hero section itself, not flowing
-         after the text — so it stays put regardless of how tall the
-         title/subtitle above it end up being -->
+    <!-- pinned to the hero's bottom rather than flowing after the text, so
+         it stays put however tall the title/subtitle above it get -->
     <a class="hero__scroll" href="#about" aria-label="Scroll to About section">
       <svg viewBox="0 0 14 8" aria-hidden="true"><path d="M1,1 L7,7 L13,1"/></svg>
     </a>
@@ -477,19 +477,11 @@
           </a>
           <div class="portfolio__actions">
             <button type="button" class="btn btn--outline portfolio__action" data-dialog-open="climatDialog">
-              <svg class="btn__frame" viewBox="0 0 144 36" preserveAspectRatio="none" aria-hidden="true">
-                <polygon class="btn__plate" points="6.26,0 137.74,0 144,6.26 144,29.74 137.74,36 6.26,36 0,29.74 0,6.26"/>
-                <path class="btn__plate-ring" fill-rule="evenodd" d="M6.26,0 L137.74,0 L144,6.26 L144,29.74 L137.74,36 L6.26,36 L0,29.74 L0,6.26 Z M6.75,1.17 L137.25,1.17 L142.83,6.75 L142.83,29.25 L137.25,34.83 L6.75,34.83 L1.17,29.25 L1.17,6.75 Z"/>
-                <path class="btn__molding" fill-rule="evenodd" d="M10.17,3.91 L133.83,3.91 L140.09,10.17 L140.09,25.83 L133.83,32.09 L10.17,32.09 L3.91,25.83 L3.91,10.17 Z M10.43,4.54 L133.57,4.54 L139.46,10.43 L139.46,25.57 L133.57,31.46 L10.43,31.46 L4.54,25.57 L4.54,10.43 Z"/>
-              </svg>
+              <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
               <span class="btn__label">Try It Out</span>
             </button>
             <button type="button" class="btn btn--outline portfolio__action" disabled>
-              <svg class="btn__frame" viewBox="0 0 144 36" preserveAspectRatio="none" aria-hidden="true">
-                <polygon class="btn__plate" points="6.26,0 137.74,0 144,6.26 144,29.74 137.74,36 6.26,36 0,29.74 0,6.26"/>
-                <path class="btn__plate-ring" fill-rule="evenodd" d="M6.26,0 L137.74,0 L144,6.26 L144,29.74 L137.74,36 L6.26,36 L0,29.74 L0,6.26 Z M6.75,1.17 L137.25,1.17 L142.83,6.75 L142.83,29.25 L137.25,34.83 L6.75,34.83 L1.17,29.25 L1.17,6.75 Z"/>
-                <path class="btn__molding" fill-rule="evenodd" d="M10.17,3.91 L133.83,3.91 L140.09,10.17 L140.09,25.83 L133.83,32.09 L10.17,32.09 L3.91,25.83 L3.91,10.17 Z M10.43,4.54 L133.57,4.54 L139.46,10.43 L139.46,25.57 L133.57,31.46 L10.43,31.46 L4.54,25.57 L4.54,10.43 Z"/>
-              </svg>
+              <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
               <span class="btn__label">Stay Tuned</span>
             </button>
           </div>
@@ -519,11 +511,7 @@
           </a>
           <p class="portfolio__stat"><strong>7,000+</strong> downloads on the KDE Store</p>
           <a class="btn btn--outline portfolio__action" href="https://store.kde.org/p/2274580" target="_blank" rel="noopener">
-            <svg class="btn__frame" viewBox="0 0 144 36" preserveAspectRatio="none" aria-hidden="true">
-              <polygon class="btn__plate" points="6.26,0 137.74,0 144,6.26 144,29.74 137.74,36 6.26,36 0,29.74 0,6.26"/>
-              <path class="btn__plate-ring" fill-rule="evenodd" d="M6.26,0 L137.74,0 L144,6.26 L144,29.74 L137.74,36 L6.26,36 L0,29.74 L0,6.26 Z M6.75,1.17 L137.25,1.17 L142.83,6.75 L142.83,29.25 L137.25,34.83 L6.75,34.83 L1.17,29.25 L1.17,6.75 Z"/>
-              <path class="btn__molding" fill-rule="evenodd" d="M10.17,3.91 L133.83,3.91 L140.09,10.17 L140.09,25.83 L133.83,32.09 L10.17,32.09 L3.91,25.83 L3.91,10.17 Z M10.43,4.54 L133.57,4.54 L139.46,10.43 L139.46,25.57 L133.57,31.46 L10.43,31.46 L4.54,25.57 L4.54,10.43 Z"/>
-            </svg>
+            <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
             <span class="btn__label btn__label--ext">
               KDE Store
               <svg class="btn__ext-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-ext-link"/></svg>
@@ -544,11 +532,7 @@
             <p class="portfolio__desc">Turns your GitHub or GitLab contribution graph into a 3D city skyline you can orbit and explore.</p>
           </a>
           <a class="btn btn--outline portfolio__action" href="https://store.kde.org/p/2365803/" target="_blank" rel="noopener">
-            <svg class="btn__frame" viewBox="0 0 144 36" preserveAspectRatio="none" aria-hidden="true">
-              <polygon class="btn__plate" points="6.26,0 137.74,0 144,6.26 144,29.74 137.74,36 6.26,36 0,29.74 0,6.26"/>
-              <path class="btn__plate-ring" fill-rule="evenodd" d="M6.26,0 L137.74,0 L144,6.26 L144,29.74 L137.74,36 L6.26,36 L0,29.74 L0,6.26 Z M6.75,1.17 L137.25,1.17 L142.83,6.75 L142.83,29.25 L137.25,34.83 L6.75,34.83 L1.17,29.25 L1.17,6.75 Z"/>
-              <path class="btn__molding" fill-rule="evenodd" d="M10.17,3.91 L133.83,3.91 L140.09,10.17 L140.09,25.83 L133.83,32.09 L10.17,32.09 L3.91,25.83 L3.91,10.17 Z M10.43,4.54 L133.57,4.54 L139.46,10.43 L139.46,25.57 L133.57,31.46 L10.43,31.46 L4.54,25.57 L4.54,10.43 Z"/>
-            </svg>
+            <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
             <span class="btn__label btn__label--ext">
               KDE Store
               <svg class="btn__ext-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-ext-link"/></svg>
@@ -570,11 +554,7 @@
       </div>
 
       <a href="https://github.com/wilversings" target="_blank" rel="noopener" class="btn btn--outline btn--wide portfolio__more">
-        <svg class="btn__frame" viewBox="0 0 320 46" preserveAspectRatio="none" aria-hidden="true">
-          <polygon class="btn__plate" points="8,0 312,0 320,8 320,38 312,46 8,46 0,38 0,8"/>
-          <path class="btn__plate-ring" fill-rule="evenodd" d="M8,0 L312,0 L320,8 L320,38 L312,46 L8,46 L0,38 L0,8 Z M8.62,1.5 L311.38,1.5 L318.5,8.62 L318.5,37.38 L311.38,44.5 L8.62,44.5 L1.5,37.38 L1.5,8.62 Z"/>
-          <path class="btn__molding" fill-rule="evenodd" d="M13,5 L307,5 L315,13 L315,33 L307,41 L13,41 L5,33 L5,13 Z M13.33,5.8 L306.67,5.8 L314.2,13.33 L314.2,32.67 L306.67,40.2 L13.33,40.2 L5.8,32.67 L5.8,13.33 Z"/>
-        </svg>
+        <svg class="btn__frame" viewBox="0 0 320 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame-wide"/></svg>
         <span class="btn__label btn__label--ext">
           View Full Portfolio
           <svg class="btn__ext-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-ext-link"/></svg>
@@ -600,15 +580,11 @@
       </div>
       <span class="section-rule"></span>
 
-      <!-- Skills are grouped by domain and sized by emphasis, not scored.
-           Bubble diameter says how central a skill is to the work — it is
-           deliberately not a proficiency rating, since self-assigned "90%"
-           bars read as unfalsifiable and tend to undersell. Every skill here
-           also appears in an experience stack above, so the weighting is
-           backed by the timeline rather than by self-assessment.
-
-           Each list is ordered large → medium → small so a screen reader
-           announces the same ranking the sizes convey visually. -->
+      <!-- Grouped by domain and sized by emphasis, not scored: diameter says
+           how central a skill is to the work, not a proficiency rating, and
+           every skill here also appears in an experience stack above. Each
+           list runs large → medium → small so screen readers announce the
+           same ranking the sizes convey. -->
       <div class="skills__columns">
         <div class="skills__col">
           <h3 class="skills__col-title">
@@ -750,9 +726,8 @@
   </footer>
 
   <!-- ============================================================
-       Climat playground dialog — native <dialog> gives us a focus
-       trap, Escape-to-close and ::backdrop for free, so there's no
-       hand-rolled modal/focus-trap logic in js/main.js.
+       Climat playground dialog — native <dialog> supplies the focus trap,
+       Escape-to-close and ::backdrop, so js/main.js hand-rolls none of it.
        ============================================================ -->
   <dialog class="iframe-dialog" id="climatDialog" aria-label="Climat playground">
     <svg class="corner corner--tl" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>

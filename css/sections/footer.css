@@ -57,9 +57,8 @@
   mask-repeat: no-repeat;
 }
 
-/* Light mode: recolor the gold stroke pattern to the light theme's own
-   darker antique-brass — see the #accentTint comment in index.html's
-   sprite defs. */
+/* Light mode: recolor the gold stroke pattern to the theme's darker brass —
+   see the #accentTint comment in index.html's sprite defs. */
 :root[data-theme="light"] .site-footer::before {
   filter: url(#accentTint);
 }

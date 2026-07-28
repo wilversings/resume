@@ -1,15 +1,10 @@
 /* ==========================================================================
    Rust texture — an oxidized-metal look for gold/bronze text and shapes.
-   images/rust-texture.svg bakes the gold-rust gradient and a feTurbulence
-   blotch pass into one image (feBlend multiply inside the SVG itself) —
-   deliberately NOT split into a separate CSS gradient + background-blend-
-   mode layer, because stacking a second background layer behind an SVG
-   filter image silently no-ops under background-clip: text in Chromium.
-
-   - .text-rust: for headings/text — clips this single baked image to type.
-   - filter #rust (defined in index.html's <svg class="sprite">): the same
-     turbulence pass for SVG shape fills, e.g. the button plates in
-     buttons.css, applied directly via the filter attribute instead.
+   .text-rust clips rust-texture.svg to type; the #rust filter in index.html's
+   sprite does the same for SVG shape fills (e.g. button plates). The asset
+   bakes gradient + turbulence into one image on purpose: a separate CSS
+   gradient layer under an SVG filter image silently no-ops under
+   background-clip: text in Chromium.
    ========================================================================== */
 
 .text-rust {
@@ -19,12 +14,9 @@
   color: transparent;
 }
 
-/* Light mode: the baked gold-rust image doesn't repaint with the theme
-   tokens (it's a flat asset, not CSS) and its oxidized texture doesn't
-   suit a flat recolor anyway — so drop the image-clip trick entirely
-   instead of trying to filter it, and fall back to plain --accent-strong
-   text. It's only ever used at hero-title size, comfortably past the
-   large-text 3:1 AA floor even at this darker, light-mode-safe gold. */
+/* Light mode: the baked image can't repaint with the tokens and doesn't suit
+   a flat recolor, so drop the clip entirely for plain --accent-strong. Only
+   used at hero-title size, well past the large-text 3:1 AA floor. */
 :root[data-theme="light"] .text-rust {
   background-image: none;
   -webkit-background-clip: border-box;

@@ -2,18 +2,14 @@
    Buttons — chamfered "plaque" style, used across hero, portfolio, connect
    ========================================================================== */
 
-/* chamfered "plaque" button. The frame is SVG, not CSS clip-path/border —
-   a clipped rectangle border only strokes the box's 4 straight edges and
-   drops the diagonal corners entirely. The plate ring and molding line
-   are each a single evenodd-filled path: an outer chamfer octagon plus
-   a *geometrically eroded* inner octagon (not just the same corner-cut
-   re-applied to an inset box, which comes out ~41% thicker on the
-   diagonals — true uniform erosion needs the corner points nudged in
-   by B·(√2−1) along each axis, where B is the ring's width). This
-   gives a hairline of perfectly uniform width all the way round,
-   corners included — a stroked polygon can't do that, since the
-   default miter join lets sharp angle changes overshoot the line
-   width right at the corner. */
+/* Chamfered "plaque" button. The frame is the #btn-frame sprite symbol, not a
+   CSS clip-path/border — a clipped rectangle strokes only the 4 straight
+   edges and drops the diagonals. Ring and molding are each one evenodd path:
+   an outer chamfer octagon plus a *geometrically eroded* inner one, its
+   corner points pulled in by B·(√2−1) per axis (B = ring width). Re-cutting
+   the same chamfer on an inset box instead comes out ~41% thicker on the
+   diagonals, and a stroked polygon overshoots at the corners on the miter
+   join. */
 .btn {
   position: relative;
   display: inline-flex;
@@ -51,8 +47,7 @@
   line-height: 1;
 }
 
-/* External-link labels (icon + text) need the label itself to lay its
-   children out as a row — plain text labels stay a single inline run. */
+/* Icon + text labels need their own row layout; plain ones stay inline. */
 .btn__label--ext {
   display: inline-flex;
   align-items: center;
@@ -86,40 +81,44 @@
   }
 }
 
-.btn--solid .btn__plate { fill: url(#metalShine); filter: url(#rust); }
-.btn--solid .btn__plate--clean {
-  fill: url(#metalShine);
-  filter: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+/* The frame is a <use> of #btn-frame, and CSS selectors can't reach inside a
+   <use> shadow tree — these custom properties are the only way in, so each
+   variant skins the shared geometry by redefining them. */
+.btn {
+  --btn-plate-fill: none;
+  --btn-plate-filter: none;
+  --btn-clean-opacity: 0;
+  --btn-ring-fill: none;
+  --btn-ring-filter: none;
+  --btn-molding-fill: var(--accent);
+  --btn-molding-opacity: 0.5;
 }
-.btn--solid:hover .btn__plate--clean { opacity: 1; }
-.btn--solid .btn__molding { fill: var(--on-accent); fill-opacity: 0.55; }
-.btn--solid .btn__diamond { fill: var(--on-accent); }
+
+.btn--solid {
+  --btn-plate-fill: url(#metalShine);
+  --btn-plate-filter: url(#rust);
+  --btn-molding-fill: var(--on-accent);
+  --btn-molding-opacity: 0.55;
+}
+/* Wipes the rust off on hover: a clean copy of the plate fades in over it. */
+.btn--solid:hover { --btn-clean-opacity: 1; }
 .btn--solid .btn__label { color: var(--on-accent); }
 
-.btn--outline .btn__plate { fill: rgba(13, 17, 34, 0.35); }
-.btn--outline .btn__plate-ring { fill: var(--accent); filter: url(#rust); }
-.btn--outline .btn__molding { fill: var(--accent); fill-opacity: 0.5; }
-.btn--outline .btn__diamond { fill: var(--accent); }
+.btn--outline {
+  --btn-plate-fill: rgba(13, 17, 34, 0.35);
+  --btn-ring-fill: var(--accent);
+  --btn-ring-filter: url(#rust);
+}
 .btn--outline .btn__label { color: var(--accent-strong); }
 
-/* Light mode: the translucent dark plate scrim was tuned to be nearly
-   invisible against the dark-mode background — against the light
-   surface it shows up as a visible muddy smudge, making this button
-   look inconsistent next to .btn--solid's crisp gold plate. Drop it,
-   and drop the ring's rust filter too (the turbulence texture was tuned
-   for the dark theme's brighter gold and just reads muddy at the light
-   theme's darker, AA-safe --accent) so the ring reads as a clean,
-   uniform line the same way .btn--solid's unfiltered molding does. */
-:root[data-theme="light"] .btn--outline .btn__plate {
-  fill: none;
+/* Light mode: both the dark plate scrim and the rust turbulence were tuned
+   against the dark background and read as a muddy smudge on a light one, so
+   drop them and let the plaque render as clean, uniform gold. */
+:root[data-theme="light"] .btn--outline {
+  --btn-plate-fill: none;
+  --btn-ring-filter: none;
 }
 
-:root[data-theme="light"] .btn--outline .btn__plate-ring {
-  filter: none;
-}
-
-:root[data-theme="light"] .btn--solid .btn__plate {
-  filter: none;
+:root[data-theme="light"] .btn--solid {
+  --btn-plate-filter: none;
 }

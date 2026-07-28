@@ -37,8 +37,7 @@
   background-repeat: no-repeat;
   background-position: center;
   transition: filter 0.2s ease;
-  /* Bleed past the card's own padding so the thumbnail runs edge-to-edge
-     instead of sitting inset like the rest of the card content. */
+  /* negates the card's padding so the thumbnail runs edge-to-edge */
   margin: -25px -25px 0;
 }
 
@@ -46,9 +45,8 @@
   filter: brightness(1.2);
 }
 
-/* Logo/icon-style artwork: fully contained and centered, with a fixed
-   inset so it never touches the frame — background-origin makes the
-   `contain` calculation respect that inset instead of the full box. */
+/* Logo/icon artwork: contained with a fixed inset so it never touches the
+   frame — background-origin is what makes `contain` respect that inset. */
 .portfolio__thumb--climat,
 .portfolio__thumb--maxwell,
 .portfolio__thumb--contriburg,
@@ -83,9 +81,7 @@
   z-index: 1;
 }
 
-/* --fs-title, the shared h3 step. This was --fs-body, which put a card's
-   heading at exactly the size of the sentence underneath it and left the
-   page with two different h3 sizes (this one and .timeline__title). */
+/* --fs-title, the shared h3 step — same size as .timeline__title. */
 .portfolio__title {
   margin: 22px 0 4px;
   font-family: var(--font-nav);
@@ -102,9 +98,8 @@
   text-transform: uppercase;
 }
 
-/* The cap is inert in the 3-column grid (cards are ~310px there) and only
-   binds in the single-column layout below 900px, where a card spans the
-   full content width and this would otherwise run past 80 characters. */
+/* Inert in the 3-column grid; only binds below 900px, where a card spans
+   the full content width. */
 .portfolio__desc {
   margin: 10px 0 0;
   font-family: var(--font-body);
@@ -128,14 +123,9 @@
   font-weight: 700;
 }
 
-/* Compact plaque: same 4:1 shape as the hero/connect .btn (184x46), just
-   scaled to 78.26% (144x36) so two fit side by side in a portfolio card.
-   Every point in the SVG frame is the original scaled by that same
-   factor, so the chamfer/ring/molding/diamonds keep identical
-   proportions — a true miniature, not a squashed copy. Label font-size
-   and letter-spacing are scaled by the same factor for the same reason:
-   whatever margin a label had against the diamonds at full size, it
-   keeps at this size too. */
+/* Compact plaque: the hero/connect .btn (184x46) scaled to 78.26% so two fit
+   side by side. Both boxes are 4:1, so #btn-frame shrinks uniformly on its
+   own; only the label's size/tracking need the factor applied by hand. */
 .portfolio__action {
   width: 144px;
   height: 36px;

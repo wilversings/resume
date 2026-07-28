@@ -22,12 +22,9 @@
   transform: scaleX(-1);
 }
 
-/* Light mode: the flourish's stroke/fill are hardcoded gold presentation
-   attributes on the <symbol> content referenced via <use> — unreachable
-   by CSS selectors, so recolor the whole rendered icon with the same
-   #accentTint filter used elsewhere instead (see index.html's sprite
-   defs), swapping the dark theme's own gold for the light theme's
-   darker, AA-safe antique-brass. */
+/* Light mode: the flourish's gold lives in presentation attributes inside a
+   <use>d <symbol>, unreachable by CSS — recolor the rendered icon with
+   #accentTint instead (see index.html's sprite defs). */
 :root[data-theme="light"] .icon-flourish {
   filter: url(#accentTint);
 }

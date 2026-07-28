@@ -2,10 +2,9 @@
    About
    ========================================================================== */
 
-/* Flex rather than grid-template-columns because the split isn't fixed
-   px/fr — it borrows the site's shared three-column module (--grid-gutter),
-   giving the badge exactly 1 column and the body the other 2 + the gutter
-   between them, so the seam lines up with portfolio/skills/connect. */
+/* Flex, not grid-template-columns: the split borrows the site's three-column
+   module (--grid-gutter) — badge on 1 column, body on the other 2 plus the
+   gutter — so the seam lines up with portfolio/skills/connect. */
 .about {
   display: flex;
   align-items: center;
@@ -30,11 +29,8 @@
   height: 100%;
 }
 
-/* --fs-lead: this paragraph is the page's introduction, and it's the only
-   prose in the section — it leads rather than fills. The --measure cap is
-   what keeps it readable: the grid's free column is 820px wide at 1440px
-   and the full 851px at the ≤900px single-column breakpoint, which ran
-   this text to ~117 and ~122 characters per line respectively. */
+/* --fs-lead: this is the page's introduction, not filler prose. The free
+   column runs 820px+ wide, so the --measure cap is doing real work here. */
 .about__text {
   font-family: var(--font-body);
   font-size: var(--fs-lead);
@@ -94,9 +90,8 @@
     flex-basis: auto;
   }
 
-  /* Left-aligned inside a centered column, but the --measure-capped block
-     itself is centered — left-aligning both would hang it off the left
-     edge under a centered heading. */
+  /* Text left-aligned, but the --measure-capped block itself centered —
+     doing both left would hang it off-centre under a centered heading. */
   .about__text {
     text-align: left;
     margin-inline: auto;
