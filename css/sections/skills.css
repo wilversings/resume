@@ -5,7 +5,7 @@
 .skills__columns {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(32px, 4vw, 56px);
+  gap: var(--grid-gutter);
 }
 
 .skills__col {

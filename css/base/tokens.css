@@ -128,6 +128,15 @@
 
   /* layout */
   --content-width: 1160px;
+
+  /* The gutter of the page's three-column desktop module, shared by the
+     portfolio, skills and connect grids and by the timeline's rail. These
+     used to run 40 / 56 / 30px, which put their columns at 360 / 349 /
+     367px — close enough to read as one grid at a glance, but no two
+     sections actually shared a column line, so there was nothing for the
+     timeline to align to. One value gives a real 360px column (440px at
+     the ultra-wide step) that every section divides on. */
+  --grid-gutter: 40px;
   --header-height: 72px;
   --cornice-height: 34px;
 
