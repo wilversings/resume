@@ -2,18 +2,27 @@
    About
    ========================================================================== */
 
+/* Flex rather than grid-template-columns because the split isn't fixed
+   px/fr — it borrows the site's shared three-column module (--grid-gutter),
+   giving the badge exactly 1 column and the body the other 2 + the gutter
+   between them, so the seam lines up with portfolio/skills/connect. */
 .about {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 60px;
+  display: flex;
   align-items: center;
+  gap: var(--grid-gutter);
 }
 
 .about__badge {
+  flex: 0 0 calc((100% - 2 * var(--grid-gutter)) / 3);
   width: 200px;
   height: 200px;
   margin: 0 auto;
   position: relative;
+}
+
+.about__body {
+  flex: 1;
+  min-width: 0;
 }
 
 .about__badge svg {
@@ -76,9 +85,13 @@
 
 @media (max-width: 900px) {
   .about {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 40px;
     text-align: center;
+  }
+
+  .about__badge {
+    flex-basis: auto;
   }
 
   /* Left-aligned inside a centered column, but the --measure-capped block

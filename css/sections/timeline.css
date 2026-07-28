@@ -1,9 +1,10 @@
 /* ==========================================================================
-   Timeline (experience + education)
+   Timeline (experience)
 
-   Single-sided, authored mobile-first: the spine runs down one edge and
-   every card hangs off it, at every width. The desktop layer below adds a
-   date rail on the spine's free side.
+   Single-sided, authored mobile-first: a hairline spine runs down one edge,
+   a diamond sits on it per entry, and the entry's plaque hangs off it. The
+   desktop layer below moves the date out of the plaque and onto the spine's
+   own column.
 
    This replaced an alternating left/right layout. That version put each
    item on its own full-height row at width:50%, so every row was half
@@ -19,51 +20,99 @@
    ========================================================================== */
 
 .timeline {
-  position: relative;
+  /* Where the spine sits, and how far down the item the first line of card
+     text starts (border + padding-top) — the marker, the date and the
+     spine's endpoints are all pinned to that line rather than to the card's
+     top edge, so the diamond reads as pointing at the entry's first line.
+     Both are re-pointed by the desktop layer; everything else reads them. */
+  --tl-spine-x: 24px;
+  /* Space between entries. The one knob for the section's vertical rhythm —
+     items carry no bottom padding of their own, so nothing else needs
+     touching to loosen or tighten the stack. */
+  --tl-item-gap: 40px;
+  /* Mobile only: how far the plate clears the spine. Desktop replaces this
+     column with the page's three-column module. */
+  --tl-card-indent: 60px;
+  --tl-card-border: 1px;
+  --tl-card-inset: calc(var(--tl-card-border) + 22px);
+  /* Centres the 12px diamond on that line — half of its box. On mobile the
+     first line is the date (--fs-eyebrow at the 1.4 set below); on desktop
+     the date moves out and it becomes the title. Derived rather than fixed
+     so the marker stays centred across the 1600px type step. */
+  --tl-marker-center: calc(var(--tl-card-inset) + var(--fs-eyebrow) * 0.7);
 }
 
-.timeline__spine {
-  position: absolute;
-  top: 6px;
-  bottom: 6px;
-  left: 24px;
-  width: 2px;
-  transform: translateX(-1px);
-  background: var(--gradient-metal-vert);
+/* Adding an entry is just another .timeline__item — the stack spaces it and
+   the spine extends to it with no other edit. */
+.timeline {
+  display: grid;
+  gap: var(--tl-item-gap);
 }
 
+/* One grid row per entry: an empty rail column that the spine, the marker
+   and (on desktop) the date sit in, then the plate. The marker and spine are
+   absolutely positioned, so they're out of grid flow and the rail column
+   stays free for the date. */
 .timeline__item {
   position: relative;
-  padding: 0 0 40px 60px;
+  display: grid;
+  grid-template-columns: var(--tl-card-indent) 1fr;
 }
 
-.timeline__item:last-child {
-  padding-bottom: 6px;
+/* Reads for both layers: with the two mobile columns, `-1` is column 2; with
+   the three desktop ones it spans 2 and 3 and swallows the gutter between
+   them. */
+.timeline__card {
+  grid-column: 2 / -1;
 }
 
+/* The spine is drawn per item rather than as one absolutely-positioned bar
+   over the whole list, so it terminates exactly on the last diamond instead
+   of needing a guessed bottom offset: each segment runs from its own marker
+   down to where the next item's marker will be — one --tl-item-gap across
+   the grid row gap, then --tl-marker-center into the next item — and the
+   last item simply doesn't draw one. A flat tint rather than
+   --gradient-metal-vert, which would restart per segment and read as six
+   separate strokes. */
+.timeline__item::before {
+  content: '';
+  position: absolute;
+  top: var(--tl-marker-center);
+  bottom: calc(-1 * (var(--tl-item-gap) + var(--tl-marker-center)));
+  left: var(--tl-spine-x);
+  width: 1px;
+  background: var(--accent);
+  opacity: 0.35;
+}
+
+.timeline__item:last-child::before {
+  display: none;
+}
+
+/* The half-pixel is deliberate: --tl-spine-x is the hairline's *left edge*,
+   kept on a whole pixel so the 1px line paints as one crisp column rather
+   than two half-lit ones (at 1x, centring it with translateX(-0.5px) makes
+   it visibly a soft 2px). Its centre is therefore 0.5px further right, and
+   the diamond — a rotated square, antialiased on every edge anyway — is the
+   one that absorbs the subpixel. */
 .timeline__marker {
   position: absolute;
-  top: 4px;
-  left: 18px;
+  top: calc(var(--tl-marker-center) - 6px);
+  left: calc(var(--tl-spine-x) - 5.5px);
   width: 12px;
   height: 12px;
 }
 
-.timeline__connector {
-  position: absolute;
-  top: 9px;
-  left: 36px;
-  width: 24px;
-  height: 1px;
-  background: var(--gold);
-}
-
+/* Stays the containing block for the .corner brackets in
+   components/shared.css — if this went static they'd escape to the item and
+   land on its edges instead of the plaque's. That constraint is what forces
+   the desktop date's offset maths below. Any change to the border width or
+   padding-top here has to be mirrored in --tl-card-inset above. */
 .timeline__card {
   position: relative;
   background: var(--surface);
-  border: 1px solid rgba(203, 163, 40, 0.4);
+  border: var(--tl-card-border) solid rgba(203, 163, 40, 0.4);
   padding: 22px 26px;
-  width: 100%;
 }
 
 .section:nth-child(even of .section) .timeline__card {
@@ -73,6 +122,7 @@
 .timeline__date {
   display: block;
   font-size: var(--fs-eyebrow);
+  line-height: 1.4;
   font-weight: 700;
   letter-spacing: 1.5px;
   color: var(--accent-strong);
@@ -100,7 +150,7 @@
 
 /* The card grows with --content-width while --measure grows only with
    --fs-body, so the text box outruns the measure from roughly 1200px up
-   (708px of text box against a 668px measure at 1440, 868 against 751 past
+   (706px of text box against a 680px measure at 1440, 866 against 765 past
    the ultra-wide step). Below that the cap is inert and the card's own
    padding sets the column. */
 .timeline__desc {
@@ -163,68 +213,77 @@
   margin-bottom: 0;
 }
 
-/* Desktop: pull the date out of the card and onto a rail on the spine's
-   far side.
+/* Desktop: give the spine and the date the first of the page's three
+   columns, and the text the other two.
 
-   The section spans the full --content-width like every other section, and
-   divides on the same three-column module the portfolio, skills and connect
-   grids use (see --grid-gutter): the rail is one column, the card is the
-   other two plus the gutter between them. So the spine lands on the same
-   vertical line the portfolio cards' edges sit on, and Experience starts and
-   ends on the two lines every other section shares. An earlier version of
-   this layout sized the rail and card in fixed px and centred the result,
-   which left the section inset ~146px from the content edge on both sides —
-   the only section on the page that didn't line up with the rest. */
+   The section spans the full --content-width like every other section and
+   divides it on the same three-column module the portfolio, skills and
+   connect grids use (see --grid-gutter). The spine sits 6px in from the
+   content edge so the 12px diamond centred on it starts flush with that
+   edge rather than hanging outside it; the date is indented from the spine
+   inside the same column; and the text block starts on the second column
+   line, where the middle portfolio card starts. So Experience begins and
+   ends on the two lines every other section shares.
+
+   An earlier version sized the rail and card in fixed px and centred the
+   result, which inset the section ~146px from the content edge on both
+   sides — the only section on the page that didn't line up. A later one
+   parked the spine mid-gutter with the date right-aligned in the column
+   behind it, which read as a second, competing margin. */
 @media (min-width: 781px) {
   .timeline {
     --tl-gutter: var(--grid-gutter);
+    --tl-item-gap: 48px;
+    --tl-spine-x: 6px;
+    --tl-date-indent: 46px;
+    /* What `repeat(3, 1fr)` below resolves each column to. The grid needs no
+       help computing it — this restates it for the date, which is placed by
+       hand rather than by the grid. */
     --tl-rail: calc((100% - 2 * var(--tl-gutter)) / 3);
+    /* Now that the date has moved out of the flow, the first line inside
+       the plaque is the title — half of its 1.2 line box. */
+    --tl-marker-center: calc(var(--tl-card-inset) + var(--fs-title) * 0.6);
   }
 
-  .timeline__spine {
-    left: calc(var(--tl-rail) + var(--tl-gutter) / 2);
-  }
-
+  /* Literally the same declaration the portfolio, skills and connect grids
+     use, so the rail edge and the plate edge land on lines those sections
+     already share. .timeline__card spans 2 / -1 from the base layer. */
   .timeline__item {
-    padding: 0 0 48px calc(var(--tl-rail) + var(--tl-gutter));
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--tl-gutter);
   }
 
-  .timeline__marker {
-    left: calc(var(--tl-rail) + var(--tl-gutter) / 2 - 6px);
-  }
+  /* Pulled out of the plaque and into the rail column, level with the title
+     it labels.
 
-  .timeline__connector {
-    left: calc(var(--tl-rail) + var(--tl-gutter) / 2 + 6px);
-    width: calc(var(--tl-gutter) / 2 - 6px);
-  }
+     The offset can't just be `left: var(--tl-date-indent)` off the item: the
+     date is a child of the card, which has to stay positioned for the
+     .corner brackets, so it's the card that `left` counts from. Nor can the
+     card's own column be re-expressed as --tl-rail — that's a percentage of
+     the *timeline*, but percentages here resolve against the card, i.e. a
+     third of two-thirds. Restating it in card terms: with rail R, gutter g,
+     card C and timeline width T, R = (T − 2g)/3 and C = T − R − g, so
+     T = (3C + g)/2 and R = (C − g)/2 — hence the halving below.
 
-  /* Anchored to the card, whose right edge `right` counts back from: 100%
-     of the card plus the gutter puts the rail's right edge flush with the
-     spine's rail-side margin.
-
-     The width can't just be --tl-rail. That's a percentage of the
-     *timeline*, but percentages here resolve against the card — a third of
-     two-thirds, i.e. a rail two-thirds too narrow. Restating it in terms of
-     the card: with rail R, gutter g, card C and timeline width T,
-     R = (T − 2g)/3 and C = T − R − g, so T = (3C + g)/2 and R = (C − g)/2.
-     Hence the halving below.
-
-     That comes out 2px under the real column, since percentages resolve
-     against the card's padding box and C is its border box. It doesn't
-     show: the rail has no box of its own and its text is right-aligned, so
-     only its right edge is visible — and that's set by `right`, which
-     lands on the same offset at every width.
-
-     (Making the card `position: static` would let --tl-rail resolve
-     directly, but the card is the containing block for the .corner
-     brackets in components/shared.css — they'd escape to the item and land
-     on the rail's edges instead of the card's.) */
+     Both offsets then need the card's border backed out, because absolute
+     offsets are measured from the containing block's *padding* edge — b in
+     from the border box the column maths is written in. Vertically that's
+     one b. Horizontally it's two: the padding box is also 2b narrower, so
+     the percentage above computes a rail exactly b short. Both are constant
+     at every width — they don't drift — so subtracting them lands the date
+     on a true --tl-date-indent from the content edge, level with the title.
+     (Verified 46.0px and centre-to-centre with .timeline__title from 800px
+     to 1920px in Chromium and Firefox.) */
   .timeline__date {
     position: absolute;
-    top: 25px;
-    right: calc(100% + var(--tl-gutter));
-    width: calc((100% - var(--tl-gutter)) / 2);
+    top: calc(
+      var(--tl-marker-center) - var(--tl-card-border) - var(--fs-eyebrow) * 0.7
+    );
+    left: calc(
+      var(--tl-date-indent) - 2 * var(--tl-card-border) - var(--tl-gutter) -
+        (100% - var(--tl-gutter)) / 2
+    );
+    width: calc((100% - var(--tl-gutter)) / 2 - var(--tl-date-indent));
     margin: 0;
-    text-align: right;
   }
 }
