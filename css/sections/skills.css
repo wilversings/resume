@@ -71,7 +71,6 @@
   height: var(--bubble-size);
   border-radius: 50%;
   background: var(--gradient-metal-shine);
-  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .skill-bubble::before {
@@ -133,22 +132,6 @@
    tier — emphasis is carried by diameter, not font size. */
 .skill-bubble--tight {
   --bubble-fs: 10px;
-}
-
-/* <li>s, not links — hover is pure decoration, no focus state owed. */
-.skill-bubble:hover {
-  transform: translateY(-3px);
-  filter: brightness(1.15);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skill-bubble {
-    transition: filter 0.2s ease;
-  }
-
-  .skill-bubble:hover {
-    transform: none;
-  }
 }
 
 @media (max-width: 780px) {
