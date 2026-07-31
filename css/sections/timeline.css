@@ -198,10 +198,14 @@
     --tl-item-gap: 48px;
     --tl-date-gap: 40px;
     --tl-marker-half: 6px;
+    /* The rail's one datum. Width, vertical centring and the spine's x all
+       derive from it, so changing it moves the whole group together — see
+       the step-up block below. */
+    --tl-date-fs: var(--fs-eyebrow);
     /* Fixed so every row's spine lands on the same x — a shrink-to-fit label
        would re-centre, and drag the spine with it, per row. Sized to the
        longest label at either type step. */
-    --tl-date-width: calc(var(--fs-eyebrow) * 10.5);
+    --tl-date-width: calc(var(--tl-date-fs) * 10.5);
     /* What `repeat(3, 1fr)` below resolves each column to, restated for the
        rail's contents, which are placed by hand. Percentages resolve against
        whatever uses the token, hence a second spelling for the date, which
@@ -234,8 +238,9 @@
      walks back a gutter, a rail and the border the offsets measure from. */
   .timeline__date {
     position: absolute;
+    font-size: var(--tl-date-fs);
     top: calc(
-      var(--tl-marker-center) - var(--tl-card-border) - var(--fs-eyebrow) * 0.7
+      var(--tl-marker-center) - var(--tl-card-border) - var(--tl-date-fs) * 0.7
     );
     left: calc(
       var(--tl-marker-half) + var(--tl-date-gap) - var(--tl-gutter) -
@@ -246,5 +251,14 @@
     margin: 0;
     text-align: center;
     white-space: nowrap;
+  }
+}
+
+/* The date is all the rail carries, so it takes a size up — but only where
+   the rail is wide enough for the wider group: below this the diamond ends
+   up crowded against the content edge. */
+@media (min-width: 1000px) {
+  .timeline {
+    --tl-date-fs: var(--fs-sm);
   }
 }
