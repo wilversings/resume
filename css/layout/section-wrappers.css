@@ -4,7 +4,7 @@
 
 .section {
   position: relative;
-  padding: 80px 24px;
+  padding: 56px 24px 80px;
   scroll-margin-top: var(--header-height);
 }
 
@@ -59,7 +59,7 @@
 
 @media (max-width: 780px) {
   .section {
-    padding: 56px 20px;
+    padding: 40px 20px 56px;
   }
 
   .cornice svg {
