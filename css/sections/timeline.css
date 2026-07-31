@@ -256,9 +256,28 @@
 
 /* The date is all the rail carries, so it takes a size up — but only where
    the rail is wide enough for the wider group: below this the diamond ends
-   up crowded against the content edge. */
-@media (min-width: 1000px) {
+   up crowded against the content edge. A quarter-width rail doesn't have the
+   room until --content-width takes its ultra-wide step. */
+@media (min-width: 1600px) {
   .timeline {
     --tl-date-fs: var(--fs-sm);
+  }
+}
+
+/* Four-column layer: the rail takes 1 of 4 rather than 1 of 3, on the same
+   12-column base the three-column grids span. The floor is where a quarter
+   rail still clears the diamond of the content edge. */
+@media (min-width: 1000px) {
+  .timeline {
+    --tl-rail: calc((100% - 3 * var(--tl-gutter)) / 4);
+    /* Restated against the card, which is now three rails and two gutters,
+       measured from its padding box — hence the border term. */
+    --tl-rail-from-card: calc(
+      (100% - 2 * var(--tl-gutter)) / 3 + var(--tl-card-border) * 2 / 3
+    );
+  }
+
+  .timeline__item {
+    grid-template-columns: repeat(4, 1fr);
   }
 }

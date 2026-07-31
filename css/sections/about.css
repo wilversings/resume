@@ -114,3 +114,13 @@
     justify-content: flex-start;
   }
 }
+
+/* Four-column layer: the badge takes 1 of 4 rather than 1 of 3, so About's
+   seam sits one base line left of the three-column grids' — both counts are
+   spans of the same 12-column base. Shares the timeline's floor, below which
+   a quarter column is too narrow for the rail's group. */
+@media (min-width: 1000px) {
+  .about__badge {
+    flex-basis: calc((100% - 3 * var(--grid-gutter)) / 4);
+  }
+}

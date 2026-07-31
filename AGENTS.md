@@ -323,14 +323,14 @@ would shear.
   `style.css` itself or creating a stray new file; if a rule is shared by
   more than one section (like `.btn`), it belongs in `css/components/`.
 - Class naming is loosely BEM (`.timeline__item`, `.btn--outline`).
-- Desktop sections share one three-column module: they span
-  `--content-width` and divide it with `--grid-gutter`. Portfolio, skills
-  and connect are literal `repeat(3, 1fr)` grids; the timeline divides the
-  same module 1 + 2 (date rail, then card). A section may use a different
-  column *count* — About is 2-up — but it should still start and end on the
-  content-width edges, and any internal division should land on a module
-  line. Don't give a grid its own gutter value; that's what left the three
-  grids at 40/56/30px with no shared column line.
+- Desktop sections share one 12-column base: they span `--content-width` and
+  divide it with `--grid-gutter`, which makes a 3-up section a span of 4
+  (360px) and a 4-up one a span of 3 (260px). Portfolio, skills and connect
+  are literal `repeat(3, 1fr)` grids; About and the timeline are 4-up, split
+  1 + 3 (badge, and date rail then card) above 1000px. A section may use
+  either count, but it must start and end on the content-width edges and
+  divide on a base line. Don't give a grid its own gutter value; that's what
+  left the three grids at 40/56/30px with no shared column line.
 - Chamfered "plaque" borders (buttons, connect cards) are deliberately
   *not* CSS `border` + `clip-path` — a clipped rectangular border strokes
   only the box's straight edges and drops the diagonal corners entirely.
