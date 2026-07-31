@@ -80,7 +80,7 @@
      element needs its own font-size media query. --fs-sm (UI text) must
      never exceed --fs-body, or the chrome outranks the content. */
   --fs-eyebrow: 12px;                 /* uppercase kickers, labels, dates, meta, copyright */
-  --fs-sm: 16px;                      /* UI text: nav, footer/skill labels, buttons */
+  --fs-sm: 16px;                      /* UI text: nav, footer/skill labels, buttons, desktop timeline dates */
   --fs-body: 16px;                    /* body copy: paragraphs, list items, card values */
   --fs-lead: 20px;                    /* lead paragraph / hero subtitle / section ledes */
   --fs-title: 22px;                   /* h3-level item titles (timeline, portfolio cards) */

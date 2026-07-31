@@ -11,10 +11,13 @@
   gap: var(--grid-gutter);
 }
 
+/* Square via aspect-ratio, never a fixed height: the viewBox is square, so
+   any height under the column's width letterboxes the art inside it. The cap
+   keeps the badge from outgrowing the body block beside it. */
 .about__badge {
   flex: 0 0 calc((100% - 2 * var(--grid-gutter)) / 3);
-  width: 200px;
-  height: 200px;
+  aspect-ratio: 1;
+  max-height: 320px;
   margin: 0 auto;
   position: relative;
 }
@@ -24,7 +27,10 @@
   min-width: 0;
 }
 
+/* display:block — the badge's height comes from its aspect-ratio, and an
+   inline SVG's baseline gap would add ~6px to it. */
 .about__badge svg {
+  display: block;
   width: 100%;
   height: 100%;
 }
@@ -86,8 +92,11 @@
     text-align: center;
   }
 
+  /* Stacked, so there's no column to fill — back to a fixed 200px object,
+     square via the aspect-ratio above. */
   .about__badge {
     flex-basis: auto;
+    width: 200px;
   }
 
   /* Text left-aligned, but the --measure-capped block itself centered —
