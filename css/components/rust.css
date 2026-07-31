@@ -4,20 +4,35 @@
    sprite does the same for SVG shape fills (e.g. button plates). The asset
    bakes gradient + turbulence into one image on purpose: a separate CSS
    gradient layer under an SVG filter image silently no-ops under
-   background-clip: text in Chromium.
+   background-clip: text in Chromium. Applying the live #rust SVG filter
+   directly to small text is a dead end too — feTurbulence's blotch scale
+   (~20px) dwarfs a heading's stroke width, so nothing reads; that's why
+   this is a second baked image rather than reuse of the #rust filter.
+   .text-rust-flat is the same trick with a single accent-gold fill instead
+   of the bronze→gold sweep, for spots that want the oxidized texture
+   without a directional gradient (section headings).
    ========================================================================== */
 
-.text-rust {
-  background-image: url("../../images/rust-texture.svg");
+.text-rust,
+.text-rust-flat {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
+.text-rust {
+  background-image: url("../../images/rust-texture.svg");
+}
+
+.text-rust-flat {
+  background-image: url("../../images/rust-texture-flat.svg");
+}
+
 /* Light mode: the baked image can't repaint with the tokens and doesn't suit
    a flat recolor, so drop the clip entirely for plain --accent-strong. Only
    used at hero-title size, well past the large-text 3:1 AA floor. */
-:root[data-theme="light"] .text-rust {
+:root[data-theme="light"] .text-rust,
+:root[data-theme="light"] .text-rust-flat {
   background-image: none;
   -webkit-background-clip: border-box;
   background-clip: border-box;

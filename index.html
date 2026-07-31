@@ -153,6 +153,26 @@
         <line x1="10" y1="14" x2="21" y2="3"/>
       </symbol>
 
+      <!-- Connect medallion glyphs: geometric line-art on a 32x32 field,
+           inheriting the medallion's currentColor. -->
+      <symbol id="icon-mail" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter">
+        <path d="M8,6 L24,6 L29,11 L29,21 L24,26 L8,26 L3,21 L3,11 Z"/>
+        <path d="M3,11 L16,19.5 L29,11"/>
+      </symbol>
+
+      <symbol id="icon-linkedin" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter">
+        <rect x="5.9" y="4.7" width="4.2" height="4.2" transform="rotate(45 8 6.8)" fill="currentColor" stroke="none"/>
+        <path d="M8,12 L8,26"/>
+        <path d="M14.5,26 L14.5,15 L17.5,12 L21,12 L24,15 L24,26"/>
+      </symbol>
+
+      <symbol id="icon-github" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter">
+        <path d="M8.5,5 L12.5,8 L19.5,8 L23.5,5 L25,11 L25,18.5 L20,23.5 L12,23.5 L7,18.5 L7,11 Z"/>
+        <path d="M11.5,23.5 L8,27 L3.5,27"/>
+        <rect x="10.7" y="12.7" width="3.6" height="3.6" transform="rotate(45 12.5 14.5)" fill="currentColor" stroke="none"/>
+        <rect x="17.7" y="12.7" width="3.6" height="3.6" transform="rotate(45 19.5 14.5)" fill="currentColor" stroke="none"/>
+      </symbol>
+
       <!-- Button plaque frame — plate, hover-clean plate, ring, molding. Both
            the 184x46 button and the 144x36 portfolio miniature are 4:1, so the
            miniature is this scaled uniformly, not a second shape. Skinned by
@@ -276,7 +296,7 @@
     <div class="section__inner">
       <div class="section-heading">
         <svg class="icon-flourish" viewBox="-4 -20 44 40" aria-hidden="true"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
-        <h2 class="section-heading__text">About Me</h2>
+        <h2 class="section-heading__text text-rust-flat">About Me</h2>
         <svg class="icon-flourish icon-flourish--right" viewBox="-4 -20 44 40" aria-hidden="true"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
       </div>
       <span class="section-rule"></span>
@@ -337,7 +357,7 @@
     <div class="section__inner">
       <div class="section-heading">
         <svg class="icon-flourish" viewBox="-4 -20 44 40" aria-hidden="true"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
-        <h2 class="section-heading__text">Experience</h2>
+        <h2 class="section-heading__text text-rust-flat">Experience</h2>
         <svg class="icon-flourish icon-flourish--right" viewBox="-4 -20 44 40" aria-hidden="true"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
       </div>
       <span class="section-rule"></span>
@@ -457,7 +477,7 @@
     <div class="section__inner">
       <div class="section-heading">
         <svg class="icon-flourish" viewBox="-4 -20 44 40" aria-hidden="true"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
-        <h2 class="section-heading__text">Portfolio</h2>
+        <h2 class="section-heading__text text-rust-flat">Portfolio</h2>
         <svg class="icon-flourish icon-flourish--right" viewBox="-4 -20 44 40" aria-hidden="true"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
       </div>
       <span class="section-rule"></span>
@@ -574,7 +594,7 @@
     <div class="section__inner">
       <div class="section-heading">
         <svg class="icon-flourish" viewBox="-4 -20 44 40" aria-hidden="true"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
-        <h2 class="section-heading__text">Skills</h2>
+        <h2 class="section-heading__text text-rust-flat">Skills</h2>
         <svg class="icon-flourish icon-flourish--right" viewBox="-4 -20 44 40" aria-hidden="true"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
       </div>
       <span class="section-rule"></span>
@@ -644,7 +664,7 @@
     <div class="section__inner">
       <div class="section-heading">
         <svg class="icon-flourish" viewBox="-4 -20 44 40" aria-hidden="true"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
-        <h2 class="section-heading__text">Connect</h2>
+        <h2 class="section-heading__text text-rust-flat">Connect</h2>
         <svg class="icon-flourish icon-flourish--right" viewBox="-4 -20 44 40" aria-hidden="true"><use href="#icon-flourish" x="-4" y="-20" width="44" height="40"/></svg>
       </div>
       <span class="section-rule"></span>
@@ -652,26 +672,26 @@
 
       <div class="connect__grid">
         <a class="connect__card" href="mailto:aiordachioaei.marius@gmail.com">
-          <span class="connect__label">
-            <svg class="icon-diamond" viewBox="-6 -6 12 12" aria-hidden="true"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
-            Email
+          <span class="connect__medallion">
+            <svg class="connect__icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-mail"/></svg>
           </span>
+          <span class="connect__label">Email</span>
           <span class="connect__value">aiordachioaei.marius@gmail.com</span>
         </a>
 
         <a class="connect__card" href="https://www.linkedin.com/in/mariusaiordăchioaei-43443b10b" target="_blank" rel="noopener">
-          <span class="connect__label">
-            <svg class="icon-diamond" viewBox="-6 -6 12 12" aria-hidden="true"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
-            LinkedIn
+          <span class="connect__medallion">
+            <svg class="connect__icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-linkedin"/></svg>
           </span>
+          <span class="connect__label">LinkedIn</span>
           <span class="connect__value">linkedin.com/in/mariusaiordăchioaei-43443b10b</span>
         </a>
 
         <a class="connect__card" href="https://github.com/wilversings" target="_blank" rel="noopener">
-          <span class="connect__label">
-            <svg class="icon-diamond" viewBox="-6 -6 12 12" aria-hidden="true"><use href="#icon-diamond" x="-6" y="-6" width="12" height="12"/></svg>
-            GitHub
+          <span class="connect__medallion">
+            <svg class="connect__icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-github"/></svg>
           </span>
+          <span class="connect__label">GitHub</span>
           <span class="connect__value">github.com/wilversings</span>
         </a>
       </div>

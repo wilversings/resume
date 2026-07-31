@@ -103,6 +103,7 @@
   letter-spacing: 1.5px;
   color: var(--accent-strong);
   margin-bottom: 10px;
+  filter: drop-shadow(2px 4px 6px black);
 }
 
 .timeline__title {

@@ -89,8 +89,10 @@ automatically a bug — use judgment on whether the live page's evolution was
 intentional.
 
 The live sprite defines `#icon-flourish`, `#icon-ziggurat`, `#icon-corner`,
-`#icon-diamond`, `#icon-ext-link` and the two button plaque frames
-`#btn-frame` / `#btn-frame-wide`. The sunburst is *not* a sprite symbol:
+`#icon-diamond`, `#icon-ext-link`, the connect-card glyphs `#icon-mail` /
+`#icon-linkedin` / `#icon-github` (geometric line-art that inherits its
+plate's `currentColor`), and the two button plaque frames `#btn-frame` /
+`#btn-frame-wide`. The sunburst is *not* a sprite symbol:
 it's built from `repeating-conic-gradient` wedges in
 `css/components/sunburst.css`.
 
@@ -175,7 +177,7 @@ modes before it's done**, not just the mode you happened to be looking at.
   `--bronze`, etc.) never changes with theme. It's what a few spots
   deliberately keep using instead of the semantic tokens: gold-plated
   badges/buttons (`.btn--solid`, `.portfolio__num`, `.connect__card`,
-  `.skill-bubble`) pair a literal gold plate with `--on-accent` (a fixed
+  `.connect__medallion`, `.skill-bubble`) pair a literal gold plate with `--on-accent` (a fixed
   dark ink) so their text stays legible regardless of theme. Don't
   "fix" these onto the semantic tokens — that's what breaks their
   contrast in light mode.
