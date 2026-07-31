@@ -69,9 +69,8 @@
 }
 
 /* The half-pixel is deliberate: --tl-spine-x is the hairline's *left edge*,
-   kept whole so the 1px line paints crisp rather than as a soft 2px. Its
-   centre is 0.5px right of that, and the diamond — antialiased on every
-   edge anyway — is the one that absorbs the subpixel. */
+   so its centre is 0.5px right of that, and the diamond — antialiased on
+   every edge anyway — is the one that absorbs the subpixel. */
 .timeline__marker {
   position: absolute;
   top: calc(var(--tl-marker-center) - 6px);
@@ -190,18 +189,33 @@
 /* Desktop: spine and date take the first of the page's three columns, text
    takes the other two, on the same module as the portfolio/skills/connect
    grids (see --grid-gutter) — so Experience begins and ends on the lines
-   every other section shares. The spine sits 6px in from the content edge
-   so the 12px diamond centred on it starts flush with that edge rather
-   than hanging outside it. */
+   every other section shares. Diamond, spine and date are one unit, centred
+   in that column together rather than pinned to the content edge. */
 @media (min-width: 781px) {
   .timeline {
     --tl-gutter: var(--grid-gutter);
     --tl-item-gap: 48px;
-    --tl-spine-x: 6px;
-    --tl-date-indent: 46px;
+    --tl-date-gap: 40px;
+    --tl-marker-half: 6px;
+    /* Fixed so every row's spine lands on the same x — a shrink-to-fit label
+       would re-centre, and drag the spine with it, per row. Sized to the
+       longest label at either type step. */
+    --tl-date-width: calc(var(--fs-eyebrow) * 10.5);
     /* What `repeat(3, 1fr)` below resolves each column to, restated for the
-       date — which is placed by hand rather than by the grid. */
+       rail's contents, which are placed by hand. Percentages resolve against
+       whatever uses the token, hence a second spelling for the date, which
+       sits inside the card. */
     --tl-rail: calc((100% - 2 * var(--tl-gutter)) / 3);
+    --tl-rail-from-card: calc(
+      (100% - var(--tl-gutter)) / 2 + var(--tl-card-border)
+    );
+    /* The unit: diamond's left edge through the label's right edge. */
+    --tl-group: calc(
+      var(--tl-marker-half) + var(--tl-date-gap) + var(--tl-date-width)
+    );
+    --tl-spine-x: calc(
+      (var(--tl-rail) - var(--tl-group)) / 2 + var(--tl-marker-half)
+    );
     /* With the date out of flow, the plaque's first line is the title */
     --tl-marker-center: calc(var(--tl-card-inset) + var(--fs-title) * 0.6);
   }
@@ -213,26 +227,23 @@
     column-gap: var(--tl-gutter);
   }
 
-  /* Pulled out of the plaque into the rail column, level with its title.
-
-     `left` counts from the card, not the item — the card has to stay
-     positioned for the .corner brackets — so percentages here resolve
-     against the card and --tl-rail can't be reused directly. With rail R,
-     gutter g and card C: R = (C − g)/2, hence the halving. Both offsets
-     then back out the card's border b, since absolute offsets measure from
-     the padding edge: one b vertically, two horizontally (the padding box
-     is also 2b narrower, leaving the percentage a b short). Both constants,
-     so the date holds a true --tl-date-indent at every width. */
+  /* Pulled out of the plaque into the rail column, level with its title and
+     --tl-date-gap right of the spine. `left` counts from the card, not the
+     item — the card must stay positioned for the .corner brackets — so it
+     walks back a gutter, a rail and the border the offsets measure from. */
   .timeline__date {
     position: absolute;
     top: calc(
       var(--tl-marker-center) - var(--tl-card-border) - var(--fs-eyebrow) * 0.7
     );
     left: calc(
-      var(--tl-date-indent) - 2 * var(--tl-card-border) - var(--tl-gutter) -
-        (100% - var(--tl-gutter)) / 2
+      var(--tl-marker-half) + var(--tl-date-gap) - var(--tl-gutter) -
+        var(--tl-card-border) -
+        (var(--tl-rail-from-card) + var(--tl-group)) / 2
     );
-    width: calc((100% - var(--tl-gutter)) / 2 - var(--tl-date-indent));
+    width: var(--tl-date-width);
     margin: 0;
+    text-align: center;
+    white-space: nowrap;
   }
 }
