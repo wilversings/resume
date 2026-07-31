@@ -13,13 +13,14 @@
   /* Where the spine sits. The marker, date and spine endpoints all pin to
      the card's first line of text, not its top edge, so the diamond reads
      as pointing at it. Re-pointed by the desktop layer below. */
-  --tl-spine-x: 24px;
+  --tl-spine-x: 16px;
   /* The one knob for the section's vertical rhythm — items carry no bottom
      padding of their own. */
   --tl-item-gap: 40px;
-  /* Mobile only: how far the plate clears the spine. Desktop replaces this
-     column with the page's three-column module. */
-  --tl-card-indent: 60px;
+  /* Mobile only: how far the plate clears the spine. Kept tight so the rail
+     doesn't eat into the narrow viewport's text column. Desktop replaces
+     this column with the page's three-column module. */
+  --tl-card-indent: 42px;
   --tl-card-border: 1px;
   --tl-card-inset: calc(var(--tl-card-border) + 22px);
   /* Half the first line's box, so the 12px diamond centres on it. Derived,
