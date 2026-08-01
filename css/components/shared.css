@@ -37,6 +37,10 @@
   stroke-opacity: 0.8;
   stroke-width: 5;
   fill: none;
+  /* Above z-index:auto siblings like .portfolio__thumb, which bleeds over
+     the card padding and would otherwise paint over (and flatten) the
+     top corner's chamfer. */
+  z-index: 2;
 }
 
 .corner--tl {

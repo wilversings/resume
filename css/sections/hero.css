@@ -187,7 +187,7 @@
    the buttons, so it needs a step between them. */
 .hero__subtitle {
   font-family: var(--font-body);
-  font-size: var(--fs-lead);
+  font-size: var(--fs-body);
   letter-spacing: 2px;
   color: var(--ink);
   opacity: 0.85;
