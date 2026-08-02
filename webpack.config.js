@@ -12,7 +12,9 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: 'js/[name].[contenthash:8].js',
-      clean: true,
+      // Dev-server only: on every HMR rebuild this purges HtmlWebpackPlugin's
+      // template-required images from the in-memory fs, 404ing them after the first edit.
+      clean: isProduction,
     },
     module: {
       rules: [
@@ -31,7 +33,7 @@ module.exports = (env, argv) => {
           use: [{ loader: 'svgo-loader' }],
         },
         {
-          test: /\.(png|jpe?g)$/i,
+          test: /\.(png|jpe?g|webp)$/i,
           type: 'asset/resource',
           generator: { filename: 'images/[name].[contenthash:8][ext]' },
         },

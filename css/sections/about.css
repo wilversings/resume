@@ -11,12 +11,13 @@
   gap: var(--grid-gutter);
 }
 
-/* Square via aspect-ratio, never a fixed height: the viewBox is square, so
-   any height under the column's width letterboxes the art inside it. The cap
-   keeps the badge from outgrowing the body block beside it. */
+/* Square via aspect-ratio. Both max-width and max-height cap the box: with
+   only max-height, aspect-ratio can't re-derive the flex-basis width, so the
+   box goes non-square and the photo's clip-path hexagon skews vs the SVG's. */
 .about__badge {
   flex: 0 0 calc((100% - 2 * var(--grid-gutter)) / 3);
   aspect-ratio: 1;
+  max-width: 320px;
   max-height: 320px;
   margin: 0 auto;
   position: relative;
@@ -33,6 +34,23 @@
   display: block;
   width: 100%;
   height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Sized to the hexagon's own bounding box (104x120 of the SVG's 140-unit
+   square, i.e. 74.29% x 85.71%), not the full square — fitting object-fit's
+   cover crop to what the clip-path actually shows, instead of covering the
+   full square and clipping away the four corners as wasted pixels. */
+.about__badge-photo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 74.2857%;
+  height: 85.7143%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
 /* --fs-lead: this is the page's introduction, not filler prose. The free
@@ -89,7 +107,7 @@
 
 @media (max-width: 900px) {
   .about {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 40px;
     text-align: center;
   }
