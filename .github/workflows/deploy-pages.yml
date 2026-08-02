@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to staging (wilversings.github.io/resume)
 
 on:
   push:
