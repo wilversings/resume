@@ -13,7 +13,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  text-decoration: none;
   background: var(--surface);
   border: 1px solid rgba(203, 163, 40, 0.4);
   padding: 25px;
@@ -22,6 +21,15 @@
 
 .portfolio__card:hover {
   border-color: rgba(239, 198, 3, 0.7);
+}
+
+/* No link to follow, so it must not answer the pointer like the others do. */
+.portfolio__card--muted:hover {
+  border-color: rgba(203, 163, 40, 0.4);
+}
+
+.portfolio__card--muted:hover .portfolio__thumb {
+  filter: none;
 }
 
 .portfolio__link {
@@ -50,6 +58,7 @@
 .portfolio__thumb--climat,
 .portfolio__thumb--maxwell,
 .portfolio__thumb--contriburg,
+.portfolio__thumb--tradeville,
 .portfolio__thumb--automatednn {
   background-size: contain;
   background-origin: content-box;
@@ -59,6 +68,7 @@
 .portfolio__thumb--climat { background-image: url("../../images/portfolio/climat-logo.svg"); }
 .portfolio__thumb--maxwell { background-image: url("../../images/portfolio/maxwell.png"); }
 .portfolio__thumb--contriburg { background-image: url("../../images/portfolio/contriburg-icon.png"); }
+.portfolio__thumb--tradeville { background-image: url("../../images/portfolio/tradeville-depth.svg"); }
 .portfolio__thumb--automatednn { background-image: url("../../images/portfolio/automatednn-network.svg"); }
 
 /* A real screenshot — meant to bleed edge-to-edge like a banner. */
@@ -123,13 +133,27 @@
   font-weight: 700;
 }
 
+/* Same treatment as .timeline__stack, so the tech line reads identically
+   wherever a card ends. */
+.portfolio__stack {
+  margin: 14px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(203, 163, 40, 0.25);
+  font-family: var(--font-nav);
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
 /* Compact plaque: the hero/connect .btn (184x46) scaled to 78.26% so two fit
    side by side. Both boxes are 4:1, so #btn-frame shrinks uniformly on its
    own; only the label's size/tracking need the factor applied by hand. */
 .portfolio__action {
   width: 144px;
   height: 36px;
-  margin-top: 16px;
 }
 
 .portfolio__action .btn__label {
@@ -143,10 +167,6 @@
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 16px;
-}
-
-.portfolio__actions .portfolio__action {
-  margin-top: 0;
 }
 
 .portfolio__more {

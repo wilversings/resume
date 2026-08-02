@@ -378,7 +378,7 @@
               <li>Interview intern and full-time engineering candidates</li>
               <li>Write automation coverage in a DSL-driven test framework; keep CI/CD code and pipelines healthy ahead of failures</li>
             </ul>
-            <p class="timeline__stack">KOTLIN · JAVA · GROOVY · OSGI · C++ · C#</p>
+            <p class="timeline__stack">Kotlin · Java · Groovy · OSGI · C++ · C#</p>
           </div>
         </article>
 
@@ -399,7 +399,7 @@
               <li>Shipped features across at-mentions and the message compose experience</li>
               <li>Removed the cold start on the at-mention picker: up to ~3 seconds on first use, down to instant</li>
             </ul>
-            <p class="timeline__stack">TYPESCRIPT · REACT · REACTIVEX</p>
+            <p class="timeline__stack">TypeScript · React · ReactiveX</p>
           </div>
         </article>
 
@@ -419,7 +419,7 @@
               <li>Repaired and refactored the internal release-automation tool; reviewed code across teams</li>
               <li>Mentored a summer intern; interviewed intern and full-time candidates</li>
             </ul>
-            <p class="timeline__stack">JAVA · KOTLIN · GROOVY · OSGI · C# · REACTIVEX · WINFORMS · WPF · F# · REACT · TYPESCRIPT · PYTHON</p>
+            <p class="timeline__stack">Java · Kotlin · Groovy · OSGI · C# · ReactiveX · WinForms · WPF · F# · React · TypeScript · Python</p>
           </div>
         </article>
 
@@ -436,7 +436,7 @@
               <li>Built rich, heavily customizable UIs and synchronization between systems</li>
               <li>Reverse-engineered and migrated the legacy solution</li>
             </ul>
-            <p class="timeline__stack">ANGULAR · .NET STACK · ACTIVE DIRECTORY / LDAP</p>
+            <p class="timeline__stack">Angular · .NET Stack · Active Directory / LDAP</p>
           </div>
         </article>
 
@@ -454,7 +454,7 @@
               <li>Mentored an intern with no prior experience over six months, then two junior developers</li>
               <li>Led large refactorings and modernizations of the codebase</li>
             </ul>
-            <p class="timeline__stack">C# · MSSQL · ENTITY FRAMEWORK · OSLC · WCF · ASP.NET MVC · ACTIVE DIRECTORY / LDAP · IBM RATIONAL</p>
+            <p class="timeline__stack">C# · MSSQL · Entity Framework · OSLC · WCF · ASP.NET MVC · Active Directory / LDAP · IBM Rational</p>
           </div>
         </article>
 
@@ -472,7 +472,7 @@
               <li>Made key technical decisions on customer requirements and domain modelling</li>
               <li>Repaired and modernized the legacy product</li>
             </ul>
-            <p class="timeline__stack">EXTJS · C# · SQL SERVER · ENTITY FRAMEWORK · WEBFORMS · ASP.NET WEBAPI</p>
+            <p class="timeline__stack">ExtJS · C# · SQL Server · Entity Framework · WebForms · ASP.NET WebAPI</p>
           </div>
         </article>
       </div>
@@ -495,6 +495,9 @@
       </div>
       <span class="section-rule"></span>
 
+      <!-- One card shape throughout: a .portfolio__link covering thumb through
+           description, then the evidence lines, then any actions. The link
+           grows so those trailing rows sit on the card floor. -->
       <div class="portfolio__grid">
         <div class="portfolio__card">
           <svg class="corner corner--tl" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
@@ -504,31 +507,42 @@
               <span class="portfolio__num">01</span>
             </div>
             <h3 class="portfolio__title">Climat</h3>
-            <span class="portfolio__cat">CLI Macro Tool</span>
-            <p class="portfolio__desc">Write declarative CLI macros in a simple DSL and compile them into fast, consistent command-line tools.</p>
+            <span class="portfolio__cat">DSL &amp; Interpreter</span>
+            <p class="portfolio__desc">A small language for describing command-line interfaces, and the interpreter that turns it into real, self-documenting tools.</p>
+            <span class="sr-only">(opens in new tab)</span>
           </a>
+          <p class="portfolio__stat"><strong>10 releases</strong> published to npm</p>
+          <p class="portfolio__stack">Kotlin · ANTLR · Gradle · npm</p>
           <div class="portfolio__actions">
-            <button type="button" class="btn btn--outline portfolio__action" data-dialog-open="climatDialog">
+            <button type="button" class="btn btn--solid portfolio__action" data-dialog-open="climatDialog">
               <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
-              <span class="btn__label">Try It Out</span>
+              <span class="btn__label">Live Demo</span>
             </button>
-            <button type="button" class="btn btn--outline portfolio__action" disabled>
+            <a class="btn btn--outline portfolio__action" href="https://wilversings.github.io/climat/docs/" target="_blank" rel="noopener">
               <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
-              <span class="btn__label">Stay Tuned</span>
-            </button>
+              <span class="btn__label btn__label--ext">
+                Docs
+                <svg class="btn__ext-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-ext-link"/></svg>
+                <span class="sr-only">(opens in new tab)</span>
+              </span>
+            </a>
           </div>
         </div>
 
-        <a class="portfolio__card" href="https://github.com/wilversings/resume" target="_blank" rel="noopener">
+        <div class="portfolio__card portfolio__card--muted">
           <svg class="corner corner--tl" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
-          <div class="portfolio__thumb portfolio__thumb--resume">
-            <span class="portfolio__num">02</span>
+          <div class="portfolio__link">
+            <div class="portfolio__thumb portfolio__thumb--tradeville">
+              <span class="portfolio__num">02</span>
+            </div>
+            <h3 class="portfolio__title">Tradeville MCP</h3>
+            <span class="portfolio__cat">MCP Server &amp; Fintech</span>
+            <p class="portfolio__desc">Puts a live brokerage account — portfolio, orders, market depth — within reach of an AI assistant, over the Model Context Protocol.</p>
           </div>
-          <h3 class="portfolio__title">Resume Site</h3>
-          <span class="portfolio__cat">Web Application</span>
-          <p class="portfolio__desc">This résumé — an Art Deco single-page site hand-built with vanilla JS, CSS and Webpack.</p>
-        </a>
+          <p class="portfolio__stat"><strong>Publishing soon</strong> — repo going public</p>
+          <p class="portfolio__stack">TypeScript · MCP · Node</p>
+        </div>
 
         <div class="portfolio__card">
           <svg class="corner corner--tl" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
@@ -538,18 +552,22 @@
               <span class="portfolio__num">03</span>
             </div>
             <h3 class="portfolio__title">Maxwell</h3>
-            <span class="portfolio__cat">KDE Plasma Widget</span>
+            <span class="portfolio__cat">Plasma Widget &amp; 3D</span>
             <p class="portfolio__desc">A carryable desktop cat for KDE Plasma, with animated GIF and orbiting 3D mesh display modes.</p>
+            <span class="sr-only">(opens in new tab)</span>
           </a>
           <p class="portfolio__stat"><strong>7,000+</strong> downloads on the KDE Store</p>
-          <a class="btn btn--outline portfolio__action" href="https://store.kde.org/p/2274580" target="_blank" rel="noopener">
-            <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
-            <span class="btn__label btn__label--ext">
-              KDE Store
-              <svg class="btn__ext-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-ext-link"/></svg>
-              <span class="sr-only">(opens in new tab)</span>
-            </span>
-          </a>
+          <p class="portfolio__stack">QML · Qt Quick 3D · KDE Plasma 6</p>
+          <div class="portfolio__actions">
+            <a class="btn btn--outline portfolio__action" href="https://store.kde.org/p/2274580" target="_blank" rel="noopener">
+              <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
+              <span class="btn__label btn__label--ext">
+                KDE Store
+                <svg class="btn__ext-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-ext-link"/></svg>
+                <span class="sr-only">(opens in new tab)</span>
+              </span>
+            </a>
+          </div>
         </div>
 
         <div class="portfolio__card">
@@ -560,29 +578,55 @@
               <span class="portfolio__num">04</span>
             </div>
             <h3 class="portfolio__title">Contriburg</h3>
-            <span class="portfolio__cat">Visualization Tool</span>
+            <span class="portfolio__cat">Data Viz &amp; 3D</span>
             <p class="portfolio__desc">Turns your GitHub or GitLab contribution graph into a 3D city skyline you can orbit and explore.</p>
+            <span class="sr-only">(opens in new tab)</span>
           </a>
-          <a class="btn btn--outline portfolio__action" href="https://store.kde.org/p/2365803/" target="_blank" rel="noopener">
-            <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
-            <span class="btn__label btn__label--ext">
-              KDE Store
-              <svg class="btn__ext-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-ext-link"/></svg>
-              <span class="sr-only">(opens in new tab)</span>
-            </span>
-          </a>
+          <p class="portfolio__stat"><strong>Two</strong> backends — GitHub and GitLab</p>
+          <p class="portfolio__stack">QML · Qt Quick 3D · KDE Plasma 6</p>
+          <div class="portfolio__actions">
+            <a class="btn btn--outline portfolio__action" href="https://store.kde.org/p/2365803/" target="_blank" rel="noopener">
+              <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
+              <span class="btn__label btn__label--ext">
+                KDE Store
+                <svg class="btn__ext-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-ext-link"/></svg>
+                <span class="sr-only">(opens in new tab)</span>
+              </span>
+            </a>
+          </div>
         </div>
 
-        <a class="portfolio__card" href="https://github.com/wilversings/AutomatedNnTuning" target="_blank" rel="noopener">
+        <div class="portfolio__card">
           <svg class="corner corner--tl" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
-          <div class="portfolio__thumb portfolio__thumb--automatednn">
-            <span class="portfolio__num">05</span>
-          </div>
-          <h3 class="portfolio__title">AutomatedNN</h3>
-          <span class="portfolio__cat">Machine Learning</span>
-          <p class="portfolio__desc">Undergrad thesis automating neural network design with evolutionary algorithms (neural architecture search).</p>
-        </a>
+          <a class="portfolio__link" href="https://github.com/wilversings/AutomatedNnTuning" target="_blank" rel="noopener">
+            <div class="portfolio__thumb portfolio__thumb--automatednn">
+              <span class="portfolio__num">05</span>
+            </div>
+            <h3 class="portfolio__title">AutomatedNN</h3>
+            <span class="portfolio__cat">Machine Learning</span>
+            <p class="portfolio__desc">Automates neural network design with evolutionary algorithms — neural architecture search, built from scratch.</p>
+            <span class="sr-only">(opens in new tab)</span>
+          </a>
+          <p class="portfolio__stat"><strong>B.Sc. thesis</strong> · Universitatea Babeș-Bolyai</p>
+          <p class="portfolio__stack">Python · Keras · TensorFlow</p>
+        </div>
+
+        <div class="portfolio__card">
+          <svg class="corner corner--tl" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
+          <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
+          <a class="portfolio__link" href="https://github.com/wilversings/resume" target="_blank" rel="noopener">
+            <div class="portfolio__thumb portfolio__thumb--resume">
+              <span class="portfolio__num">06</span>
+            </div>
+            <h3 class="portfolio__title">Resume Site</h3>
+            <span class="portfolio__cat">Front-End &amp; Vanilla Web</span>
+            <p class="portfolio__desc">A venture into UI design — this résumé. Every Art Deco motif, layout and interaction drawn and built by hand.</p>
+            <span class="sr-only">(opens in new tab)</span>
+          </a>
+          <p class="portfolio__stat"><strong>Zero</strong> runtime dependencies</p>
+          <p class="portfolio__stack">HTML · CSS · JavaScript · Webpack</p>
+        </div>
       </div>
 
       <a href="https://github.com/wilversings" target="_blank" rel="noopener" class="btn btn--outline btn--wide portfolio__more">

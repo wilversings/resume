@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 120" fill="none">
+  <!-- an agent node plugged into a market-depth ladder -->
+  <g stroke="#efc603" stroke-width="1.5">
+    <path d="M110,4 L118.7,9 L118.7,19 L110,24 L101.3,19 L101.3,9 Z"/>
+    <path d="M105.5,19 L105.5,11.5 L110,9 L114.5,11.5 L114.5,19" stroke-width="1"/>
+  </g>
+
+  <line x1="110" y1="24" x2="110" y2="114" stroke="#cba328" stroke-opacity="0.55" stroke-width="1"/>
+
+  <g stroke="#efc603" stroke-width="1.5" fill="#cba328" fill-opacity="0.18">
+    <rect x="72" y="36" width="34" height="10"/>
+    <rect x="50" y="52" width="56" height="10"/>
+    <rect x="34" y="68" width="72" height="10"/>
+    <rect x="50" y="84" width="56" height="10"/>
+    <rect x="72" y="100" width="34" height="10"/>
+
+    <rect x="114" y="36" width="34" height="10"/>
+    <rect x="114" y="52" width="56" height="10"/>
+    <rect x="114" y="68" width="72" height="10"/>
+    <rect x="114" y="84" width="56" height="10"/>
+    <rect x="114" y="100" width="34" height="10"/>
+  </g>
+
+  <path d="M110,66 L114,73 L110,80 L106,73 Z" fill="#efc603"/>
+</svg>
