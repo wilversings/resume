@@ -34,7 +34,8 @@
 }
 
 /* Gold plate with fixed dark ink, so the glyph keeps its contrast in both
-   themes (see AGENTS.md rule 4). */
+   themes (see AGENTS.md rule 4). The plate lives in ::before so the #rust
+   filter (see rust.css) textures only the metal, not the icon on top. */
 .connect__medallion {
   display: flex;
   align-items: center;
@@ -43,11 +44,26 @@
   height: 46px;
   margin-bottom: 18px;
   color: var(--on-accent);
+}
+
+.connect__medallion::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: var(--gradient-metal-vert);
+  filter: url(#rust);
   clip-path: polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0 calc(100% - 7px), 0 7px);
 }
 
+/* Light mode keeps the plate clean rather than weathered — same call as
+   .btn--solid/.btn--outline in buttons.css. */
+:root[data-theme="light"] .connect__medallion::before {
+  filter: none;
+}
+
 .connect__icon {
+  position: relative;
+  z-index: 1;
   width: 26px;
   height: 26px;
 }

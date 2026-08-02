@@ -106,6 +106,10 @@
   filter: drop-shadow(2px 4px 6px black);
 }
 
+:root[data-theme="light"] .timeline__date {
+  filter: none;
+}
+
 .timeline__title {
   margin: 0 0 6px;
   font-family: var(--font-nav);

@@ -59,11 +59,13 @@
   column-gap: 12px;
   row-gap: 3px;
   text-align: left;
+  align-content: start;
+  align-items: center;
+ 
 }
 
 .about__meta-item .icon-diamond {
-  grid-row: 1 / span 2;
-  margin-top: 0.55em;
+  grid-row: 1;
 }
 
 .about__meta-label {
@@ -108,9 +110,5 @@
 
   .about__meta {
     grid-template-columns: 1fr;
-  }
-
-  .about__meta-item {
-    justify-content: flex-start;
   }
 }
