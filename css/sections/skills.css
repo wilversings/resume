@@ -134,6 +134,42 @@
   --bubble-fs: 10px;
 }
 
+/* "Pursuing" marker — a literal gold plate with fixed --on-accent ink
+   (AGENTS.md rule 4). No #rust here: the turbulence reads as dirt at this
+   diameter, unlike on the small connect medallions. */
+.skill-bubble--focus {
+  flex-direction: column;
+  gap: 3px;
+}
+
+.skill-bubble--focus::before {
+  background: var(--gradient-metal-vert);
+}
+
+/* the gold hairline ring disappears against the plate; invert it to dark ink */
+.skill-bubble--focus::after {
+  border-color: rgba(13, 17, 34, 0.35);
+}
+
+.skill-bubble--focus .skill-bubble__label {
+  color: var(--on-accent);
+}
+
+/* Inscribed inside the medallion rather than keyed in a legend, so the
+   emphasis needs no lookup. --lg is reserved for --focus, so this fixed size
+   only ever has to clear that diameter above a two-line label. */
+.skill-bubble__focus-mark {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-nav);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--on-accent);
+  opacity: 0.65;
+}
+
 @media (max-width: 780px) {
   .skills__columns {
     grid-template-columns: 1fr;

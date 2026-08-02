@@ -177,7 +177,7 @@ modes before it's done**, not just the mode you happened to be looking at.
   `--bronze`, etc.) never changes with theme. It's what a few spots
   deliberately keep using instead of the semantic tokens: gold-plated
   badges/buttons (`.btn--solid`, `.portfolio__num`, `.connect__card`,
-  `.connect__medallion`, `.skill-bubble`) pair a literal gold plate with `--on-accent` (a fixed
+  `.connect__medallion`, `.skill-bubble--focus`) pair a literal gold plate with `--on-accent` (a fixed
   dark ink) so their text stays legible regardless of theme. Don't
   "fix" these onto the semantic tokens — that's what breaks their
   contrast in light mode.
