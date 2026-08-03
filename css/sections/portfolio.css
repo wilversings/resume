@@ -23,15 +23,6 @@
   border-color: rgba(239, 198, 3, 0.7);
 }
 
-/* No link to follow, so it must not answer the pointer like the others do. */
-.portfolio__card--muted:hover {
-  border-color: rgba(203, 163, 40, 0.4);
-}
-
-.portfolio__card--muted:hover .portfolio__thumb {
-  filter: none;
-}
-
 .portfolio__link {
   display: block;
   flex-grow: 1;
