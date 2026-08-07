@@ -32,7 +32,8 @@ h6,
 blockquote,
 figcaption,
 dd,
-dt {
+dt,
+strong {
   @supports (text-wrap: avoid-short-last-lines) {
     text-wrap: avoid-short-last-lines;
   }
