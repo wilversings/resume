@@ -11,15 +11,25 @@
   gap: var(--grid-gutter);
 }
 
-/* Square via aspect-ratio. Both max-width and max-height cap the box: with
-   only max-height, aspect-ratio can't re-derive the flex-basis width, so the
-   box goes non-square and the photo's clip-path hexagon skews vs the SVG's. */
+/* The slot, not the badge: it stays exactly one column wide so the body ends
+   on the two-column line. Capping the badge here instead (an old max-width)
+   would shrink the flex item and hand the leftover to the body, which is what
+   knocked the section off the grid. The frame inside is what's capped. */
 .about__badge {
   flex: 0 0 calc((100% - 2 * var(--grid-gutter)) / 3);
-  aspect-ratio: 1;
-  max-width: 320px;
-  max-height: 320px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* Ratio is the outer hexagon's own bounding box (122x140 units) plus its
+   1-unit stroke — taller-than-wide 123:141, not a square, so the frame edges
+   are the hexagon's edges and the cap below is a real visual width.
+   281px reproduces the previous size: the old 320px square inset its hexagon
+   to 122/140 of that, i.e. 279px of visible mark, and 281 * 122/123 = 279. */
+.about__badge-frame {
+  width: 100%;
+  max-width: 281px;
+  aspect-ratio: 123 / 141;
   position: relative;
 }
 
@@ -28,7 +38,7 @@
   min-width: 0;
 }
 
-/* display:block — the badge's height comes from its aspect-ratio, and an
+/* display:block — the frame's height comes from its aspect-ratio, and an
    inline SVG's baseline gap would add ~6px to it. */
 .about__badge svg {
   display: block;
@@ -38,16 +48,16 @@
   z-index: 1;
 }
 
-/* Sized to the hexagon's own bounding box (104x120 of the SVG's 140-unit
-   square, i.e. 74.29% x 85.71%), not the full square — fitting object-fit's
-   cover crop to what the clip-path actually shows, instead of covering the
-   full square and clipping away the four corners as wasted pixels. */
+/* Sized to the inner hexagon's own bounding box (104x120 of the SVG's
+   123x141 viewBox, i.e. 84.55% x 85.11%), not the full box — fitting
+   object-fit's cover crop to what the clip-path actually shows, instead of
+   covering everything and clipping away the corners as wasted pixels. */
 .about__badge-photo {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 74.2857%;
-  height: 85.7143%;
+  width: 84.5528%;
+  height: 85.1064%;
   transform: translate(-50%, -50%);
   object-fit: cover;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
@@ -59,7 +69,6 @@
   font-family: var(--font-body);
   font-size: var(--fs-body);
   line-height: 1.7;
-  max-width: var(--measure);
   color: var(--ink);
   opacity: 0.9;
   margin: 0 0 34px;
@@ -68,7 +77,7 @@
 .about__meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px 60px;
+  gap: 20px var(--grid-gutter);
 }
 
 .about__meta-item {
@@ -112,11 +121,12 @@
     text-align: center;
   }
 
-  /* Stacked, so there's no column to fill — back to a fixed 200px object,
-     square via the aspect-ratio above. */
+  /* Stacked, so there's no column to centre in — the slot collapses onto the
+     frame. 176px is the old 200px square's visible mark at the new ratio
+     (176 * 122/123 = 175), same derivation as the 281px cap above. */
   .about__badge {
     flex-basis: auto;
-    width: 200px;
+    width: 176px;
   }
 
   /* Text left-aligned, but the --measure-capped block itself centered —

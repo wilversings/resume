@@ -331,14 +331,16 @@
         </div>
 
         <div class="about__badge">
-          <picture>
-            <source srcset="<%= require('./images/profile-badge.webp') %>" type="image/webp">
-            <img class="about__badge-photo" src="<%= require('./images/profile-badge.jpg') %>" alt="Marius Aiordăchioaei" width="720" height="831">
-          </picture>
-          <svg viewBox="-70 -70 140 140" aria-hidden="true">
-            <path d="M0,-60 L52,-30 L52,30 L0,60 L-52,30 L-52,-30 Z" fill="none" stroke="#cba328" stroke-width="1.6"/>
-            <path d="M0,-70 L61,-35 L61,35 L0,70 L-61,35 L-61,-35 Z" fill="none" stroke="#cba328" stroke-width="1" stroke-opacity="0.5"/>
-          </svg>
+          <div class="about__badge-frame">
+            <picture>
+              <source srcset="<%= require('./images/profile-badge.webp') %>" type="image/webp">
+              <img class="about__badge-photo" src="<%= require('./images/profile-badge.jpg') %>" alt="Marius Aiordăchioaei" width="720" height="831">
+            </picture>
+            <svg viewBox="-61.5 -70.5 123 141" aria-hidden="true">
+              <path d="M0,-60 L52,-30 L52,30 L0,60 L-52,30 L-52,-30 Z" fill="none" stroke="#cba328" stroke-width="1.6"/>
+              <path d="M0,-70 L61,-35 L61,35 L0,70 L-61,35 L-61,-35 Z" fill="none" stroke="#cba328" stroke-width="1" stroke-opacity="0.5"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
