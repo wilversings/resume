@@ -65,7 +65,9 @@
 
 .site-footer__mark-wrap {
   position: relative;
+  display: flex;
   width: 16px;
+  height: 16px;
 }
 
 .site-footer__sunburst {
@@ -107,6 +109,7 @@
 }
 
 .site-footer__mark {
+  display: block;
   width: 16px;
   height: 16px;
   position: relative;
