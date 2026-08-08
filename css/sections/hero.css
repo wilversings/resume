@@ -237,22 +237,47 @@
 
 @media (max-width: 780px) {
   .hero {
-    padding-top: calc(var(--header-height) + clamp(16px, 5vh, 64px));
+    padding-top: calc(var(--header-height) + clamp(12px, 3vh, 48px));
     padding-bottom: calc(34px + clamp(20px, 4vh, 48px) + 16px);
   }
 
+  /* the monument carries the composition on a narrow screen, where the
+     desktop's 58vw leaves it a stamp adrift in the column */
+  .hero__monument-wrap {
+    --monument-w: min(420px, 80vw);
+  }
+
   .hero__est {
-    margin-top: clamp(14px, 4vh, 26px);
+    margin-top: clamp(8px, 2.5vh, 18px);
+    letter-spacing: 6px;
+  }
+
+  .hero__est::before,
+  .hero__est::after {
+    width: 34px;
+    margin: 0 9px 3px;
   }
 
   .hero__title {
-    margin: clamp(16px, 4vh, 30px) 0 clamp(12px, 3vh, 22px);
+    margin: clamp(10px, 2.5vh, 20px) 0 clamp(8px, 2vh, 14px);
   }
 
   .hero__actions {
     flex-direction: column;
     align-items: center;
-    margin-top: clamp(20px, 5vh, 46px);
+    gap: 14px;
+    margin-top: clamp(16px, 3.5vh, 30px);
+  }
+
+  /* 160x40 is 184x46 scaled uniformly — the frame sprite is drawn with
+     preserveAspectRatio="none", so any other ratio skews its chamfers */
+  .hero .btn {
+    width: 160px;
+    height: 40px;
+  }
+
+  .hero .btn__label {
+    letter-spacing: 2px;
   }
 
   .hero__monument-wrap::before {
