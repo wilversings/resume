@@ -8,9 +8,12 @@
     "start": "webpack serve --mode development",
     "prebuild": "npm run build:resume",
     "build": "webpack --mode production",
-    "build:resume": "node scripts/build-resume.js"
+    "build:resume": "node scripts/build-resume.js",
+    "prea11y": "npm run build",
+    "a11y": "node scripts/a11y-check.js"
   },
   "devDependencies": {
+    "axe-core": "^4.13.0",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "html-webpack-plugin": "^5.6.3",
