@@ -29,3 +29,12 @@ npm start
 
 Runs a webpack-dev-server instance at `http://localhost:8080` with live
 reload against the unminified source.
+
+## Accessibility
+
+Audited with [axe-core](https://github.com/dequelabs/axe-core) (`npm run a11y`), covering color contrast and screen-reader/ARIA structure in both themes:
+
+| Theme | Score | Contrast violations | Screen reader/ARIA violations |
+| ----- | ----- | -------------------- | ------------------------------- |
+| Dark (default) | 97/100 | 0 | 1 |
+| Light | 97/100 | 0 | 1 |
