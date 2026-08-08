@@ -36,13 +36,16 @@
   background-color: var(--surface);
   background-repeat: no-repeat;
   background-position: center;
-  transition: filter 0.2s ease;
+  transition: filter 0.2s ease, box-shadow 0.2s ease;
   /* negates the card's padding so the thumbnail runs edge-to-edge */
   margin: -25px -25px 0;
 }
 
 .portfolio__card:hover .portfolio__thumb {
-  filter: brightness(1.2);
+  filter: brightness(1.08);
+  box-shadow:
+    inset 0 -1px 0 rgba(239, 198, 3, 0.6),
+    inset 0 0 28px rgba(239, 198, 3, 0.25);
 }
 
 /* Logo/icon artwork: contained with a fixed inset so it never touches the
