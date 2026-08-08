@@ -71,6 +71,7 @@
   height: var(--bubble-size);
   border-radius: 50%;
   background: var(--gradient-metal-shine);
+  box-shadow: var(--shadow-card);
 }
 
 .skill-bubble::before {

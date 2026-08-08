@@ -33,6 +33,12 @@
   position: relative;
 }
 
+/* Filter, not box-shadow: this casts from the hexagon's own silhouette —
+   frame plus clipped photo — rather than from the element's square. */
+:root[data-theme="light"] .about__badge-frame {
+  filter: var(--shadow-art);
+}
+
 .about__body {
   flex: 1;
   min-width: 0;

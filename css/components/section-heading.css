@@ -19,13 +19,8 @@
   text-transform: uppercase;
   margin: 0;
   text-align: center;
-  filter: drop-shadow(4px 5px 1.5px black);
-  /* echoes .hero__title's gold-bright glow at low opacity */
-  text-shadow: 0 0 28px rgba(239, 198, 3, 0.28);
-}
-
-:root[data-theme="light"] .section-heading__text {
-  filter: none;
+  filter: var(--shadow-type);
+  text-shadow: var(--halo-type);
 }
 
 .section-rule {

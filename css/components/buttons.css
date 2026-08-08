@@ -28,12 +28,15 @@
   width: 320px;
 }
 
+/* drop-shadow, not box-shadow: the plaque's outline is the chamfered sprite,
+   and a box-shadow would cast the element's square instead. */
 .btn__frame {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   display: block;
+  filter: var(--shadow-plate);
 }
 
 .btn__label {
@@ -96,7 +99,7 @@
 
 .btn--solid {
   --btn-plate-fill: url(#metalShine);
-  --btn-plate-filter: url(#rust);
+  --btn-plate-filter: var(--plate-texture);
   --btn-molding-fill: var(--on-accent);
   --btn-molding-opacity: 0.55;
 }
@@ -107,18 +110,18 @@
 .btn--outline {
   --btn-plate-fill: rgba(13, 17, 34, 0.35);
   --btn-ring-fill: var(--accent);
-  --btn-ring-filter: url(#rust);
+  --btn-ring-filter: var(--plate-texture);
 }
 .btn--outline .btn__label { color: var(--accent-strong); }
 
-/* Light mode: both the dark plate scrim and the rust turbulence were tuned
-   against the dark background and read as a muddy smudge on a light one, so
-   drop them and let the plaque render as clean, uniform gold. */
+/* The scrim darkens an empty plaque against the lacquer; on paper the stock
+   itself is the fill, and a navy wash over it just reads as grime. */
 :root[data-theme="light"] .btn--outline {
   --btn-plate-fill: none;
-  --btn-ring-filter: none;
 }
 
-:root[data-theme="light"] .btn--solid {
-  --btn-plate-filter: none;
+/* Lifting the plaque has to lengthen its shadow, or the hover translate reads
+   as the whole button sliding rather than rising off the page. */
+:root[data-theme="light"] .btn:hover .btn__frame {
+  filter: drop-shadow(0 1px 0 rgba(255, 252, 242, 0.5)) drop-shadow(0 5px 7px rgba(92, 66, 26, 0.32));
 }

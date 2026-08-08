@@ -13,6 +13,7 @@
 @import './components/dialog.css';
 @import './components/sunburst.css';
 @import './components/rust.css';
+@import './components/paper.css';
 
 @import './layout/section-wrappers.css';
 @import './layout/header.css';

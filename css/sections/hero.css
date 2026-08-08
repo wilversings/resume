@@ -83,7 +83,7 @@
   background-image: var(--monument-image);
   background-repeat: no-repeat;
   background-size: contain;
-  filter: drop-shadow(2px 4px 6px black);
+  filter: var(--shadow-art);
 }
 
 .hero__glow {
@@ -101,6 +101,16 @@
     rgba(203, 163, 40, 0.09) 55%,
     rgba(203, 163, 40, 0) 100%);
   pointer-events: none;
+}
+
+/* Additive light has nothing to add to cream, so the same pool multiplies
+   instead — a warm tan bloom in the stock rather than a lamp behind it. */
+:root[data-theme="light"] .hero__glow {
+  background: radial-gradient(circle closest-side,
+    rgba(184, 146, 66, 0.4) 0%,
+    rgba(141, 127, 107, 0.14) 55%,
+    rgba(141, 127, 107, 0) 100%);
+  mix-blend-mode: multiply;
 }
 
 .hero__glow::after {
@@ -170,17 +180,12 @@
   text-transform: uppercase;
   margin: 30px 0 22px;
   line-height: 1.05;
-  filter: drop-shadow(4px 5px 1.5px black);
-  /* echoes .hero__glow's gold-bright tint at low opacity; renders even
-     though the fill itself is transparent (background-clip: text above) */
-  text-shadow: 0 0 28px rgba(239, 198, 3, 0.28);
+  filter: var(--shadow-type);
+  /* renders even though the fill itself is transparent (background-clip:
+     text above) — it's a glow, so covering the glyph body is harmless */
+  text-shadow: var(--halo-type);
 
   text-wrap: unset;
-}
-
-:root[data-theme="light"] .hero__title {
-  filter: none;
-  text-shadow: none;
 }
 
 /* --fs-lead, not --fs-body: the only line of prose between an 84px h1 and

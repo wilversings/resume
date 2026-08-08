@@ -20,21 +20,14 @@
   color: transparent;
 }
 
+/* The texture swaps per theme (light bakes pale wear screened over deep brass,
+   the inverse of dark's blotches on gold). The flat layer beneath is a
+   fallback, not a blend: Firefox paints nothing for a filtered SVG background
+   undecoded at first paint, which without it leaves the heading invisible. */
 .text-rust {
-  background-image: url("../../images/rust-texture.svg");
+  background-image: var(--rust-image), var(--rust-fallback);
 }
 
 .text-rust-flat {
-  background-image: url("../../images/rust-texture-flat.svg");
-}
-
-/* Light mode: the baked image can't repaint with the tokens and doesn't suit
-   a flat recolor, so drop the clip entirely for plain --accent-strong. Only
-   used at hero-title size, well past the large-text 3:1 AA floor. */
-:root[data-theme="light"] .text-rust,
-:root[data-theme="light"] .text-rust-flat {
-  background-image: none;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
-  color: var(--accent-strong);
+  background-image: var(--rust-image-flat), var(--rust-fallback-flat);
 }

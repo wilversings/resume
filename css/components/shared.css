@@ -23,10 +23,10 @@
 }
 
 /* Light mode: the flourish's gold lives in presentation attributes inside a
-   <use>d <symbol>, unreachable by CSS — recolor the rendered icon with
-   #accentTint instead (see index.html's sprite defs). */
+   <use>d <symbol>, unreachable by CSS — recolor and weather the rendered icon
+   with #accentPatina instead (see index.html's sprite defs). */
 :root[data-theme="light"] .icon-flourish {
-  filter: url(#accentTint);
+  filter: url(#accentPatina);
 }
 
 .corner {

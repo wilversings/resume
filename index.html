@@ -112,11 +112,36 @@
       <!-- light-mode recolor: floods with --accent-strong (read live, so it
            tracks tokens.css) and keeps only the source's alpha, flattening
            any gold shape — or external image, since filters apply to final
-           rendered pixels — into an AA-safe brass silhouette. Used by
-           rust.css, shared.css, hero.css, section-wrappers.css, footer.css. -->
+           rendered pixels — into an AA-safe brass silhouette. Reserved for
+           the page-sized wallpaper fields, where #accentPatina's turbulence
+           would cost a full-viewport noise pass. Used by hero.css, footer.css. -->
       <filter id="accentTint" x="-20%" y="-20%" width="140%" height="140%">
         <feFlood style="flood-color: var(--accent-strong)" flood-color="#0d1122" result="flood"/>
         <feComposite in="flood" in2="SourceAlpha" operator="in"/>
+      </filter>
+      <!-- light-mode counterpart to #rust: a fine tooth multiplied onto gold
+           plates so they read as cast brass, not printed swatch. Near-pixel
+           blotches on purpose — #rust's ~20px ones read as dirt on cream.
+           sRGB, or linearRGB's steep low end turns the tooth into gouges. -->
+      <filter id="patina" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="11" result="noise"/>
+        <feColorMatrix in="noise" type="matrix"
+          values="0.22 0 0 0 0.78  0 0.22 0 0 0.78  0 0 0.22 0 0.78  0 0 0 0 1"
+          result="tooth"/>
+        <feComposite in="tooth" in2="SourceAlpha" operator="in" result="toothMasked"/>
+        <feBlend in="SourceGraphic" in2="toothMasked" mode="multiply"/>
+      </filter>
+      <!-- #accentTint's recolor with #patina's tooth in one pass, for the
+           baked-gold decorations small enough to afford it (cornices,
+           flourishes). Used by shared.css, section-wrappers.css. -->
+      <filter id="accentPatina" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+        <feFlood style="flood-color: var(--accent-strong)" flood-color="#0d1122" result="flood"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="11" result="noise"/>
+        <feColorMatrix in="noise" type="matrix"
+          values="0.22 0 0 0 0.78  0 0.22 0 0 0.78  0 0 0.22 0 0.78  0 0 0 0 1"
+          result="tooth"/>
+        <feBlend in="flood" in2="tooth" mode="multiply" result="brass"/>
+        <feComposite in="brass" in2="SourceAlpha" operator="in"/>
       </filter>
       <!-- heading flourish: fan of 7 rays with a tip diamond, points +x -->
       <symbol id="icon-flourish" viewBox="-4 -20 44 40">

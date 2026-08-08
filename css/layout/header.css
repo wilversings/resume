@@ -12,6 +12,12 @@
   backdrop-filter: blur(6px);
 }
 
+/* Against the lacquer the bar separates on value alone; against paper it needs
+   a cast shadow to sit above the page rather than be printed on it. */
+:root[data-theme="light"] .site-header {
+  box-shadow: 0 2px 12px -4px rgba(92, 66, 26, 0.35);
+}
+
 .nav {
   max-width: var(--content-width);
   height: 100%;

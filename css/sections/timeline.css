@@ -89,6 +89,7 @@
   background: var(--surface);
   border: var(--tl-card-border) solid rgba(203, 163, 40, 0.4);
   padding: 22px 26px;
+  box-shadow: var(--shadow-card);
 }
 
 .section:nth-child(even of .section) .timeline__card {
@@ -106,8 +107,11 @@
   filter: drop-shadow(2px 4px 6px black);
 }
 
+/* The cast shadow turns to mud under 12px type on cream; a lit paper edge
+   under the caps gives the same relief at that size. */
 :root[data-theme="light"] .timeline__date {
   filter: none;
+  text-shadow: 0 1px 0 rgba(255, 252, 242, 0.9);
 }
 
 .timeline__title {

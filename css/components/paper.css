@@ -1,0 +1,31 @@
+/* ==========================================================================
+   Paper grain — light mode's surface tooth
+   ========================================================================== */
+
+/* Flat cream reads as a fill, not a material, so light mode lays a grain over
+   every full-bleed surface. Multiply needs dark speckles and the shared asset
+   is white, hence the invert; isolate keeps the blend inside the surface. */
+:root[data-theme="light"] .hero,
+:root[data-theme="light"] .section,
+:root[data-theme="light"] .cornice,
+:root[data-theme="light"] .site-footer {
+  isolation: isolate;
+}
+
+:root[data-theme="light"] .hero::after,
+:root[data-theme="light"] .section::after,
+:root[data-theme="light"] .cornice::after,
+:root[data-theme="light"] .site-footer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* over .corner (z-index 2), the highest-stacked thing a surface holds */
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  filter: invert(1);
+  background-image: var(--paper-grain);
+  background-size: 220px;
+  background-repeat: repeat;
+}

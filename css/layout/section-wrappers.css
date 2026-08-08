@@ -48,9 +48,10 @@
   filter: url(#rust);
 }
 
-/* Light mode: rust texture → flat brass, see #accentTint in index.html. */
+/* Light mode: #rust's blotches are dark-on-bright and read as dirt on cream,
+   so #accentPatina recolors to brass and re-weathers it at a finer scale. */
 :root[data-theme="light"] .cornice svg {
-  filter: url(#accentTint);
+  filter: url(#accentPatina);
 }
 
 .section-divider {

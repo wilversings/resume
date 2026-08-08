@@ -1,13 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="345 300 750 372">
   <defs>
-    <!-- Light-mode ink variant: same geometry as hero-monument.svg, but
-         drawn in navy (the dark mode's own ink) instead of gold, with no
-         rust texture (that multiply-blend was tuned for a gold base and
-         reads as near-invisible on navy anyway). The window cutouts are
-         filled with the light theme's own surface color, at the same
-         0.75 opacity as the dark version's #0d1122 windows, so they read
-         as cut-throughs to the page background rather than a flat
-         opaque patch or a mismatched dark smudge. -->
+    <!-- Light-mode ink variant: same geometry as hero-monument.svg, drawn
+         in navy instead of gold, with no rust texture (that multiply blend
+         was tuned for a gold base). Windows carry the light surface color
+         opaque, so they read as the hero ground rather than letting the
+         element's black drop-shadow grey them. -->
     <linearGradient id="pl-stops-a">
       <stop offset="0.2" stop-color="#0d1122"/>
       <stop offset="0.8" stop-color="#141a30"/>
@@ -27,7 +24,7 @@
   <!-- crown / tower silhouette -->
   <g transform="translate(720,610) scale(4) translate(-201.94,-106)">
     <path d="m 158.76964,29.42 4.75586,26.701172 h -25.64648 l 8.62109,25.609375 h -28.43945 l 14.74023,24.296873 h 3.50977 L 123.39073,84.730547 h 24.11914 l 7.16797,21.296873 h 2.10743 l -7.16797,-21.296873 -1.00977,-3 -7.94726,-23.609375 h 23.2207 l 4.20508,23.609375 0.5332,3 3.79297,21.296873 h 3.05078 l -3.79102,-21.296873 -0.53515,-3 -4.20117,-23.609375 -0.35743,-2 L 162.35948,32.42 h 79.16993 l -4.21875,23.701172 -0.35743,2 -4.20117,23.609375 -0.53515,3 -3.79102,21.296873 h 3.05078 l 3.79297,-21.296873 0.5332,-3 4.20508,-23.609375 h 23.23242 l -7.94922,23.609375 -1.00976,3 -7.16992,21.296873 h 2.0957 l 7.16602,-21.296873 h 24.12695 l -12.90234,21.296873 h 3.51171 l 14.72071,-24.296873 h -28.44727 l 8.61719,-25.609375 H 240.36339 L 245.11925,29.42 Z" fill="url(#pl-towers)"/>
-    <g fill="#f4ecd9" fill-opacity="0.55">
+    <g fill="#f4ecd9">
       <path d="m 249.20714,106.02742 h 18.39063 l 12.90234,-21.296873 h -24.12695 z"/>
       <path d="m 231.47667,106.02742 h 15.63477 l 7.16992,-21.296873 1.00976,-3 7.94922,-23.609375 h -23.23242 l -4.20508,23.609375 -0.5332,3 z"/>
       <path d="m 175.463,106.02742 h 52.96289 l 3.79102,-21.296873 0.53515,-3 4.20117,-23.609375 0.35743,-2 L 241.52941,32.42 h -79.16993 l 4.21875,23.701172 0.35743,2 4.20117,23.609375 0.53515,3 z"/>

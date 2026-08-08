@@ -27,7 +27,8 @@ css/components/       reusable pieces referenced from more than one section:
                      splash.css, shared.css (icons/corners), section-
                      heading.css, buttons.css (.btn — used in hero,
                      portfolio, connect), dialog.css (the <dialog> modal),
-                     rust.css (oxidized-metal text), sunburst.css
+                     rust.css (oxidized-metal text), paper.css (light mode's
+                     grain over every full-bleed surface), sunburst.css
 css/layout/            section-wrappers.css (.section, cornice), header.css,
                      print.css (imports the generated print stylesheet; must
                      stay last in style.css's cascade order)
@@ -196,6 +197,14 @@ newer/nicer API, take the broadly-supported one.
   `calc()`, and CSS `inset` are all fine (well-supported) — but test any
   new SVG structure specifically, since `<use>`/viewBox interactions are
   where this codebase has actually broken before (see rule 1's callout).
+- **A filtered SVG used as a CSS `background-image` paints nothing in Firefox
+  unless it is already decoded at first paint** — no repaint follows when it
+  arrives. Under `background-clip: text` that means an invisible heading, not
+  a missing texture. `.text-rust`/`.text-rust-flat` therefore paint a flat
+  `--rust-fallback*` layer *beneath* the texture: where the texture paints it
+  is opaque and hides the fallback, and where it doesn't the type is still
+  legible. Keep that second layer on any new background-clipped text, and
+  don't "simplify" it away as dead weight — Chromium is where it looks dead.
 - Verify visually in more than one engine when you touch layout or paint-
   heavy CSS (clip-path, gradients, custom fonts) — a Chromium screenshot
   passing is necessary but not sufficient.
@@ -245,31 +254,56 @@ modes before it's done**, not just the mode you happened to be looking at.
 - The raw palette (`--navy-dark`, `--gold`, `--gold-bright`, `--cream`,
   `--bronze`, etc.) never changes with theme. It's what a few spots
   deliberately keep using instead of the semantic tokens: gold-plated
-  badges/buttons (`.btn--solid`, `.portfolio__num`, `.connect__card`,
-  `.connect__medallion`, `.skill-bubble--focus`) pair a literal gold plate with `--on-accent` (a fixed
-  dark ink) so their text stays legible regardless of theme. Don't
+  badges/buttons (`.btn--solid`, `.portfolio__num`, `.connect__medallion`,
+  `.skill-bubble--focus`) pair a literal gold plate with `--on-accent` (a
+  fixed dark ink) so their text stays legible regardless of theme. Don't
   "fix" these onto the semantic tokens — that's what breaks their
-  contrast in light mode.
+  contrast in light mode. `.connect__card`'s gold is a frame, not a plate:
+  its ink is semantic, and light mode steps its inner plate up to `--surface`
+  so the card reads as raised the way `.skill-bubble` does.
+- **Light mode is not dark mode minus its effects.** Both themes carry
+  texture and cast shadow; they just can't share the values, because black
+  shadow and lamp glow read as dirt and haze on cream. Dark mode sinks hard
+  black shadows into lacquer; light mode presses the same shapes into paper —
+  warm umber shadows, a lit paper edge under the ink, a grain over the flat
+  cream. The `--shadow-*`, `--halo-type`, `--plate-texture`, `--rust-image*`
+  and `--paper-grain` tokens in `tokens.css` are what carry that per theme, so
+  a rule states its *intent* once rather than being overridden to `none`.
+  Reach for them before writing a `[data-theme="light"]` override.
+  - `--shadow-plate` and `--shadow-card` are deliberately inert-but-present in
+    dark (`opacity(1)` / `none`) so a rule can compose them —
+    `filter: var(--shadow-plate) brightness(1.15)` — without a per-theme
+    override. `none` is not a valid filter-list item, hence `opacity(1)`.
+  - Don't leave a no-op `filter` on an element containing text: any filter
+    drops it to grayscale antialiasing. `.connect__card` scopes its
+    drop-shadow to light mode for exactly this reason.
 - Some decorative elements are baked gold/rust SVG assets or hardcoded
   presentation attributes inside `<use>`-referenced sprite symbols
   (`icon-flourish`, the ziggurat cornices, the hero/footer wallpaper
   patterns) — plain CSS variables can't reach into them. There are three
   patterns in use; copy whichever fits a new asset:
   - **Recolor via filter** (most cases): a
-    `:root[data-theme="light"] <selector> { filter: url(#accentTint); }`
-    override colocated with the element's own rule. `#accentTint` is
-    defined in `index.html`'s sprite `<defs>` and floods the shape with
-    `--accent-strong`, masked to its own alpha. It reads the token live,
-    so it tracks `tokens.css`, and because filters apply to final rendered
-    pixels it works on external `background-image` assets too, not just
-    inline SVG. See `shared.css`, `hero.css`, `section-wrappers.css`,
-    `footer.css`.
-  - **Swap the asset**: the hero monument points `--monument-image` at a
-    dedicated `hero-monument-light.svg`, because its "window" cutouts need
-    filling with the light-mode surface color, not uniformly recoloring.
-  - **Drop the effect**: `.text-rust` (`rust.css`) abandons the
-    background-clip trick entirely for flat `--accent-strong` text — the
-    baked oxidation doesn't survive a flat recolor.
+    `:root[data-theme="light"] <selector> { filter: url(#accentPatina); }`
+    override colocated with the element's own rule. The sprite `<defs>` in
+    `index.html` hold three: `#accentTint` floods the shape with
+    `--accent-strong` masked to its own alpha; `#accentPatina` does the same
+    and multiplies a fine tooth over it; `#patina` applies that tooth alone,
+    for shapes that already carry a literal gold fill. They read the token
+    live, so they track `tokens.css`, and because filters apply to final
+    rendered pixels they work on external `background-image` assets too, not
+    just inline SVG. Prefer `#accentPatina` — `#accentTint` is reserved for
+    the page-sized wallpaper fields, where turbulence over a 100vw × 300vh
+    filter region is not worth its cost. See `shared.css`, `hero.css`,
+    `section-wrappers.css`, `footer.css`.
+  - **Swap the asset**: `--monument-image` and `--rust-image`/
+    `--rust-image-flat` point at dedicated light-theme art. The monument's
+    "window" cutouts need filling with the light surface color rather than
+    uniform recoloring; the rust textures invert their construction (pale
+    wear *screened over* deep brass, i.e. ink that took unevenly, instead of
+    dark blotches multiplied onto bright gold).
+  - **Retune the effect**: `.hero__glow` keeps its radial pool but switches to
+    `mix-blend-mode: multiply` in light mode — additive light has nothing to
+    add to cream, so the same shape becomes a warm bloom *in* the stock.
 - When picking a light-mode color for text, check it actually clears
   WCAG AA (4.5:1) against the light surface. The dark-mode gold does not —
   which is why light mode uses a **deeper antique-brass** (`--accent-light`
@@ -384,10 +418,10 @@ would shear.
 
 ## Design tokens & conventions already in place
 
-- Colors, gradients, and font stacks are CSS custom properties in
-  `css/base/tokens.css` (`--navy-dark`, `--gold`, `--gold-bright`, `--cream`,
-  `--gradient-metal-shine`, `--font-display`, `--font-body`, etc.) — reuse
-  them, don't hardcode new color values.
+- Colors, gradients, font stacks and the depth/material set (`--shadow-art`,
+  `--shadow-card`, `--shadow-plate`, `--shadow-type`, `--halo-type`,
+  `--plate-texture`, `--paper-grain`) are CSS custom properties in
+  `css/base/tokens.css` — reuse them, don't hardcode new color values.
 - CSS is split into partials under `css/`, all pulled in by `css/style.css`
   — see the file tree above for what lives where. Add new rules to the
   partial that already owns that selector/section rather than growing
