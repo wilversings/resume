@@ -282,7 +282,8 @@
   }
 
   .hero .btn__label {
-    letter-spacing: 2px;
+    font-size: 12.5px;
+    letter-spacing: 2.3px;
   }
 
   .hero__monument-wrap::before {
