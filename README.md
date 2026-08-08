@@ -36,5 +36,5 @@ Audited with [axe-core](https://github.com/dequelabs/axe-core) (`npm run a11y`),
 
 | Theme | Score | Contrast violations | Screen reader/ARIA violations |
 | ----- | ----- | -------------------- | ------------------------------- |
-| Dark (default) | 97/100 | 0 | 1 |
-| Light | 97/100 | 0 | 1 |
+| Dark (default) | 100/100 | 0 | 0 |
+| Light | 100/100 | 0 | 0 |
