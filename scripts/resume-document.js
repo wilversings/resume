@@ -9,8 +9,6 @@ const PAGE_MARGIN = '16mm';
 const esc = (value) =>
   String(value).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
 
-const bare = (url) => url.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, '');
-
 // Deliberately undesigned: black on white, one column, a stock sans, no motifs.
 // This is what applicant tracking systems can parse — see AGENTS.md.
 const DOCUMENT_CSS = `
@@ -76,6 +74,9 @@ const DOCUMENT_CSS = `
 .resume-doc li { break-inside: avoid; }
 `.trim();
 
+// Anchors only ever wrap text the document already prints, and are styled to
+// match it: clickable on screen, identical on paper. Never spell out a URL
+// just to link it — that ink is wasted on the printed copy.
 function renderBody(data) {
   const contactLine = [
     esc(data.location),
@@ -104,8 +105,8 @@ function renderBody(data) {
   const projects = data.projects
     .map(
       (project) => `<article class="entry">
-  <h3>${esc(project.title)}</h3>
-  <p class="meta">${esc(project.category)}${project.href ? `<span class="sep">|</span><a href="${esc(project.href)}">${esc(bare(project.href))}</a>` : ''}</p>
+  <h3>${project.href ? `<a href="${esc(project.href)}">${esc(project.title)}</a>` : esc(project.title)}</h3>
+  <p class="meta">${esc(project.category)}</p>
   ${project.desc ? `<p>${esc(project.desc)}</p>` : ''}
   ${project.stat ? `<p>${esc(project.stat)}</p>` : ''}
   ${project.stack.length ? `<p class="kv"><span class="k">Technologies:</span> ${esc(project.stack.join(', '))}</p>` : ''}
@@ -113,10 +114,9 @@ function renderBody(data) {
     )
     .join('\n');
 
-  const education = `<article class="entry">
-  <h3>${esc(data.education[0])}</h3>
-  ${data.education[1] ? `<p class="meta">${esc(data.education.slice(1).join(', '))}</p>` : ''}
-</article>`;
+  const education = `<p class="kv"><span class="k">${esc(data.education[0])}</span>${
+    data.education[1] ? `<span class="sep">|</span>${esc(data.education.slice(1).join(', '))}` : ''
+  }</p>`;
 
   return `<div class="resume-doc">
   <header>
@@ -128,6 +128,11 @@ function renderBody(data) {
   <section>
     <h2>Summary</h2>
     <p>${esc(data.summary)}</p>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    ${education}
   </section>
 
   <section>
@@ -143,11 +148,6 @@ function renderBody(data) {
   <section>
     <h2>Projects</h2>
     ${projects}
-  </section>
-
-  <section>
-    <h2>Education</h2>
-    ${education}
   </section>
 </div>`;
 }

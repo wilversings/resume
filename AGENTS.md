@@ -118,13 +118,20 @@ stylesheet into `build/`. Webpack folds those into the page.
   block would otherwise pick up `reset.css`'s `text-wrap: pretty`, which
   alone moves line breaks by a word and desynchronizes the two.
 - **The block must stay `display: none` on screen** — that is what keeps its
-  duplicate headings and links out of the accessibility tree and the tab
-  order. Don't swap it for `visibility`/`clip` hiding, and don't give it
-  `aria-hidden` instead.
+  duplicate copy of the page's headings and text out of the accessibility
+  tree and the tab order. Don't swap it for `visibility`/`clip` hiding, and
+  don't give it `aria-hidden` instead.
 - **The document is deliberately undesigned.** Black on white, one column, a
   stock sans, no motifs, no SVG, literal `•` characters instead of CSS list
   markers (a CSS marker is painted, so it never reaches the text layer).
   This is what applicant tracking systems can parse; don't Art Deco it.
+- **Links add targets, never ink.** An anchor only ever wraps text the
+  document already prints — the contact line, a project title — and is
+  styled to match its surroundings, so the paper reads the same while the
+  screen stays clickable. Never spell a URL out just to have something to
+  link; the printed copy pays for it and nobody can click paper.
+- **Section order is a skim order, not the page's order:** Summary,
+  Education, Skills, Experience, Projects. Education sits high on purpose.
 - Verify a change with `pdftotext -layout dist/*.pdf -` — what that prints
   is what a parser sees, and reading order matters more than how the page
   looks. To confirm the two deliveries still agree, print `dist/index.html`
