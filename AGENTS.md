@@ -35,6 +35,9 @@ css/sections/          one file per <section> in index.html: hero, about,
 js/main.js           splash-screen hiding, mobile nav toggle, light-mode
                      toggle, scroll-spy nav highlighting, iframe-dialog
                      open/close
+scripts/             build-time Node only, never shipped to the browser:
+                     build-resume-pdf.js + extract-resume.js produce
+                     the résumé PDF (see "The résumé PDF" below)
 fonts/                all three families, self-hosted as woff2 — nothing
                      type-related depends on a system font being installed.
                      Monsante (--font-display, decoded from the mockups'
@@ -68,6 +71,37 @@ npm run build
 
 to produce the minified/obfuscated `dist/`, then serve that folder (e.g.
 `npx serve dist`) for verification against the mockups.
+
+Both scripts also run `npm run build:pdf`, so the hero's Résumé button has a
+file to point at — into the repo root for `npm start` (the dev server's
+static directory, gitignored) and into `dist/` for the build.
+
+## The résumé PDF
+
+The hero's Résumé button opens `Marius-Aiordachioaei-Resume.pdf` in a new
+tab. `scripts/build-resume-pdf.js` generates it: it loads `index.html` in
+headless Chrome,
+lifts the content straight out of the DOM (`scripts/extract-resume.js`),
+and reprints it as a plain single-column A4 document.
+
+- **index.html is the only copy of the résumé text.** Never add content to
+  the PDF that isn't on the page; add it to the page and let it flow
+  through.
+- **`extract-resume.js`'s selectors are a contract with `index.html`.**
+  Renaming `.timeline__item`, `.skills__col`, `.connect__card`,
+  `.portfolio__card`, `.about__meta-label`, `.about__text` or
+  `.site-footer__brand` breaks the extraction — `assertComplete` fails the
+  build loudly rather than shipping a résumé missing a section, but the
+  selector still has to be updated alongside the rename.
+- **The PDF is deliberately undesigned.** Black on white, one column, a
+  stock sans, no motifs, no SVG, literal `•` characters instead of CSS list
+  markers (a CSS marker is painted, so it never reaches the text layer).
+  This is what applicant tracking systems can parse; don't Art Deco it.
+- The output filename is spelled in both `build-resume-pdf.js` and the
+  hero button's `href`; nothing checks that they still agree.
+- Verify a change to it with `pdftotext -layout dist/*.pdf -` — what
+  that prints is what a parser sees, and reading order matters more than
+  how the page looks.
 
 ## Non-negotiable rules
 
@@ -362,3 +396,5 @@ would shear.
    same commit if so, per rule 6.
 9. If you added or edited an SVG shape, confirm its path data appears in
    exactly one place — the sprite `<defs>` — per rule 7.
+10. If you changed résumé copy or the markup around it, rebuild and check
+    the PDF — see "The résumé PDF".

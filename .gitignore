@@ -1,2 +1,4 @@
 node_modules/
 dist/
+# generated into the repo root by `npm start` so the dev server can serve it
+/Marius-Aiordachioaei-Resume.pdf
