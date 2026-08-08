@@ -11,21 +11,25 @@
   overflow: hidden;
 }
 
+/* Flex, not grid-template-columns: same three-column module as about.css —
+   brand on 1 column, link columns on the other 2 plus the gutter — so the
+   footer's divider lines up with the seam above it. */
 .site-footer__inner {
   display: flex;
   align-items: stretch;
-  max-width: 1100px;
+  max-width: var(--content-width);
   margin: 0 auto;
+  gap: var(--grid-gutter);
 }
 
 .site-footer__brand-block {
-  flex: 1 1 300px;
+  flex: 0 0 calc((100% - 2 * var(--grid-gutter)) / 3);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  padding: 50px 40px;
+  padding: 50px 24px;
   text-align: center;
 }
 
@@ -116,12 +120,13 @@
 }
 
 .site-footer__columns {
-  flex: 2 1 480px;
+  flex: 1;
+  min-width: 0;
   display: flex;
   justify-content: space-between;
   gap: clamp(32px, 5vw, 80px);
   flex-wrap: wrap;
-  padding: 50px 0 50px 60px;
+  padding: 50px 0 50px var(--grid-gutter);
   text-align: left;
   border-left: 2px solid rgba(203, 163, 40, 0.4);
 }
@@ -169,9 +174,11 @@
 @media (max-width: 780px) {
   .site-footer__inner {
     flex-direction: column;
+    gap: 0;
   }
 
   .site-footer__brand-block {
+    flex: 1 1 auto;
     order: 1;
     padding: 50px 24px 40px;
   }
