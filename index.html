@@ -262,9 +262,7 @@
       </p>
 
       <div class="hero__actions">
-        <!-- Generated from this page's own content by
-             scripts/build-resume-pdf.js — keep the filename in step with it. -->
-        <a class="btn btn--solid" href="Marius-Aiordachioaei-Resume.pdf" target="_blank" rel="noopener">
+        <a class="btn btn--solid" href="<%= htmlWebpackPlugin.options.resumePdfFile %>" target="_blank" rel="noopener">
           <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
           <span class="btn__label">PDF Résumé<span class="sr-only"> (opens in new tab)</span></span>
         </a>
@@ -834,6 +832,11 @@
     </button>
     <iframe class="iframe-dialog__frame" data-src="https://wilversings.github.io/climat/playground/" title="Climat playground" loading="lazy"></iframe>
   </dialog>
+
+  <!-- What Ctrl+P prints: a plain résumé built from this page's own content by
+       scripts/build-resume.js. display:none on screen, so it stays out of the
+       accessibility tree and is never announced twice. See css/layout/print.css. -->
+<%= htmlWebpackPlugin.options.resumePrintBody %>
 
 </body>
 </html>

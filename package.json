@@ -4,9 +4,11 @@
   "private": true,
   "description": "Art Deco résumé site — production build via webpack",
   "scripts": {
-    "start": "npm run build:pdf -- . && webpack serve --mode development",
-    "build": "webpack --mode production && npm run build:pdf -- dist",
-    "build:pdf": "node scripts/build-resume-pdf.js"
+    "prestart": "npm run build:resume",
+    "start": "webpack serve --mode development",
+    "prebuild": "npm run build:resume",
+    "build": "webpack --mode production",
+    "build:resume": "node scripts/build-resume.js"
   },
   "devDependencies": {
     "css-loader": "^7.1.2",

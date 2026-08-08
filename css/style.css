@@ -24,3 +24,6 @@
 @import './sections/skills.css';
 @import './sections/connect.css';
 @import './sections/footer.css';
+
+/* Last: the print rules override every section above. */
+@import './layout/print.css';

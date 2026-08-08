@@ -1,0 +1,5 @@
+/* ===== Print ===== */
+
+/* Every print route gets the résumé instead of the page, from the .resume-doc
+   block scripts/build-resume.js injects. Generated file — see AGENTS.md. */
+@import '../../build/resume-print.css';
