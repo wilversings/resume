@@ -1,9 +1,9 @@
 # Empire Résumé
 
-[![Deploy Status](https://github.com/wilversings/resume/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/wilversings/resume/actions/workflows/deploy-pages.yml)
+[![Build](https://img.shields.io/github/actions/workflow/status/wilversings/resume/deploy-pages.yml?label=build)](https://github.com/wilversings/resume/actions/workflows/deploy-pages.yml)
 [![Last Commit](https://img.shields.io/github/last-commit/wilversings/resume)](https://github.com/wilversings/resume/commits/master)
 [![Accessibility](https://img.shields.io/badge/a11y-100%2F100-brightgreen)](#accessibility)
-[![Live Demo](https://img.shields.io/badge/demo-wilversings.github.io%2Fresume-blueviolet)](https://wilversings.github.io/resume/)
+[![Live Demo](https://img.shields.io/badge/demo-online-blueviolet)](https://wilversings.github.io/resume/)
 [![Bundler](https://img.shields.io/badge/bundler-webpack-8dd6f9?logo=webpack&logoColor=white)](webpack.config.js)
 
 A single-page Art Deco résumé site (vanilla HTML/CSS/JS — see `AGENTS.md` for
