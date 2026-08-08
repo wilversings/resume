@@ -15,6 +15,10 @@
   background: var(--gold);
   clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
   padding: 24px 26px;
+  /* drop-shadow, not box-shadow: clip-path crops a box-shadow away entirely.
+     Costs the card's text its subpixel antialiasing — unavoidable here, since
+     the shadow has to follow the chamfer rather than the element box. */
+  filter: var(--shadow-card-filter);
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
@@ -64,24 +68,13 @@
 
 .connect__card:hover {
   transform: translateY(-3px);
-  filter: brightness(1.15);
-}
-
-/* drop-shadow, not box-shadow: clip-path crops a box-shadow away entirely.
-   Scoped to light rather than left on as a no-op, because any filter costs
-   the card's text its subpixel antialiasing. */
-:root[data-theme="light"] .connect__card {
-  filter: drop-shadow(0 1px 0 rgba(255, 252, 242, 0.55)) drop-shadow(0 5px 8px rgba(92, 66, 26, 0.4));
+  filter: var(--shadow-card-filter) brightness(1.15);
 }
 
 /* One step off the section, so the plate reads as raised the way
    .skill-bubble's does; on the dark palette the gold ring already does that. */
 :root[data-theme="light"] .connect__card::before {
   background: var(--surface);
-}
-
-:root[data-theme="light"] .connect__card:hover {
-  filter: drop-shadow(0 1px 0 rgba(255, 252, 242, 0.55)) drop-shadow(0 8px 12px rgba(92, 66, 26, 0.38)) brightness(1.15);
 }
 
 @media (prefers-reduced-motion: reduce) {

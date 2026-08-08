@@ -90,8 +90,10 @@
        ============================================================ -->
   <svg class="sprite" aria-hidden="true">
     <defs>
+      <!-- --plate-shade is the sweep's dark end; light mode raises it off
+           bronze so --on-accent ink still clears AA over the shaded half. -->
       <linearGradient id="metalShine" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" style="stop-color: var(--bronze)" stop-color="#8d7f6b"/>
+        <stop offset="0%" style="stop-color: var(--plate-shade)" stop-color="#8d7f6b"/>
         <stop offset="55%" style="stop-color: var(--gold)" stop-color="#cba328"/>
         <stop offset="100%" style="stop-color: var(--gold-bright)" stop-color="#efc603"/>
       </linearGradient>

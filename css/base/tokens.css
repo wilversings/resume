@@ -131,7 +131,16 @@
   --halo-type: 0 0 28px rgba(239, 198, 3, 0.28);
   --shadow-art: drop-shadow(2px 4px 6px black);
   --shadow-plate: opacity(1);
-  --shadow-card: none;
+  /* raised cards: a lit top edge plus contact and ambient shadow. Paired —
+     on the lacquer a black shadow alone has almost nothing to darken, so the
+     edge is what separates the card; on paper the shadow does the work. */
+  --shadow-card:
+    inset 0 1px 0 rgba(236, 228, 211, 0.07),
+    0 3px 6px rgba(0, 0, 0, 0.5),
+    0 18px 32px -14px rgba(0, 0, 0, 0.85);
+  /* the same depth as a filter, for cards whose clip-path crops box-shadow */
+  --shadow-card-filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.55)) drop-shadow(0 12px 20px rgba(0, 0, 0, 0.5));
+  --plate-shade: var(--bronze);
   --plate-texture: url(#rust);
   --rust-image: url("../../images/rust-texture.svg");
   --rust-image-flat: url("../../images/rust-texture-flat.svg");
@@ -161,11 +170,15 @@
   --shadow-type: drop-shadow(0 1px 0 rgba(255, 252, 242, 0.9)) drop-shadow(0 2px 2px rgba(92, 66, 26, 0.34));
   --halo-type: none;
   --shadow-art: drop-shadow(1px 4px 6px rgba(92, 66, 26, 0.32));
-  --shadow-plate: drop-shadow(0 1px 0 rgba(255, 252, 242, 0.55)) drop-shadow(0 3px 5px rgba(92, 66, 26, 0.38));
+  /* No lit edge on a button: traced around a whole gold plaque it reads as a
+     cut gutter rather than relief, where on a card it is a paper edge. */
+  --shadow-plate: drop-shadow(0 1px 1px rgba(92, 66, 26, 0.3)) drop-shadow(0 3px 6px rgba(92, 66, 26, 0.34));
   --shadow-card:
     inset 0 1px 0 rgba(255, 253, 246, 0.7),
     0 2px 3px rgba(92, 66, 26, 0.1),
     0 14px 26px -18px rgba(92, 66, 26, 0.55);
+  --shadow-card-filter: drop-shadow(0 1px 0 rgba(255, 252, 242, 0.55)) drop-shadow(0 5px 8px rgba(92, 66, 26, 0.4));
+  --plate-shade: var(--gold);
   --plate-texture: url(#patina);
   --rust-image: url("../../images/rust-texture-light.svg");
   --rust-image-flat: url("../../images/rust-texture-flat-light.svg");

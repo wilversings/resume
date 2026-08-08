@@ -123,5 +123,5 @@
 /* Lifting the plaque has to lengthen its shadow, or the hover translate reads
    as the whole button sliding rather than rising off the page. */
 :root[data-theme="light"] .btn:hover .btn__frame {
-  filter: drop-shadow(0 1px 0 rgba(255, 252, 242, 0.5)) drop-shadow(0 5px 7px rgba(92, 66, 26, 0.32));
+  filter: drop-shadow(0 1px 1px rgba(92, 66, 26, 0.26)) drop-shadow(0 6px 10px rgba(92, 66, 26, 0.3));
 }

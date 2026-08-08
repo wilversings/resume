@@ -270,13 +270,22 @@ modes before it's done**, not just the mode you happened to be looking at.
   and `--paper-grain` tokens in `tokens.css` are what carry that per theme, so
   a rule states its *intent* once rather than being overridden to `none`.
   Reach for them before writing a `[data-theme="light"]` override.
-  - `--shadow-plate` and `--shadow-card` are deliberately inert-but-present in
-    dark (`opacity(1)` / `none`) so a rule can compose them —
-    `filter: var(--shadow-plate) brightness(1.15)` — without a per-theme
-    override. `none` is not a valid filter-list item, hence `opacity(1)`.
-  - Don't leave a no-op `filter` on an element containing text: any filter
-    drops it to grayscale antialiasing. `.connect__card` scopes its
-    drop-shadow to light mode for exactly this reason.
+  - Cards carry the same subtle lift in both themes, via `--shadow-card` (or
+    `--shadow-card-filter` where a `clip-path` would crop a box-shadow away):
+    `.about__badge-frame`, `.timeline__card`, `.portfolio__card`,
+    `.skill-bubble`, `.connect__card`. Depth is paired per theme — on the
+    lacquer a black shadow has almost nothing to darken, so a lit top edge
+    separates the card; on paper the shadow does the work.
+  - `--shadow-plate` is inert-but-present in dark (`opacity(1)`, since `none`
+    is not a valid filter-list item) so a rule can compose it —
+    `filter: var(--shadow-plate) brightness(1.15)` — without an override.
+  - Any `filter` on an element containing text drops it to grayscale
+    antialiasing. Unavoidable on `.connect__card`, whose shadow has to follow
+    its chamfer; don't add one elsewhere without that reason.
+  - **A gold plate carrying `--on-accent` ink has to clear AA across its whole
+    sweep, not just its bright end.** `#metalShine`'s dark stop is
+    `--plate-shade`, which light mode raises from bronze to gold for exactly
+    this — dark ink over the bronze end measured 3.1:1 before.
 - Some decorative elements are baked gold/rust SVG assets or hardcoded
   presentation attributes inside `<use>`-referenced sprite symbols
   (`icon-flourish`, the ziggurat cornices, the hero/footer wallpaper
@@ -419,9 +428,10 @@ would shear.
 ## Design tokens & conventions already in place
 
 - Colors, gradients, font stacks and the depth/material set (`--shadow-art`,
-  `--shadow-card`, `--shadow-plate`, `--shadow-type`, `--halo-type`,
-  `--plate-texture`, `--paper-grain`) are CSS custom properties in
-  `css/base/tokens.css` — reuse them, don't hardcode new color values.
+  `--shadow-card`, `--shadow-card-filter`, `--shadow-plate`, `--shadow-type`,
+  `--halo-type`, `--plate-shade`, `--plate-texture`, `--paper-grain`) are CSS
+  custom properties in `css/base/tokens.css` — reuse them, don't hardcode new
+  color values.
 - CSS is split into partials under `css/`, all pulled in by `css/style.css`
   — see the file tree above for what lives where. Add new rules to the
   partial that already owns that selector/section rather than growing

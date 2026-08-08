@@ -31,11 +31,8 @@
   max-width: 281px;
   aspect-ratio: 123 / 141;
   position: relative;
-}
-
-/* Filter, not box-shadow: this casts from the hexagon's own silhouette —
-   frame plus clipped photo — rather than from the element's square. */
-:root[data-theme="light"] .about__badge-frame {
+  /* filter, not box-shadow: casts from the hexagon's silhouette — frame plus
+     clipped photo — rather than from the element's square */
   filter: var(--shadow-art);
 }
 
