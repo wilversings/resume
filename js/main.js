@@ -21,16 +21,28 @@ setTimeout(hideSplash, 4000);
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 
-navToggle.addEventListener('click', () => {
-  const isOpen = navLinks.classList.toggle('is-open');
+function setNavLinksOpen(isOpen) {
+  navLinks.classList.toggle('is-open', isOpen);
   navToggle.setAttribute('aria-expanded', String(isOpen));
+  // Match max-height to the menu's real height (instead of an arbitrary cap)
+  // so the open/close transition covers exactly the distance it animates.
+  navLinks.style.maxHeight = isOpen ? `${navLinks.scrollHeight}px` : '0px';
+}
+
+navToggle.addEventListener('click', () => {
+  setNavLinksOpen(!navLinks.classList.contains('is-open'));
 });
 
 navLinks.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => {
-    navLinks.classList.remove('is-open');
-    navToggle.setAttribute('aria-expanded', 'false');
+    setNavLinksOpen(false);
   });
+});
+
+document.addEventListener('click', (event) => {
+  if (!navLinks.classList.contains('is-open')) return;
+  if (navLinks.contains(event.target) || navToggle.contains(event.target)) return;
+  setNavLinksOpen(false);
 });
 
 // Light-mode toggle — dark is the default regardless of OS preference (see

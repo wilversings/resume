@@ -216,7 +216,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav__toggle-line {
+  .nav__toggle-line,
+  .nav__links {
     transition: none;
   }
 }
@@ -237,11 +238,7 @@
     border-bottom: 1px solid rgba(203, 163, 40, 0.5);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-
-  .nav__links.is-open {
-    max-height: 400px;
+    transition: max-height 0.3s ease-out;
   }
 
   .nav__links a {
