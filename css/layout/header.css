@@ -189,6 +189,38 @@
   stroke-width: 1.4;
 }
 
+.nav__toggle-line {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav__toggle-line--top {
+  transform-origin: 12px 6px;
+}
+
+.nav__toggle-line--bottom {
+  transform-origin: 12px 18px;
+}
+
+/* Bars pivot about their own center, then slide to meet at the icon's
+   center — rotating about the shared center would swing them wide instead. */
+.nav__toggle[aria-expanded="true"] .nav__toggle-line--top {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-line--mid {
+  opacity: 0;
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-line--bottom {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__toggle-line {
+    transition: none;
+  }
+}
+
 @media (max-width: 950px) {
   .nav {
     padding: 0 16px;
