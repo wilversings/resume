@@ -39,6 +39,12 @@ navLinks.querySelectorAll('a').forEach((link) => {
   });
 });
 
+document.addEventListener('click', (event) => {
+  if (!navLinks.classList.contains('is-open')) return;
+  if (navLinks.contains(event.target) || navToggle.contains(event.target)) return;
+  setNavLinksOpen(false);
+});
+
 // Light-mode toggle — dark is the default regardless of OS preference (see
 // the tokens.css comment on [data-theme="light"]). The initial attribute is
 // already applied by the inline script in <head>; this only handles clicks.
