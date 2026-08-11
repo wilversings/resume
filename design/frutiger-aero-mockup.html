@@ -150,8 +150,67 @@
   --hero-rim:   rgba(255,255,255,.55);
 
   --shadow-lift:  0 20px 44px -20px rgba(6,54,86,.55);
-  --shadow-press: inset 0 1px 0 rgba(255,255,255,.95), inset 0 -3px 8px rgba(8,60,92,.10);
   --bokeh:      rgba(255,255,255,.55);
+
+  /* bevel — the chiseled frame that makes a panel read as a moulded object
+     rather than a rectangle. Lip catches light, channel is the cut groove,
+     floor is the shadow the lip casts onto the recessed surface. */
+  --bevel-lip:     rgba(255,255,255,.95);
+  --bevel-ring:    rgba(255,255,255,.80);
+  --bevel-channel: rgba(72,140,180,.42);
+  --bevel-ring-2:  rgba(255,255,255,.55);
+  --bevel-floor:   rgba(8,58,92,.5);
+  --bevel-keyline: rgba(10,70,105,.38);
+  --depth-1:       rgba(8,52,84,.28);
+  --depth-2:       rgba(8,52,84,.24);
+  --depth-3:       rgba(6,44,74,.40);
+
+  /* Composed once, resolved per theme: every var() inside is substituted
+     against whichever palette is live on :root, so the two blocks below
+     only redeclare the pigments, never the geometry. */
+
+  /* raised: 1px lip, a cut channel, a second lip, then the panel floor,
+     over a three-stop cast shadow (contact / near / ambient) */
+  --card-3d:
+    inset 0 1px 0 var(--sheen),
+    inset 0 0 0 1px var(--bevel-ring),
+    inset 0 0 0 4px var(--bevel-channel),
+    inset 0 0 0 5px var(--bevel-ring-2),
+    inset 0 7px 7px -7px var(--bevel-floor),
+    inset 0 -7px 7px -7px var(--sheen),
+    inset 0 -16px 24px -18px var(--bevel-floor),
+    0 0 0 1px var(--bevel-keyline),
+    0 2px 2px -1px var(--depth-1),
+    0 10px 16px -8px var(--depth-2),
+    0 28px 46px -22px var(--depth-3);
+
+  /* same lift, pushed further off the surface — for hover */
+  --card-3d-lift:
+    inset 0 1px 0 var(--sheen),
+    inset 0 0 0 1px var(--bevel-ring),
+    inset 0 0 0 4px var(--bevel-channel),
+    inset 0 0 0 5px var(--bevel-ring-2),
+    inset 0 7px 7px -7px var(--bevel-floor),
+    inset 0 -7px 7px -7px var(--sheen),
+    inset 0 -16px 24px -18px var(--bevel-floor),
+    0 0 0 1px var(--bevel-keyline),
+    0 3px 3px -1px var(--depth-1),
+    0 18px 26px -10px var(--depth-2),
+    0 44px 66px -26px var(--depth-3);
+
+  /* recessed: the inverse cut, for anything that should read as sunk into
+     the panel face — thumbnail plates, stat readouts */
+  --well:
+    inset 0 3px 6px -1px var(--bevel-floor),
+    inset 0 1px 1px 0 var(--bevel-keyline),
+    inset 0 -1px 0 var(--bevel-ring),
+    0 1px 0 var(--sheen);
+
+  /* small raised parts: chips, pills */
+  --chip-3d:
+    inset 0 1px 0 var(--sheen),
+    inset 0 -1px 0 var(--bevel-channel),
+    0 1px 2px var(--depth-1);
 
   /* type */
   --display: 'Encode Sans Semi Expanded', 'Segoe UI', 'Frutiger', 'Myriad Pro', 'Trebuchet MS', sans-serif;
@@ -159,7 +218,7 @@
 
   --content: 1120px;
   --gutter: 32px;
-  --radius: 16px;
+  --radius: 13px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -201,8 +260,17 @@
     --hero-rim:   rgba(150,225,255,.42);
 
     --shadow-lift:  0 22px 48px -20px rgba(0,0,0,.7);
-    --shadow-press: inset 0 1px 0 rgba(190,240,255,.28), inset 0 -3px 8px rgba(0,0,0,.35);
     --bokeh:      rgba(150,225,255,.42);
+
+    --bevel-lip:     rgba(175,232,255,.40);
+    --bevel-ring:    rgba(170,228,255,.22);
+    --bevel-channel: rgba(2,18,30,.60);
+    --bevel-ring-2:  rgba(150,215,245,.13);
+    --bevel-floor:   rgba(0,0,0,.7);
+    --bevel-keyline: rgba(0,10,18,.85);
+    --depth-1:       rgba(0,0,0,.5);
+    --depth-2:       rgba(0,0,0,.45);
+    --depth-3:       rgba(0,0,0,.62);
   }
 }
 
@@ -244,8 +312,17 @@
   --hero-rim:   rgba(150,225,255,.42);
 
   --shadow-lift:  0 22px 48px -20px rgba(0,0,0,.7);
-  --shadow-press: inset 0 1px 0 rgba(190,240,255,.28), inset 0 -3px 8px rgba(0,0,0,.35);
   --bokeh:      rgba(150,225,255,.42);
+
+  --bevel-lip:     rgba(175,232,255,.40);
+  --bevel-ring:    rgba(170,228,255,.22);
+  --bevel-channel: rgba(2,18,30,.60);
+  --bevel-ring-2:  rgba(150,215,245,.13);
+  --bevel-floor:   rgba(0,0,0,.7);
+  --bevel-keyline: rgba(0,10,18,.85);
+  --depth-1:       rgba(0,0,0,.5);
+  --depth-2:       rgba(0,0,0,.45);
+  --depth-3:       rgba(0,0,0,.62);
 }
 
 /* ==========================================================================
@@ -309,19 +386,19 @@ a { color: inherit; }
   background: var(--panel);
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
   backdrop-filter: blur(16px) saturate(1.4);
-  border: 1px solid var(--rim);
+  border: 1px solid var(--bevel-lip);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-lift), inset 0 1px 0 var(--sheen), 0 0 0 1px var(--rim-outer);
+  box-shadow: var(--card-3d);
 }
 /* the specular cap: a soft ellipse of light pooled under the top edge */
 .glass::before {
   content: '';
   position: absolute;
   z-index: -1;
-  inset: 1px 1px auto 1px;
-  height: 44%;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,0));
+  inset: 6px 6px auto 6px;
+  height: 34%;
+  border-radius: calc(var(--radius) - 6px) calc(var(--radius) - 6px) 30% 30% / calc(var(--radius) - 6px) calc(var(--radius) - 6px) 16% 16%;
+  background: linear-gradient(180deg, rgba(255,255,255,.58) 0%, rgba(255,255,255,.16) 52%, rgba(255,255,255,0) 100%);
   pointer-events: none;
   opacity: .8;
 }
@@ -382,7 +459,7 @@ a { color: inherit; }
   background: var(--panel);
   -webkit-backdrop-filter: blur(12px) saturate(1.3);
   backdrop-filter: blur(12px) saturate(1.3);
-  box-shadow: inset 0 1px 0 var(--sheen), 0 0 0 1px var(--rim), 0 10px 22px -12px rgba(6,54,86,.5);
+  box-shadow: inset 0 1px 0 var(--sheen), inset 0 -2px 5px -3px var(--bevel-floor), 0 0 0 1px var(--bevel-keyline), 0 2px 2px -1px var(--depth-1), 0 10px 18px -9px var(--depth-2);
 }
 .gel--on-sky { color: var(--ink-on-sky); background: var(--hero-glass); box-shadow: inset 0 1px 0 var(--hero-rim), 0 0 0 1px var(--hero-rim), 0 10px 24px -12px rgba(0,20,40,.6); }
 .gel--sm { padding: 9px 18px; font-size: .82rem; gap: 6px; }
@@ -435,8 +512,16 @@ a { color: inherit; }
   background: var(--panel);
   -webkit-backdrop-filter: blur(18px) saturate(1.5);
   backdrop-filter: blur(18px) saturate(1.5);
-  border: 1px solid var(--rim);
-  box-shadow: 0 14px 34px -18px rgba(4,48,78,.75), inset 0 1px 0 var(--sheen);
+  border: 1px solid var(--bevel-lip);
+  box-shadow:
+    inset 0 1px 0 var(--sheen),
+    inset 0 0 0 1px var(--bevel-ring),
+    inset 0 0 0 3px var(--bevel-channel),
+    inset 0 0 0 4px var(--bevel-ring-2),
+    inset 0 -10px 14px -12px var(--bevel-floor),
+    0 0 0 1px var(--bevel-keyline),
+    0 2px 2px -1px var(--depth-1),
+    0 14px 24px -10px var(--depth-3);
 }
 .taskbar__brand { display: flex; flex: 0 1 auto; align-items: center; gap: 11px; text-decoration: none; min-width: 0; overflow: hidden; }
 .taskbar__orb { width: 30px; height: 30px; flex: none; display: grid; place-items: center; font-family: var(--display); font-size: .66rem; font-weight: 700; color: #fff; letter-spacing: .02em; }
@@ -485,12 +570,12 @@ a { color: inherit; }
 .icon-btn {
   width: 34px; height: 34px;
   display: grid; place-items: center;
-  border: 1px solid var(--rim);
+  border: 1px solid var(--bevel-lip);
   border-radius: 50%;
   background: var(--panel-flat);
   color: var(--accent-text);
   cursor: pointer;
-  box-shadow: inset 0 1px 0 var(--sheen);
+  box-shadow: var(--chip-3d), inset 0 -4px 7px -5px var(--bevel-floor);
   transition: transform .18s ease, filter .18s ease;
 }
 .icon-btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
@@ -595,15 +680,24 @@ a { color: inherit; }
   -webkit-backdrop-filter: blur(22px) saturate(1.5);
   backdrop-filter: blur(22px) saturate(1.5);
   border: 1px solid var(--hero-rim);
-  box-shadow: 0 34px 70px -30px rgba(0,24,45,.85), inset 0 1px 0 rgba(255,255,255,.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.62),
+    inset 0 0 0 1px rgba(255,255,255,.30),
+    inset 0 0 0 5px rgba(4,34,56,.30),
+    inset 0 0 0 6px rgba(255,255,255,.20),
+    inset 0 -22px 34px -24px rgba(0,18,34,.75),
+    0 0 0 1px rgba(0,20,38,.5),
+    0 3px 3px -1px rgba(0,20,38,.45),
+    0 18px 30px -12px rgba(0,20,38,.5),
+    0 44px 76px -30px rgba(0,18,34,.8);
 }
 .hero__window::before {
   content: '';
   position: absolute;
   z-index: -1;
-  inset: 1px 1px auto 1px;
-  height: 52%;
-  border-radius: 25px 25px 34% 34% / 25px 25px 12% 12%;
+  inset: 7px 7px auto 7px;
+  height: 48%;
+  border-radius: 19px 19px 34% 34% / 19px 19px 12% 12%;
   background: linear-gradient(180deg, rgba(255,255,255,.34) 0%, rgba(255,255,255,.06) 62%, rgba(255,255,255,0) 88%);
   pointer-events: none;
 }
@@ -702,20 +796,20 @@ a { color: inherit; }
 .about { display: grid; grid-template-columns: 1.55fr 1fr; gap: 44px; align-items: start; }
 .about__text { font-size: 1.1rem; max-width: 62ch; }
 .about__meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 30px; }
-.about__meta-item { display: grid; grid-template-columns: auto 1fr; gap: 4px 11px; align-items: start; padding: 16px 18px; border-radius: 13px; background: var(--panel); border: 1px solid var(--rim); box-shadow: var(--shadow-press); }
+.about__meta-item { display: grid; grid-template-columns: auto 1fr; gap: 4px 11px; align-items: start; padding: 17px 19px; border-radius: 13px; background: var(--panel); border: 1px solid var(--bevel-lip); box-shadow: var(--card-3d); }
 .about__meta-item .droplet { grid-row: span 2; margin-top: 5px; }
 .about__meta-label { font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--accent-text); }
 .about__meta-value { font-weight: 600; color: var(--ink); line-height: 1.4; }
 
 /* the photo as a Vista gadget tile: glass frame, gloss cap, aqua rim light */
 .about__tile { position: relative; justify-self: end; width: 100%; max-width: 340px; padding: 12px; border-radius: 24px; overflow: hidden; }
-.about__tile img { display: block; width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 26px -12px rgba(4,48,78,.7); }
+.about__tile img { display: block; width: 100%; height: auto; border-radius: 11px; box-shadow: var(--well); }
 .about__tile::after {
   content: '';
   position: absolute;
   inset: 12px 12px auto 12px;
   height: 38%;
-  border-radius: 15px 15px 46% 46%;
+  border-radius: 11px 11px 46% 46%;
   background: linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,0));
   pointer-events: none;
 }
@@ -759,15 +853,16 @@ a { color: inherit; }
   font-weight: 600;
   color: var(--ink-soft);
   background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.25) 49.5%, color-mix(in srgb, var(--aqua) 16%, transparent) 50%, rgba(255,255,255,.45));
-  border: 1px solid var(--rim);
+  border: 1px solid var(--bevel-lip);
+  box-shadow: var(--chip-3d);
 }
 
 /* ==========================================================================
    Portfolio
    ========================================================================== */
 .pf-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
-.pf-card { display: flex; flex-direction: column; overflow: hidden; transition: transform .22s ease, box-shadow .22s ease; }
-.pf-card:hover { transform: translateY(-4px); box-shadow: 0 30px 56px -22px rgba(6,54,86,.6), inset 0 1px 0 var(--sheen), 0 0 0 1px var(--rim-outer); }
+.pf-card { display: flex; flex-direction: column; padding: 9px; transition: transform .22s ease, box-shadow .22s ease; }
+.pf-card:hover { transform: translateY(-4px); box-shadow: var(--card-3d-lift); }
 .pf-link { display: block; padding: 0 0 4px; text-decoration: none; color: inherit; }
 
 /* the thumb is a gel plate; --th is the project's own hue, set per card */
@@ -776,7 +871,7 @@ a { color: inherit; }
   position: relative;
   height: 116px;
   display: grid; place-items: center;
-  border-radius: 15px 15px 0 0;
+  border-radius: 10px;
   overflow: hidden;
   background:
     radial-gradient(130% 90% at 50% 128%, rgba(255,255,255,.55), transparent 62%),
@@ -785,6 +880,7 @@ a { color: inherit; }
       var(--th) 49.5%,
       color-mix(in srgb, var(--th) 74%, #000000) 50%,
       color-mix(in srgb, var(--th) 72%, #ffffff) 100%);
+  box-shadow: var(--well);
 }
 .pf-thumb::after {
   content: '';
@@ -798,13 +894,13 @@ a { color: inherit; }
   font-variant-numeric: tabular-nums;
   text-shadow: 0 2px 6px rgba(2,40,66,.5);
 }
-.pf-body { padding: 20px 24px 0; }
+.pf-body { padding: 20px 15px 0; }
 .pf-title { font-size: 1.2rem; }
 .pf-cat { display: inline-block; margin-top: 7px; font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); }
 .pf-desc { margin-top: 11px; color: var(--ink-soft); font-size: .98rem; }
-.pf-stat { margin: 16px 24px 0; padding: 10px 14px; border-radius: 11px; font-size: .9rem; color: var(--ink); background: color-mix(in srgb, var(--grass) 14%, transparent); border: 1px solid color-mix(in srgb, var(--grass) 38%, transparent); }
+.pf-stat { margin: 16px 15px 0; padding: 11px 14px; border-radius: 10px; font-size: .9rem; color: var(--ink); background: color-mix(in srgb, var(--grass) 16%, transparent); box-shadow: var(--well); }
 .pf-stat strong { color: var(--grass-text); }
-.pf-foot { margin-top: auto; padding: 16px 24px 22px; }
+.pf-foot { margin-top: auto; padding: 16px 15px 13px; }
 .pf-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
 .ext { width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .pf-more { display: flex; justify-content: center; margin-top: 38px; }
@@ -853,7 +949,7 @@ a { color: inherit; }
   color: inherit;
   transition: transform .22s ease, filter .22s ease;
 }
-.cn-card:hover { transform: translateY(-4px); filter: brightness(1.04); }
+.cn-card:hover { transform: translateY(-4px); filter: brightness(1.04); box-shadow: var(--card-3d-lift); }
 .cn-medallion { width: 62px; height: 62px; display: grid; place-items: center; margin-bottom: 6px; }
 .cn-medallion svg { width: 27px; height: 27px; fill: none; stroke: #fff; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 2px rgba(2,40,66,.5)); }
 .cn-label { font-family: var(--display); font-weight: 700; font-size: 1.02rem; }
@@ -876,7 +972,7 @@ a { color: inherit; }
 .footer__mark { width: 44px; height: 44px; }
 .footer__name { font-family: var(--display); font-weight: 700; font-size: 1.06rem; letter-spacing: .04em; text-decoration: none; }
 .footer__copy { font-size: .88rem; color: var(--ink-soft); }
-.footer__cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
+.footer__cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.6fr); gap: 30px; }
 .footer__col h3 { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); }
 .footer__col ul { margin-top: 13px; display: grid; gap: 9px; }
 .footer__col a { font-size: .92rem; color: var(--ink-soft); text-decoration: none; overflow-wrap: anywhere; transition: color .16s ease; }
