@@ -217,7 +217,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .nav__toggle-line,
-  .nav__links {
+  .nav__links,
+  .nav__links.is-open {
     transition: none;
   }
 }
@@ -238,7 +239,16 @@
     border-bottom: 1px solid rgba(203, 163, 40, 0.5);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    /* Closing target: mirrors the opening curve below (ease-in instead of
+       ease-out) so the dramatic part of the motion happens while the menu
+       still has visible height, not once it's already nearly collapsed. */
+    transition: max-height 0.35s cubic-bezier(0.7, 0, 0.84, 0);
+  }
+
+  .nav__links.is-open {
+    /* Opening target: pronounced ease-out (easeOutExpo) for a snappier,
+       more visible settle than the default ease-out keyword. */
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .nav__links a {
