@@ -147,6 +147,13 @@ stylesheet into `build/`. Webpack folds those into the page.
 - `design/empire-mobile-mockup.svg` — mobile layout (390 viewBox width)
 - `design/og-image.svg` — source for the `images/og-image.png` social card
 
+`design/frutiger-aero-mockup.html` is a different thing: an *alternative*
+style direction (Frutiger Aero) over the same content and layout, not a
+proposal for the Art Deco page. Nothing in the live site should be changed
+to match it unless someone asks for that redesign. It is a standalone,
+self-contained page — fonts and photo inlined as data URIs, no build step,
+no shared CSS with `css/` — so editing it never touches the live site.
+
 These mockups predate a lot of the live site and are now stale in several
 places (see the skills-section example below) — don't treat them as
 authoritative, and don't feel obligated to design new work from them or
