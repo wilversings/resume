@@ -148,13 +148,13 @@ function closeOnBackdropClick(dialog) {
 }
 
 // Maxwell's KDE Store stat — best-effort enhancement: fetch the listing's
-// love/fan count and round it down to the nearest thousand. The store's API
-// contract isn't publicly documented, so this checks a few plausible field
-// names and leaves the static fallback text alone on any failure (unknown
-// field, CORS, network) rather than risk showing a made-up number.
-const loveStat = document.getElementById('maxwellLoveStat');
-if (loveStat) {
-  const contentId = loveStat.dataset.kdeContentId;
+// live download count and round it down to the nearest thousand. The exact
+// endpoint/field name are unverified (this sandbox can't reach store.kde.org),
+// so this leaves the static fallback text alone on any failure (unexpected
+// shape, CORS, network) rather than risk showing a wrong number.
+const downloadStat = document.getElementById('maxwellDownloadStat');
+if (downloadStat) {
+  const contentId = downloadStat.dataset.kdeContentId;
   const controller = new AbortController();
   const abortTimer = setTimeout(() => controller.abort(), 5000);
 
@@ -164,19 +164,13 @@ if (loveStat) {
     .then((res) => (res.ok ? res.json() : Promise.reject(new Error('bad status'))))
     .then((json) => {
       const data = json && json.ocs && json.ocs.data;
-      const candidateKeys = [
-        'fans', 'fans_count', 'loves', 'love', 'likes',
-        'hearts', 'hearts_count', 'favourites', 'favorites',
-      ];
-      const rawCount = candidateKeys
-        .map((key) => data && data[key])
-        .find((value) => value !== undefined && value !== null && !Number.isNaN(Number(value)));
-      if (rawCount === undefined) return;
+      const rawCount = data && data.downloads;
+      if (rawCount === undefined || rawCount === null || Number.isNaN(Number(rawCount))) return;
 
       const thousands = Math.floor(Number(rawCount) / 1000) * 1000;
       if (thousands < 1000) return;
 
-      loveStat.innerHTML = `<strong>${thousands.toLocaleString('en-US')}+</strong> loves on the KDE Store`;
+      downloadStat.innerHTML = `<strong>${thousands.toLocaleString('en-US')}+</strong> downloads on the KDE Store`;
     })
     .catch(() => {})
     .finally(() => clearTimeout(abortTimer));
