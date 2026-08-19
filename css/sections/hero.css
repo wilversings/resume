@@ -173,50 +173,25 @@
 
 .hero__title {
   position: relative;
-  /* shrink-wraps to the rendered text (per wrapped line, the widest one)
-     instead of the full hero__content width, so the rule below lines up
-     with the letters instead of spanning empty margin */
-  width: fit-content;
-  max-width: 100%;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--fs-h1);
   letter-spacing: 4px;
   text-transform: uppercase;
-  margin: 30px auto 22px;
+  margin: 30px 0 22px;
   line-height: 1.05;
   filter: var(--shadow-type);
-  /* renders even though the fill itself is transparent (background-clip:
-     text above) — it's a glow, so covering the glyph body is harmless */
+  /* renders even though the fill itself is transparent below — it's a
+     glow, so covering the glyph body is harmless */
   text-shadow: var(--halo-type);
 
-  text-wrap: unset;
-}
+  /* hollow/outline lettering, like the reference wordmark: no fill, just
+     a keyline tracing each glyph's own contour, so the "line" follows the
+     curves of every letter instead of running straight across the word */
+  color: transparent;
+  -webkit-text-stroke: 0.045em var(--accent);
 
-/* The art-deco rule through the letters (see the monument wordmark) — a
-   layer behind the glyphs, not text-decoration: line-through, which paints
-   over the glyph fill and reads as "crossed out" rather than "threaded
-   through". Sitting behind the text, it's occluded by solid glyph strokes
-   and only shows in the letterforms' counters and gaps, same as the
-   reference mark. filter on .hero__title already forms a stacking context,
-   so z-index: -1 here paints behind the title's own text without leaking
-   behind unrelated siblings. repeating-linear-gradient + a background-size
-   matched to line-height re-centers the rule on every wrapped line. */
-.hero__title::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-repeat: repeat-y;
-  background-size: 100% 1.05em;
-  background-image: repeating-linear-gradient(to bottom,
-    transparent 0,
-    transparent calc(50% - 0.025em),
-    var(--accent) calc(50% - 0.025em),
-    var(--accent) calc(50% + 0.025em),
-    transparent calc(50% + 0.025em),
-    transparent 100%);
+  text-wrap: unset;
 }
 
 /* --fs-lead, not --fs-body: the only line of prose between an 84px h1 and
