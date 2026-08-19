@@ -187,9 +187,12 @@
 
   /* hollow/outline lettering, like the reference wordmark: no fill, just
      a keyline tracing each glyph's own contour, so the "line" follows the
-     curves of every letter instead of running straight across the word */
+     curves of every letter instead of running straight across the word.
+     Flat accent gold, not the rust texture — at a 1px hairline there's no
+     room left for the turbulence pattern to read (see rust.css's own note
+     that the bake is too coarse for stroke widths this thin). */
   color: transparent;
-  -webkit-text-stroke: 0.045em var(--accent);
+  -webkit-text-stroke: 1px var(--accent);
 
   text-wrap: unset;
 }
