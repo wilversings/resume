@@ -10,7 +10,8 @@
     "build": "webpack --mode production",
     "build:resume": "node scripts/build-resume.js",
     "prea11y": "npm run build",
-    "a11y": "node scripts/a11y-check.js"
+    "a11y": "node scripts/a11y-check.js",
+    "update:kde-downloads": "node scripts/update-kde-downloads.js"
   },
   "devDependencies": {
     "axe-core": "^4.13.0",
