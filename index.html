@@ -180,6 +180,13 @@
         <line x1="10" y1="14" x2="21" y2="3"/>
       </symbol>
 
+      <!-- share glyph: tray with an arrow lifting out the top -->
+      <symbol id="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 16V4"/>
+        <polyline points="7 9 12 4 17 9"/>
+        <path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>
+      </symbol>
+
       <!-- Connect medallion glyphs: geometric line-art on a 32x32 field,
            inheriting the medallion's currentColor. -->
       <symbol id="icon-mail" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter">
@@ -236,6 +243,12 @@
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#connect">Connect</a></li>
+          <li class="nav__share-item">
+            <button type="button" class="nav__share-btn" id="navShareBtn" data-share-button>
+              <svg class="icon-share" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-share"/></svg>
+              Share
+            </button>
+          </li>
         </ul>
         <button class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Turn on light mode">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -363,7 +376,7 @@
           <div class="about__badge-frame">
             <picture>
               <source srcset="<%= require('./images/profile-badge.webp') %>" type="image/webp">
-              <img class="about__badge-photo" src="<%= require('./images/profile-badge.jpg') %>" alt="Marius Aiordăchioaei" width="720" height="831">
+              <img class="about__badge-photo" src="<%= require('./images/profile-badge.jpg') %>" alt="Marius Aiordăchioaei" width="720" height="831" loading="lazy" decoding="async">
             </picture>
             <svg viewBox="-61.5 -70.5 123 141" aria-hidden="true">
               <path d="M0,-60 L52,-30 L52,30 L0,60 L-52,30 L-52,-30 Z" fill="none" stroke="#cba328" stroke-width="1.6"/>
@@ -535,6 +548,7 @@
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <a class="portfolio__link" href="https://github.com/wilversings/climat" target="_blank" rel="noopener">
             <div class="portfolio__thumb portfolio__thumb--climat">
+              <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/climat-logo.svg') %>" alt="" loading="lazy" decoding="async">
               <span class="portfolio__num">01</span>
             </div>
             <h3 class="portfolio__title">Climat</h3>
@@ -565,6 +579,7 @@
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <a class="portfolio__link" href="https://github.com/wilversings/tradeville-api-mcp" target="_blank" rel="noopener">
             <div class="portfolio__thumb portfolio__thumb--tradeville">
+              <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/tradeville-depth.svg') %>" alt="" loading="lazy" decoding="async">
               <span class="portfolio__num">02</span>
             </div>
             <h3 class="portfolio__title">Tradeville MCP</h3>
@@ -591,6 +606,7 @@
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <a class="portfolio__link" href="https://github.com/wilversings/maxwell" target="_blank" rel="noopener">
             <div class="portfolio__thumb portfolio__thumb--maxwell">
+              <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/maxwell.webp') %>" alt="" loading="lazy" decoding="async">
               <span class="portfolio__num">03</span>
             </div>
             <h3 class="portfolio__title">Maxwell</h3>
@@ -617,6 +633,7 @@
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <a class="portfolio__link" href="https://github.com/wilversings/contriburg" target="_blank" rel="noopener">
             <div class="portfolio__thumb portfolio__thumb--contriburg">
+              <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/contriburg-icon.webp') %>" alt="" loading="lazy" decoding="async">
               <span class="portfolio__num">04</span>
             </div>
             <h3 class="portfolio__title">Contriburg</h3>
@@ -643,6 +660,7 @@
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <a class="portfolio__link" href="https://github.com/wilversings/AutomatedNnTuning" target="_blank" rel="noopener">
             <div class="portfolio__thumb portfolio__thumb--automatednn">
+              <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/automatednn-network.svg') %>" alt="" loading="lazy" decoding="async">
               <span class="portfolio__num">05</span>
             </div>
             <h3 class="portfolio__title">AutomatedNN</h3>
@@ -659,6 +677,7 @@
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <a class="portfolio__link" href="https://github.com/wilversings/resume" target="_blank" rel="noopener">
             <div class="portfolio__thumb portfolio__thumb--resume">
+              <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/resume-site.webp') %>" alt="" loading="lazy" decoding="async">
               <span class="portfolio__num">06</span>
             </div>
             <h3 class="portfolio__title">Resume Site</h3>
@@ -844,6 +863,12 @@
           <h3 class="site-footer__column-title">Say Hello</h3>
           <ul class="site-footer__links">
             <li><a href="mailto:aiordachioaei.marius@gmail.com">aiordachioaei.marius@gmail.com</a></li>
+            <li>
+              <button type="button" class="site-footer__share-btn" id="footerShareBtn" data-share-button>
+                <svg class="icon-share" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-share"/></svg>
+                Share this page
+              </button>
+            </li>
             <li><a href="#top">Back to top</a></li>
           </ul>
         </div>

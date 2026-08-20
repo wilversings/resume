@@ -45,6 +45,28 @@ document.addEventListener('click', (event) => {
   setNavLinksOpen(false);
 });
 
+// Native share — progressive enhancement, so the buttons only appear where
+// navigator.share actually exists rather than opening a dead click.
+document.querySelectorAll('[data-share-button]').forEach((button) => {
+  if (!navigator.share) {
+    button.closest('li')?.remove();
+    return;
+  }
+  button.addEventListener('click', async () => {
+    if (button === document.getElementById('navShareBtn')) {
+      setNavLinksOpen(false);
+    }
+    try {
+      await navigator.share({
+        title: document.title,
+        url: window.location.href,
+      });
+    } catch (err) {
+      if (err.name !== 'AbortError') console.error('Share failed:', err);
+    }
+  });
+});
+
 // Light-mode toggle — dark is the default regardless of OS preference (see
 // the tokens.css comment on [data-theme="light"]). The initial attribute is
 // already applied by the inline script in <head>; this only handles clicks.

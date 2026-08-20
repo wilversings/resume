@@ -131,6 +131,39 @@
   color: var(--accent-strong);
 }
 
+/* Native-share entry — lives in the dropdown only; the desktop nav is a
+   plain horizontal bar, not a menu, so it stays out of that layout. */
+.nav__share-item {
+  display: none;
+}
+
+.nav__share-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.nav__share-btn:hover {
+  color: var(--accent-strong);
+}
+
+.nav__share-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
 /* The only way into light mode — it isn't wired to OS color-scheme
    preference. See the tokens.css comment on [data-theme="light"]. */
 .theme-toggle {
@@ -244,6 +277,15 @@
   }
 
   .nav__links a {
+    padding: 16px 24px;
+    border-top: 1px solid rgba(203, 163, 40, 0.15);
+  }
+
+  .nav__share-item {
+    display: block;
+  }
+
+  .nav__share-btn {
     padding: 16px 24px;
     border-top: 1px solid rgba(203, 163, 40, 0.15);
   }

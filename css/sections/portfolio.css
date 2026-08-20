@@ -34,8 +34,6 @@
   height: 160px;
   overflow: hidden;
   background-color: var(--surface);
-  background-repeat: no-repeat;
-  background-position: center;
   transition: filter 0.2s ease, box-shadow 0.2s ease;
   /* negates the card's padding so the thumbnail runs edge-to-edge */
   margin: -25px -25px 0;
@@ -48,28 +46,33 @@
     inset 0 0 28px rgba(239, 198, 3, 0.25);
 }
 
+.portfolio__thumb-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 /* Logo/icon artwork: contained with a fixed inset so it never touches the
-   frame — background-origin is what makes `contain` respect that inset. */
+   frame — padding on the wrapper is what gives `contain` that inset. */
 .portfolio__thumb--climat,
 .portfolio__thumb--maxwell,
 .portfolio__thumb--contriburg,
 .portfolio__thumb--tradeville,
 .portfolio__thumb--automatednn {
-  background-size: contain;
-  background-origin: content-box;
   padding: 22px;
 }
 
-.portfolio__thumb--climat { background-image: url("../../images/portfolio/climat-logo.svg"); }
-.portfolio__thumb--maxwell { background-image: url("../../images/portfolio/maxwell.png"); }
-.portfolio__thumb--contriburg { background-image: url("../../images/portfolio/contriburg-icon.png"); }
-.portfolio__thumb--tradeville { background-image: url("../../images/portfolio/tradeville-depth.svg"); }
-.portfolio__thumb--automatednn { background-image: url("../../images/portfolio/automatednn-network.svg"); }
+.portfolio__thumb--climat .portfolio__thumb-img,
+.portfolio__thumb--maxwell .portfolio__thumb-img,
+.portfolio__thumb--contriburg .portfolio__thumb-img,
+.portfolio__thumb--tradeville .portfolio__thumb-img,
+.portfolio__thumb--automatednn .portfolio__thumb-img {
+  object-fit: contain;
+}
 
 /* A real screenshot — meant to bleed edge-to-edge like a banner. */
-.portfolio__thumb--resume {
-  background-image: url("../../images/portfolio/resume-site.png");
-  background-size: cover;
+.portfolio__thumb--resume .portfolio__thumb-img {
+  object-fit: cover;
 }
 
 .portfolio__num {
