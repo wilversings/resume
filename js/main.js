@@ -21,9 +21,15 @@ setTimeout(hideSplash, 4000);
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 
+// The open/close max-height only means anything for the mobile dropdown;
+// applying it on desktop clips .nav__links to that inline height and throws
+// off its vertical centering in the (non-collapsing) flex row.
+const desktopBreakpoint = window.matchMedia('(min-width: 950.02px)');
+
 function setNavLinksOpen(isOpen) {
   navLinks.classList.toggle('is-open', isOpen);
   navToggle.setAttribute('aria-expanded', String(isOpen));
+  if (desktopBreakpoint.matches) return;
   // Match max-height to the menu's real height (instead of an arbitrary cap)
   // so the open/close transition covers exactly the distance it animates.
   navLinks.style.maxHeight = isOpen ? `${navLinks.scrollHeight}px` : '0px';
@@ -31,6 +37,14 @@ function setNavLinksOpen(isOpen) {
 
 navToggle.addEventListener('click', () => {
   setNavLinksOpen(!navLinks.classList.contains('is-open'));
+});
+
+// Drop any leftover inline height from the mobile dropdown once resizing
+// crosses into the desktop breakpoint, where it no longer applies.
+desktopBreakpoint.addEventListener('change', (event) => {
+  if (!event.matches) return;
+  setNavLinksOpen(false);
+  navLinks.style.maxHeight = '';
 });
 
 navLinks.querySelectorAll('a').forEach((link) => {
