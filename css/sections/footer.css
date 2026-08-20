@@ -216,6 +216,9 @@
   }
 
   .site-footer__share-btn {
+    /* buttons keep shrink-to-fit width even at display:flex, so
+       justify-content alone can't center the box — margin can. */
+    margin-inline: auto;
     justify-content: center;
   }
 }
