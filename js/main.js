@@ -24,7 +24,7 @@ const navLinks = document.getElementById('navLinks');
 // The open/close max-height only means anything for the mobile dropdown;
 // applying it on desktop clips .nav__links to that inline height and throws
 // off its vertical centering in the (non-collapsing) flex row.
-const desktopBreakpoint = window.matchMedia('(min-width: 950.02px)');
+const desktopBreakpoint = window.matchMedia('(min-width: 1140.02px)');
 
 function setNavLinksOpen(isOpen) {
   navLinks.classList.toggle('is-open', isOpen);

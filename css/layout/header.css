@@ -26,6 +26,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* Minimum breathing room between the title and the links — `gap` acts as
+     a floor under `space-between`, only ever adding space beyond it. */
+  gap: 32px;
 }
 
 .nav__brand-wrap {
@@ -255,9 +258,16 @@
   }
 }
 
-@media (max-width: 950px) {
+/* Collapses to the burger well before the desktop title+links can crowd
+   each other — at the old 950px cutoff the full-width link bar reappeared
+   right where the title still needed most of its horizontal room. */
+@media (max-width: 1140px) {
   .nav {
     padding: 0 16px;
+    /* The 32px min-gap is only needed to keep the desktop title clear of
+       the link bar; on narrow phones (e.g. Galaxy S24+ at ~360px) it ate
+       into the title's own space and forced it onto two lines. */
+    gap: 0;
   }
 
   .nav__links {
