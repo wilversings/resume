@@ -56,7 +56,7 @@ module.exports = (env, argv) => {
           use: [{ loader: 'svgo-loader' }],
         },
         {
-          test: /\.(png|jpe?g|webp)$/i,
+          test: /\.(png|jpe?g|avif)$/i,
           type: 'asset/resource',
           generator: { filename: 'images/[name].[contenthash:8][ext]' },
         },

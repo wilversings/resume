@@ -375,7 +375,7 @@
         <div class="about__badge">
           <div class="about__badge-frame">
             <picture>
-              <source srcset="<%= require('./images/profile-badge.webp') %>" type="image/webp">
+              <source srcset="<%= require('./images/profile-badge.avif') %>" type="image/avif">
               <img class="about__badge-photo" src="<%= require('./images/profile-badge.jpg') %>" alt="Marius Aiordăchioaei" width="720" height="831" loading="lazy" decoding="async">
             </picture>
             <svg viewBox="-61.5 -70.5 123 141" aria-hidden="true">
@@ -606,7 +606,10 @@
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <a class="portfolio__link" href="https://github.com/wilversings/maxwell" target="_blank" rel="noopener">
             <div class="portfolio__thumb portfolio__thumb--maxwell">
-              <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/maxwell.webp') %>" alt="" loading="lazy" decoding="async">
+              <picture>
+                <source srcset="<%= require('./images/portfolio/maxwell.avif') %>" type="image/avif">
+                <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/maxwell.png') %>" alt="" loading="lazy" decoding="async">
+              </picture>
               <span class="portfolio__num">03</span>
             </div>
             <h3 class="portfolio__title">Maxwell</h3>
@@ -633,7 +636,10 @@
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <a class="portfolio__link" href="https://github.com/wilversings/contriburg" target="_blank" rel="noopener">
             <div class="portfolio__thumb portfolio__thumb--contriburg">
-              <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/contriburg-icon.webp') %>" alt="" loading="lazy" decoding="async">
+              <picture>
+                <source srcset="<%= require('./images/portfolio/contriburg-icon.avif') %>" type="image/avif">
+                <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/contriburg-icon.png') %>" alt="" loading="lazy" decoding="async">
+              </picture>
               <span class="portfolio__num">04</span>
             </div>
             <h3 class="portfolio__title">Contriburg</h3>
@@ -677,7 +683,10 @@
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <a class="portfolio__link" href="https://github.com/wilversings/resume" target="_blank" rel="noopener">
             <div class="portfolio__thumb portfolio__thumb--resume">
-              <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/resume-site.webp') %>" alt="" loading="lazy" decoding="async">
+              <picture>
+                <source srcset="<%= require('./images/portfolio/resume-site.avif') %>" type="image/avif">
+                <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/resume-site.png') %>" alt="" loading="lazy" decoding="async">
+              </picture>
               <span class="portfolio__num">06</span>
             </div>
             <h3 class="portfolio__title">Resume Site</h3>
