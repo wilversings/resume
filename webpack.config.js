@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const { PDF_FILENAME } = require('./scripts/resume-document');
 
 // build/ is filled by scripts/build-resume.js, which npm runs before webpack.
@@ -72,7 +73,11 @@ module.exports = (env, argv) => {
         resumePdfFile: PDF_FILENAME,
         resumePrintBody: readResumeArtifact('resume-print.html'),
       }),
-      ...(isProduction ? [copyResumePdf(outputPath)] : []),
+      // Inlines the single compiled stylesheet into <head> as production data
+      // — no separate CSS request means the browser paints straight off the
+      // HTML instead of waiting on a stylesheet round trip. Dev keeps the
+      // external file so HMR still works.
+      ...(isProduction ? [new HTMLInlineCSSWebpackPlugin(), copyResumePdf(outputPath)] : []),
     ],
     optimization: {
       minimize: isProduction,
