@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 120" fill="none">
+  <!-- an item graph: four satellite artifacts resolved around a central one -->
+  <g stroke="#cba328" stroke-opacity="0.55" stroke-width="1">
+    <line x1="54" y1="24" x2="86" y2="50"/>
+    <line x1="166" y1="24" x2="134" y2="50"/>
+    <line x1="54" y1="96" x2="86" y2="70"/>
+    <line x1="166" y1="96" x2="134" y2="70"/>
+    <line x1="35" y1="38" x2="35" y2="82"/>
+    <line x1="185" y1="38" x2="185" y2="82"/>
+  </g>
+
+  <g fill="#efc603">
+    <rect x="67" y="34" width="6" height="6" transform="rotate(45 70 37)"/>
+    <rect x="147" y="34" width="6" height="6" transform="rotate(45 150 37)"/>
+    <rect x="67" y="80" width="6" height="6" transform="rotate(45 70 83)"/>
+    <rect x="147" y="80" width="6" height="6" transform="rotate(45 150 83)"/>
+  </g>
+
+  <g stroke="#efc603" stroke-width="1.5" fill="#cba328" fill-opacity="0.18">
+    <rect x="86" y="42" width="48" height="36"/>
+    <rect x="16" y="10" width="38" height="28"/>
+    <rect x="166" y="10" width="38" height="28"/>
+    <rect x="16" y="82" width="38" height="28"/>
+    <rect x="166" y="82" width="38" height="28"/>
+  </g>
+
+  <g fill="#efc603" fill-opacity="0.55">
+    <rect x="86" y="42" width="48" height="7"/>
+    <rect x="16" y="10" width="38" height="6"/>
+    <rect x="166" y="10" width="38" height="6"/>
+    <rect x="16" y="82" width="38" height="6"/>
+    <rect x="166" y="82" width="38" height="6"/>
+  </g>
+
+  <g stroke="#cba328" stroke-opacity="0.7" stroke-width="1.5">
+    <line x1="92" y1="57" x2="128" y2="57"/>
+    <line x1="92" y1="64" x2="118" y2="64"/>
+    <line x1="92" y1="71" x2="124" y2="71"/>
+    <line x1="22" y1="24" x2="48" y2="24"/>
+    <line x1="22" y1="31" x2="40" y2="31"/>
+    <line x1="172" y1="24" x2="198" y2="24"/>
+    <line x1="172" y1="31" x2="190" y2="31"/>
+    <line x1="22" y1="96" x2="48" y2="96"/>
+    <line x1="22" y1="103" x2="40" y2="103"/>
+    <line x1="172" y1="96" x2="198" y2="96"/>
+    <line x1="172" y1="103" x2="190" y2="103"/>
+  </g>
+</svg>

@@ -81,6 +81,61 @@ document.querySelectorAll('[data-share-button]').forEach((button) => {
   });
 });
 
+// Portfolio "show more" — the grid keeps its first two rows, leaves the next
+// row peeking under a fade, and drops everything after it. Progressive
+// enhancement: the cards are only marked, and the button only revealed, once
+// this runs.
+const visibleCardCount = 6;
+const portfolioGrid = document.getElementById('portfolioGrid');
+const portfolioToggle = document.getElementById('portfolioToggle');
+const extraCards = Array.from(portfolioGrid.querySelectorAll('.portfolio__card')).slice(
+  visibleCardCount
+);
+
+if (extraCards.length) {
+  const toggleText = portfolioToggle.querySelector('.portfolio__toggle-text');
+
+  // Which of the folded cards form the peeking row. Counting the grid's own
+  // tracks, rather than measuring positions, is what still works while the
+  // rows being measured are the ones currently folded away.
+  function splitPeekRow() {
+    const columns = getComputedStyle(portfolioGrid).gridTemplateColumns.split(' ').length;
+    extraCards.forEach((card, index) => {
+      card.classList.toggle('portfolio__card--peek', index < columns);
+      card.classList.toggle('portfolio__card--extra', index >= columns);
+    });
+  }
+
+  function setExpanded(isExpanded) {
+    portfolioGrid.classList.toggle('portfolio__grid--expanded', isExpanded);
+    portfolioToggle.setAttribute('aria-expanded', String(isExpanded));
+    toggleText.textContent = isExpanded ? 'Show Less' : 'Show More';
+    // A peeking card shows a sliver of artwork and no readable text, so it's
+    // decoration until it's expanded: inert keeps it out of both the tab
+    // order and the accessibility tree meanwhile.
+    extraCards.forEach((card) => {
+      card.inert = !isExpanded;
+    });
+  }
+
+  portfolioGrid.classList.add('portfolio__grid--foldable');
+  splitPeekRow();
+  setExpanded(false);
+  portfolioToggle.hidden = false;
+
+  window.addEventListener('resize', splitPeekRow);
+
+  portfolioToggle.addEventListener('click', () => {
+    const wasExpanded = portfolioToggle.getAttribute('aria-expanded') === 'true';
+    setExpanded(!wasExpanded);
+    // Collapsing pulls the button up past the viewport when the reader is
+    // deep in the folded rows; follow it so the click doesn't lose the page.
+    if (wasExpanded && portfolioToggle.getBoundingClientRect().top < 0) {
+      portfolioToggle.scrollIntoView({ block: 'center' });
+    }
+  });
+}
+
 // Light-mode toggle — dark is the default regardless of OS preference (see
 // the tokens.css comment on [data-theme="light"]). The initial attribute is
 // already applied by the inline script in <head>; this only handles clicks.
@@ -147,7 +202,11 @@ document.querySelectorAll('[data-dialog-open]').forEach((trigger) => {
     const dialog = document.getElementById(trigger.dataset.dialogOpen);
     if (!dialog) return;
     const iframe = dialog.querySelector('iframe[data-src]');
-    if (iframe) iframe.src = `${iframe.dataset.src}?${buildEmbedThemeParams()}`;
+    if (iframe) {
+      iframe.src = iframe.hasAttribute('data-theme-params')
+        ? `${iframe.dataset.src}?${buildEmbedThemeParams()}`
+        : iframe.dataset.src;
+    }
     dialog.showModal();
   });
 });

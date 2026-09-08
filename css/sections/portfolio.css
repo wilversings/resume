@@ -58,6 +58,7 @@
 .portfolio__thumb--maxwell,
 .portfolio__thumb--contriburg,
 .portfolio__thumb--tradeville,
+.portfolio__thumb--cargo-portray,
 .portfolio__thumb--automatednn {
   padding: 22px;
 }
@@ -66,6 +67,7 @@
 .portfolio__thumb--maxwell .portfolio__thumb-img,
 .portfolio__thumb--contriburg .portfolio__thumb-img,
 .portfolio__thumb--tradeville .portfolio__thumb-img,
+.portfolio__thumb--cargo-portray .portfolio__thumb-img,
 .portfolio__thumb--automatednn .portfolio__thumb-img {
   object-fit: contain;
 }
@@ -167,9 +169,71 @@
   margin-top: 16px;
 }
 
-.portfolio__more {
+/* The peeking row's own fade already reads as the grid's bottom edge, so the
+   folded grid needs far less air under it than the full one. */
+.portfolio__grid--foldable:not(.portfolio__grid--expanded) {
+  margin-bottom: 18px;
+}
+
+/* Folded cards past the grid's first two rows: the next row is cropped to a
+   peeking sliver, the rows after it are gone. js/main.js is what marks them,
+   so the fold only exists where the toggle exists. */
+.portfolio__card--extra {
+  display: none;
+}
+
+/* Cropping every card in the row to the same height is what holds the grid
+   row to it; the mask fades the crop out instead of leaving a cut edge. */
+.portfolio__card--peek {
+  height: 92px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, #000 22%, transparent 96%);
+  mask-image: linear-gradient(to bottom, #000 22%, transparent 96%);
+}
+
+/* The bracket belongs to a corner that is no longer there. */
+.portfolio__card--peek .corner--br {
+  display: none;
+}
+
+.portfolio__grid--expanded .portfolio__card--extra {
+  display: flex;
+}
+
+.portfolio__grid--expanded .portfolio__card--peek {
+  height: auto;
+  overflow: visible;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.portfolio__toggle {
   display: flex;
   margin: 0 auto;
+}
+
+.portfolio__toggle[hidden] {
+  display: none;
+}
+
+.portfolio__toggle-icon {
+  width: 12px;
+  height: 7px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: transform 0.2s ease;
+}
+
+.portfolio__toggle[aria-expanded="true"] .portfolio__toggle-icon {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio__toggle-icon {
+    transition: none;
+  }
 }
 
 @media (max-width: 900px) {

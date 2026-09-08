@@ -176,6 +176,11 @@
         <rect x="-5" y="-5" width="10" height="10" transform="rotate(45)"/>
       </symbol>
 
+      <!-- chevron, pointing down; stroke comes from the instance's CSS -->
+      <symbol id="icon-chevron" viewBox="0 0 14 8">
+        <path d="M1,1 L7,7 L13,1" fill="none"/>
+      </symbol>
+
       <!-- external-link glyph: box with an arrow breaking out the top-right -->
       <symbol id="icon-ext-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
@@ -321,7 +326,7 @@
     <!-- pinned to the hero's bottom rather than flowing after the text, so
          it stays put however tall the title/subtitle above it get -->
     <a class="hero__scroll" href="#about" aria-label="Scroll to About section">
-      <svg viewBox="0 0 14 8" aria-hidden="true"><path d="M1,1 L7,7 L13,1"/></svg>
+      <svg viewBox="0 0 14 8" aria-hidden="true"><use href="#icon-chevron"/></svg>
     </a>
   </section>
 
@@ -545,7 +550,7 @@
       <!-- One card shape throughout: a .portfolio__link covering thumb through
            description, then the evidence lines, then any actions. The link
            grows so those trailing rows sit on the card floor. -->
-      <div class="portfolio__grid">
+      <div class="portfolio__grid" id="portfolioGrid">
         <div class="portfolio__card">
           <svg class="corner corner--tl" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
@@ -607,13 +612,44 @@
         <div class="portfolio__card">
           <svg class="corner corner--tl" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
+          <a class="portfolio__link" href="https://github.com/wilversings/cargo-portray" target="_blank" rel="noopener">
+            <div class="portfolio__thumb portfolio__thumb--cargo-portray">
+              <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/cargo-portray-graph.svg') %>" alt="" loading="lazy" decoding="async">
+              <span class="portfolio__num">03</span>
+            </div>
+            <h3 class="portfolio__title">cargo-portray</h3>
+            <span class="portfolio__cat">Rust Tooling &amp; Visualization</span>
+            <p class="portfolio__desc">A map of your crate in the browser — which struct holds which enum, who implements what, what calls what — drawn, filtered and clickable.</p>
+            <span class="sr-only">(opens in new tab)</span>
+          </a>
+          <p class="portfolio__stat"><strong>One binary</strong> — parser, server and viewer</p>
+          <p class="portfolio__stack">Rust · syn · JavaScript · Graphviz WASM</p>
+          <div class="portfolio__actions">
+            <button type="button" class="btn btn--solid portfolio__action" data-dialog-open="cargoPortrayDialog">
+              <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
+              <span class="btn__label">Live Demo</span>
+            </button>
+            <a class="btn btn--outline portfolio__action" href="https://crates.io/crates/cargo-portray" target="_blank" rel="noopener">
+              <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
+              <span class="btn__label btn__label--ext">
+                crates.io
+                <svg class="btn__ext-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-ext-link"/></svg>
+                <span class="sr-only">(opens in new tab)</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="portfolio__card">
+          <svg class="corner corner--tl" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
+          <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
           <a class="portfolio__link" href="https://github.com/wilversings/maxwell" target="_blank" rel="noopener">
             <div class="portfolio__thumb portfolio__thumb--maxwell">
               <picture>
                 <source srcset="<%= require('./images/portfolio/maxwell.avif') %>" type="image/avif">
                 <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/maxwell.png') %>" alt="" loading="lazy" decoding="async">
               </picture>
-              <span class="portfolio__num">03</span>
+              <span class="portfolio__num">04</span>
             </div>
             <h3 class="portfolio__title">Maxwell</h3>
             <span class="portfolio__cat">Plasma Widget &amp; 3D</span>
@@ -643,7 +679,7 @@
                 <source srcset="<%= require('./images/portfolio/contriburg-icon.avif') %>" type="image/avif">
                 <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/contriburg-icon.png') %>" alt="" loading="lazy" decoding="async">
               </picture>
-              <span class="portfolio__num">04</span>
+              <span class="portfolio__num">05</span>
             </div>
             <h3 class="portfolio__title">Contriburg</h3>
             <span class="portfolio__cat">Plasma Widget &amp; 3D</span>
@@ -670,7 +706,7 @@
           <a class="portfolio__link" href="https://github.com/wilversings/AutomatedNnTuning" target="_blank" rel="noopener">
             <div class="portfolio__thumb portfolio__thumb--automatednn">
               <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/automatednn-network.svg') %>" alt="" loading="lazy" decoding="async">
-              <span class="portfolio__num">05</span>
+              <span class="portfolio__num">06</span>
             </div>
             <h3 class="portfolio__title">AutomatedNN</h3>
             <span class="portfolio__cat">Machine Learning</span>
@@ -690,7 +726,7 @@
                 <source srcset="<%= require('./images/portfolio/resume-site.avif') %>" type="image/avif">
                 <img class="portfolio__thumb-img" src="<%= require('./images/portfolio/resume-site.png') %>" alt="" loading="lazy" decoding="async">
               </picture>
-              <span class="portfolio__num">06</span>
+              <span class="portfolio__num">07</span>
             </div>
             <h3 class="portfolio__title">Resume Site</h3>
             <span class="portfolio__cat">Front-End &amp; Vanilla Web</span>
@@ -702,14 +738,15 @@
         </div>
       </div>
 
-      <a href="https://github.com/wilversings" target="_blank" rel="noopener" class="btn btn--outline btn--wide portfolio__more">
-        <svg class="btn__frame" viewBox="0 0 320 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame-wide"/></svg>
+      <!-- Hidden until js/main.js collapses the grid, so with JS off every
+           card shows and the button never sits there doing nothing. -->
+      <button type="button" class="btn btn--outline portfolio__toggle" id="portfolioToggle" aria-expanded="false" aria-controls="portfolioGrid" hidden>
+        <svg class="btn__frame" viewBox="0 0 184 46" preserveAspectRatio="none" aria-hidden="true"><use href="#btn-frame"/></svg>
         <span class="btn__label btn__label--ext">
-          View Full Portfolio
-          <svg class="btn__ext-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-ext-link"/></svg>
-          <span class="sr-only">(opens in new tab)</span>
+          <span class="portfolio__toggle-text">Show More</span>
+          <svg class="portfolio__toggle-icon" viewBox="0 0 14 8" aria-hidden="true"><use href="#icon-chevron"/></svg>
         </span>
-      </a>
+      </button>
     </div>
   </section>
 
@@ -889,8 +926,10 @@
   </footer>
 
   <!-- ============================================================
-       Climat playground dialog — native <dialog> supplies the focus trap,
+       Live-demo dialogs — native <dialog> supplies the focus trap,
        Escape-to-close and ::backdrop, so js/main.js hand-rolls none of it.
+       data-theme-params opts an embed into the page's palette; only embeds
+       that read those params get them.
        ============================================================ -->
   <dialog class="iframe-dialog" id="climatDialog" aria-label="Climat playground">
     <svg class="corner corner--tl" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
@@ -898,7 +937,16 @@
     <button type="button" class="iframe-dialog__close" data-dialog-close aria-label="Close playground">
       <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1,1 L15,15 M15,1 L1,15" /></svg>
     </button>
-    <iframe class="iframe-dialog__frame" data-src="https://wilversings.github.io/climat/playground/" title="Climat playground" loading="lazy"></iframe>
+    <iframe class="iframe-dialog__frame" data-src="https://wilversings.github.io/climat/playground/" data-theme-params title="Climat playground" loading="lazy"></iframe>
+  </dialog>
+
+  <dialog class="iframe-dialog" id="cargoPortrayDialog" aria-label="cargo-portray demo">
+    <svg class="corner corner--tl" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
+    <svg class="corner corner--br" viewBox="1 1 24 24" aria-hidden="true"><use href="#icon-corner"/></svg>
+    <button type="button" class="iframe-dialog__close" data-dialog-close aria-label="Close demo">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1,1 L15,15 M15,1 L1,15" /></svg>
+    </button>
+    <iframe class="iframe-dialog__frame" data-src="https://wilversings.github.io/cargo-portray/" title="cargo-portray demo" loading="lazy"></iframe>
   </dialog>
 
   <!-- What Ctrl+P prints: a plain résumé built from this page's own content by

@@ -26,7 +26,7 @@ css/base/             tokens.css (CSS custom properties + @font-face),
 css/components/       reusable pieces referenced from more than one section:
                      splash.css, shared.css (icons/corners), section-
                      heading.css, buttons.css (.btn — used in hero,
-                     portfolio, connect), dialog.css (the <dialog> modal),
+                     portfolio, connect), dialog.css (the <dialog> modals),
                      rust.css (oxidized-metal text), paper.css (light mode's
                      grain over every full-bleed surface), sunburst.css
 css/layout/            section-wrappers.css (.section, cornice), header.css,
@@ -37,7 +37,7 @@ css/sections/          one file per <section> in index.html: hero, about,
                      skills, connect, footer
 js/main.js           splash-screen hiding, mobile nav toggle, light-mode
                      toggle, scroll-spy nav highlighting, iframe-dialog
-                     open/close
+                     open/close, portfolio show-more collapse
 scripts/             build-time Node only, never shipped to the browser:
                      extract-resume.js (lifts content out of index.html),
                      resume-document.js (the document's markup + CSS),
@@ -159,10 +159,11 @@ automatically a bug — use judgment on whether the live page's evolution was
 intentional.
 
 The live sprite defines `#icon-flourish`, `#icon-ziggurat`, `#icon-corner`,
-`#icon-diamond`, `#icon-ext-link`, the connect-card glyphs `#icon-mail` /
-`#icon-linkedin` / `#icon-github` (geometric line-art that inherits its
-plate's `currentColor`), and the two button plaque frames `#btn-frame` /
-`#btn-frame-wide`. The sunburst is *not* a sprite symbol:
+`#icon-diamond`, `#icon-ext-link`, `#icon-share`, `#icon-chevron` (the hero
+scroll cue and the portfolio show-more toggle), the connect-card glyphs
+`#icon-mail` / `#icon-linkedin` / `#icon-github` (geometric line-art that
+inherits its plate's `currentColor`), and the two button plaque frames
+`#btn-frame` / `#btn-frame-wide`. The sunburst is *not* a sprite symbol:
 it's built from `repeating-conic-gradient` wedges in
 `css/components/sunburst.css`.
 
@@ -404,8 +405,8 @@ and an eyeballed copy reintroduces a bug that's already been fixed twice.
 - Mind rule 1's `<use>`/viewBox gotcha: if the symbol's `viewBox` doesn't
   start at `0 0`, the `<use>` needs explicit `x`/`y`/`width`/`height`.
 - A genuinely single-use icon (the theme-toggle sun, the nav hamburger, the
-  dialog close X, the hero scroll chevron) may stay inline — one use is not
-  duplication. Promote it to the sprite the moment a second use appears.
+  dialog close X) may stay inline — one use is not duplication. Promote it
+  to the sprite the moment a second use appears, as the chevron was.
 
 **Styling `<use>` content:** CSS selectors do not cross into a `<use>` shadow
 tree, so `.btn--outline .btn__plate-ring { … }` matches nothing. Only
@@ -438,6 +439,17 @@ would shear.
   `style.css` itself or creating a stray new file; if a rule is shared by
   more than one section (like `.btn`), it belongs in `css/components/`.
 - Class naming is loosely BEM (`.timeline__item`, `.btn--outline`).
+- The portfolio grid shows its first two rows, crops the next row to a
+  faded sliver, and drops the rows after it; `.portfolio__toggle` unfolds it.
+  `visibleCardCount` in `js/main.js` is the only place that number lives, and
+  the peeking row is sized by counting the grid's tracks rather than measuring
+  positions — the rows you would measure are the folded ones. A folded card is
+  `inert`, so the sliver is decoration rather than a half-readable card in the
+  tab order. The fold is screen-only — `extract-resume.js` reads `textContent`,
+  so every card still reaches the résumé.
+- Controls that only work with JS (`.portfolio__toggle`, the `navigator.share`
+  buttons) ship `hidden`/absent and are revealed by `js/main.js`, so the page
+  never offers a dead click.
 - Desktop sections share one three-column module: they span
   `--content-width` and divide it with `--grid-gutter`. Portfolio, skills
   and connect are literal `repeat(3, 1fr)` grids; the timeline divides the

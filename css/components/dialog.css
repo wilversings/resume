@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Iframe dialog — native <dialog>, used by the Climat "Try It Out" card
+   Iframe dialog — native <dialog>, used by the portfolio cards' live demos
    (wiring in js/main.js). showModal() handles focus trapping and inertness,
    so this file only does layout/paint.
    ========================================================================== */
@@ -52,13 +52,12 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  margin: 8px 8px 0 0;
+  margin: 8px;
   padding: 0;
   border: 1px solid var(--accent);
   background: var(--surface);
   color: var(--accent);
   cursor: pointer;
-  position: absolute;
 }
 
 .iframe-dialog__close svg {
